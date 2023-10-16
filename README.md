@@ -1,1 +1,2 @@
-# bs-frontend
+
+# Frontend project for the universoul barbers project
