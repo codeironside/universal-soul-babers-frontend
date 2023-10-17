@@ -3,10 +3,19 @@ import { useState } from "react";
 const FeedBackForm = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
+  const [review, setReview] = useState(' ')
+
+const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    // Todo: api 
+}
+
   return (
     <form action=''>
+      {/* Rating details with Star  */}
       <div>
-        <h3 className='text-headingColor text-[16px] font-semibold mb-2 leading-6'>
+        <h3 className='text-headingColor text-[16px] font-semibold mb-2 leading-6 mt-0'>
           How would you rate our service from your experience?
         </h3>
         <div>
@@ -36,6 +45,21 @@ const FeedBackForm = () => {
           })}
         </div>
       </div>
+
+      <div className='mt-[30px]'>
+        <h3 className='text-headingColor text-[16px] font-semibold mb-2 leading-6 mt-0'>
+          Share reviews or suggestion
+        </h3>
+        <textarea
+          className='border border-solid  border-[#0066ff34] focus:outline outline-primaryColor w-full px-4 py-3 rounded-md '
+          rows='6' 
+          placeholder='Write your review'
+          onChange={(e) => setReview(e.target.value)}
+          ></textarea>
+      </div>
+      <button type='submit' onClick={handleSubmit} className='btn' >
+       Submit
+      </button>
     </form>
   );
 };

@@ -4,6 +4,7 @@ import baberImg from "../assets/img/about-1.jpg";
 import star from "../assets/img/Star.png";
 import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
+import {SidePanel} from '../components'
 
 const BarbersDetails = () => {
   const [tab, setTab] = useState("about");
@@ -73,7 +74,9 @@ const BarbersDetails = () => {
                 }
           </div>
         </div>
-        <div className='md:col-span-1'></div>
+        <div className='md:col-span-1'>
+          <SidePanel />
+        </div>
       </div>
     </section>
   );

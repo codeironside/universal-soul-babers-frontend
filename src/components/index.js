@@ -8,6 +8,7 @@ import Pricing from './Pricing'
 import BarberList from './BarberList'
 import Testimonials from './Testimonials'
 import FeedBackForm from './FeedBackForm'
+import SidePanel from './SidePanel'
 
 
 export{
@@ -20,5 +21,6 @@ export{
     BarberList,
     Testimonials,
     Pricing,
-    FeedBackForm
+    FeedBackForm,
+    SidePanel
 }
