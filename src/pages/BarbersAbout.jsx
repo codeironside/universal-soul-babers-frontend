@@ -1,5 +1,4 @@
-import React from 'react'
-
+import formatDate from '../utils/formatDate'
 const BarbersAbout = () => {
   return (
     <div>
@@ -27,7 +26,7 @@ const BarbersAbout = () => {
               className='
                 '>
               <span className='text-headingColor text-[15px] leading-6 font-semibold '>
-                June 16, 2018
+                {formatDate("04-04-2017")} - {formatDate("06-04-2017")}
               </span>
               <p className='text-[16px] leading-6 font-medium text-textColor '>
                 Barber Award
@@ -42,7 +41,7 @@ const BarbersAbout = () => {
               className='
                 '>
               <span className='text-headingColor text-[15px] leading-6 font-semibold '>
-                June 16, 2018
+                {formatDate("12-04-2017")} - {formatDate("08-04-2018")}
               </span>
               <p className='text-[16px] leading-6 font-medium text-textColor '>
                 Barber Award
