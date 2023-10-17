@@ -9,7 +9,7 @@ const BarbersDetails = () => {
   const [tab, setTab] = useState("about");
   return (
     <section className='px-5 mx-auto container'>
-      <div className='grid md:grid-cols-2 gap-[50px]'>
+      <div className='grid md:grid-cols-2 gap-[50px] '>
         <div className='md:col-span-1'>
           <div className='flex items-center  gap-5'>
             <figure className='max-w-[200px] max-h-[200px] rounded-lg '>
@@ -73,7 +73,7 @@ const BarbersDetails = () => {
                 }
           </div>
         </div>
-        <div className=''></div>
+        <div className='md:col-span-1'></div>
       </div>
     </section>
   );

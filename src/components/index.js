@@ -7,6 +7,7 @@ import BarberCard from './BarberCard'
 import Pricing from './Pricing'
 import BarberList from './BarberList'
 import Testimonials from './Testimonials'
+import FeedBackForm from './FeedBackForm'
 
 
 export{
@@ -18,5 +19,6 @@ export{
     BarberCard,
     BarberList,
     Testimonials,
-    Pricing
+    Pricing,
+    FeedBackForm
 }
