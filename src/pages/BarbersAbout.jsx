@@ -1,4 +1,4 @@
-import formatDate from '../utils/formatDate'
+import formatDate from "../utils/formatDate";
 const BarbersAbout = () => {
   return (
     <div>
@@ -53,8 +53,26 @@ const BarbersAbout = () => {
           </li>
         </ul>
       </div>
+      <div className='mt-'>
+        <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
+          Experience
+        </h3>
+        <ul className='grid sm:grid-cols-2 gap-[30px] pt-4 md:p-5 '>
+          <li className='p-4 rounded bg-green-300 '>
+            <span className='text-green-700 leading-6 font-semibold text-[15px] '>
+              {formatDate("07-04-2019")} - {formatDate("07-04-2020")}
+            </span>
+            <p className='text-[16px] leading-6 font-medium text-textColor '>
+              Barber Title
+            </p>
+            <p className='text-[16px] leading-6 font-medium text-textColor '>
+              Atlanta Georgia
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
   );
-}
+};
 
-export default BarbersAbout
+export default BarbersAbout;
