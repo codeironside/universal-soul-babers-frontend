@@ -7,6 +7,7 @@ import Contact from './Contact'
 import NotFound from './NotFound'
 import Barbers from './Barbers'
 import BarbersDetails from './BarbersDetails'
+import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
 
 export {
@@ -19,5 +20,6 @@ export {
     Barbers,
     NotFound,
     BarbersDetails,
+    BarbersAbout,
     Feedback
 }

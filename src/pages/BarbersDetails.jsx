@@ -1,10 +1,12 @@
 import React from "react";
-import {useState} from 'react'
+import { useState } from "react";
 import baberImg from "../assets/img/about-1.jpg";
 import star from "../assets/img/Star.png";
+import BarbersAbout from './BarbersAbout'
+import Feedback from './Feedback'
 
 const BarbersDetails = () => {
-    const [tab,  setTab] = useState('about')
+  const [tab, setTab] = useState("about");
   return (
     <section className='px-5 mx-auto container'>
       <div className='grid md:grid-cols-2 gap-[50px]'>
@@ -18,7 +20,6 @@ const BarbersDetails = () => {
                 className='bg-[#CCF0F3] text-textColor py-1 px-6 lg:py-2 lg:px-6 text-[12px] leading-4 lg:text-[16px]
         lg:leading-7 font-semibold rounded
         '>
-                {" "}
                 Professional
               </span>
               <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
@@ -43,19 +44,33 @@ const BarbersDetails = () => {
           </div>
           <div className='mt-[50px] border-b border-solid border-[#0066ff34]  '>
             <button
-              onClick={() => setTab("about")}
-              className={`${
-                tab === "about" && "borer-b border-solid border-primaryColor"
-              }    py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
+              onClick={() => {
+                setTab("about");
+                console.log(tab);
+              }}
+              className={` ${
+                tab === "about" && "border-b border-solid border-primaryColor"
+              }  py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
               About
             </button>
             <button
-              onClick={() => setTab("reviews")}
-              className={` ${
-                tab === "reviews" && "borer-b border-solid border-primaryColor"
-              } py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
+              onClick={() => {
+                setTab("reviews");
+                console.log(tab);
+              }}
+              className={`
+              ${tab === "reviews" && "border-b border-solid border-primaryColor"}
+              py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
               Reviews
             </button>
+          </div>
+          <div className="mt-[50px] ">
+                {
+                  tab === 'about' && <BarbersAbout/>
+                }
+                {
+                  tab === 'reviews' && <Feedback/>
+                }
           </div>
         </div>
         <div className=''></div>
