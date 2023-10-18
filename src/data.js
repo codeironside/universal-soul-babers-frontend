@@ -4,14 +4,26 @@ import catImg02 from './assets/img/clipper.png';
 import catImg03 from './assets/img/forum.png';
 import catImg04 from './assets/img/headphone.png';
 import baberImg from './assets/img/about-1.jpg'
-import baberImg02 from './assets/img/baber02.jpg'
+import product1 from './assets/img/product-1.JPG'
+import product2 from './assets/img/product-2.jpg'
+import product3 from './assets/img/product-3.jpg'
 import customerImg from './assets/img/patient-avatar.png'
 
 
 
 
 
-
+export const products = [
+  {
+    product: product1,
+  },
+  {
+    product: product2,
+  },
+  {
+    product: product3,
+  },
+];
 
 
 export const quickLinks = [
@@ -130,10 +142,9 @@ export const barbers = [
 
 export const navLinks = [
   { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
+  { path: "/marketplace", label: "Marketplace" },
   { path: "/blog", label: "Blog" },
   { path: "/barbers", label: "Find a Barber" },
-  { path: "/contact", label: "Contact" },
 ];
 
 export  const statistics = [
