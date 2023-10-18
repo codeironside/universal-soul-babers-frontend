@@ -9,6 +9,9 @@ import BarberList from './BarberList'
 import Testimonials from './Testimonials'
 import FeedBackForm from './FeedBackForm'
 import SidePanel from './SidePanel'
+import CartItem from './CartItem'
+import Product from './Product'
+import SideBar from './SideBar'
 
 
 export{
@@ -22,5 +25,8 @@ export{
     Testimonials,
     Pricing,
     FeedBackForm,
-    SidePanel
+    SidePanel,
+    CartItem,
+    Product,
+    SideBar
 }
