@@ -5,6 +5,7 @@ const ProductCard = ({ imgURL, changeProductImage, productImg }) => {
     if (productImg !== imgURL.product) {
       changeProductImage(imgURL.product);
     }
+    console.log(imgURL.product);
   };
 
   return (
@@ -16,8 +17,8 @@ const ProductCard = ({ imgURL, changeProductImage, productImg }) => {
       } cursor-pointer max-sm:flex-1`}
       onClick={handleClick}
     >
-      <div className='flex justify-center items-center bg-transparent bg-center bg-cover sm:w-40 sm:h-40 rounded-xl max-sm:p-4'>
-        
+      <div className='flex justify-center items-center bg-transparent bg-center bg-cover overflow-hidden sm:w-20 sm:h-[100px] rounded-xl max-sm:p-4'>
+        <img src={imgURL.product} alt=""  width={127} height={120} className='object-contain' />
       </div>
     </div>
 
