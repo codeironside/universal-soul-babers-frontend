@@ -10,6 +10,7 @@ import BarbersDetails from './BarbersDetails'
 import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
 import MarketPlace from './MarketPlace'
+import ProductDetails from './ProductDetails'
 
 export {
     Home,
@@ -23,5 +24,6 @@ export {
     BarbersDetails,
     BarbersAbout,
     Feedback,
-    MarketPlace
+    MarketPlace,
+    ProductDetails
 }
