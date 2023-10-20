@@ -48,10 +48,12 @@ const Header = () => {
       <div className='container'>
         <div className='flex items-center justify-between'>
           {/* logo  */}
+          <Link to={'/'}>
           <div className='flex items-start gap-3 justify-center'>
             <div className='w-5 h-5 bg-black rounded-full'></div>
             <p className='text-sm'>UniverSoul Babers</p>
           </div>
+          </Link>
 
           {/* Menu  */}
           <div className='navigation' ref={menuRef} onClick={toggleMenu}>

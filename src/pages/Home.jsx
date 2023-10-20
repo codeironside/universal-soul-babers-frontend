@@ -1,28 +1,38 @@
-import {statistics, categories} from '../data'
-import {SectionHeader, BarberList, Testimonials, Pricing} from '../components'
-import heroOne from '../assets/img/hero-1.jpg'
-import heroTwo from '../assets/img/hero-2.jpg'
-import heroThree from '../assets/img/hero-3.jpg'
-import Service from '../assets/img/service.jpg'
-import Card from '../assets/img/card.png'
-import Vid from '../assets/img/video-icon.png'
+import { statistics, categories } from "../data";
+import {
+  SectionHeader,
+  BarberList,
+  Testimonials,
+  Pricing,
+  SideBar,
+} from "../components";
+import heroOne from "../assets/img/hero-1.jpg";
+import heroTwo from "../assets/img/hero-2.jpg";
+import heroThree from "../assets/img/hero-3.jpg";
+import Service from "../assets/img/service.jpg";
+import Card from "../assets/img/card.png";
+import Vid from "../assets/img/video-icon.png";
+import Design1 from "../assets/img/barber-brush.gif";
+import Design2 from "../assets/img/shaver.gif";
+import Design3 from "../assets/img/razor.gif";
+import Design4 from "../assets/img/pie-chart.gif";
 import { Link } from "react-router-dom";
 import { AiOutlineInstagram, AiFillGithub } from "react-icons/ai";
 import { RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
-import CountUp from 'react-countup'
-
-
+import CountUp from "react-countup";
+import { Grid, BallTriangle } from "react-loader-spinner";
 
 const Home = () => {
   return (
     <>
       <section className='hero-section pt-[2px] 2xl:h-[800px] relative '>
+        {/* First Aesthetic  */}
+        <div className='absolute top-[40%] left-[40%] h-[100px] w-[100px] '>
+          <img src={Design1} alt='' className='w-full block z-10' />
+        </div>
+
         <div className='container'>
           <div className='flex flex-col lg:flex-row gap-[10px] items-center justify-between '>
-            {/* <div className='absolute  top-[-200px] left-[-400px] blur-xl w-[1300px] h-[800px] rounded-full bg-gradient-to-r from-slate-200 -z-10 '></div>
-            <div className='absolute  top-[-200px] right-[-400px] blur-xl w-[1000px] h-[800px] rounded-full bg-gradient-to-l from-[#E0CEB5] -z-10 '></div> */}
-
-            {/* Hero content  */}
             <div>
               <div className='lg:w-[570px]  '>
                 <h1
@@ -134,7 +144,25 @@ const Home = () => {
         </div>
       </section>
       <SectionHeader title='Services' subTitle='What we do' />
-      <div className='container items-center justify-center  w-[1100px] flex gap-5 flex-col mx-auto mt-[60px]lg:flex-row md:flex-row'>
+      <div className='container items-center justify-center relative w-[1100px] flex gap-5 flex-col mx-auto mt-[60px]lg:flex-row md:flex-row'>
+        <div className='absolute top-[25%] left-[43%] h-[100px] w-[100px]'>
+          <img src={Design3} alt='' className='w-full block' />
+        </div>
+        <div className='absolute -top-[10%] -right-[0%] h-[100px] w-[100px]'>
+          <img src={Design2} alt='' className='w-full block' />
+        </div>
+        <div className='absolute -bottom-[10%] -right-[0%] h-[100px] w-[100px] z-10 '>
+          <Grid
+            height='280'
+            width='280'
+            color='black'
+            ariaLabel='grid-loading'
+            radius='12.5'
+            wrapperStyle={{}}
+            wrapperClass=''
+            visible={true}
+          />
+        </div>
         <div className='w-full flex items-center justify-center relative'>
           <img
             data-aos='fade-left'
@@ -242,17 +270,33 @@ const Home = () => {
           );
         })}
       </section>
-      <section className='container mx-auto items-center justify-center'>
+      <section className='container mx-auto items-center justify-center relative'>
+        <div className='absolute top-[15%] right-[7%] h-[100px] w-[100px] '>
+          <BallTriangle
+            height={100}
+            width={100}
+            radius={5}
+            color='black'
+            ariaLabel='ball-triangle-loading'
+            wrapperClass={{}}
+            wrapperStyle=''
+            visible={true}
+          />
+        </div>
         <BarberList />
       </section>
       <section className='container mx-auto items-center justify-center'>
         <Testimonials />
       </section>
-      <section className='container mx-auto items-center justify-center'>
+      <section className='container mx-auto items-center justify-center relative'>
+        <div className='absolute top-[20%] -right-[0%] h-[100px] w-[100px]'>
+          <img src={Design4} alt='' className='w-full block' />
+        </div>
         <Pricing />
       </section>
+      <SideBar />
     </>
   );
-}
+};
 
-export default Home
+export default Home;

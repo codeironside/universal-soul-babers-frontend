@@ -23,7 +23,7 @@ const MarketPlace = () => {
               Our Store
             </p>
             <h1 className='mt-[20px] text-8xl max-sm:text-[62px] max-sm:leading-[72px] font-bold'>
-              <span className='xl:bg-white xl:whitespace-nowrap relative lg:text-[88px] rounded-lg z-10 pr-[110px]'>
+              <span className='xl:bg-white shadow-xl xl:whitespace-nowrap relative lg:text-[88px] rounded-lg z-10 pr-[110px]'>
                 Marketplace
               </span>
 

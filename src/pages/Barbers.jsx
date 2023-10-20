@@ -1,4 +1,4 @@
-import { BarberCard, Testimonials } from "../components";
+import { BarberCard, Testimonials,SideBar } from "../components";
 import { barbers } from "../data";
 const Barbers = () => {
   return (
@@ -30,6 +30,7 @@ const Barbers = () => {
       <section>
         <Testimonials />
       </section>
+      <SideBar />
     </>
   );
 };

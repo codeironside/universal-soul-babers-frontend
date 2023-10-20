@@ -1,4 +1,5 @@
 import formatDate from "../utils/formatDate";
+import { SideBar } from "../components";
 const BarbersAbout = () => {
   return (
     <div>
@@ -86,6 +87,7 @@ const BarbersAbout = () => {
           
         </ul>
       </div>
+      <SideBar />
     </div>
   );
 };

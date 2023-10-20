@@ -2,6 +2,7 @@ import React,{useContext} from 'react'
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
+import { SideBar } from "../components";
 
 const ProductDetails = () => {
   // get products from id 
@@ -51,6 +52,7 @@ console.log(img);
         </div>
         </div>
       </div>
+      <SideBar />
     </section>
   );
 }
