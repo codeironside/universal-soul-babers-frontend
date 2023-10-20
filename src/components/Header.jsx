@@ -5,12 +5,14 @@ import avatar from "../assets/img/avatar-icon.png";
 import { BiMenu } from "react-icons/bi";
 
 import { SidebarContext } from "../context/SidebarContext";
+import { CartContext } from "../context/CartContext";
 
 import { BsCart3 } from "react-icons/bs";
 
 const Header = () => {
   // context for side bar
   const { isOpen, setIsOpen } = useContext(SidebarContext);
+  const {itemAmount} = useContext(CartContext)
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);
@@ -92,12 +94,13 @@ const Header = () => {
                 login
               </button>
             </Link>
-            <div className='cursor-pointer flex relative '
+            <div className='cursor-pointer flex relative max-w-[50px] '
               onClick={() => {
                 setIsOpen(!isOpen);
 
               }}>
               <BsCart3 className='text-2xl' />
+              <div className='bg-black absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex  items-center justify-center' >{itemAmount}</div>
             </div>
             <span className='md:hidden' onClick={toggleMenu}>
               <BiMenu className='w-6 h-6 cursor-pointer' />
