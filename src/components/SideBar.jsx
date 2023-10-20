@@ -12,7 +12,7 @@ import { CartContext } from "../context/CartContext";
 const SideBar = () => {
   const {isOpen, handleClose} = useContext(SidebarContext)
   // const  useContext(CartContext)
-  const {cart, clearCart} = useContext(CartContext)
+  const {cart, clearCart,total} = useContext(CartContext)
   return (
     <div
       className={`${
@@ -26,7 +26,7 @@ const SideBar = () => {
           <IoMdArrowForward className='text-2xl' />
         </div>
       </div>
-      <div>
+      <div className='flex flex-col gap-y-2 h-[370px] lg:[380px] overflow-y-auto overflow-x-hidden border-b  '>
         {cart.map((item) => {
           return (
             <div key={item.id}>
@@ -35,10 +35,11 @@ const SideBar = () => {
           );
         })}
       </div>
-      <div className='flex flex-col gap-y-3 py-4 mt-4' >
+      <div className='flex flex-col gap-y-3 py-4 mt-4'>
         <div className='flex w-full justify-between items-center'>
-          <div className='uppercase font-semibold' > 
-            <span className='mr-2' >Total: </span> $1000
+          <div className='uppercase font-semibold'>
+            <span className='mr-2'>Total: </span> $
+            {parseFloat(total).toFixed(2)}
           </div>
           <div
             onClick={() => clearCart()}
@@ -46,6 +47,14 @@ const SideBar = () => {
             <FiTrash2 />
           </div>
         </div>
+        <Link
+          to={"/"}
+          className='bg-gray-200 flex p-4 justify-center items-center rounded-lg text-primaryColor w-full font-medium'>
+          View Cart
+        </Link>
+        <Link className='bg-black  flex p-4 justify-center items-center rounded-lg text-white w-full font-medium'>
+          Checkout
+        </Link>
       </div>
     </div>
   );
