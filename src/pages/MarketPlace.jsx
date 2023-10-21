@@ -19,7 +19,10 @@ const MarketPlace = () => {
       <section className='mx-auto  max-w-[1200px] mb-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-20 justify-center items-center '>
           <div className='col-span-1 w-full h-full '>
-            <p className='text-para text-textColor leading-7 font-thin'>
+            <p
+              className='text-para text-textColor leading-7 font-thin'
+              data-aos='fade-down'
+              data-aos-duration='1200'>
               Our Store
             </p>
             <h1 className='mt-[20px] text-8xl max-sm:text-[62px] max-sm:leading-[72px] font-bold'>
@@ -27,12 +30,20 @@ const MarketPlace = () => {
                 Marketplace
               </span>
 
-              <span className=' inline-block mt-[-28px] text-5xl'>
+              <span
+                className=' inline-block mt-[-28px] text-5xl'
+                data-aos='fade-up'
+                data-aos-duration='1200'
+                data-aos-delay='700'>
                 Universoul Store
               </span>
             </h1>
 
-            <p className='font-montserrat text-slate-gray text-lg leading-8 mt-4 sm:max-w-sm'>
+            <p
+              data-aos='fade-up'
+              data-aos-duration='1500'
+              data-aos-delay='900'
+              className='font-montserrat text-slate-gray text-lg leading-8 mt-4 sm:max-w-sm'>
               Get your equipment with ease. Super fast delivery and instant pay.
               get started now!!!
             </p>
@@ -46,7 +57,7 @@ const MarketPlace = () => {
                     key={value}
                     data-aos='fade-up'
                     data-aos-duration='1200'
-                    data-aos-delay='700'>
+                    data-aos-delay='800'>
                     <h2 className='text-[36px] leading-[56px] lg:text-[44px] lg:leading-[44px] font-[700] text-headingColor '>
                       <CountUp
                         start={0}
@@ -71,7 +82,11 @@ const MarketPlace = () => {
               <button className='btn'>Shop</button>
             </div>
           </div>
-          <div className='col-span-1  w-full h-[600px] my-[-70px] relative flex items-center justify-items-center '>
+          <div
+            data-aos='fade-right'
+            data-aos-duration='1500'
+            data-aos-delay='900'
+            className='col-span-1  w-full h-[600px] my-[-70px] relative flex items-center justify-items-center '>
             <img src={product1} alt='' className='block rounded-lg ' />
 
             <div className='flex sm:gap-6 gap-4 absolute -bottom-[7%] sm:left-[10%] max-sm:px-6'>
@@ -100,30 +115,24 @@ const MarketPlace = () => {
         </div>
       </section>
 
-  {/* Product Lists  */}
-  <section className="mx-auto my-10  max-w-[1200px] ">
-   {/* section header  */}
-   <SectionHeader title='Our Products' subTitle='Buy Now' />
+      {/* Product Lists  */}
+      <section className='mx-auto my-10  max-w-[1200px] '>
+        {/* section header  */}
+        <SectionHeader title='Our Products' subTitle='Buy Now' />
 
-    {/* Todo: Dynamic rendering of data from the mock you created in the context  */}
+        {/* Todo: Dynamic rendering of data from the mock you created in the context  */}
 
-    <div  className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 ' >
-      {
-        productItem.map((item)=> {
-          // console.log(item);
-          
-          return (
-           <Product key={item.id} product={item}  />
-          )
-        })
-      }
-    </div>
+        <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
+          {productItem.map((item) => {
+            // console.log(item);
 
+            return <Product key={item.id} product={item} />;
+          })}
+        </div>
+      </section>
 
-  </section>
-
-  {/* Sidebar  */}
-<SideBar />
+      {/* Sidebar  */}
+      <SideBar />
     </main>
   );
 };
