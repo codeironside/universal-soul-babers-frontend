@@ -8,7 +8,7 @@ const Profile = () => {
 
   return (
     <section className='container mx-auto  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3'>
-      <div className='col-span-1 h-[450px] flex items-center justify-center flex-col bg-blue-200 '>
+      <div className='col-span-1 h-[450px] flex items-center justify-center flex-col '>
         <div className='w-[150px] h-[150px] rounded-full mb-3  '>
           <img src={avatar} alt='' className='w-full block rounded-full' />
         </div>
@@ -22,7 +22,7 @@ const Profile = () => {
 
         <div className='flex flex-col justify-center items-center w-full mt-12 flex-1'>
           <button className='bg-black rounded-lg p-3 text-white my-3 w-[90%]'>
-            Edit Profile
+            Logout
           </button>
           <button className='bg-red-500 rounded-lg p-3 text-white my-0 w-[90%]'>
             Delete Account

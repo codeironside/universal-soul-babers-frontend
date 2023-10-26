@@ -55,7 +55,9 @@ const handleSubmit = async (e) => {
           rows='6' 
           placeholder='Write your review'
           onChange={(e) => setReview(e.target.value)}
-          ></textarea>
+          >
+            {review}
+          </textarea>
       </div>
       <button type='submit' onClick={handleSubmit} className='btn' >
        Submit
