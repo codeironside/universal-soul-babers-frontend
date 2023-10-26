@@ -13,6 +13,7 @@ import CartItem from './CartItem'
 import Product from './Product'
 import SideBar from './SideBar'
 import Input from './Input'
+import Form from './Form'
 
 
 export{
@@ -20,6 +21,7 @@ export{
     Footer,
     Header,
     SectionHeader,
+    Form,
     Nav,
     BarberCard,
     BarberList,

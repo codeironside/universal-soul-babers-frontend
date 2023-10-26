@@ -69,8 +69,7 @@ const Header = () => {
                           ? "text-primaryColor  text-[16px] leading-7 font-[600]"
                           : "text-textColor  text-[16px] leading-7 font-[500] hover:text-primaryColor"
                       }>
-                      {" "}
-                      {label}{" "}
+                      {label}
                     </NavLink>
                   </li>
                 );
@@ -88,12 +87,12 @@ const Header = () => {
               </Link>
             </div>
 
-            <Link to='/login'>
+            <Link to='/auth'>
               <button
                 className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center
               justify-center rounded-[50px]
               '>
-                login
+                Get Started
               </button>
             </Link>
             <div className='cursor-pointer flex relative max-w-[50px] '

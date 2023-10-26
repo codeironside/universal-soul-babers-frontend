@@ -1,8 +1,7 @@
 import Home from './Home'
 import Blog from './Blog'
 import About from './About'
-import SignUp from './SignUp'
-import SignIn from './SignIn'
+import Auth from './Auth'
 import Contact from './Contact'
 import NotFound from './NotFound'
 import Barbers from './Barbers'
@@ -16,8 +15,7 @@ export {
     Home,
     Blog,
     About,
-    SignIn,
-    SignUp, 
+    Auth,
     Contact,
     Barbers,
     NotFound,
