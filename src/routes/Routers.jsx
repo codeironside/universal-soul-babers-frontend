@@ -4,6 +4,7 @@ import {
   Blog,
   About,
   Contact,
+  Profile,
   Auth,
   Barbers,
   NotFound,
@@ -20,6 +21,7 @@ const Routers = () => {
       <Route path='/barbers' element={<Barbers />} />
       <Route path='/auth' element={<Auth />} />
       <Route path='/blog' element={<Blog />} />
+      <Route path='/profile' element={<Profile />} />
       <Route path='/barber/:id' element={<BarbersDetails />} />
       <Route path='/product/:id' element={<ProductDetails />} />
       <Route path='/marketplace' element={<MarketPlace />} />

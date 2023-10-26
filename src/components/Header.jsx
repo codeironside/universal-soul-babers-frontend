@@ -79,8 +79,8 @@ const Header = () => {
 
           {/* Right nav  */}
           <div className='flex items-center gap-4'>
-            <div className='hidden'>
-              <Link to='/'>
+            <div className=''>
+              <Link to='/profile'>
                 <figure className='w-[35px] h-[35px] rounded-full cursor-pointer '>
                   <img src={avatar} alt='' className='w-full rounded-full' />
                 </figure>

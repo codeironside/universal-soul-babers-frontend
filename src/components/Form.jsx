@@ -28,7 +28,7 @@ const toggleVariant = useCallback(() => {
         <img
           src={variant === "Login" ? formImg : formImg2}
           alt=''
-          className='h-[550px]'
+          className='h-[550px] hidden lg:block md:block'
         />
       </div>
       <div className='col-span-1 w-[95%] px-5 h-full flex flex-col gap-5 items-center justify-start'>
