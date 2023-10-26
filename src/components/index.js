@@ -14,6 +14,10 @@ import Product from './Product'
 import SideBar from './SideBar'
 import Input from './Input'
 import Form from './Form'
+import BarberProfile from './BarberProfile'
+import BarberBookings from './BarberBookings'
+import BarberShop from './BarberShop'
+import BarberStore from './BarberStore'
 
 
 export{
@@ -21,6 +25,10 @@ export{
     Footer,
     Header,
     SectionHeader,
+    BarberProfile,
+    BarberBookings,
+    BarberShop,
+    BarberStore,
     Form,
     Nav,
     BarberCard,
