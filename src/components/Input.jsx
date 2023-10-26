@@ -1,13 +1,13 @@
 
-const Input = ({ id, onChange, value, label, type }) => {
+const Input = ({ id, onChange, value, label, type,  }) => {
   return (
-    <div className='relative'>
+    <div className='relative w-full'>
       <input
         type={type}
         onChange={onChange}
         value={value}
         id={id}
-        className='
+        className={`
       block
       rounded-md
       px-6
@@ -21,8 +21,9 @@ const Input = ({ id, onChange, value, label, type }) => {
       focus:outline-none
       appearance-none
       focus:ring-0
+      
       peer
-      '
+      `}
         placeholder=' '
       />
 
