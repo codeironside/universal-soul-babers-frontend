@@ -1,13 +1,14 @@
 import avatar from "../assets/img/avatar-icon.png";
 import { MdVerified } from "react-icons/md";
 import { useState } from "react";
+import {   BarberProfile, BarberBookings, BarberShop, BarberStore  } from "../components";
 
 const Profile = () => {
   const [tab, setTab] = useState("profile");
 
   return (
-    <section className='container mx-auto h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 '>
-      <div className='col-span-1 flex items-center justify-center flex-col '>
+    <section className='container mx-auto  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3'>
+      <div className='col-span-1 h-[450px] flex items-center justify-center flex-col bg-blue-200 '>
         <div className='w-[150px] h-[150px] rounded-full mb-3  '>
           <img src={avatar} alt='' className='w-full block rounded-full' />
         </div>
@@ -19,7 +20,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className='flex flex-col justify-center items-center w-full mt-12'>
+        <div className='flex flex-col justify-center items-center w-full mt-12 flex-1'>
           <button className='bg-black rounded-lg p-3 text-white my-3 w-[90%]'>
             Edit Profile
           </button>
