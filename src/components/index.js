@@ -12,6 +12,7 @@ import SidePanel from './SidePanel'
 import CartItem from './CartItem'
 import Product from './Product'
 import SideBar from './SideBar'
+import Input from './Input'
 
 
 export{
@@ -28,5 +29,6 @@ export{
     SidePanel,
     CartItem,
     Product,
-    SideBar
+    SideBar,
+    Input
 }
