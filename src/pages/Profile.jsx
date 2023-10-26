@@ -61,7 +61,7 @@ const Profile = () => {
             className={`
               ${tab === "shop" && "border-b border-solid border-primaryColor"}
               py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
-            Shop(2)
+            Shop(s)
           </button>
           <button
             onClick={() => {
