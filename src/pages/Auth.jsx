@@ -1,6 +1,7 @@
 import { Form, Input } from "../components";
 import { useState, useCallback } from "react";
 import formImg from '../assets/img/Placeholder.gif'
+import formImg2 from '../assets/img/Sign up.gif'
 
 
 // form data : 
@@ -37,17 +38,32 @@ const Auth = () => {
         <div
           className='col-span-1  h-full 
       '>
-          <img src={formImg} alt='' className='h-[550px]' />
+          <img
+            src={variant === "Login" ? formImg : formImg2}
+            alt=''
+            className='h-[550px]'
+          />
         </div>
         <div className='col-span-1 w-[95%] px-5 h-full flex flex-col gap-5 items-center justify-start'>
-          <h1 className='text-[28px] text-center leading-[18px] text-headingColor font-[500] md:text-[32px] md:leading-[24px] md:text-center lg:text-left mt-5  '>
+          <h1
+            data-aos='fade-down'
+            data-aos-duration='1200'
+            className='text-[28px] text-center leading-[18px] text-headingColor font-[500] md:text-[32px] md:leading-[24px] md:text-center lg:text-left mt-5  '>
             UniverSoul Babers
           </h1>
-          <p className='text-textColor my-3 text-sm leading-3'>
-            Create Account
+          <p
+            className='text-textColor my-3 text-sm leading-3'
+            data-aos='fade-up'
+            data-aos-duration='1300'>
+            {variant === "Login"
+              ? "Login To UniverSoul"
+              : "Get Started With UniverSoul"}
           </p>
           {variant === "Register" && (
-            <div className='flex gap-5 flex-col' >
+            <div
+              className='flex gap-5 flex-col'
+              data-aos='fade-right'
+              data-aos-duration='1200'>
               <div className='flex items-center justify-between  w-full '>
                 <div className='flex w-[45%]'>
                   <Input
@@ -89,7 +105,10 @@ const Auth = () => {
             </div>
           )}
 
-          <div className='flex w-full'>
+          <div
+            className='flex w-full'
+            data-aos='fade-right'
+            data-aos-duration='1200'>
             <Input
               label='Email'
               onChange={(e) => setEmail(e.target.value)}
@@ -98,23 +117,31 @@ const Auth = () => {
               value={email}
             />
           </div>
-          <div className='flex w-full'>
+          <div
+            className='flex w-full'
+            data-aos='fade-right'
+            data-aos-duration='1200'>
             <Input
               label='Password'
               onChange={(e) => setPassword(e.target.value)}
               id='password'
-              type='email'
+              type='password'
               value={password}
             />
           </div>
 
           <button
+            data-aos='fade-up'
+            data-aos-duration='1500'
             onClick={() => {}}
             className='bg-black py-3 duration-150 hover:bg-slate-500 text-white rounded-md w-full mt-1'>
-            {variant == "Login" ? "Login" : "Sign Up"}
+            {variant == "Login" ? "Login" : "Register"}
           </button>
 
-          <p className='text-neutral-500 mt'>
+          <p
+            className='text-neutral-500 mt'
+            data-aos='fade-up'
+            data-aos-duration='1500'>
             {variant == "Login"
               ? "First time here?"
               : "Already have an account"}
