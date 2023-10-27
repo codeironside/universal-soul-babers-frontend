@@ -90,7 +90,7 @@ const [hours, setHours] = useState(false)
       <div className='flex w-[90%]'>
         {hours && (
           <div>
-            <Hours />
+            <Hours bb3zz />
           </div>
         )}
       </div>
