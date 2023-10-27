@@ -89,7 +89,7 @@ const Header = () => {
 
           {/* Right nav  */}
           <div className='flex items-center gap-4'>
-            <div className='hidden'>
+            <div className=''>
               <Link to='/profile'>
                 <figure className='w-[35px] h-[35px] rounded-full cursor-pointer '>
                   <img src={avatar} alt='' className='w-full rounded-full' />
@@ -97,7 +97,7 @@ const Header = () => {
               </Link>
             </div>
 
-            <Link to='/auth'>
+            <Link to='/auth'  className="hidden">
               <button
                 className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center
               justify-center rounded-[50px]
