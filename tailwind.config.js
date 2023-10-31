@@ -1,15 +1,21 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        primaryColor: "black",
+        primaryColor: "#d5bb6a",
+        primaryDark: "#a88b4e",
         yellowColor: "#FEB60D",
         purpleColor: "#9771FF",
         irisBlueColor: "#01B5C5",
         headingColor: "#181A1E",
         textColor: "#4E545F",
+        'warm-gray': colors.warmGray,
+        teal: colors.teal,
       },
 
       boxShadow: {
@@ -17,5 +23,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 };

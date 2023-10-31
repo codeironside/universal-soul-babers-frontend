@@ -52,7 +52,7 @@ const Header = () => {
           {/* logo  */}
           <Link to={"/"}>
             <div className='flex items-center gap-3 justify-center'>
-              <div className='w-16 h-16 rounded-full overflow-hidden'>
+              <div className='w-6 mr-4 rounded-full overflow-hidden'>
                 <img
                   src={logo}
                   alt=''

@@ -51,7 +51,7 @@ export const quickLinks02 = [
     display: "Community",
   },
   {
-    path: "/",
+    path: "/contact",
     display: "Contact Us",
   }
  
@@ -78,31 +78,31 @@ export const quickLinks03 = [
 export const testimonials = [
   {
     id: 1,
-    name: "Naira Marley",
+    name: "Sarah M",
     img: customerImg,
     review:
-      "I am satisfied with their services. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem  ",
+      "I've been a loyal customer at this salon for years, and I can confidently say it's the best in town. The staff is not only skilled and professional but also incredibly friendly. The ambiance is inviting, and every visit feels like a pampering experience. I wouldn't trust my hair and beauty needs to anyone else!",
   },
   {
     id: 2,
-    name: "John Vidal",
+    name: "David L",
     img: customerImg,
     review:
-      "I am satisfied with their services. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem  ",
+      "I stumbled upon this salon a few months ago, and it's been a game-changer for me. The quality of service is exceptional, and the attention to detail is impressive. I always leave feeling rejuvenated and confident. This salon has become my go-to place for self-care and beauty treatments!",
   },
   {
     id: 3,
-    name: "Blessing Scott4",
+    name: "Emily S",
     img: customerImg,
     review:
-      "I am satisfied with their services. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem  ",
+      "I can't say enough good things about this salon. From the moment you walk in, you're greeted with warmth and professionalism. The stylists here are truly artists, and they always take the time to understand exactly what I want. The results are consistently outstanding. I'm grateful to have found such a gem in the world of salons!",
   },
   {
     id: 4,
-    name: "Blessing Scott",
+    name: "Michael C",
     img: customerImg,
     review:
-      "I am satisfied with their services. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem  ",
+      "This salon has completely transformed my perception of what a salon experience should be. The team here goes above and beyond to make you feel special and valued. The attention to detail in their work is unparalleled, and I always leave feeling like a million bucks. I wouldn't trust my hair and beauty needs to anyone else!",
   },
 ];
 
@@ -186,7 +186,7 @@ export const categories = [
 
 export const pricing = [
   {
-    title: "Standard Gold",
+    title: "Basic",
     price: 0,
     currency: "USD",
     frequency: "/month",
@@ -201,7 +201,7 @@ export const pricing = [
     recommended: false,
   },
   {
-    title: "Premium Diamond",
+    title: "Premium",
     price: 25,
     currency: "USD",
     frequency: "/month",
@@ -216,7 +216,7 @@ export const pricing = [
     recommended: true,
   },
   {
-    title: "Enterprise Kyawthuite",
+    title: "Diamond",
     price: 40,
     currency: "USD",
     frequency: "/month",

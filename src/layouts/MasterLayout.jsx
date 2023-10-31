@@ -1,17 +1,16 @@
 import { Header,Footer } from "../components";
-import Routers from '../routes/Routers'
 
 
-const Layout= () => {
+const MasterLayout= ({ component }) => {
   return (
     <>
         <Header />
         <main>
-            <Routers />
+          {component}
         </main>
         <Footer />
     </>
   )
 }
 
-export default Layout
+export default MasterLayout

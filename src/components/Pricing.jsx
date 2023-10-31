@@ -25,7 +25,7 @@ const Pricing = () => {
               key={price}
               className='border border-slate-200 shadow-lg mt-7 p-8 bg-white rounded-2xl relative flex flex-col'
               data-aos='zoom-in'
-              data-aos-duration='1500'
+              data-aos-duration='500'
               data-aos-delay='600'>
               {recommended && (
                 <p
