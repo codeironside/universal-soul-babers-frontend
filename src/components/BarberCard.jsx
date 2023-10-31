@@ -8,8 +8,8 @@ const BarberCard = ({barber}) => {
       <div
         className='min-w-[300px]'
         data-aos='zoom-in'
-        data-aos-duration='1500'
-        data-aos-delay='600'
+        data-aos-duration='750'
+        data-aos-delay='500'
         >
         <div className=' h-auto w-full flex items-center justify-center lg:justify-center md:justify-center'>
           <img src={img} alt={name} className='w-[300px]   rounded-lg ' />

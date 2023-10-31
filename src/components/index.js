@@ -20,7 +20,7 @@ import BarberShop from './BarberShop'
 import BarberStore from './BarberStore'
 
 
-export{
+export {
     Card,
     Footer,
     Header,
