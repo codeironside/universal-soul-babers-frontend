@@ -18,7 +18,7 @@ const Header = () => {
           <div className="flex flex-1 items-center">
             <div className="flex w-full items-center justify-between lg:w-auto">
               <a href="#" className="flex items-center">
-                <span className="sr-only">Your Company</span>
+                <span className="sr-only">UnivaBarber</span>
                 <img
                   className="h-8 w-auto sm:h-10"
                   src={logo}
