@@ -1,14 +1,12 @@
-import { Header,Footer } from "../components";
+import {Header, Footer} from "../components";
 
 
-const MasterLayout= ({ component }) => {
+const MasterLayout = ({component}) => {
   return (
     <>
-        <Header />
-        <main>
-          {component}
-        </main>
-        <Footer />
+      <Header/>
+      {component}
+      <Footer/>
     </>
   )
 }

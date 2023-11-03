@@ -6,7 +6,7 @@ const BarberCard = ({barber}) => {
   return (
     <div className='p-3 lg:p-5 flex items-center justify-center'>
       <div
-        className='min-w-[300px]'
+        className='md:min-w-[300px]'
         data-aos='zoom-in'
         data-aos-duration='750'
         data-aos-delay='500'

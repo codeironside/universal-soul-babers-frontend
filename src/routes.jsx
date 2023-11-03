@@ -5,52 +5,65 @@ import {
   Contact,
   Profile,
   Auth,
+  Dashboard,
   Barbers,
   BarbersDetails,
   ProductDetails,
   MarketPlace,
+  Login,
 } from "./pages";
+import {AiFillDashboard} from "react-icons/ai";
 
 export default [
   {
     path: "/",
-    component: <Home />,
+    component: <Home/>,
   },
   {
     path: "/about",
-    component: <About />,
+    component: <About/>,
   },
   {
     path: "/contact",
-    component: <Contact />,
+    component: <Contact/>,
     standalone: true
   },
   {
     path: "/barbers",
-    component: <Barbers />,
+    component: <Barbers/>,
   },
   {
     path: "/auth",
-    component: <Auth />,
+    component: <Auth/>,
   },
   {
     path: "/blog",
-    component: <Blog />,
+    component: <Blog/>,
   },
   {
     path: "/profile",
-    component: <Profile />,
+    component: <Profile/>,
   },
   {
     path: "/barber/:id",
-    component: <BarbersDetails />,
+    component: <BarbersDetails/>,
   },
   {
     path: "/product/:id",
-    component: <ProductDetails />,
+    component: <ProductDetails/>,
   },
   {
     path: "/marketplace",
-    component: <MarketPlace />,
+    component: <MarketPlace/>,
+  },
+  {
+    path: "/login",
+    component: <Login/>,
+    standalone: true
+  },
+  {
+    path: "/dashboard",
+    component: <Dashboard/>,
+    standalone: true
   },
 ]

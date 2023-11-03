@@ -11,19 +11,23 @@ import Feedback from './Feedback'
 import MarketPlace from './MarketPlace'
 import ProductDetails from './ProductDetails'
 import Profile from './Profile'
+import Login from './Login.jsx'
+import Dashboard from './Dashboard'
 
 export {
-    Home,
-    Blog,
-    About,
-    Profile,
-    Auth,
-    Contact,
-    Barbers,
-    NotFound,
-    BarbersDetails,
-    BarbersAbout,
-    Feedback,
-    MarketPlace,
-    ProductDetails
+  Home,
+  Blog,
+  About,
+  Profile,
+  Auth,
+  Contact,
+  Barbers,
+  NotFound,
+  BarbersDetails,
+  BarbersAbout,
+  Feedback,
+  MarketPlace,
+  ProductDetails,
+  Login,
+  Dashboard,
 }
