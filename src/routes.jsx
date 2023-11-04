@@ -13,6 +13,8 @@ import {
   Login,
 } from "./pages";
 import {AiFillDashboard} from "react-icons/ai";
+import BlogContent from "./pages/BlogContent";
+import Forum from "./pages/Forum";
 
 export default [
   {
@@ -41,6 +43,10 @@ export default [
     component: <Blog/>,
   },
   {
+    path: "/blog/content",
+    component: <BlogContent/>,
+  },
+  {
     path: "/profile",
     component: <Profile/>,
   },
@@ -64,6 +70,11 @@ export default [
   {
     path: "/dashboard",
     component: <Dashboard/>,
+    standalone: true
+  },
+  {
+    path: "/forum",
+    component: <Forum />,
     standalone: true
   },
 ]

@@ -9,7 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline/index.js";
 const Header = () => {
 
   return (
-    <Popover as="header" className="relative">
+    <Popover as="header" className="sticky top-0 pb-3 bg-white">
       <div>
         <nav
           className="relative mx-auto flex max-w-7xl items-center justify-between px-6 pt-6 xl:px-8"
@@ -17,7 +17,7 @@ const Header = () => {
         >
           <div className="flex flex-1 items-center">
             <div className="flex w-full items-center justify-between lg:w-auto">
-              <a href="#" className="flex items-center">
+              <Link to="#" className="flex items-center">
                 <span className="sr-only">UnivaBarber</span>
                 <img
                   className="h-8 w-auto sm:h-10"
@@ -29,7 +29,7 @@ const Header = () => {
                   src={textLogo}
                   alt="UnivaBaber logo text"
                 />
-              </a>
+              </Link>
               <div className="-mr-2 flex items-center lg:hidden">
                 <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-warm-gray-50 p-2 text-warm-gray-400 hover:bg-warm-gray-100 focus:outline-none focus:ring-2 focus:ring-primaryDark">
                   <span className="sr-only">Open main menu</span>
@@ -51,7 +51,7 @@ const Header = () => {
           </div>
           <div className="hidden lg:flex lg:items-center lg:space-x-6">
             <Link
-              to="/login"
+              to="/auth"
               className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
             >
               Login
