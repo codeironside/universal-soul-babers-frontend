@@ -9,7 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline/index.js";
 const Header = () => {
 
   return (
-    <Popover as="header" className="sticky top-0 pb-3 bg-white">
+    <Popover as="header" className="sticky top-0 pb-3 bg-white z-50">
       <div>
         <nav
           className="relative mx-auto flex max-w-7xl items-center justify-between px-6 pt-6 xl:px-8"
