@@ -53,7 +53,7 @@ const Header = () => {
               <div className='w-6 mr-4 rounded-full overflow-hidden'>
                 <img
                   src={logo}
-                  alt=''
+                  alt='logo'
                   className='object-cover w-full h-full ' loading='lazy'
                 />
               </div>
