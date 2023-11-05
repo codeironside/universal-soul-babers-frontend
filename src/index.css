@@ -12,6 +12,10 @@
   
 }
 
+.blog-content p, .blog-content ul, .blog-content ol, .blog-content li {
+  margin-top: 1rem;
+}
+
 
 @layer base{
   section{

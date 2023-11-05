@@ -1,12 +1,12 @@
 import {pricing} from '../data'
 import SectionHeader from './SectionHeader'
- import  {AiOutlineCheck}  from 'react-icons/ai';
+import {AiOutlineCheck} from 'react-icons/ai';
 
 const Pricing = () => {
-   
+
   return (
     <>
-      <SectionHeader title='Pricing' subTitle='Available Plans' />
+      <SectionHeader title='Pricing' subTitle='Available Plans'/>
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 py-8 max-w-7xl mx-auto px-8 '>
         {pricing.map((plan) => {
           // destructure pricing data from plan
@@ -29,7 +29,7 @@ const Pricing = () => {
               data-aos-delay='600'>
               {recommended && (
                 <p
-                  className='absolute top-0 bg-black text-white px-4 py-1 text-sm font-semibold tracking-wide
+                  className='absolute top-0 bg-primaryDark text-white px-4 py-1 text-sm font-semibold tracking-wide
                         rounded-full shadow-md -translate-y-1/2
                         '>
                   Recommended
@@ -39,7 +39,7 @@ const Pricing = () => {
               <p className='text-para mt-4 text-textColor text-sm'>
                 {description}
               </p>
-              <div className='mt-4 bg-slate-50 p-6 rounded-lg -mx-6 '>
+              <div className='mt-4 bg-warm-gray-50 p-6 rounded-lg -mx-6 '>
                 <p className='text-sm font-semibold  text-textColor flex items-center '>
                   <span>{currency}</span>
                   <span className='text-4xl text-slate-900 ml-3 '>
@@ -57,8 +57,9 @@ const Pricing = () => {
                       <li
                         key={i}
                         className='text-sm text-textColor leading-5 flex  '>
-                        <span className='h-5 w-5 bg-black text-white shrink-0 rounded-full flex items-center p-1 justify-center'>
-                          <AiOutlineCheck className='text-white' />
+                        <span
+                          className='h-5 w-5 bg-black text-white shrink-0 rounded-full flex items-center p-1 justify-center'>
+                          <AiOutlineCheck className='text-white'/>
                         </span>
                         <span className='ml-3'> {feature}</span>
                       </li>
@@ -71,14 +72,11 @@ const Pricing = () => {
 
               <a
                 href=''
-                className={`
-                   
-                   ${
-                     recommended
-                       ? " text-white bg-black hover:bg-slate-400"
-                       : " text-headingColor bg-slate-50 hover:bg-slate-100 "
-                   }
-                  block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
+                className={`${
+                  recommended
+                    ? "text-white bg-primaryDark hover:bg-primaryColor"
+                    : "text-headingColor bg-warm-gray-100 hover:bg-warm-gray-200"
+                } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
                 {cta}
               </a>
             </div>

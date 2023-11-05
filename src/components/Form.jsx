@@ -121,7 +121,7 @@ const toggleVariant = useCallback(() => {
           data-aos='fade-up'
           data-aos-duration='1500'
           onClick={() => {}}
-          className='bg-black py-3 duration-150 hover:bg-slate-500 text-white rounded-md w-full mt-1'>
+          className='bg-primaryDark py-3 duration-150 hover:bg-warm-gray-500 text-white rounded-md w-full mt-1'>
           {variant == "Login" ? "Login" : "Register"}
         </button>
 

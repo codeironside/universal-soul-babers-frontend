@@ -12,7 +12,7 @@ import {NotFound,} from "./pages";
 const App = () => {
 
   Aos.init({
-    duration: 250,
+    duration: 1500,
     offset: 0,
   })
 
@@ -22,7 +22,7 @@ const App = () => {
         <Route path={route.path}
                element={route.standalone ? route.component : <MasterLayout component={route.component}/>} key={key}/>
       )}
-      {/*<Route path='/contact' element={<Contact/>}/>*/}
+
       <Route path='*' element={<NotFound/>}/>
     </Routes>
   )

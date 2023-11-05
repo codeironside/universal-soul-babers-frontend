@@ -1,6 +1,6 @@
 import { quickLinks, quickLinks02, quickLinks03 } from "../data";
 import { Link } from "react-router-dom";
-import { AiOutlineInstagram, AiFillGithub } from "react-icons/ai";
+import { AiOutlineInstagram,  } from "react-icons/ai";
 import { RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
 
 const Footer = () => {
@@ -34,11 +34,6 @@ const Footer = () => {
                 to=''
                 className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                 <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />
-              </Link>
-              <Link
-                to=''
-                className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
-                <AiFillGithub className='group-hover:text-white w-4 h-5' />
               </Link>
             </div>
           </div>

@@ -14,8 +14,11 @@ export default {
         irisBlueColor: "#01B5C5",
         headingColor: "#181A1E",
         textColor: "#4E545F",
-        'warm-gray': colors.warmGray,
+        // to be removed
+        'warm-gray': colors.stone,
         teal: colors.teal,
+        cyan: colors.cyan,
+        // end
       },
 
       boxShadow: {
