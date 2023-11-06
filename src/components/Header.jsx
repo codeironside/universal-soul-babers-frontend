@@ -1,7 +1,10 @@
 import { Fragment } from "react";
 import logo from "../assets/img/Logo.png";
+import textLogo from "../assets/img/Universoul.png";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from "@heroicons/react/24/outline/index.js";
+import { Link, NavLink } from 'react-router-dom'
+import { navLinks } from '../data'
 
 const Header = () => {
   return (
