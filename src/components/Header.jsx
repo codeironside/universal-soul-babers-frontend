@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import logo from '../assets/img/Logo.png'
 import textLogo from '../assets/img/Universoul.png'
 import { Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline/index.js";
+import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from "@heroicons/react/24/outline/index.js";
 
 const Header = () => {
 
@@ -50,6 +50,10 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden lg:flex lg:items-center lg:space-x-6">
+            <Link to="/cart" className="inline-flex">
+              <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-1" />
+              0
+            </Link>
             <Link
               to="/auth"
               className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
@@ -57,7 +61,7 @@ const Header = () => {
               Login
             </Link>
             <Link
-              to="#"
+              to="/dashboard"
               className="rounded-md border border-transparent bg-warm-gray-100 py-2 px-6 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200"
             >
               Sign Up
@@ -95,16 +99,21 @@ const Header = () => {
             <div className="pt-5 pb-6">
               <div className="space-y-1 px-2">
                 {navLinks.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.path}
+                    to={item.path}
                     className="block rounded-md px-3 py-2 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-50"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="mt-6 px-5">
+                <div className="inline-flex mb-4">
+                  <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-2" />
+                  <span>Cart</span>
+                </div>
+
                 <Link
                   to="/login"
                   className="block w-full rounded-md border border-transparent bg-warm-gray-100 hover:bg-warm-gray-200 py-2 px-4 text-center font-medium shadow text-black"
@@ -112,7 +121,7 @@ const Header = () => {
                   Login
                 </Link>
                 <Link
-                  to="#"
+                  to="/dashboard"
                   className="block w-full rounded-md border border-transparent py-2 px-4 text-center font-medium text-white shadow bg-primaryColor mt-4"
                 >
                   Sign Up

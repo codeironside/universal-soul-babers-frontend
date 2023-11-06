@@ -1,16 +1,16 @@
 import StarIcon from '../assets/img/Star.png'
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-const BarberCard = ({barber}) => {
-    const { id, img, name, customers, badge, location, reviews, total } = barber;
+const BarberCard = ({ barber }) => {
+  const { id, img, name, customers, badge, location, reviews, total } = barber;
   return (
-    <div className='p-3 lg:p-5 flex items-center justify-center'>
+    <div className='p-3 lg:p-5 flex items-center justify-center shadow-card'>
       <div
         className='md:min-w-[300px]'
         data-aos='zoom-in'
         data-aos-duration='750'
         data-aos-delay='500'
-        >
+      >
         <div className=' h-auto w-full flex items-center justify-center lg:justify-center md:justify-center'>
           <img src={img} alt={name} className='w-[300px]   rounded-lg ' />
         </div>

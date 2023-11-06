@@ -1,6 +1,6 @@
-import { BarberCard, Testimonials,SideBar } from "../components";
+import { BarberCard, Testimonials, SideBar } from "../components";
 import { barbers } from "../data";
-import {  BallTriangle } from "react-loader-spinner";
+import { BallTriangle } from "react-loader-spinner";
 const Barbers = () => {
   return (
     <>
@@ -19,10 +19,10 @@ const Barbers = () => {
             />
           </div>
           <h2 className='heading'>Find A Barber</h2>
-          <div className='max-w-[570px] mt-[30px] mx-auto bg-[#0066ff2c] rounded-md flex items-center justify-between'>
+          <div className='max-w-[570px] mt-[30px] mx-auto rounded-md flex items-center justify-between'>
             <input
               type='search'
-              className='py-4 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer '
+              className='py-3 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer border-3 border-slate-400'
               placeholder='Search for A Barber'
             />
             <button className='btn mt-0 rounded-r-md rounded-[0px]  '>

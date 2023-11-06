@@ -24,6 +24,8 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid'
 
+import { Link } from 'react-router-dom'
+
 const navigation = [
   { name: 'Home', href: '#', icon: HomeIcon, current: true },
   { name: 'History', href: '#', icon: ClockIcon, current: false },
@@ -207,32 +209,32 @@ export default function Example() {
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
                       {({ active }) => (
-                        <a
-                          href="#"
+                        <Link
+                          to="/profile"
                           className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                         >
                           Your Profile
-                        </a>
+                        </Link>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a
-                          href="#"
+                        <Link
+                          to="#"
                           className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                         >
                           Settings
-                        </a>
+                        </Link>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a
-                          href="#"
+                        <Link
+                          to="#"
                           className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                         >
                           Logout
-                        </a>
+                        </Link>
                       )}
                     </Menu.Item>
                   </Menu.Items>
@@ -328,9 +330,9 @@ export default function Example() {
                     </div>
                     <div className="bg-gray-50 px-5 py-3">
                       <div className="text-sm">
-                        <a href={card.href} className="font-medium text-cyan-700 hover:text-cyan-900">
+                        <Link to={card.to} className="font-medium text-cyan-700 hover:text-cyan-900">
                           View all
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -347,7 +349,7 @@ export default function Example() {
               <ul role="list" className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
                 {transactions.map((transaction) => (
                   <li key={transaction.id}>
-                    <a href={transaction.href} className="block bg-white px-4 py-4 hover:bg-gray-50">
+                    <Link to={transaction.to} className="block bg-white px-4 py-4 hover:bg-gray-50">
                       <span className="flex items-center space-x-4">
                         <span className="flex flex-1 space-x-2 truncate">
                           <BanknotesIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
@@ -362,7 +364,7 @@ export default function Example() {
                         </span>
                         <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -372,18 +374,18 @@ export default function Example() {
                 aria-label="Pagination"
               >
                 <div className="flex flex-1 justify-between">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-500"
                   >
                     Previous
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    to="#"
                     className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-500"
                   >
                     Next
-                  </a>
+                  </Link>
                 </div>
               </nav>
             </div>
@@ -427,7 +429,7 @@ export default function Example() {
                           <tr key={transaction.id} className="bg-white">
                             <td className="w-full max-w-0 whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                               <div className="flex">
-                                <a href={transaction.href} className="group inline-flex space-x-2 truncate text-sm">
+                                <Link to={transaction.href} className="group inline-flex space-x-2 truncate text-sm">
                                   <BanknotesIcon
                                     className="h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                     aria-hidden="true"
@@ -435,7 +437,7 @@ export default function Example() {
                                   <p className="truncate text-gray-500 group-hover:text-gray-900">
                                     {transaction.name}
                                   </p>
-                                </a>
+                                </Link>
                               </div>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
@@ -471,18 +473,18 @@ export default function Example() {
                         </p>
                       </div>
                       <div className="flex flex-1 justify-between sm:justify-end">
-                        <a
-                          href="#"
+                        <Link
+                          to="#"
                           className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                         >
                           Previous
-                        </a>
-                        <a
-                          href="#"
+                        </Link>
+                        <Link
+                          to="#"
                           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                         >
                           Next
-                        </a>
+                        </Link>
                       </div>
                     </nav>
                   </div>
@@ -504,7 +506,7 @@ function _CommonSidebarNav({ extra }) {
       <div className="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true"><svg className="absolute inset-0 h-full w-full" width="343" height="388" viewBox="0 0 343 388" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><path d="M-99 461.107L608.107-246l707.103 707.107-707.103 707.103L-99 461.107z" fill="url(#linear1)" fill-opacity=".1"></path><defs><linearGradient id="linear1" x1="254.553" y1="107.554" x2="961.66" y2="814.66" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient></defs></svg></div>
       <div className="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 sm:block lg:hidden" aria-hidden="true"><svg className="absolute inset-0 h-full w-full" width="359" height="339" viewBox="0 0 359 339" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><path d="M-161 382.107L546.107-325l707.103 707.107-707.103 707.103L-161 382.107z" fill="url(#linear2)" fill-opacity=".1"></path><defs><linearGradient id="linear2" x1="192.553" y1="28.553" x2="899.66" y2="735.66" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient></defs></svg></div>
       <div className="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 lg:block" aria-hidden="true"><svg className="absolute inset-0 h-full w-full" width="160" height="678" viewBox="0 0 160 678" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><path d="M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z" fill="url(#linear3)" fill-opacity=".1"></path><defs><linearGradient id="linear3" x1="192.553" y1="325.553" x2="899.66" y2="1032.66" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient></defs></svg></div>
-      
+
       <div className="flex flex-shrink-0 items-center px-4 mb-4">
         <img
           className="w-32 ml-4"
@@ -515,9 +517,9 @@ function _CommonSidebarNav({ extra }) {
       <nav className={`mt-5 divide-y divide-warm-gray-900 overflow-y-auto ${extra}`} aria-label="Sidebar">
         <div className="space-y-1 px-2">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
+              to={item.href}
               className={classNames(
                 item.current ? 'bg-warm-gray-900 ' : 'hover:bg-warm-gray-400 hover:bg-opacity-50',
                 'text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md'
@@ -526,20 +528,20 @@ function _CommonSidebarNav({ extra }) {
             >
               <item.icon className="mr-4 h-6 w-6 flex-shrink-0" aria-hidden="true" />
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
         <div className="mt-6 pt-6">
           <div className="space-y-1 px-2">
             {secondaryNavigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="group flex items-center rounded-md px-2 py-2 text-sm font-medium leading-6 text-white"
               >
                 <item.icon className="mr-4 h-6 w-6" aria-hidden="true" />
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

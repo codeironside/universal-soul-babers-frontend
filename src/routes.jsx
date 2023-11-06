@@ -1,3 +1,4 @@
+import { CartItem } from "./components";
 import {
   Home,
   Blog,
@@ -12,69 +13,73 @@ import {
   MarketPlace,
   Login,
 } from "./pages";
-import {AiFillDashboard} from "react-icons/ai";
 import BlogContent from "./pages/BlogContent";
 import Forum from "./pages/Forum";
+import Cart from "./pages/Cart";
 
 export default [
   {
     path: "/",
-    component: <Home/>,
+    component: <Home />,
   },
   {
     path: "/about",
-    component: <About/>,
+    component: <About />,
   },
   {
     path: "/contact",
-    component: <Contact/>,
+    component: <Contact />,
     standalone: true
   },
   {
     path: "/barbers",
-    component: <Barbers/>,
+    component: <Barbers />,
   },
   {
     path: "/auth",
-    component: <Auth/>,
+    component: <Auth />,
   },
   {
     path: "/blog",
-    component: <Blog/>,
+    component: <Blog />,
   },
   {
     path: "/blog/content",
-    component: <BlogContent/>,
+    component: <BlogContent />,
   },
   {
     path: "/profile",
-    component: <Profile/>,
+    component: <Profile />,
   },
   {
     path: "/barber/:id",
-    component: <BarbersDetails/>,
+    component: <BarbersDetails />,
   },
   {
     path: "/product/:id",
-    component: <ProductDetails/>,
+    component: <ProductDetails />,
   },
   {
     path: "/marketplace",
-    component: <MarketPlace/>,
+    component: <MarketPlace />,
   },
   {
     path: "/login",
-    component: <Login/>,
+    component: <Login />,
     standalone: true
   },
   {
     path: "/dashboard",
-    component: <Dashboard/>,
+    component: <Dashboard />,
     standalone: true
   },
   {
     path: "/forum",
     component: <Forum />,
     standalone: true
+  },
+  {
+    path: "/cart",
+    component: <Cart />,
   },
 ]

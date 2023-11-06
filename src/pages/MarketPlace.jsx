@@ -2,16 +2,16 @@
 import { useState, useContext } from "react";
 
 import { products, statistics } from "../data";
-import {SectionHeader, Product, SideBar} from '../components'
-import {  ProductCard } from "../components/MarketPlace";
+import { SectionHeader, Product, SideBar } from '../components'
+import { ProductCard } from "../components/MarketPlace";
 import product1 from "../assets/img/product-1.JPG";
 import CountUp from "react-countup";
-import {ProductContext} from '../context/ProductContext'
+import { ProductContext } from '../context/ProductContext'
 
 const MarketPlace = () => {
   // get all products from the product context 
-  const {productItem} = useContext(ProductContext)
-  
+  const { productItem } = useContext(ProductContext)
+
   const [currentImg, setCurrentImg] = useState(product1);
 
   return (
@@ -91,24 +91,15 @@ const MarketPlace = () => {
 
             <div className='flex sm:gap-6 gap-4 absolute -bottom-[7%] sm:left-[10%] max-sm:px-6'>
               {products.map((image, index) => (
-                <div key={index}>
-                  {/* <div
-                  className={`border-2 rounded-xl border-black
-                       cursor-pointer max-sm:flex-1`}
-                  onClick={()=>{}}>
-                  <div className='flex justify-center items-center overflow-hidden bg-transparent bg-center bg-cover sm:w-[85px] sm:h-[85px] rounded-xl max-sm:p-4'>
-                    <img src={image.product} alt="" className='w-full h-[100px] object-cover'/>
-                  </div>
-                </div> */}
-                  <ProductCard
-                    imgURL={image}
-                    changeProductImage={(img) => {
-                      setCurrentImg(img);
-                      console.log(img);
-                    }}
-                    productImg={currentImg}
-                  />
-                </div>
+                <ProductCard
+                  key={index}
+                  imgURL={image}
+                  changeProductImage={(img) => {
+                    setCurrentImg(img);
+                    console.log(img);
+                  }}
+                  productImg={currentImg}
+                />
               ))}
             </div>
           </div>
@@ -125,7 +116,6 @@ const MarketPlace = () => {
         <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
           {productItem.map((item) => {
             // console.log(item);
-
             return <Product key={item.id} product={item} />;
           })}
         </div>
