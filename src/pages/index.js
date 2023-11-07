@@ -12,7 +12,7 @@ import MarketPlace from './MarketPlace'
 import ProductDetails from './ProductDetails'
 import Profile from './Profile'
 import Login from './Login.jsx'
-import Dashboard from './Dashboard'
+import UserPanel from './UserPanel'
 
 export {
   Home,
@@ -29,5 +29,5 @@ export {
   MarketPlace,
   ProductDetails,
   Login,
-  Dashboard,
+  UserPanel,
 }

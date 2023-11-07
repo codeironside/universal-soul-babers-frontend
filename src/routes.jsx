@@ -6,7 +6,7 @@ import {
   Contact,
   Profile,
   Auth,
-  Dashboard,
+  UserPanel,
   Barbers,
   BarbersDetails,
   ProductDetails,
@@ -16,6 +16,11 @@ import {
 import BlogContent from "./pages/BlogContent";
 import Forum from "./pages/Forum";
 import Cart from "./pages/Cart";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import DashBarbers from "./pages/DashBarbers";
+import MyServices from "./pages/MyServices";
+import AppointMents from "./pages/AppointMents";
 
 export default [
   {
@@ -69,11 +74,6 @@ export default [
     standalone: true
   },
   {
-    path: "/dashboard",
-    component: <Dashboard />,
-    standalone: true
-  },
-  {
     path: "/forum",
     component: <Forum />,
     standalone: true
@@ -81,5 +81,30 @@ export default [
   {
     path: "/cart",
     component: <Cart />,
+  },
+  {
+    path: "/dashboard",
+    component: <UserPanel fragment={<Dashboard />} />,
+    standalone: true
+  },
+  {
+    path: "/settings",
+    component: <UserPanel fragment={<Settings />} />,
+    standalone: true
+  },
+  {
+    path: "/my-barbers",
+    component: <UserPanel fragment={<DashBarbers />} />,
+    standalone: true
+  },
+  {
+    path: "/services",
+    component: <UserPanel fragment={<MyServices />} />,
+    standalone: true
+  },
+  {
+    path: "/appointments",
+    component: <UserPanel fragment={<AppointMents />} />,
+    standalone: true
   },
 ]
