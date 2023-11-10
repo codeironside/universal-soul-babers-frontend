@@ -5,7 +5,6 @@ const people = [
     title: 'Front-end Developer',
     department: 'Optimization',
     email: 'lindsay.walton@example.com',
-    role: 'Member',
     image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   },
   {
@@ -13,7 +12,6 @@ const people = [
     title: 'Back-end Developer',
     department: 'Development',
     email: 'john.doe@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/men/1.jpg',
   },
   {
@@ -21,7 +19,6 @@ const people = [
     title: 'UX Designer',
     department: 'Design',
     email: 'jane.smith@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/women/2.jpg',
   },
   {
@@ -29,7 +26,6 @@ const people = [
     title: 'Product Manager',
     department: 'Product Management',
     email: 'michael.johnson@example.com',
-    role: 'Leader',
     image: 'https://randomuser.me/api/portraits/men/3.jpg',
   },
   {
@@ -37,7 +33,6 @@ const people = [
     title: 'Marketing Specialist',
     department: 'Marketing',
     email: 'emily.davis@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/women/4.jpg',
   },
   {
@@ -45,7 +40,6 @@ const people = [
     title: 'Data Analyst',
     department: 'Analytics',
     email: 'david.brown@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/men/5.jpg',
   },
   {
@@ -53,7 +47,6 @@ const people = [
     title: 'Graphic Designer',
     department: 'Design',
     email: 'amanda.wilson@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/women/6.jpg',
   },
   {
@@ -61,7 +54,6 @@ const people = [
     title: 'Quality Assurance Engineer',
     department: 'Quality Assurance',
     email: 'christopher.lee@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/men/7.jpg',
   },
   {
@@ -69,7 +61,6 @@ const people = [
     title: 'Content Writer',
     department: 'Content',
     email: 'olivia.taylor@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/women/8.jpg',
   },
   {
@@ -77,7 +68,6 @@ const people = [
     title: 'Technical Support Specialist',
     department: 'Support',
     email: 'matthew.miller@example.com',
-    role: 'Member',
     image: 'https://randomuser.me/api/portraits/men/9.jpg',
   },
 ]
@@ -118,9 +108,6 @@ export default function () {
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Status
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Role
-                    </th>
                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                       <span className="sr-only">Edit</span>
                     </th>
@@ -149,7 +136,6 @@ export default function () {
                           Active
                         </span>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <a href="#" className="text-indigo-600 hover:text-indigo-900">
                           Edit<span className="sr-only">, {person.name}</span>

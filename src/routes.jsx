@@ -18,9 +18,10 @@ import Forum from "./pages/Forum";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
-import DashBarbers from "./pages/DashBarbers";
+import MyBarbers from "./pages/MyBarbers";
 import MyServices from "./pages/MyServices";
 import AppointMents from "./pages/AppointMents";
+import Profile_ from "./pages/Profile_"
 
 export default [
   {
@@ -51,10 +52,6 @@ export default [
   {
     path: "/blog/content",
     component: <BlogContent />,
-  },
-  {
-    path: "/profile",
-    component: <Profile />,
   },
   {
     path: "/barber/:id",
@@ -94,7 +91,7 @@ export default [
   },
   {
     path: "/my-barbers",
-    component: <UserPanel fragment={<DashBarbers />} />,
+    component: <UserPanel fragment={<MyBarbers />} />,
     standalone: true
   },
   {
@@ -105,6 +102,15 @@ export default [
   {
     path: "/appointments",
     component: <UserPanel fragment={<AppointMents />} />,
+    standalone: true
+  },
+  {
+    path: "/old-profile",
+    component: <Profile_ />,
+  },
+  {
+    path: "/profile",
+    component: <UserPanel fragment={<Profile />} />,
     standalone: true
   },
 ]

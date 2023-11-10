@@ -12,10 +12,10 @@ import {
   QuestionMarkCircleIcon,
   BuildingStorefrontIcon,
   ShieldCheckIcon,
-  UsersIcon,
+  // UsersIcon,
   UserGroupIcon,
   XMarkIcon,
-  BanknotesIcon,
+  // BanknotesIcon,
   BriefcaseIcon,
 } from '@heroicons/react/24/outline'
 
@@ -29,17 +29,17 @@ import { Link } from 'react-router-dom'
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
   { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
-  { name: 'Services', href: '/services', icon: BriefcaseIcon },
-  { name: 'Barbers', href: '/my-barbers', icon: UsersIcon },
+  // { name: 'Services', href: '/services', icon: BriefcaseIcon },
+  // { name: 'Barbers', href: '/my-barbers', icon: UsersIcon },
   { name: 'Customers', href: '#', icon: UserGroupIcon },
   { name: 'Inventory & Shop', href: '#', icon: BuildingStorefrontIcon },
-  { name: 'Financial Management', href: '#', icon: BanknotesIcon },
+  // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
   { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
 ]
 
 const secondaryNavigation = [
   { name: 'Settings', href: '/settings', icon: CogIcon },
-  { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
+  // { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
   { name: 'Privacy', href: '#', icon: ShieldCheckIcon },
 ]
 
@@ -199,7 +199,7 @@ export default function Dashboard({ fragment }) {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
-                          to="#"
+                          to="/settings"
                           className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                         >
                           Settings

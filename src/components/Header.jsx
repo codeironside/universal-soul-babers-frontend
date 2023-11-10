@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import logo from "../assets/img/Logo.png";
 import textLogo from "../assets/img/Universoul.png";
 import { Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from "@heroicons/react/24/outline/index.js";
+import { Bars3Icon, XMarkIcon, ShoppingCartIcon, } from "@heroicons/react/24/outline/index.js";
 import { Link, NavLink } from 'react-router-dom'
 import { navLinks } from '../data'
 
@@ -94,7 +94,7 @@ const Header = () => {
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
-              <div className='hidden md:flex md:space-x-10'>
+              <div className='space-x-10'>
                 {navLinks.map((item) => (
                   <Link
                     key={item.label}
@@ -152,7 +152,7 @@ const Header = () => {
                         onClick={close}
                         className='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
                         <span className='sr-only'>Close menu</span>
-                        <XIcon className='h-6 w-6' aria-hidden='true' />
+                        <XMarkIcon className='h-6 w-6' aria-hidden='true' />
                       </Popover.Button>
                     </div>
                   </div>

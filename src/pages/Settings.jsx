@@ -8,8 +8,6 @@ const tabs = [
     { name: 'Password', href: '#', current: false },
     { name: 'Notifications', href: '#', current: false },
     { name: 'Plan', href: '#', current: false },
-    { name: 'Billing', href: '#', current: false },
-    { name: 'Team Members', href: '#', current: false },
 ]
 
 

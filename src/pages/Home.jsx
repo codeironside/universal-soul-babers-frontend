@@ -13,18 +13,18 @@ import {
 } from '@heroicons/react/24/outline'
 
 import Design1 from "../assets/img/barber-brush.gif";
-import {categories, statistics} from "../data.js";
+import { categories, statistics } from "../data.js";
 import CountUp from "react-countup";
-import {Link} from "react-router-dom";
-import {RiLinkedinFill, RiYoutubeFill} from "react-icons/ri";
-import {AiFillGithub, AiOutlineInstagram} from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
+import { AiFillGithub, AiOutlineInstagram } from "react-icons/ai";
 import heroThree from "../assets/img/hero-3.jpg";
 import heroOne from "../assets/img/hero-1.jpg";
 import heroTwo from "../assets/img/hero-2.jpg";
-import {BarberList, Pricing, SectionHeader, Testimonials} from "../components/index.js";
+import { BarberList, Pricing, SectionHeader, Testimonials } from "../components/index.js";
 import Design3 from "../assets/img/razor.gif";
 import Design2 from "../assets/img/shaver.gif";
-import {BallTriangle, Grid} from "react-loader-spinner";
+import { BallTriangle, Grid } from "react-loader-spinner";
 import Service from "../assets/img/service.jpg";
 import Card from "../assets/img/card.png";
 import Vid from "../assets/img/video-icon.png";
@@ -56,6 +56,7 @@ const solutions = [
     icon: QuestionMarkCircleIcon,
   },
 ]
+
 const features = [
   {
     name: 'Unlimited Inboxes',
@@ -98,36 +99,38 @@ const features = [
     icon: HeartIcon,
   },
 ]
+
 const metrics = [
-  {id: 1, stat: '8K+', emphasis: 'Companies', rest: 'use laoreet amet lacus nibh integer quis.'},
-  {id: 2, stat: '25K+', emphasis: 'Countries around the globe', rest: 'lacus nibh integer quis.'},
-  {id: 3, stat: '98%', emphasis: 'Customer satisfaction', rest: 'laoreet amet lacus nibh integer quis.'},
-  {id: 4, stat: '12M+', emphasis: 'Issues resolved', rest: 'lacus nibh integer quis.'},
+  { id: 1, stat: '8K+', emphasis: 'Companies', rest: 'use laoreet amet lacus nibh integer quis.' },
+  { id: 2, stat: '25K+', emphasis: 'Countries around the globe', rest: 'lacus nibh integer quis.' },
+  { id: 3, stat: '98%', emphasis: 'Customer satisfaction', rest: 'laoreet amet lacus nibh integer quis.' },
+  { id: 4, stat: '12M+', emphasis: 'Issues resolved', rest: 'lacus nibh integer quis.' },
 ]
+
 const footerNavigation = {
   solutions: [
-    {name: 'Marketing', href: '#'},
-    {name: 'Analytics', href: '#'},
-    {name: 'Commerce', href: '#'},
-    {name: 'Insights', href: '#'},
+    { name: 'Marketing', href: '#' },
+    { name: 'Analytics', href: '#' },
+    { name: 'Commerce', href: '#' },
+    { name: 'Insights', href: '#' },
   ],
   support: [
-    {name: 'Pricing', href: '#'},
-    {name: 'Documentation', href: '#'},
-    {name: 'Guides', href: '#'},
-    {name: 'API Status', href: '#'},
+    { name: 'Pricing', href: '#' },
+    { name: 'Documentation', href: '#' },
+    { name: 'Guides', href: '#' },
+    { name: 'API Status', href: '#' },
   ],
   company: [
-    {name: 'About', href: '#'},
-    {name: 'Blog', href: '#'},
-    {name: 'Jobs', href: '#'},
-    {name: 'Press', href: '#'},
-    {name: 'Partners', href: '#'},
+    { name: 'About', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Jobs', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Partners', href: '#' },
   ],
   legal: [
-    {name: 'Claim', href: '#'},
-    {name: 'Privacy', href: '#'},
-    {name: 'Terms', href: '#'},
+    { name: 'Claim', href: '#' },
+    { name: 'Privacy', href: '#' },
+    { name: 'Terms', href: '#' },
   ],
   social: [
     {
@@ -162,7 +165,7 @@ const footerNavigation = {
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
-            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
         </svg>
       ),
     },
@@ -195,10 +198,6 @@ const footerNavigation = {
   ],
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Home() {
   return (
     <main className="mt-10">
@@ -206,7 +205,7 @@ export default function Home() {
       <section className='hero-section pt-[2px] 2xl:h-[800px] relative '>
         {/* First Aesthetic  */}
         <div className='hidden lg:block absolute top-[40%] left-[40%] h-[100px] w-[100px] '>
-          <img src={Design1} alt='' className='w-full block z-10'/>
+          <img src={Design1} alt='' className='w-full block z-10' />
         </div>
         <div className='container'>
           <div className='flex flex-col lg:flex-row gap-[10px] items-center justify-between '>
@@ -238,7 +237,7 @@ export default function Home() {
               <div
                 className='mt-[30px] flex flex-col items-center sm:flex-row sm:justify-center lg:justify-start lg:mt-[70px] lg:flex-row lg:items-center gap-5 lg:gap-[30px] '>
                 {statistics.map((stats) => {
-                  const {value, label, suffix} = stats;
+                  const { value, label, suffix } = stats;
                   return (<div
                     key={value}
                     data-aos='fade-up'
@@ -265,22 +264,22 @@ export default function Home() {
                 <Link
                   to=''
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
-                  <RiYoutubeFill className='group-hover:text-white w-4 h-5'/>
+                  <RiYoutubeFill className='group-hover:text-white w-4 h-5' />
                 </Link>
                 <Link
                   to=''
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
-                  <RiLinkedinFill className='group-hover:text-white w-4 h-5'/>
+                  <RiLinkedinFill className='group-hover:text-white w-4 h-5' />
                 </Link>
                 <Link
                   to=''
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
-                  <AiOutlineInstagram className='group-hover:text-white w-4 h-5'/>
+                  <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />
                 </Link>
                 <Link
                   to=''
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
-                  <AiFillGithub className='group-hover:text-white w-4 h-5'/>
+                  <AiFillGithub className='group-hover:text-white w-4 h-5' />
                 </Link>
               </div>
             </div>
@@ -319,15 +318,15 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionHeader title='Services' subTitle='What we do'/>
+      <SectionHeader title='Services' subTitle='What we do' />
 
       <div
         className='container items-center justify-center relative w-[1100px] flex gap-5 flex-col mx-auto mt-[60px]lg:flex-row md:flex-row'>
         <div className='absolute top-[25%] left-[43%] h-[100px] w-[100px]'>
-          <img src={Design3} alt='' className='w-full block'/>
+          <img src={Design3} alt='' className='w-full block' />
         </div>
         <div className='absolute -top-[10%] -right-[0%] h-[100px] w-[100px]'>
-          <img src={Design2} alt='' className='w-full block'/>
+          <img src={Design2} alt='' className='w-full block' />
         </div>
         <div className='absolute -bottom-[10%] -right-[0%] h-[100px] w-[100px] z-10 '>
           <Grid
@@ -375,7 +374,7 @@ export default function Home() {
                 <span className='text-para'>10:00 AM</span>
               </p>
               <div className='w-6 h-4 p-1 flex items-center rounded-sm bg-green-300'>
-                <img src={Vid} alt='icon'/>
+                <img src={Vid} alt='icon' />
               </div>
             </div>
             <div className='w-20 mt-2 p-[3px] rounded-full bg-yellow-100'>
@@ -415,16 +414,16 @@ export default function Home() {
         </div>
       </div>
 
-      <SectionHeader title='Categories' subTitle='Registration Guide'/>
+      <SectionHeader title='Categories' subTitle='Registration Guide' />
 
       <section
         className='max-w-[1100px] mx-auto rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-11 lg:gap-[30px] p-[30px]  '>
         {categories.map((category, index) => {
-          const {img, title, content, btnText} = category;
+          const { img, title, content, btnText } = category;
           return (<div
             className='flex items-center flex-col p-8 justify-center w-full bg-white rounded-lg shadow-2xl '
             key={index}>
-            <img src={img} width={50} height={40} alt={title}/>
+            <img src={img} width={50} height={40} alt={title} />
             <h2 className='text-center text-[24px] md:text-[28pz] lg:text-[28px] font-bold my-5 '>
               {title}
             </h2>
@@ -462,19 +461,19 @@ export default function Home() {
             visible={true}
           />
         </div>
-        <BarberList/>
+        <BarberList />
       </section>
 
 
       <section className='container mx-auto items-center justify-center'>
-        <Testimonials/>
+        <Testimonials />
       </section>
 
       <section className='container mx-auto items-center justify-center relative'>
         <div className='absolute top-[20%] -right-[0%] h-[100px] w-[100px]'>
-          <img src={Design4} alt='' className='w-full block'/>
+          <img src={Design4} alt='' className='w-full block' />
         </div>
-        <Pricing/>
+        <Pricing />
       </section>
 
       {/* CTA Section */}
@@ -483,8 +482,8 @@ export default function Home() {
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             <span className="block">Ready to get started?</span>
             <span className="-mb-1 block bg-gradient-to-r from-primaryColor to-black bg-clip-text pb-1 text-transparent">
-                Get in touch or create an account.
-              </span>
+              Get in touch or create an account.
+            </span>
           </h2>
           <div className="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
             <a
