@@ -79,54 +79,6 @@ const Header = () => {
         leaveTo="opacity-0 scale-95"
       >
         <Popover.Panel focus className="absolute inset-x-0 top-0 z-30 origin-top transform p-2 transition lg:hidden">
-          <div className="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-            <div className="flex items-center justify-between px-5 pt-4">
-              <div>
-                <img
-                  className="h-8 w-auto"
-                  src={logo}
-                  alt=""
-                />
-              </div>
-              <div className="-mr-2">
-                <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-warm-gray-400 hover:bg-warm-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primaryDark">
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                </Popover.Button>
-              </div>
-              <div className='space-x-10'>
-                {navLinks.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.path}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-50"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-6 px-5">
-                <div className="inline-flex mb-4">
-                  <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-2" />
-                  <span>Cart</span>
-                </div>
-
-                <Link
-                  to="/login"
-                  className="block w-full rounded-md border border-transparent bg-warm-gray-100 hover:bg-warm-gray-200 py-2 px-4 text-center font-medium shadow text-black"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="block w-full rounded-md border border-transparent py-2 px-4 text-center font-medium text-white shadow bg-primaryColor mt-4"
-                >
-                  Sign Up
-                </Link>
-              </div>
-            </div>
-          </div>
-
           <Transition
             as={Fragment}
             enter='duration-200 ease-out'
@@ -166,6 +118,25 @@ const Header = () => {
                         {item.label}
                       </Link>
                     ))}
+                  </div>
+                  <div className="my-6 px-5">
+                    <div className="inline-flex mb-4">
+                      <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-2" />
+                      <span>Cart</span>
+                    </div>
+
+                    <Link
+                      to="/login"
+                      className="block w-full rounded-md border border-transparent bg-warm-gray-100 hover:bg-warm-gray-200 py-2 px-4 text-center font-medium shadow text-black"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      className="block w-full rounded-md border border-transparent py-2 px-4 text-center font-medium text-white shadow bg-primaryColor mt-4"
+                    >
+                      Sign Up
+                    </Link>
                   </div>
                 </div>
               )}
