@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ... other rules omitted for brevity ...
+/public/tinymce/

@@ -1,4 +1,4 @@
-import { SideBar, Form } from "../components";
+import { Form } from "../components";
 
 
 
@@ -6,10 +6,7 @@ const Auth = () => {
 
 
   return (
-    <>
-      <Form />
-      <SideBar />
-    </>
+    <Form />
   );
 }
 

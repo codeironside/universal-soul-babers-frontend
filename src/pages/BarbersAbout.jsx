@@ -1,5 +1,4 @@
 import formatDate from "../utils/formatDate";
-import { SideBar } from "../components";
 const BarbersAbout = () => {
   return (
     <div>
@@ -55,7 +54,7 @@ const BarbersAbout = () => {
         </ul>
       </div>
 
-       {/* Experience  */}
+      {/* Experience  */}
 
       <div className='mt-'>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
@@ -84,10 +83,9 @@ const BarbersAbout = () => {
               Atlanta Georgia
             </p>
           </li>
-          
+
         </ul>
       </div>
-      <SideBar />
     </div>
   );
 };

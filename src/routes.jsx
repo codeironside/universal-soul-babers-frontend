@@ -22,6 +22,9 @@ import MyBarbers from "./pages/MyBarbers";
 import MyServices from "./pages/MyServices";
 import AppointMents from "./pages/AppointMents";
 import Profile_ from "./pages/Profile_"
+import DashBlog from "./pages/DashBlog";
+import Customers from "./pages/Customers";
+import MyStore from "./pages/MyStore";
 
 export default [
   {
@@ -111,6 +114,21 @@ export default [
   {
     path: "/profile",
     component: <UserPanel fragment={<Profile />} />,
+    standalone: true
+  },
+  {
+    path: "/user/blog",
+    component: <UserPanel fragment={<DashBlog />} />,
+    standalone: true
+  },
+  {
+    path: "/customers",
+    component: <UserPanel fragment={<Customers />} />,
+    standalone: true
+  },
+  {
+    path: "/my-store",
+    component: <UserPanel fragment={<MyStore />} />,
     standalone: true
   },
 ]

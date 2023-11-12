@@ -9,7 +9,7 @@ import {
   CalendarDaysIcon,
   DocumentChartBarIcon,
   HomeIcon,
-  QuestionMarkCircleIcon,
+  DocumentTextIcon,
   BuildingStorefrontIcon,
   ShieldCheckIcon,
   // UsersIcon,
@@ -31,8 +31,9 @@ const navigation = [
   { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
   // { name: 'Services', href: '/services', icon: BriefcaseIcon },
   // { name: 'Barbers', href: '/my-barbers', icon: UsersIcon },
-  { name: 'Customers', href: '#', icon: UserGroupIcon },
-  { name: 'Inventory & Shop', href: '#', icon: BuildingStorefrontIcon },
+  { name: 'Customers', href: '/customers', icon: UserGroupIcon },
+  { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
+  { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
   // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
   { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
 ]
@@ -41,6 +42,30 @@ const secondaryNavigation = [
   { name: 'Settings', href: '/settings', icon: CogIcon },
   // { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
   { name: 'Privacy', href: '#', icon: ShieldCheckIcon },
+]
+
+const announcements = [
+  {
+    id: 1,
+    title: 'Office closed on July 2nd',
+    href: '#',
+    preview:
+      'Cum qui rem deleniti. Suscipit in dolor veritatis sequi aut. Vero ut earum quis deleniti. Ut a sunt eum cum ut repudiandae possimus. Nihil ex tempora neque cum consectetur dolores.',
+  },
+  {
+    id: 2,
+    title: 'New password policy',
+    href: '#',
+    preview:
+      'Alias inventore ut autem optio voluptas et repellendus. Facere totam quaerat quam quo laudantium cumque eaque excepturi vel. Accusamus maxime ipsam reprehenderit rerum id repellendus rerum. Culpa cum vel natus. Est sit autem mollitia.',
+  },
+  {
+    id: 3,
+    title: 'Office closed on July 2nd',
+    href: '#',
+    preview:
+      'Tenetur libero voluptatem rerum occaecati qui est molestiae exercitationem. Voluptate quisquam iure assumenda consequatur ex et recusandae. Alias consectetur voluptatibus. Accusamus a ab dicta et. Consequatur quis dignissimos voluptatem nisi.',
+  },
 ]
 
 import { classNames } from '../utils'
@@ -143,20 +168,69 @@ export default function Dashboard({ fragment }) {
                     id="search-field"
                     name="search-field"
                     className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                    placeholder="Search transactions"
+                    placeholder="Search features or sub-features"
                     type="search"
                   />
                 </div>
               </form>
             </div>
             <div className="ml-4 flex items-center md:ml-6">
-              <button
-                type="button"
-                className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-warm-gray-500 focus:ring-offset-2"
-              >
-                <span className="sr-only">View notifications</span>
-                <BellIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
+              {/* Notification dropdown */}
+              <Menu as="div" className="relative ml-3">
+                <div>
+                  <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-warm-gray-500 focus:ring-offset-2">
+                    <span className="sr-only">View notifications</span>
+                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-60 lg:w-96 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Item>
+                      <div className="overflow-hidden">
+                        <div className="p-6">
+                          <h2 className="text-base font-medium text-gray-900" id="announcements-title">
+                            Announcements
+                          </h2>
+                          <div className="mt-6 flow-root">
+                            <ul role="list" className="-my-5 divide-y divide-gray-200">
+                              {announcements.map((announcement) => (
+                                <li key={announcement.id} className="py-5">
+                                  <div className="relative focus-within:ring-2 focus-within:ring-cyan-500">
+                                    <h3 className="text-sm font-semibold text-gray-800">
+                                      <a href={announcement.href} className="hover:underline focus:outline-none">
+                                        {/* Extend touch target to entire panel */}
+                                        <span className="absolute inset-0" aria-hidden="true" />
+                                        {announcement.title}
+                                      </a>
+                                    </h3>
+                                    <p className="mt-1 text-sm text-gray-600 line-clamp-2">{announcement.preview}</p>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mt-6">
+                            <a
+                              href="#"
+                              className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                            >
+                              View all
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">

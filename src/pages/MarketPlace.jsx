@@ -2,7 +2,7 @@
 import { useState, useContext } from "react";
 
 import { products, statistics } from "../data";
-import { SectionHeader, Product, SideBar } from '../components'
+import { SectionHeader, Product } from '../components'
 import { ProductCard } from "../components/MarketPlace";
 import product1 from "../assets/img/product-1.JPG";
 import CountUp from "react-countup";
@@ -121,8 +121,6 @@ const MarketPlace = () => {
         </div>
       </section>
 
-      {/* Sidebar  */}
-      <SideBar />
     </main>
   );
 };

@@ -1,4 +1,4 @@
-import { BarberCard, Testimonials, SideBar } from "../components";
+import { BarberCard, Testimonials } from "../components";
 import { barbers } from "../data";
 import { BallTriangle } from "react-loader-spinner";
 const Barbers = () => {
@@ -43,7 +43,6 @@ const Barbers = () => {
       <section>
         <Testimonials />
       </section>
-      <SideBar />
     </>
   );
 };
