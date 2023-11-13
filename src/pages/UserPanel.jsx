@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState, createContext, useContext } from 'react'
 import textLogo from '../assets/img/Universoul.png'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 
@@ -24,7 +24,9 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid'
 
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+
+import { getCookie } from '../utils'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -70,12 +72,17 @@ const announcements = [
 
 import { classNames } from '../utils'
 
-export default function Dashboard({ fragment }) {
+export const UserContext = createContext();
+
+export default function ({ fragment }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  let user;
 
-  useEffect(() => {
-
-  }, []);
+  try {
+    user = JSON.parse(getCookie('user'))
+  } catch {
+    return <Navigate to="/login" />
+  }
 
   return (
     <>
@@ -242,7 +249,7 @@ export default function Dashboard({ fragment }) {
                       alt=""
                     />
                     <span className="ml-3 hidden text-sm font-medium text-gray-700 lg:block">
-                      <span className="sr-only">Open user menu for </span>Emilia Birch
+                      <span className="sr-only">Open user menu for </span>{user.userName}
                     </span>
                     <ChevronDownIcon
                       className="ml-1 hidden h-5 w-5 flex-shrink-0 text-gray-400 lg:block"
@@ -297,7 +304,7 @@ export default function Dashboard({ fragment }) {
           </div>
         </div>
 
-        {fragment}
+        <UserContext.Provider value={user}>{fragment}</UserContext.Provider>
       </div>
       {/*</div>*/}
     </>
@@ -312,13 +319,14 @@ function _CommonSidebarNav({ extra }) {
       <div className="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 sm:block lg:hidden" aria-hidden="true"><svg className="absolute inset-0 h-full w-full" width="359" height="339" viewBox="0 0 359 339" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><path d="M-161 382.107L546.107-325l707.103 707.107-707.103 707.103L-161 382.107z" fill="url(#linear2)" fillOpacity=".1"></path><defs><linearGradient id="linear2" x1="192.553" y1="28.553" x2="899.66" y2="735.66" gradientUnits="userSpaceOnUse"><stop stopColor="#fff"></stop><stop offset="1" stopColor="#fff" stopOpacity="0"></stop></linearGradient></defs></svg></div>
       <div className="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 lg:block" aria-hidden="true"><svg className="absolute inset-0 h-full w-full" width="160" height="678" viewBox="0 0 160 678" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><path d="M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z" fill="url(#linear3)" fillOpacity=".1"></path><defs><linearGradient id="linear3" x1="192.553" y1="325.553" x2="899.66" y2="1032.66" gradientUnits="userSpaceOnUse"><stop stopColor="#fff"></stop><stop offset="1" stopColor="#fff" stopOpacity="0"></stop></linearGradient></defs></svg></div>
 
-      <div className="flex flex-shrink-0 items-center px-4 mb-4">
+      <Link className="flex flex-shrink-0 items-center px-4 mb-4"
+        to="/">
         <img
           className="w-32 ml-4"
           src={textLogo}
           alt="UnivaBaber logo text"
         />
-      </div>
+      </Link>
       <nav className={`mt-5 divide-y divide-warm-gray-900 overflow-y-auto ${extra}`} aria-label="Sidebar">
         <div className="space-y-1 px-2">
           {navigation.map((item) => (
@@ -344,7 +352,7 @@ function _CommonSidebarNav({ extra }) {
               <Link
                 key={item.name}
                 to={item.href}
-                className="group flex items-center rounded-md px-2 py-2 text-sm font-medium leading-6 text-white"
+                className={classNames(window.location.pathname === item.href ? 'bg-warm-gray-900 ' : '', "group flex items-center rounded-md px-2 py-2 text-sm font-medium leading-6 text-white",)}
               >
                 <item.icon className="mr-4 h-6 w-6" aria-hidden="true" />
                 {item.name}

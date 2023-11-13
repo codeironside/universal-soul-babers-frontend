@@ -15,7 +15,7 @@ const cards = [
 ]
 
 import { classNames } from '../utils'
-
+import { UserContext } from './UserPanel'
 
 const transactions = [
   {

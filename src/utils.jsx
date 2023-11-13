@@ -49,3 +49,16 @@ export function buildApiEndpoint(path, token = false) {
 
     return string;
 }
+
+
+export function getTLD() {
+    var hostname = window.location.hostname;
+
+    // if localhost or ip address, return it
+    if (hostname === 'localhost' || /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(hostname)) {
+        return hostname;
+    }
+
+    var tld = hostname.split('.').slice(-2).join('.');
+    return tld;
+}

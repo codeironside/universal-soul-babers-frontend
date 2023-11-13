@@ -25,6 +25,7 @@ import Profile_ from "./pages/Profile_"
 import DashBlog from "./pages/DashBlog";
 import Customers from "./pages/Customers";
 import MyStore from "./pages/MyStore";
+import SignIn from "./pages/SignIn";
 
 export default [
   {
@@ -45,8 +46,12 @@ export default [
     component: <Barbers />,
   },
   {
-    path: "/auth",
+    path: "/login",
     component: <Auth />,
+  }, ,
+  {
+    path: "/signup",
+    component: <SignIn />,
   },
   {
     path: "/blog",

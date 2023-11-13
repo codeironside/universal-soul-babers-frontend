@@ -12,7 +12,6 @@ import SidePanel from './SidePanel'
 import CartItem from './CartItem'
 import Product from './Product'
 import Input from './Input'
-import Form from './Form'
 import BarberProfile from './BarberProfile'
 import BarberBookings from './BarberBookings'
 import BarberShop from './BarberShop'
@@ -28,7 +27,6 @@ export {
     BarberBookings,
     BarberShop,
     BarberStore,
-    Form,
     Nav,
     BarberCard,
     BarberList,

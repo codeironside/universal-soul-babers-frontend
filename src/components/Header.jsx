@@ -54,13 +54,13 @@ const Header = () => {
               0
             </Link>
             <Link
-              to="/auth"
+              to="/login"
               className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
             >
               Login
             </Link>
             <Link
-              to="/dashboard"
+              to="/signup"
               className="rounded-md border border-transparent bg-warm-gray-100 py-2 px-6 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200"
             >
               Sign Up
