@@ -30,7 +30,7 @@ export default function () {
                 <select
                   id="selected-tab"
                   name="selected-tab"
-                  className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-purple-500 focus:outline-none focus:ring-purple-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-primaryDark focus:outline-none focus:ring-primaryDark sm:text-sm"
                   defaultValue={tabs[0].name}
                   onChange={(e) => setTab(e.target.value)}
                 >
@@ -47,7 +47,7 @@ export default function () {
                         key={t.name}
                         className={classNames(
                           tab === t.name
-                            ? 'border-purple-500 text-purple-600'
+                            ? 'border-primaryDark text-primaryDark'
                             : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                           'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm'
                         )}
@@ -99,7 +99,7 @@ function General() {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -119,7 +119,7 @@ function General() {
               <span className="ml-4 flex flex-shrink-0 items-start space-x-4">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -128,7 +128,7 @@ function General() {
                 </span>
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
                 >
                   Remove
                 </button>
@@ -142,7 +142,7 @@ function General() {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -156,7 +156,7 @@ function General() {
               <span className="ml-4 flex-shrink-0">
                 <button
                   type="button"
-                  className="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
                 >
                   Update
                 </button>
@@ -164,7 +164,102 @@ function General() {
             </dd>
           </div>
         </dl>
-      </div></>
+      </div>
+      {/* Store settings */}
+      <div className="mt-10 pt-10 border-t border-gray-200">
+        <div className="space-y-1">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">Store</h3>
+          <p className="max-w-2xl text-sm text-gray-500">
+            This information will be displayed publicly so be careful what you share.
+          </p>
+        </div>
+        <div className="mt-6">
+          <dl className="divide-y divide-gray-200">
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+              <dt className="text-sm font-medium text-gray-500">Store name</dt>
+              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">Chelsea's Store</span>
+                <span className="ml-4 flex-shrink-0">
+                  <button
+                    type="button"
+                    className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
+                  >
+                    Update
+                  </button>
+                </span>
+              </dd>
+            </div>
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
+              <dt className="text-sm font-medium text-gray-500">Store URL</dt>
+              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">https://univacbaber.com/store/1</span>
+                <span className="ml-4 flex-shrink-0">
+                  {/* copy to clipboard button and handler */}
+                  <button
+                    type="button"
+                    className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
+                    onClick={() => {
+                      navigator.clipboard.writeText('https://univacbaber.com/store/1');
+                    }}
+                  >
+                    Copy
+                  </button>
+                  {/* <button
+                    type="button"
+                    className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
+                  >
+                    Update
+                  </button> */}
+                </span>
+              </dd>
+            </div>
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
+              <dt className="text-sm font-medium text-gray-500">Store Description</dt>
+              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">We sell the best stuff around.</span>
+                <span className="ml-4 flex-shrink-0">
+                  <button
+                    type="button"
+                    className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
+                  >
+                    Update
+                  </button>
+                </span>
+              </dd>
+            </div>
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5">
+              <dt className="text-sm font-medium text-gray-500">Social Sharing Image</dt>
+              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                </span>
+                <span className="ml-4 flex flex-shrink-0 items-start space-x-4">
+                  <button
+                    type="button"
+                    className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
+                  >
+                    Update
+                  </button>
+                  <span className="text-gray-300" aria-hidden="true">
+                    |
+                  </span>
+                  <button
+                    type="button"
+                    className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
+                  >
+                    Remove
+                  </button>
+                </span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -188,7 +283,7 @@ function Password() {
               name="current-password"
               id="current-password"
               autoComplete="current-password"
-              className="block w-full shadow-sm sm:text-sm focus:ring-purple-500 focus:border-purple-500 border-gray-300 rounded-md"
+              className="block w-full shadow-sm sm:text-sm focus:ring-primaryDark focus:border-primaryDark border-gray-300 rounded-md"
             />
           </div>
         </div>
@@ -204,7 +299,7 @@ function Password() {
                 name="new-password"
                 id="new-password"
                 autoComplete="new-password"
-                className="block w-full shadow-sm sm:text-sm focus:ring-purple-500 focus:border-purple-500 border-gray-300 rounded-md"
+                className="block w-full shadow-sm sm:text-sm focus:ring-primaryDark focus:border-primaryDark border-gray-300 rounded-md"
               />
             </div>
           </div>
@@ -220,7 +315,7 @@ function Password() {
                 name="confirm-new-password"
                 id="confirm-new-password"
                 autoComplete="confirm-new-password"
-                className="block w-full shadow-sm sm:text-sm focus:ring-purple-500 focus:border-purple-500 border-gray-300 rounded-md"
+                className="block w-full shadow-sm sm:text-sm focus:ring-primaryDark focus:border-primaryDark border-gray-300 rounded-md"
               />
             </div>
           </div>
@@ -229,7 +324,7 @@ function Password() {
           <div className="max-w-4xl mx-auto">
             <button
               type="button"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primaryDark hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-primaryDark"
             >
               Save
             </button>
@@ -261,7 +356,7 @@ function Notifications() {
                   id="comments"
                   name="comments"
                   type="checkbox"
-                  className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 rounded"
+                  className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300 rounded"
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -277,7 +372,7 @@ function Notifications() {
                   id="candidates"
                   name="candidates"
                   type="checkbox"
-                  className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 rounded"
+                  className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300 rounded"
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -293,7 +388,7 @@ function Notifications() {
                   id="offers"
                   name="offers"
                   type="checkbox"
-                  className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 rounded"
+                  className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300 rounded"
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -315,7 +410,7 @@ function Notifications() {
                 id="push_everything"
                 name="push_notifications"
                 type="radio"
-                className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300"
               />
               <label htmlFor="push_everything" className="ml-3 block text-sm font-medium text-gray-700">
                 Everything
@@ -326,7 +421,7 @@ function Notifications() {
                 id="push_email"
                 name="push_notifications"
                 type="radio"
-                className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300"
               />
               <label htmlFor="push_email" className="ml-3 block text-sm font-medium text-gray-700">
                 Same as email
@@ -337,7 +432,7 @@ function Notifications() {
                 id="push_nothing"
                 name="push_notifications"
                 type="radio"
-                className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300"
               />
               <label htmlFor="push_nothing" className="ml-3 block text-sm font-medium text-gray-700">
                 No push notifications
@@ -392,14 +487,14 @@ function Plan() {
               <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                 <button
                   type="button"
-                  className="w-full bg-purple-600 border border-transparent rounded-md py-2 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                  className="w-full bg-primaryDark border border-transparent rounded-md py-2 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2 sm:w-auto"
                 >
                   Change plan
                 </button>
               </div>
               <div className="px-4 py-5 sm:px-6">
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-purple-600 hover:text-purple-500">
+                  <a href="#" className="font-medium text-primaryDark hover:text-primaryDark">
                     Change your plan
                   </a>
                 </div>

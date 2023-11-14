@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-export default function MyStore() {
+export default function () {
   const [open, setOpen] = useState(false);
 
   return (
@@ -85,91 +85,8 @@ export default function MyStore() {
                               autoComplete="email"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               value="https://univacbaber.com/store/1"
+                              disabled={true}
                             />
-                          </div>
-
-                          <div className="col-span-6">
-                            <label
-                              htmlFor="country"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Store Category
-                            </label>
-                            <select
-                              id="country"
-                              name="country"
-                              autoComplete="country-name"
-                              className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            >
-                              <option value="Animals &amp; Pets">
-                                Animals &amp; Pets
-                              </option>
-                              <option value="Baby Products">
-                                Baby Products
-                              </option>
-                              <option value="Books and Media">
-                                Books and Media
-                              </option>
-                              <option value="Arts and Crafts">
-                                Arts and Crafts
-                              </option>
-                              <option value="Beauty and Skincare">
-                                Beauty and Skincare
-                              </option>
-                              <option value="Building and Construction">
-                                Building and Construction
-                              </option>
-                              <option value="Daily Essentials">
-                                Daily Essentials
-                              </option>
-                              <option value="Education">Education</option>
-                              <option value="Groceries">Groceries</option>
-                              <option value="Drinks">Drinks</option>
-                              <option value="Mens Fashion">Mens Fashion</option>
-                              <option value="Gym and Fitness">
-                                Gym and Fitness
-                              </option>
-                              <option value="Electronics">Electronics</option>
-                              <option value="Food &amp; Beverages">
-                                Food &amp; Beverages
-                              </option>
-                              <option value="Others">Others</option>
-                              <option value="Home &amp; Kitchen">
-                                Home &amp; Kitchen
-                              </option>
-                              <option value="Gaming">Gaming</option>
-                              <option value="Health &amp; Pharmaceuticals">
-                                Health &amp; Pharmaceuticals
-                              </option>
-                              <option value="Makeup and Cosmetics">
-                                Makeup and Cosmetics
-                              </option>
-                              <option value="Insurance ">Insurance</option>
-                              <option value="Kids Fashion">Kids Fashion</option>
-                              <option value="Office Equipment">
-                                Office Equipment
-                              </option>
-                              <option value="Personal Care">
-                                Personal Care
-                              </option>
-                              <option value="Phones and Tablets">
-                                Phones and Tablets
-                              </option>
-                              <option value="Professional Services">
-                                Professional Services
-                              </option>
-                              <option value="Restaurant">Restaurant</option>
-                              <option value="Supermarket">Supermarket</option>
-                              <option value="Religious Organization">
-                                Religious Organization
-                              </option>
-                              <option value="Toys &amp; Games">
-                                Toys &amp; Games
-                              </option>
-                              <option value="Womens Fashion">
-                                Womens Fashion
-                              </option>
-                            </select>
                           </div>
 
                           <div className="col-span-6">
@@ -212,7 +129,7 @@ export default function MyStore() {
                                     <span>Upload a file</span>
                                     <input id="file-upload" name="file-upload" type="file" className="sr-only" />
                                   </label>
-                                  <p className="pl-1">or drag and drop</p>
+                                  {/* <p className="pl-1">or drag and drop</p> */}
                                 </div>
                                 <p className="text-xs text-gray-500">PNG, JPG up to 2MB</p>
                               </div>
@@ -240,3 +157,4 @@ export default function MyStore() {
     </>
   );
 }
+

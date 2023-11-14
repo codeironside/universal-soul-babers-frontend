@@ -62,3 +62,14 @@ export function getTLD() {
     var tld = hostname.split('.').slice(-2).join('.');
     return tld;
 }
+
+export function isLoggedIn() {
+    let isLoggedIn = false;
+    try {
+        let user = JSON.parse(getCookie('user'))
+        if (user._id) isLoggedIn = true;
+    } catch {
+    } finally {
+        return isLoggedIn;
+    }
+}

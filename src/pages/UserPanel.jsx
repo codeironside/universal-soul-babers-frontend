@@ -26,7 +26,7 @@ import {
 
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
-import { getCookie } from '../utils'
+import { getCookie, isLoggedIn, deleteCookie } from '../utils'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -76,12 +76,15 @@ export const UserContext = createContext();
 
 export default function ({ fragment }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  let user;
+  const navigate = useNavigate()
 
-  try {
-    user = JSON.parse(getCookie('user'))
-  } catch {
-    return <Navigate to="/login" />
+  if (!isLoggedIn()) return <Navigate to="/login" />
+
+  const user = JSON.parse(getCookie('user'))
+
+  function logout() {
+    deleteCookie('user')
+    navigate("/login")
   }
 
   return (
@@ -292,6 +295,7 @@ export default function ({ fragment }) {
                         <Link
                           to="#"
                           className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          onClick={logout}
                         >
                           Logout
                         </Link>

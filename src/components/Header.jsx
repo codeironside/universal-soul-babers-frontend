@@ -5,6 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, ShoppingCartIcon, } from "@heroicons/react/24/outline/index.js";
 import { Link, NavLink } from 'react-router-dom'
 import { navLinks } from '../data'
+import { isLoggedIn } from "../utils";
 
 const Header = () => {
   return (
@@ -53,18 +54,38 @@ const Header = () => {
               <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-1" />
               0
             </Link>
-            <Link
-              to="/login"
-              className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="rounded-md border border-transparent bg-warm-gray-100 py-2 px-6 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200"
-            >
-              Sign Up
-            </Link>
+            {isLoggedIn() ? (
+              <Link to="/profile" className="group block flex-shrink-0">
+                <div className="flex items-center">
+                  <div>
+                    <img
+                      className="inline-block h-9 w-9 rounded-full"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="rounded-md border border-transparent bg-warm-gray-100 py-2 px-6 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </div>
