@@ -5,10 +5,10 @@ import { classNames } from '../utils'
 import { Tab } from '@headlessui/react'
 
 const tabs = [
-  { name: 'General', current: true },
-  { name: 'Password', current: false },
-  { name: 'Notifications', current: false },
-  { name: 'Plan', current: false },
+  { name: 'General' },
+  { name: 'Password' },
+  // { name: 'Notifications' },
+  { name: 'Plan' },
 ]
 
 
@@ -149,26 +149,12 @@ function General() {
               </span>
             </dd>
           </div>
-          <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5">
-            <dt className="text-sm font-medium text-gray-500">Job title</dt>
-            <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span className="flex-grow">Human Resources Manager</span>
-              <span className="ml-4 flex-shrink-0">
-                <button
-                  type="button"
-                  className="rounded-md bg-white font-medium text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                >
-                  Update
-                </button>
-              </span>
-            </dd>
-          </div>
         </dl>
       </div>
-      {/* Store settings */}
+      {/* Shop settings */}
       <div className="mt-10 pt-10 border-t border-gray-200">
         <div className="space-y-1">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">Store</h3>
+          <h3 className="text-lg font-medium leading-6 text-gray-900">Shop</h3>
           <p className="max-w-2xl text-sm text-gray-500">
             This information will be displayed publicly so be careful what you share.
           </p>

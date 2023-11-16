@@ -1,14 +1,7 @@
-import { Fragment, useState } from 'react'
-import {
-  CalendarIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  EllipsisHorizontalIcon,
-  MapPinIcon,
-} from '@heroicons/react/20/solid'
-import { Menu, Transition } from '@headlessui/react'
+import { useState } from 'react'
 
-import { classNames } from '../utils'
+
+import { tinyMCEInit } from '../utils'
 import Card from '../components/Card'
 
 import React, { useRef } from 'react';
@@ -23,8 +16,6 @@ export default function () {
       console.log(editorRef.current.getContent());
     }
   };
-
-
 
   return (
     <div className='mx-auto max-w-lg py-8 px-6 lg:max-w-4xl xl:max-w-6xl'>
@@ -42,21 +33,8 @@ export default function () {
             <Editor
               tinymceScriptSrc={'/tinymce/tinymce.min.js'}
               onInit={(evt, editor) => editorRef.current = editor}
-              initialValue='<p>This is the initial content of the editor.</p>'
-              init={{
-                height: 500,
-                menubar: false,
-                plugins: [
-                  'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
-                  'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                  'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
-                ],
-                toolbar: 'undo redo | blocks | ' +
-                  'bold italic forecolor | alignleft aligncenter ' +
-                  'alignright alignjustify | bullist numlist outdent indent | ' +
-                  'removeformat | help',
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-              }}
+              // initialValue='<p>This is the initial content of the editor.</p>'
+              init={tinyMCEInit}
             />
           </Card>
         </div>

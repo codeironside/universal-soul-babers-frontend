@@ -73,3 +73,29 @@ export function isLoggedIn() {
         return isLoggedIn;
     }
 }
+
+export function isOwner() {
+    let isOwner = false;
+    try {
+        let user = JSON.parse(getCookie('user'))
+        if (user.role === 'OWNER') isOwner = true;
+    } catch {
+    } finally {
+        return isOwner;
+    }
+}
+
+export const tinyMCEInit = {
+    height: 500,
+    menubar: false,
+    plugins: [
+        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+        'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
+    ],
+    toolbar: 'undo redo | blocks | ' +
+        'bold italic forecolor | alignleft aligncenter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat | help',
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+}

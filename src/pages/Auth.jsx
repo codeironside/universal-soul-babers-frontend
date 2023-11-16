@@ -66,7 +66,9 @@ export default ({ signup = false }) => {
             const responseData = await response.text();
             // console.log(responseData)
             setCookie("user", responseData);
-            navigate("/dashboard");
+
+            let json = JSON.parse(responseData);
+            navigate(json.role === "OWNER" ? "/owner" : "/dashboard");
           } else {
             const responseData = await response.text();
             setErrorMessage({ ...errorMessage, desc: responseData });

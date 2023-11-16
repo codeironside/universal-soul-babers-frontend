@@ -24,8 +24,14 @@ import AppointMents from "./pages/AppointMents";
 import Profile_ from "./pages/Profile_"
 import DashBlog from "./pages/DashBlog";
 import Customers from "./pages/Customers";
-import MyStore from "./pages/MyStore";
+import MyShop from "./pages/MyShop";
 import SignIn from "./pages/SignIn";
+import OwnerUsers from "./pages/OwnerUsers";
+import OwnerViewUser from "./pages/OwnerViewUser";
+import OwnerNotification from "./pages/OwnerNotification";
+import OwnerNotificationView from "./pages/OwnerNotificationView";
+import OwnerDashboard from "./pages/OwnerDashboard";
+import OwnerBlog from "./pages/OwnerBlog";
 
 export default [
   {
@@ -133,7 +139,42 @@ export default [
   },
   {
     path: "/my-store",
-    component: <UserPanel fragment={<MyStore />} />,
+    component: <UserPanel fragment={<MyShop />} />,
+    standalone: true
+  },
+  {
+    path: "/owner",
+    component: <UserPanel fragment={<OwnerDashboard />} owner={true} />,
+    standalone: true
+  },
+  {
+    path: "/owner/users",
+    component: <UserPanel fragment={<OwnerUsers />} owner={true} />,
+    standalone: true
+  },
+  {
+    path: "/owner/users/:userId",
+    component: <UserPanel fragment={<OwnerViewUser />} owner={true} />,
+    standalone: true
+  },
+  {
+    path: "/owner/notifications",
+    component: <UserPanel fragment={<OwnerNotification />} owner={true} />,
+    standalone: true
+  },
+  {
+    path: "/owner/notification/:id",
+    component: <UserPanel fragment={<OwnerNotificationView />} owner={true} />,
+    standalone: true
+  },
+  {
+    path: "/owner/blog",
+    component: <UserPanel fragment={<OwnerBlog />} owner={true} />,
+    standalone: true
+  },
+  {
+    path: "/forum/thread/:threadId",
+    component: <Forum />,
     standalone: true
   },
 ]

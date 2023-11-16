@@ -7,16 +7,13 @@ import {
   BellIcon,
   CogIcon,
   CalendarDaysIcon,
-  DocumentChartBarIcon,
   HomeIcon,
   DocumentTextIcon,
   BuildingStorefrontIcon,
   ShieldCheckIcon,
-  // UsersIcon,
   UserGroupIcon,
   XMarkIcon,
-  // BanknotesIcon,
-  BriefcaseIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline'
 
 import {
@@ -26,7 +23,7 @@ import {
 
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
-import { getCookie, isLoggedIn, deleteCookie } from '../utils'
+import { getCookie, isLoggedIn, deleteCookie, isOwner } from '../utils'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -37,7 +34,14 @@ const navigation = [
   { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
   { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
   // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
-  { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
+  // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
+]
+
+const ownerNav = [
+  { name: 'Dashboard', href: '/owner', icon: HomeIcon },
+  { name: 'Blog', href: '/owner/blog', icon: DocumentTextIcon },
+  { name: 'Notifications', href: '/owner/notifications', icon: BellIcon },
+  { name: 'Users', href: '/owner/users', icon: UserIcon },
 ]
 
 const secondaryNavigation = [
@@ -74,7 +78,7 @@ import { classNames } from '../utils'
 
 export const UserContext = createContext();
 
-export default function ({ fragment }) {
+export default function ({ fragment, owner = false, }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
 
@@ -87,8 +91,12 @@ export default function ({ fragment }) {
     navigate("/login")
   }
 
+  useEffect(() => {
+    if (owner && user.role !== "OWNER") navigate("/login")
+  }, [])
+
   return (
-    <>
+    <UserContext.Provider value={user}>
       {/*<div className="min-h-screen">*/}
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
@@ -186,7 +194,7 @@ export default function ({ fragment }) {
             </div>
             <div className="ml-4 flex items-center md:ml-6">
               {/* Notification dropdown */}
-              <Menu as="div" className="relative ml-3">
+              {!isOwner() && (<Menu as="div" className="relative ml-3">
                 <div>
                   <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-warm-gray-500 focus:ring-offset-2">
                     <span className="sr-only">View notifications</span>
@@ -240,7 +248,7 @@ export default function ({ fragment }) {
                     </Menu.Item>
                   </Menu.Items>
                 </Transition>
-              </Menu>
+              </Menu>)}
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
@@ -307,15 +315,16 @@ export default function ({ fragment }) {
             </div>
           </div>
         </div>
-
-        <UserContext.Provider value={user}>{fragment}</UserContext.Provider>
+        {fragment}
       </div>
       {/*</div>*/}
-    </>
+    </UserContext.Provider>
   )
 }
 
 function _CommonSidebarNav({ extra }) {
+  const user = useContext(UserContext);
+
   return (
     <>
       {/* design particles */}
@@ -331,9 +340,10 @@ function _CommonSidebarNav({ extra }) {
           alt="UnivaBaber logo text"
         />
       </Link>
+
       <nav className={`mt-5 divide-y divide-warm-gray-900 overflow-y-auto ${extra}`} aria-label="Sidebar">
         <div className="space-y-1 px-2">
-          {navigation.map((item) => (
+          {user.role === "USER" ? navigation.map((item) => (
             // <div key={item.name} onClick={() => setSidebarOpen(false)}>
             <Link
               key={item.name}
@@ -348,11 +358,27 @@ function _CommonSidebarNav({ extra }) {
               {item.name}
             </Link>
             // </div>
-          ))}
+          )) : ownerNav.map((item) => (
+            // <div key={item.name} onClick={() => setSidebarOpen(false)}>
+            <Link
+              key={item.name}
+              to={item.href}
+              className={classNames(
+                window.location.pathname === item.href ? 'bg-warm-gray-900 ' : 'hover:bg-warm-gray-400 hover:bg-opacity-50',
+                'text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md'
+              )}
+              aria-current={item.current ? 'page' : undefined}
+            >
+              <item.icon className="mr-4 h-6 w-6 flex-shrink-0" aria-hidden="true" />
+              {item.name}
+            </Link>
+            // </div>
+          ))
+          }
         </div>
         <div className="mt-6 pt-6">
           <div className="space-y-1 px-2">
-            {secondaryNavigation.map((item) => (
+            {user.role === "USER" && secondaryNavigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
