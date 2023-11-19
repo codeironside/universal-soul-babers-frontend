@@ -6,60 +6,59 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Listbox, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 
+const people = [
+  { id: 1, name: 'Wade Cooper' },
+  { id: 2, name: 'Arlene Mccoy' },
+  { id: 3, name: 'Devon Webb' },
+  { id: 4, name: 'Tom Cook' },
+  { id: 5, name: 'Tanya Fox' },
+  { id: 6, name: 'Hellen Schmidt' },
+  { id: 7, name: 'Caroline Schultz' },
+  { id: 8, name: 'Mason Heaney' },
+  { id: 9, name: 'Claudie Smitham' },
+  { id: 10, name: 'Emil Schaefer' },
+]
+
+const messages = [
+  {
+    id: 1,
+    subject: 'Velit placeat sit ducimus non sed',
+    sender: 'Gloria Roberston',
+    time: '1d ago',
+    datetime: '2021-01-27T16:35',
+    preview:
+      'Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.',
+  },
+  {
+    id: 2,
+    subject: 'Reprehenderit ut qui aut',
+    sender: 'Brian Thompson',
+    time: '2d ago',
+    datetime: '2021-01-26T09:12',
+    preview:
+      'Soluta voluptates recusandae voluptas rerum doloribus cupiditate sit omnis. Necessitatibus enim eaque autem id dolore voluptatem. Beatae aliquam voluptas ea possimus quas nihil.',
+  },
+  {
+    id: 3,
+    subject: 'Cupiditate est omnis iste',
+    sender: 'Julia Rodriguez',
+    time: '3d ago',
+    datetime: '2021-01-25T14:20',
+    preview:
+      'Autem aliquam ut quasi earum. Ut sunt quo ipsam ullam aut a. Nemo id dolorem qui voluptatem alias vel. Tempore aut exercitationem aperiam ratione repellendus porro.',
+  },
+]
+
 export default function () {
   const editorRef = useRef(null);
   const [selectUsers, setSelectUsers] = React.useState(false);
+  const [selected, setSelected] = useState(people[3])
 
   useEffect(() => {
     document.title = 'Notifications'
     document.body.classList.add("bg-gray-100")
   }, [])
 
-  const people = [
-    { id: 1, name: 'Wade Cooper' },
-    { id: 2, name: 'Arlene Mccoy' },
-    { id: 3, name: 'Devon Webb' },
-    { id: 4, name: 'Tom Cook' },
-    { id: 5, name: 'Tanya Fox' },
-    { id: 6, name: 'Hellen Schmidt' },
-    { id: 7, name: 'Caroline Schultz' },
-    { id: 8, name: 'Mason Heaney' },
-    { id: 9, name: 'Claudie Smitham' },
-    { id: 10, name: 'Emil Schaefer' },
-  ]
-
-  const [selected, setSelected] = useState(people[3])
-
-
-  const messages = [
-    {
-      id: 1,
-      subject: 'Velit placeat sit ducimus non sed',
-      sender: 'Gloria Roberston',
-      time: '1d ago',
-      datetime: '2021-01-27T16:35',
-      preview:
-        'Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.',
-    },
-    {
-      id: 2,
-      subject: 'Reprehenderit ut qui aut',
-      sender: 'Brian Thompson',
-      time: '2d ago',
-      datetime: '2021-01-26T09:12',
-      preview:
-        'Soluta voluptates recusandae voluptas rerum doloribus cupiditate sit omnis. Necessitatibus enim eaque autem id dolore voluptatem. Beatae aliquam voluptas ea possimus quas nihil.',
-    },
-    {
-      id: 3,
-      subject: 'Cupiditate est omnis iste',
-      sender: 'Julia Rodriguez',
-      time: '3d ago',
-      datetime: '2021-01-25T14:20',
-      preview:
-        'Autem aliquam ut quasi earum. Ut sunt quo ipsam ullam aut a. Nemo id dolorem qui voluptatem alias vel. Tempore aut exercitationem aperiam ratione repellendus porro.',
-    },
-  ]
 
   return (
     <>
@@ -92,7 +91,7 @@ export default function () {
                     name="push_notifications"
                     type="radio"
                     className="focus:ring-primaryDark h-4 w-4 text-primaryDark border-gray-300"
-                    defaultChecked={true}
+                    onChange={() => { setSelectUsers(false) }}
                   />
                   <label htmlFor="push_email" className="ml-3 block text-sm font-medium text-gray-700">
                     All users

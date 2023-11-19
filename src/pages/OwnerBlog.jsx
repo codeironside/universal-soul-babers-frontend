@@ -21,7 +21,7 @@ export default function () {
               </div>
               <div className="px-4 py-6 sm:px-6">
                 {/* Empty state */}
-                <div className="flex justify-center items-center hidden">
+                <div className="flex justify-center items-center">
                   <p className="text-2xl font-semibold">There's no blog to review at the moment</p>
                 </div>
               </div>

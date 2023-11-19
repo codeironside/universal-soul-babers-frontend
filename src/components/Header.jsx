@@ -55,7 +55,7 @@ const Header = () => {
               0
             </Link>
             {isLoggedIn() ? (
-              <Link to="/profile" className="group block flex-shrink-0">
+              <Link to="/dashboard" className="group block flex-shrink-0">
                 <div className="flex items-center">
                   <div>
                     <img
@@ -66,7 +66,7 @@ const Header = () => {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View dashboard</p>
                   </div>
                 </div>
               </Link>

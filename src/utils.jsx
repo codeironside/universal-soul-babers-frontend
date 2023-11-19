@@ -1,4 +1,4 @@
-const BASE_API_URI = 'http://localhost:5087';
+const BASE_API_URI = 'https://marver-barber-backend.onrender.com';
 
 export function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
