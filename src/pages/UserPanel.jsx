@@ -23,7 +23,7 @@ import {
 
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
-import { getCookie, isLoggedIn, deleteCookie, isOwner } from '../utils'
+import { getCookie, isLoggedIn, deleteAllCookies, isOwner } from '../utils'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -86,7 +86,7 @@ export default function ({ fragment, owner = false, }) {
   const user = JSON.parse(getCookie('user'))
 
   function logout() {
-    deleteCookie('user')
+    deleteAllCookies()
     navigate("/login")
   }
 

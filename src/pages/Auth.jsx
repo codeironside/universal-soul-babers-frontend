@@ -6,7 +6,7 @@ import Notification from "../components/Notification";
 import { ImSpinner8 } from "react-icons/im";
 import { buildApiEndpoint, setCookie } from "../utils"
 import { useNavigate, Navigate } from "react-router-dom";
-
+import axios from "axios";
 
 export default ({ signup = false }) => {
 
@@ -48,36 +48,36 @@ export default ({ signup = false }) => {
         setErrorMessage(mockErrorMsg);
         setLoading(true);
 
-        try {
-          const response = await fetch(buildApiEndpoint("/users/login"), {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        axios.post(buildApiEndpoint("/users/login"), { email, password }, { withCredentials: true, headers: { 'Content-Type': 'application/json' } })
+          .then(response => {
+            // check if response status is 2xx
+            if (response.status >= 200 && response.status < 300) {
+              // successful login
 
-            body: JSON.stringify({ email, password }),
-            credentials: "include",
+              const responseData = response.data;
+              // console.log(responseData)
+              setCookie("user", JSON.stringify(responseData));
+
+              const auth = response.headers.getAuthorization();
+              console.log(auth)
+
+              // Extract the token from the header
+              // const token = headers.authorization.split(' ')[1];
+              // setCookie("token", token);
+
+              navigate("/dashboard");
+            } else {
+              const responseData = response.data;
+              setErrorMessage({ ...errorMessage, desc: responseData });
+            }
+
+          })
+          .catch(error => {
+            console.error("Login error:", error);
+            setErrorMessage({ ...errorMessage, desc: "Unable to login. Try again later" });
+          }).finally(() => {
+            setLoading(false);
           });
-
-          setLoading(false);
-
-          if (response.ok) {
-            // successful login
-            const responseData = await response.text();
-            // console.log(responseData)
-            setCookie("user", responseData);
-
-            let json = JSON.parse(responseData);
-            navigate(json.role === "OWNER" ? "/owner" : "/dashboard");
-          } else {
-            const responseData = await response.text();
-            setErrorMessage({ ...errorMessage, desc: responseData });
-          }
-        } catch (error) {
-          setLoading(false);
-          setErrorMessage({ ...errorMessage, desc: "Unable to login. Try again later" });
-          console.error("Login error:", error);
-        }
       }
     } else {
       // handle register

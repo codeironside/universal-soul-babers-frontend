@@ -1,4 +1,4 @@
-const BASE_API_URI = 'https://marver-barber-backend.onrender.com';
+const BASE_API_URI = 'http://localhost:5087/api/v1';
 
 export function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -98,4 +98,10 @@ export const tinyMCEInit = {
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat | help',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+}
+
+// convert date from format "2021-08-01T00:00:00.000Z" to "30, September 2020"
+export function formatDate(date) {
+    const dateObj = new Date(date);
+    return dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
 }
