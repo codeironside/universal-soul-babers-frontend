@@ -12,7 +12,7 @@ const BarberCard = ({ barber }) => {
         data-aos-delay='500'
       >
         <div className=' h-auto w-full flex items-center justify-center lg:justify-center md:justify-center'>
-          <img src={img} alt={name} className='w-[300px]   rounded-lg ' />
+          <img src={img} alt={name} className='w-[300px] rounded-lg ' />
         </div>
         <h2 className='text-[18px] leading-[30px]  lg:text-[26px] lg:leading-8 text-headingColor font-[700] mt-2 '>
           {name}

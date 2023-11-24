@@ -1,23 +1,13 @@
 import { BarberCard, Testimonials } from "../components";
 import { barbers } from "../data";
 import { BallTriangle } from "react-loader-spinner";
+import { BallTriangleAnim } from "./Home";
 const Barbers = () => {
   return (
     <>
       <section className='bg-[#fff9ea] '>
         <div className='container text-center relative '>
-          <div className='absolute top-[15%] right-[7%] h-[100px] w-[100px] '>
-            <BallTriangle
-              height={100}
-              width={100}
-              radius={5}
-              color='black'
-              ariaLabel='ball-triangle-loading'
-              wrapperClass={{}}
-              wrapperStyle=''
-              visible={true}
-            />
-          </div>
+          <BallTriangleAnim />
           <h2 className='heading'>Find A Barber</h2>
           <div className='max-w-[570px] mt-[30px] mx-auto rounded-md flex items-center justify-between'>
             <input
@@ -33,7 +23,7 @@ const Barbers = () => {
       </section>
       <section>
         <div className='container'>
-          <div className='grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-5 lg:gap-[30px] mt-[0px] lg:mt-[-38px]'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
             {barbers.map((barber) => {
               return <BarberCard key={barber.id} barber={barber} />;
             })}

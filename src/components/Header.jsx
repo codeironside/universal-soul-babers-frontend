@@ -17,19 +17,7 @@ const Header = () => {
         >
           <div className="flex flex-1 items-center">
             <div className="flex w-full items-center justify-between lg:w-auto">
-              <Link to="#" className="flex items-center">
-                <span className="sr-only">UnivaBarber</span>
-                <img
-                  className="h-8 w-auto sm:h-10"
-                  src={logo}
-                  alt=""
-                />
-                <img
-                  className="h-4 ml-4"
-                  src={textLogo}
-                  alt="UnivaBaber logo text"
-                />
-              </Link>
+              <AppLogo />
               <div className="-mr-2 flex items-center lg:hidden">
                 <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-warm-gray-50 p-2 text-warm-gray-400 hover:bg-warm-gray-100 focus:outline-none focus:ring-2 focus:ring-primaryDark">
                   <span className="sr-only">Open main menu</span>
@@ -170,3 +158,22 @@ const Header = () => {
 };
 
 export default Header;
+
+
+export function AppLogo() {
+  return (
+    <Link to="#" className="flex items-center">
+      <span className="sr-only">UnivaBarber</span>
+      <img
+        className="h-8 w-auto sm:h-10"
+        src={logo}
+        alt=""
+      />
+      <img
+        className="h-4 ml-4"
+        src={textLogo}
+        alt="UnivaBaber logo text"
+      />
+    </Link>
+  );
+}
