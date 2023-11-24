@@ -6,18 +6,18 @@ const CartProvider = ({ children }) => {
   // cart this.state.
   const [cart, setCart] = useState([]);
   //  amount state
-  const [itemAmount, setItemAmount] = useState(0);
+  const [itemCount, setItemCount] = useState(0);
 
   // total price
   const [total, setTotal] = useState(0)
 
 
-useEffect(() => {
-  const total = cart.reduce((accumulator, currentItem) =>{
-    return accumulator + currentItem.price * currentItem.amount
-  }, 0)
-  setTotal(total)
-}, )
+  useEffect(() => {
+    const total = cart.reduce((accumulator, currentItem) => {
+      return accumulator + currentItem.price * currentItem.amount
+    }, 0)
+    setTotal(total)
+  },)
 
 
   // update item amount
@@ -26,25 +26,22 @@ useEffect(() => {
       const amount = cart.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.amount;
       }, 0);
-      setItemAmount(amount);
+      setItemCount(amount);
     }
   }, [cart]);
 
-  const addToCart = (product, id) => {
+  const addToCart = (product, amt) => {
     const newItem = { ...product, amount: 1 };
+
     //  item check
     const cartItem = cart.find((item) => {
-      return item.id === id;
+      return item.id === product.id;
     });
+
     // conditionals
     if (cartItem) {
-      const newCart = [...cart].map((item) => {
-        if (item.id === id) {
-          return { ...item, amount: cartItem.amount + 1 };
-        } else {
-          return item;
-        }
-      });
+      const newCart = cart.map((item) => item.id === product.id ? { ...item, amount: amt ? amt : cartItem.amount + 1 } : item);
+
       setCart(newCart);
     } else {
       setCart([...cart, newItem]);
@@ -53,7 +50,7 @@ useEffect(() => {
 
   const removeFromCart = (id) => {
     const newCart = cart.filter((item) => {
-      return item.id === id;
+      return item.id !== id;
     });
     setCart(newCart);
   };
@@ -64,12 +61,13 @@ useEffect(() => {
 
   const increaseAmount = (id) => {
     const cartItem = cart.find((item) => item.id === id);
-    addToCart(cartItem, id);
+    addToCart(cartItem, cartItem.amount + 1);
   };
 
   const decreaseAmount = (id) => {
     // console.log("decrease");
     const cartItem = cart.find((item) => item.id === id);
+
     if (cartItem) {
       const newCart = cart.map((item) => {
         if (item.id === id) {
@@ -80,6 +78,7 @@ useEffect(() => {
       });
       setCart(newCart);
     }
+
     if (cartItem.amount < 2) {
       removeFromCart(id);
     }
@@ -94,7 +93,7 @@ useEffect(() => {
         clearCart,
         increaseAmount,
         decreaseAmount,
-        itemAmount,
+        itemCount,
         total,
       }}>
       {children}

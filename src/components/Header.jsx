@@ -6,8 +6,12 @@ import { Bars3Icon, XMarkIcon, ShoppingCartIcon, } from "@heroicons/react/24/out
 import { Link, NavLink } from 'react-router-dom'
 import { navLinks } from '../data'
 import { isLoggedIn } from "../utils";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
 const Header = () => {
+  const { itemCount } = useContext(CartContext)
+
   return (
     <Popover as="header" className="sticky top-0 pb-3 bg-white z-50">
       <div>
@@ -40,7 +44,7 @@ const Header = () => {
           <div className="hidden lg:flex lg:items-center lg:space-x-6">
             <Link to="/cart" className="inline-flex">
               <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-1" />
-              0
+              {itemCount}
             </Link>
             {isLoggedIn() ? (
               <Link to="/dashboard" className="group block flex-shrink-0">
