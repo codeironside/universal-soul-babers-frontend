@@ -69,10 +69,10 @@ export default function Settings() {
                   id="selected-tab"
                   name="selected-tab"
                   className="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md focus:border-primaryDark focus:outline-none focus:ring-primaryDark sm:text-sm"
-                  defaultValue={tabs[0].name}
+                  defaultValue={componentMap[0].name}
                   onChange={(e) => setTab(e.target.value)}
                 >
-                  {tabs.map((tab) => (
+                  {componentMap.map((tab) => (
                     <option key={tab.name}>{tab.name}</option>
                   ))}
                 </select>
@@ -80,7 +80,7 @@ export default function Settings() {
               <div className="hidden lg:block">
                 <div className="border-b border-gray-200">
                   <nav className="flex -mb-px space-x-8">
-                    {tabs.map((t) => (
+                    {componentMap.map((t) => (
                       <button
                         key={t.name}
                         className={classNames(
