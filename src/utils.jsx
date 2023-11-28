@@ -55,7 +55,7 @@ export function getTLD() {
     var hostname = window.location.hostname;
 
     // if localhost or ip address, return it
-    if (hostname === 'localhost' || /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(hostname)) {
+    if (hostname) {
         return hostname;
     }
 
