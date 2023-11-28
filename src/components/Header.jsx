@@ -6,21 +6,27 @@ import { Bars3Icon, XMarkIcon, ShoppingCartIcon, } from "@heroicons/react/24/out
 import { Link, NavLink } from 'react-router-dom'
 import { navLinks } from '../data'
 import { isLoggedIn } from "../utils";
+import { UserContext } from "../pages/UserPanel";
+import { getCookie } from "../utils";
+import ProfileImage from "./ProfileImage";
 
 const Header = () => {
+  const user = JSON.parse(getCookie('user'))
+  
   return (
-    <Popover as="header" className="sticky top-0 pb-3 bg-white z-50">
+    <UserContext.Provider value={user}>
+    <Popover as="header" className="sticky top-0 z-50 pb-3 bg-white">
       <div>
         <nav
-          className="relative mx-auto flex max-w-7xl items-center justify-between px-6 pt-6 xl:px-8"
+          className="relative flex items-center justify-between px-6 pt-6 mx-auto max-w-7xl xl:px-8"
           aria-label="Global"
         >
-          <div className="flex flex-1 items-center">
-            <div className="flex w-full items-center justify-between lg:w-auto">
+          <div className="flex items-center flex-1">
+            <div className="flex items-center justify-between w-full lg:w-auto">
               <Link to="#" className="flex items-center">
                 <span className="sr-only">UnivaBarber</span>
                 <img
-                  className="h-8 w-auto sm:h-10"
+                  className="w-auto h-8 sm:h-10"
                   src={logo}
                   alt=""
                 />
@@ -30,10 +36,10 @@ const Header = () => {
                   alt="UnivaBaber logo text"
                 />
               </Link>
-              <div className="-mr-2 flex items-center lg:hidden">
-                <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-warm-gray-50 p-2 text-warm-gray-400 hover:bg-warm-gray-100 focus:outline-none focus:ring-2 focus:ring-primaryDark">
+              <div className="flex items-center -mr-2 lg:hidden">
+                <Popover.Button className="inline-flex items-center justify-center p-2 rounded-md focus-ring-inset bg-warm-gray-50 text-warm-gray-400 hover:bg-warm-gray-100 focus:outline-none focus:ring-2 focus:ring-primaryDark">
                   <span className="sr-only">Open main menu</span>
-                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon className="w-6 h-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
             </div>
@@ -51,21 +57,18 @@ const Header = () => {
           </div>
           <div className="hidden lg:flex lg:items-center lg:space-x-6">
             <Link to="/cart" className="inline-flex">
-              <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-1" />
+              <ShoppingCartIcon className="w-6 h-6 mr-1 cursor-pointer" />
               0
             </Link>
             {isLoggedIn() ? (
-              <Link to="/dashboard" className="group block flex-shrink-0">
+              <Link to="/dashboard" className="flex-shrink-0 block group">
                 <div className="flex items-center">
                   <div>
-                    <img
-                      className="inline-block h-9 w-9 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+                    
+                    <ProfileImage />
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{`${user.firstName} ${user.lastName}`}</p>
                     <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View dashboard</p>
                   </div>
                 </div>
@@ -74,13 +77,13 @@ const Header = () => {
               <>
                 <Link
                   to="/login"
-                  className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
+                  className="font-medium text-warm-gray-900 hover:text-warm-gray-500"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="rounded-md border border-transparent bg-warm-gray-100 py-2 px-6 text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200"
+                  className="px-6 py-2 text-base font-medium border border-transparent rounded-md bg-warm-gray-100 text-warm-gray-900 hover:bg-warm-gray-200"
                 >
                   Sign Up
                 </Link>
@@ -99,7 +102,7 @@ const Header = () => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Popover.Panel focus className="absolute inset-x-0 top-0 z-30 origin-top transform p-2 transition lg:hidden">
+        <Popover.Panel focus className="absolute inset-x-0 top-0 z-30 p-2 transition origin-top transform lg:hidden">
           <Transition
             as={Fragment}
             enter='duration-200 ease-out'
@@ -110,22 +113,22 @@ const Header = () => {
             leaveTo='opacity-0 scale-95'>
             <Popover.Panel
               focus
-              className='absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden'>
+              className='absolute inset-x-0 top-0 p-2 transition origin-top-right transform md:hidden'>
               {({ close }) => (
-                <div className='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
-                  <div className='px-5 pt-4 flex items-center justify-between'>
+                <div className='overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5'>
+                  <div className='flex items-center justify-between px-5 pt-4'>
                     <Link
                       to='/'
                       className='text-2xl font-semibold text-primaryDark'>
                       <span className='sr-only'>UnivaBarber</span>
-                      <img className='h-10 w-auto' src={logo} alt='Logo' />
+                      <img className='w-auto h-10' src={logo} alt='Logo' />
                     </Link>
                     <div className='-mr-2'>
                       <Popover.Button
                         onClick={close}
-                        className='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
+                        className='inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
                         <span className='sr-only'>Close menu</span>
-                        <XMarkIcon className='h-6 w-6' aria-hidden='true' />
+                        <XMarkIcon className='w-6 h-6' aria-hidden='true' />
                       </Popover.Button>
                     </div>
                   </div>
@@ -135,26 +138,26 @@ const Header = () => {
                         key={item.label}
                         to={item.path}
                         onClick={close}
-                        className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
+                        className='block px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50'>
                         {item.label}
                       </Link>
                     ))}
                   </div>
-                  <div className="my-6 px-5">
+                  <div className="px-5 my-6">
                     <div className="inline-flex mb-4">
-                      <ShoppingCartIcon className="w-6 h-6 cursor-pointer mr-2" />
+                      <ShoppingCartIcon className="w-6 h-6 mr-2 cursor-pointer" />
                       <span>Cart</span>
                     </div>
 
                     <Link
                       to="/login"
-                      className="block w-full rounded-md border border-transparent bg-warm-gray-100 hover:bg-warm-gray-200 py-2 px-4 text-center font-medium shadow text-black"
+                      className="block w-full px-4 py-2 font-medium text-center text-black border border-transparent rounded-md shadow bg-warm-gray-100 hover:bg-warm-gray-200"
                     >
                       Login
                     </Link>
                     <Link
                       to="/dashboard"
-                      className="block w-full rounded-md border border-transparent py-2 px-4 text-center font-medium text-white shadow bg-primaryColor mt-4"
+                      className="block w-full px-4 py-2 mt-4 font-medium text-center text-white border border-transparent rounded-md shadow bg-primaryColor"
                     >
                       Sign Up
                     </Link>
@@ -165,7 +168,7 @@ const Header = () => {
           </Transition>
         </Popover.Panel>
       </Transition>
-    </Popover>
+    </Popover></UserContext.Provider>
   );
 };
 

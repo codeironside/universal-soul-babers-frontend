@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { useImage } from '../context/ImageContext';
 
 export default function UpdateImage({ onImageLoaded }) {
+  const {setImageUrl} = useImage()
   const cloudName = 'di36rc30e';
   const uploadPreset = 'mrh3qf9';
 
@@ -16,7 +18,7 @@ export default function UpdateImage({ onImageLoaded }) {
         formData
       )
       .then((res) => {
-        onImageLoaded(res.data.secure_url);
+        setImageUrl(res.data.secure_url)
       })
       .catch((err) => console.error(err));
   }

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { classNames, getCookie } from '../utils';
 import { Tab } from '@headlessui/react';
 import axios from 'axios';
-import UploadWidget from '../components/UploadWidget';
-import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 import UpdateImage from '../components/UpdateImage';
 
 const tabs = [
