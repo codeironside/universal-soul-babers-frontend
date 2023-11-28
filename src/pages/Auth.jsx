@@ -55,11 +55,12 @@ export default function Auth({ signup = false }) {
               // successful login
 
               const responseData = response.data;
-              console.log(responseData, response.status)
+              //console.log(responseData, response.status)
               setCookie("user", JSON.stringify(responseData));
 
               const auth = response.headers.getAuthorization();
 
+              console.log(auth)
               // Extract the token from the header
               const token = auth.split(' ')[1];
               setCookie("token", token);
