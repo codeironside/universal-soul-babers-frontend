@@ -55,7 +55,7 @@ export default function Auth({ signup = false }) {
               // successful login
 
               const responseData = response.data;
-              // console.log(responseData)
+              console.log(responseData, response.status)
               setCookie("user", JSON.stringify(responseData));
 
               const auth = response.headers.getAuthorization();
