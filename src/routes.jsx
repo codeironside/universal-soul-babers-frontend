@@ -54,7 +54,7 @@ export default [
   {
     path: "/login",
     component: <Auth />,
-  }, ,
+  }, 
   {
     path: "/signup",
     component: <SignIn />,

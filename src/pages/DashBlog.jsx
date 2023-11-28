@@ -1,10 +1,7 @@
-import { useState } from 'react'
-
-
 import { tinyMCEInit } from '../utils'
 import Card from '../components/Card'
 
-import React, { useRef } from 'react';
+import React, { useState,useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import MyBlogs from '../components/MyBlogs'
 
@@ -18,7 +15,7 @@ export default function () {
   };
 
   return (
-    <div className='mx-auto max-w-lg py-8 px-6 lg:max-w-4xl xl:max-w-6xl'>
+    <div className='max-w-lg px-6 py-8 mx-auto lg:max-w-4xl xl:max-w-6xl'>
       <h2 className="text-lg font-semibold text-gray-900">Blog</h2>
       <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
         <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
@@ -27,7 +24,7 @@ export default function () {
         </div>
 
 
-        <div className="mt-4 divide-y divide-gray-100 text-sm leading-6 lg:col-span-7 xl:col-span-8">
+        <div className="mt-4 text-sm leading-6 divide-y divide-gray-100 lg:col-span-7 xl:col-span-8">
           {/* Main Section */}
           <Card>
             <Editor
@@ -61,7 +58,7 @@ export const NotificationList = () => {
   return (
     <div className="p-8">
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded float-right mb-4"
+        className="float-right px-4 py-2 mb-4 text-white bg-blue-500 rounded"
         onClick={markAllAsRead}
       >
         Mark All as Read

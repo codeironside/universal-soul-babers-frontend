@@ -1,4 +1,4 @@
-const BASE_API_URI = 'http://localhost:5087/api/v1';
+const BASE_API_URI = 'https://unique-barbers.onrender.com/api/v1';
 
 export function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

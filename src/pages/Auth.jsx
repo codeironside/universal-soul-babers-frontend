@@ -8,7 +8,7 @@ import { buildApiEndpoint, setCookie } from "../utils"
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 
-export default ({ signup = false }) => {
+export default function Auth({ signup = false }) {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -59,11 +59,10 @@ export default ({ signup = false }) => {
               setCookie("user", JSON.stringify(responseData));
 
               const auth = response.headers.getAuthorization();
-              console.log(auth)
 
               // Extract the token from the header
-              // const token = headers.authorization.split(' ')[1];
-              // setCookie("token", token);
+              const token = auth.split(' ')[1];
+              setCookie("token", token);
 
               navigate("/dashboard");
             } else {
@@ -124,18 +123,17 @@ export default ({ signup = false }) => {
 
   const btnText = () => {
     if (loading) {
-      return <ImSpinner8 className="animate-spin mx-auto" />;
+      return <ImSpinner8 className="mx-auto animate-spin" />;
     }
 
     return variant === "Login" ? "Login" : "Register";
   }
 
   return (
-    <section className='container mx-auto h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 items-center justify-center '>
+    <section className='container grid items-center justify-center h-full grid-cols-1 mx-auto md:grid-cols-2 lg:grid-cols-2 '>
       {errorMessage.desc && <Notification type={errorMessage.type} title={errorMessage.title} desc={errorMessage.desc} superHandler={() => setErrorMessage(mockErrorMsg)} />}
       <div
-        className='col-span-1  h-full 
-      '>
+        className='h-full col-span-1 '>
         <img
           src={variant === "Login" ? formImg : formImg2}
           alt=''
@@ -153,7 +151,7 @@ export default ({ signup = false }) => {
             UniverSoul Babers
           </h1>
           <p
-            className='text-textColor my-3 text-sm leading-3'
+            className='my-3 text-sm leading-3 text-textColor'
             data-aos='fade-up'
             data-aos-duration='1300'>
             {variant === "Login"
@@ -162,10 +160,10 @@ export default ({ signup = false }) => {
           </p>
           {variant === "Register" && (
             <div
-              className='flex gap-5 flex-col'
+              className='flex flex-col gap-5'
               data-aos='fade-right'
               data-aos-duration='1200'>
-              <div className='flex items-center justify-between  w-full '>
+              <div className='flex items-center justify-between w-full '>
                 <div className='flex w-[45%]'>
                   <Input
                     label='First name'
@@ -237,7 +235,7 @@ export default ({ signup = false }) => {
             type='submit'
             data-aos='fade-up'
             data-aos-duration='1500'
-            className='bg-primaryDark py-3 duration-150 hover:bg-warm-gray-500 text-white rounded-md w-full mt-1'>
+            className='w-full py-3 mt-1 text-white duration-150 rounded-md bg-primaryDark hover:bg-warm-gray-500'>
             {btnText()}
           </button>
 
@@ -248,7 +246,7 @@ export default ({ signup = false }) => {
             {variant == "Login" ? "First time here?" : "Already have an account"}
             <span
               onClick={() => navigate(variant === "Login" ? "/signup" : "/login")}
-              className='text-black ml-2 cursor-pointer hover:underline'>
+              className='ml-2 text-black cursor-pointer hover:underline'>
               {variant === "Login" ? "Create an account" : "Login"}
             </span>
           </p>
