@@ -20,7 +20,7 @@ import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import MyBarbers from "./pages/MyBarbers";
 import MyServices from "./pages/MyServices";
-import AppointMents from "./pages/AppointMents";
+import AppointMents from "./pages/Appointments";
 import Profile_ from "./pages/Profile_"
 import DashBlog from "./pages/DashBlog";
 import Customers from "./pages/Customers";
