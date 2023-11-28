@@ -6,6 +6,7 @@ import { Tab } from '@headlessui/react';
 import axios from 'axios';
 
 import UpdateImage from '../components/UpdateImage';
+import ProfileImage from '../components/ProfileImage';
 
 const tabs = [
   { name: 'General' },
@@ -153,11 +154,8 @@ function General({user}) {
             <dt className="text-sm font-medium text-gray-500">Photo</dt>
             <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span className="flex-grow">
-                <img
-                  className="w-8 h-8 rounded-full"
-                  src={userImage}
-                  alt=""
-                />
+                
+                <ProfileImage />
               </span>
               <span className="flex items-start flex-shrink-0 ml-4 space-x-4">
                 <UpdateImage onImageLoaded={handleImageLoaded} />
