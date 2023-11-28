@@ -8,7 +8,7 @@ import axios from 'axios';
 import UpdateImage from '../components/UpdateImage';
 import ProfileImage from '../components/ProfileImage';
 
-const tabs = [
+const componentMap= [
   { name: 'General' },
   { name: 'Password' },
   // { name: 'Notifications' },
