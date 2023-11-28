@@ -100,12 +100,14 @@ export default function Settings() {
 
               {/* Description list with inline editing */}
               <div className="mt-10 divide-y divide-gray-200">
-                {tabs.map((component, index) => {
-        const ComponentName = componentMap[component.name];
-        if (ComponentName) {
-          return <ComponentName key={index} user={user} />;
-        }
-        return null;
+                    {Object.keys(componentMap).map((tabName, index) => {
+        const ComponentName = componentMap[tabName];
+        return (
+          <div key={index} className={tab === tabName ? 'block' : 'hidden'}>
+            {ComponentName && <ComponentName user={user} />}
+          </div>
+        );
+      })}
       })}
 {/*                 {tabs.map((component, index) => {
                   if (tab === component.name) {
