@@ -16,7 +16,7 @@ const componentMap= [
 ];
 
 export default function Settings() {
-  const [tab, setTab] = useState(tabs[0].name);
+  const [tab, setTab] = useState(componentMap[0].name);
   const [user, setUser] = useState([]);
   const [userImage, setUserImage] = useState('')
 
