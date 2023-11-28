@@ -101,6 +101,13 @@ export default function Settings() {
               {/* Description list with inline editing */}
               <div className="mt-10 divide-y divide-gray-200">
                 {tabs.map((component, index) => {
+        const ComponentName = componentMap[component.name];
+        if (ComponentName) {
+          return <ComponentName key={index} user={user} />;
+        }
+        return null;
+      })}
+{/*                 {tabs.map((component, index) => {
                   if (tab === component.name) {
                     // Convert the component name to a variable
                     const ComponentName = eval(component.name);
@@ -108,7 +115,7 @@ export default function Settings() {
                     // Render the dynamically created component
                     return <ComponentName key={index} user={user} />;
                   }
-                })}
+                })} */}
               </div>
             </div>
           </div>
