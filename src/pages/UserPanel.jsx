@@ -82,6 +82,7 @@ const announcements = [
 
 import { classNames } from '../utils';
 import ProfileImage from '../components/ProfileImage';
+import { ImageProvider } from '../context/ImageContext';
 
 export const UserContext = createContext();
 
@@ -103,7 +104,7 @@ export default function UserPanel({ fragment, owner = false }) {
   if (!isLoggedIn()) return <Navigate to="/login" />;
 
   return (
-    
+    <ImageProvider>
       <UserContext.Provider value={user}>
         {/*<div className="min-h-screen">*/}
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -366,7 +367,7 @@ export default function UserPanel({ fragment, owner = false }) {
         </div>
         {/*</div>*/}
       </UserContext.Provider>
-    
+    </ImageProvider>
   );
 }
 
