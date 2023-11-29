@@ -22,7 +22,7 @@ const tabs = [
 
 export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
-  consple.log(tab)
+  console.log(tab)
   const [user, setUser] = useState([]);
   const [userImage, setUserImage] = useState('')
 
