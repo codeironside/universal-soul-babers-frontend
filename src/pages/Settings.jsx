@@ -43,7 +43,7 @@ export default function Settings() {
 
           const userData = response.data;
           setUser(userData.user);
-          console.log(user)
+          console.log("user",userData)
         } catch (error) {
           console.error('Error fetching user details:', error);
         }
@@ -109,7 +109,7 @@ export default function Settings() {
                 {tabs.map((component, index) => {
                   const ComponentName = componentMap[component.name];
                   if (ComponentName) {
-                    console,log(ComponentName)
+                    console.log("data",ComponentName)
                     return <ComponentName key={index} user={user} />;
                   }
                 })}
