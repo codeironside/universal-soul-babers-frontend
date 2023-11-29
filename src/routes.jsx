@@ -1,4 +1,4 @@
-import { CartItem } from "./components";
+import { CartItem } from './components';
 import {
   Home,
   Blog,
@@ -12,174 +12,174 @@ import {
   ProductDetails,
   MarketPlace,
   Login,
-} from "./pages";
-import BlogContent from "./pages/BlogContent";
-import Forum from "./pages/Forum";
-import Cart from "./pages/Cart";
-import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
-import MyBarbers from "./pages/MyBarbers";
-import MyServices from "./pages/MyServices";
-import AppointMents from "./pages/Appointments";
-import Profile_ from "./pages/Profile_"
-import DashBlog from "./pages/DashBlog";
-import Customers from "./pages/Customers";
-import MyShop from "./pages/MyShop";
-import SignIn from "./pages/SignIn";
-import OwnerUsers from "./pages/OwnerUsers";
-import OwnerViewUser from "./pages/OwnerViewUser";
-import OwnerNotification from "./pages/OwnerNotification";
-import OwnerNotificationView from "./pages/OwnerNotificationView";
-import OwnerDashboard from "./pages/OwnerDashboard";
-import OwnerBlog from "./pages/OwnerBlog";
+} from './pages';
+import BlogContent from './pages/BlogContent';
+import Forum from './pages/Forum';
+import Cart from './pages/Cart';
+import Dashboard from './pages/Dashboard';
+import Settings from './pages/Settings';
+import MyBarbers from './pages/MyBarbers';
+import MyServices from './pages/MyServices';
+import AppointMents from './pages/Appointments';
+import Profile_ from './pages/Profile_';
+import DashBlog from './pages/DashBlog';
+import Customers from './pages/Customers';
+import MyShop from './pages/MyShop';
+import SignIn from './pages/SignIn';
+import OwnerUsers from './pages/OwnerUsers';
+import OwnerViewUser from './pages/OwnerViewUser';
+import OwnerNotification from './pages/OwnerNotification';
+import OwnerNotificationView from './pages/OwnerNotificationView';
+import OwnerDashboard from './pages/OwnerDashboard';
+import OwnerBlog from './pages/OwnerBlog';
 
 export default [
   {
-    path: "/",
+    path: '/',
     component: <Home />,
   },
   {
-    path: "/about",
+    path: '/about',
     component: <About />,
   },
   {
-    path: "/contact",
+    path: '/contact',
     component: <Contact />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/barbers",
+    path: '/barbers',
     component: <Barbers />,
   },
   {
-    path: "/login",
+    path: '/login',
     component: <Auth />,
-  }, 
+  },
   {
-    path: "/signup",
+    path: '/signup',
     component: <SignIn />,
   },
   {
-    path: "/blog",
+    path: '/blog',
     component: <Blog />,
   },
   {
-    path: "/blog/content",
+    path: '/blog/content',
     component: <BlogContent />,
   },
   {
-    path: "/barber/:id",
+    path: '/barber/:id',
     component: <BarbersDetails />,
   },
   {
-    path: "/product/:id",
+    path: '/product/:id',
     component: <ProductDetails />,
   },
   {
-    path: "/marketplace",
+    path: '/marketplace',
     component: <MarketPlace />,
   },
   {
-    path: "/login",
+    path: '/login',
     component: <Login />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/forum",
+    path: '/forum',
     component: <Forum />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/cart",
+    path: '/cart',
     component: <Cart />,
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     component: <UserPanel fragment={<Dashboard />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/login",
-    component: <UserPanel fragment={<Loginogin />} />,
-    standalone: true
+    path: '/login',
+    component: <UserPanel fragment={<Login />} />,
+    standalone: true,
   },
   {
-    path: "/settings",
+    path: '/settings',
     component: <UserPanel fragment={<Settings />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/my-barbers",
+    path: '/my-barbers',
     component: <UserPanel fragment={<MyBarbers />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/services",
+    path: '/services',
     component: <UserPanel fragment={<MyServices />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/appointments",
+    path: '/appointments',
     component: <UserPanel fragment={<AppointMents />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/old-profile",
+    path: '/old-profile',
     component: <Profile_ />,
   },
   {
-    path: "/profile",
+    path: '/profile',
     component: <UserPanel fragment={<Profile />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/user/blog",
+    path: '/user/blog',
     component: <UserPanel fragment={<DashBlog />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/customers",
+    path: '/customers',
     component: <UserPanel fragment={<Customers />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/my-store",
+    path: '/my-store',
     component: <UserPanel fragment={<MyShop />} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/owner",
+    path: '/owner',
     component: <UserPanel fragment={<OwnerDashboard />} owner={true} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/owner/users",
+    path: '/owner/users',
     component: <UserPanel fragment={<OwnerUsers />} owner={true} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/owner/users/:userId",
+    path: '/owner/users/:userId',
     component: <UserPanel fragment={<OwnerViewUser />} owner={true} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/owner/notifications",
+    path: '/owner/notifications',
     component: <UserPanel fragment={<OwnerNotification />} owner={true} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/owner/notification/:id",
+    path: '/owner/notification/:id',
     component: <UserPanel fragment={<OwnerNotificationView />} owner={true} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/owner/blog",
+    path: '/owner/blog',
     component: <UserPanel fragment={<OwnerBlog />} owner={true} />,
-    standalone: true
+    standalone: true,
   },
   {
-    path: "/forum/thread/:threadId",
+    path: '/forum/thread/:threadId',
     component: <Forum />,
-    standalone: true
+    standalone: true,
   },
-]
+];
