@@ -8,7 +8,7 @@ import axios from 'axios';
 import UpdateImage from '../components/UpdateImage';
 import ProfileImage from '../components/ProfileImage';
 
-const componentMap= [
+const tabs = [
   { name: 'General' },
   { name: 'Password' },
   // { name: 'Notifications' },
@@ -16,7 +16,7 @@ const componentMap= [
 ];
 
 export default function Settings() {
-  const [tab, setTab] = useState(componentMap[0].name);
+  const [tab, setTab] = useState(tabs[0].name);
   const [user, setUser] = useState([]);
   const [userImage, setUserImage] = useState('')
 
@@ -69,10 +69,10 @@ export default function Settings() {
                   id="selected-tab"
                   name="selected-tab"
                   className="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md focus:border-primaryDark focus:outline-none focus:ring-primaryDark sm:text-sm"
-                  defaultValue={componentMap[0].name}
+                  defaultValue={tabs[0].name}
                   onChange={(e) => setTab(e.target.value)}
                 >
-                  {componentMap.map((tab) => (
+                  {tabs.map((tab) => (
                     <option key={tab.name}>{tab.name}</option>
                   ))}
                 </select>
@@ -80,7 +80,7 @@ export default function Settings() {
               <div className="hidden lg:block">
                 <div className="border-b border-gray-200">
                   <nav className="flex -mb-px space-x-8">
-                    {componentMap.map((t) => (
+                    {tabs.map((t) => (
                       <button
                         key={t.name}
                         className={classNames(
@@ -100,16 +100,7 @@ export default function Settings() {
 
               {/* Description list with inline editing */}
               <div className="mt-10 divide-y divide-gray-200">
-                    {Object.keys(componentMap).map((tabName, index) => {
-        const ComponentName = componentMap[tabName];
-        return (
-          <div key={index} className={tab === tabName ? 'block' : 'hidden'}>
-            {ComponentName && <ComponentName user={user} />}
-          </div>
-        );
-      })}
-      })}
-{/*                 {tabs.map((component, index) => {
+                {tabs.map((component, index) => {
                   if (tab === component.name) {
                     // Convert the component name to a variable
                     const ComponentName = eval(component.name);
@@ -117,7 +108,7 @@ export default function Settings() {
                     // Render the dynamically created component
                     return <ComponentName key={index} user={user} />;
                   }
-                })} */}
+                })}
               </div>
             </div>
           </div>
