@@ -43,7 +43,7 @@ useEffect(() => {
           <img src={avatar} alt='' className='w-full block rounded-full' />
         </div>
         <div className='flex flex-col justify-center items-center flex-1'>
-          <p className='text-textColor leading-5'>{user.firstNam} {user.lastName}</p>
+          <p className='text-textColor leading-5'>{user.firstName} {user.lastName}</p>
           <div className='flex justify-center items-center gap-1'>
             <p>{user.role}</p>
             <MdVerified />
