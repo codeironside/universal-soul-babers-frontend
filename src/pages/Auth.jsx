@@ -60,7 +60,7 @@ export default function Auth({ signup = false }) {
 
               const auth = response.headers.getAuthorization();
 
-              console.log("this is auth",auth)
+              //console.log("this is auth",auth)
               // Extract the token from the header
               const token = auth.split(' ')[1];
               setCookie("token", token);
