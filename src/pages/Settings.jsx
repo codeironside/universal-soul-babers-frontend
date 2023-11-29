@@ -7,117 +7,6 @@ import axios from 'axios';
 
 import UpdateImage from '../components/UpdateImage';
 import ProfileImage from '../components/ProfileImage';
-
-const tabs = [
-  { name: 'General' },
-  { name: 'Password' },
-  // { name: 'Notifications' },
-  { name: 'Plan' },
-];
-
-export default function Settings() {
-  const [tab, setTab] = useState(tabs[0].name);
-  const [user, setUser] = useState([]);
-  const [userImage, setUserImage] = useState('')
-
-  useEffect(() => {
-    const token = getCookie('token');
-    
-    if (token) {
-      const fetchUserDetails = async () => {
-        try {
-          const response = await axios.get(
-            'https://unique-barbers.onrender.com/api/v1/users/one',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-            }
-          );
-
-          const userData = response.data;
-          setUser(userData.user);
-        } catch (error) {
-          console.error('Error fetching user details:', error);
-        }
-      };
-
-      fetchUserDetails();
-    }
-  }, []);
-
-
-
-  return (
-    <main className="flex-1">
-      <div className="relative max-w-4xl mx-auto md:px-8 xl:px-0">
-        <div className="pt-10 pb-16">
-          <div className="px-4 sm:px-6 md:px-0">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              Settings
-            </h1>
-          </div>
-          <div className="px-4 sm:px-6 md:px-0">
-            <div className="py-6">
-              {/* Tabs */}
-              <div className="lg:hidden">
-                <label htmlFor="selected-tab" className="sr-only">
-                  Select a tab
-                </label>
-                <select
-                  id="selected-tab"
-                  name="selected-tab"
-                  className="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md focus:border-primaryDark focus:outline-none focus:ring-primaryDark sm:text-sm"
-                  defaultValue={tabs[0].name}
-                  onChange={(e) => setTab(e.target.value)}
-                >
-                  {tabs.map((tab) => (
-                    <option key={tab.name}>{tab.name}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="hidden lg:block">
-                <div className="border-b border-gray-200">
-                  <nav className="flex -mb-px space-x-8">
-                    {tabs.map((t) => (
-                      <button
-                        key={t.name}
-                        className={classNames(
-                          tab === t.name
-                            ? 'border-primaryDark text-primaryDark'
-                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                          'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm'
-                        )}
-                        onClick={() => setTab(t.name)}
-                      >
-                        {t.name}
-                      </button>
-                    ))}
-                  </nav>
-                </div>
-              </div>
-
-              {/* Description list with inline editing */}
-              <div className="mt-10 divide-y divide-gray-200">
-                {tabs.map((component, index) => {
-                  if (tab === component.name) {
-                    // Convert the component name to a variable
-                    const ComponentName = eval(component.name);
-
-                    // Render the dynamically created component
-                    return <ComponentName key={index} user={user} />;
-                  }
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  );
-}
-
 function General({user}) {
   const [userImage, setUserImage] = useState('')
   
@@ -583,3 +472,117 @@ function Plan() {
     </>
   );
 }
+
+const componentMap = {
+  General,
+  Password,
+  Plan,
+};
+
+const tabs = [
+  { name: 'General' },
+  { name: 'Password' },
+  { name: 'Plan' },
+];
+
+export default function Settings() {
+  const [tab, setTab] = useState(tabs[0].name);
+  const [user, setUser] = useState([]);
+  const [userImage, setUserImage] = useState('')
+
+  useEffect(() => {
+    const token = getCookie('token');
+    
+    if (token) {
+      const fetchUserDetails = async () => {
+        try {
+          const response = await axios.get(
+            'https://unique-barbers.onrender.com/api/v1/users/one',
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          const userData = response.data;
+          setUser(userData.user);
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      };
+
+      fetchUserDetails();
+    }
+  }, []);
+
+
+
+  return (
+    <main className="flex-1">
+      <div className="relative max-w-4xl mx-auto md:px-8 xl:px-0">
+        <div className="pt-10 pb-16">
+          <div className="px-4 sm:px-6 md:px-0">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              Settings
+            </h1>
+          </div>
+          <div className="px-4 sm:px-6 md:px-0">
+            <div className="py-6">
+              {/* Tabs */}
+              <div className="lg:hidden">
+                <label htmlFor="selected-tab" className="sr-only">
+                  Select a tab
+                </label>
+                <select
+                  id="selected-tab"
+                  name="selected-tab"
+                  className="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md focus:border-primaryDark focus:outline-none focus:ring-primaryDark sm:text-sm"
+                  defaultValue={tabs[0].name}
+                  onChange={(e) => setTab(e.target.value)}
+                >
+                  {tabs.map((tab) => (
+                    <option key={tab.name}>{tab.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="hidden lg:block">
+                <div className="border-b border-gray-200">
+                  <nav className="flex -mb-px space-x-8">
+                    {tabs.map((t) => (
+                      <button
+                        key={t.name}
+                        className={classNames(
+                          tab === t.name
+                            ? 'border-primaryDark text-primaryDark'
+                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                          'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm'
+                        )}
+                        onClick={() => setTab(t.name)}
+                      >
+                        {t.name}
+                      </button>
+                    ))}
+                  </nav>
+                </div>
+              </div>
+
+              {/* Description list with inline editing */}
+              <div className="mt-10 divide-y divide-gray-200">
+                {tabs.map((component, index) => {
+                  const ComponentName = componentMap[component.name];
+                  if (ComponentName) {
+                    return <ComponentName key={index} user={user} />;
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
