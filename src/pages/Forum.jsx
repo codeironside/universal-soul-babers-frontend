@@ -14,6 +14,7 @@ import tag from "../assets/tag.svg";
 import award from "../assets/award.svg";
 
 import ViewThread from "./ViewThread"
+import React, { useEffect, useState } from 'react';
 
 import { Link, useParams } from "react-router-dom";
 
@@ -100,7 +101,39 @@ function _CommonLogo() {
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { threadId } = useParams();
+const [messages, setMessages] = useState([]);
+const token = getCookie('token');
+  useEffect(() => {
+    async function fetchMessages() {
+       if (token) {
+                try {
+          const response = await axios.get(
+            'https://unique-barbers.onrender.com/api/v1/chats/getall',
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+        const response = await fetch('https://universal-soul-babers-frontend.vercel.app/forum#');
+        if (response) {
+          const data = await response.json(); // Assuming the response is JSON data
+          setMessages(data); // Update state with fetched messages
+        } else {
+          console.error('Failed to fetch messages');
+        }
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    }
 
+    fetchMessages();
+  }, []);
+}
+    
+ 
+    }  
 
   return (
     <>
