@@ -12,6 +12,7 @@ import star from "../assets/star.svg";
 import list from "../assets/list.svg";
 import tag from "../assets/tag.svg";
 import award from "../assets/award.svg";
+import axios from 'axios';
 
 import ViewThread from "./ViewThread"
 import React, { useEffect, useState } from 'react';
@@ -101,12 +102,14 @@ function _CommonLogo() {
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { threadId } = useParams();
-const [messages, setMessages] = useState([]);
-const token = getCookie('token');
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
-    async function fetchMessages() {
-       if (token) {
-                try {
+    const token = getCookie('token'); // Assuming getCookie function is available
+
+    const fetchMessages = async () => {
+      try {
+        if (token) {
           const response = await axios.get(
             'https://unique-barbers.onrender.com/api/v1/chats/getall',
             {
@@ -116,26 +119,18 @@ const token = getCookie('token');
               },
             }
           );
-        const response = await fetch('https://universal-soul-babers-frontend.vercel.app/forum#');
-        if (response) {
-          const data = await response.json(); // Assuming the response is JSON data
-          setMessages(data); // Update state with fetched messages
-        } else {
-          console.error('Failed to fetch messages');
+
+          const { messages } = response.data; // Assuming messages is an array in the response
+          setMessages(messages);
         }
       } catch (error) {
         console.error('Error fetching messages:', error);
       }
-    }
+    };
 
     fetchMessages();
-  }, []);
-}
-    
- 
-    }  
-
-  return (
+  }, [getCookie]); // Ensure getCookie is a dependency if it's defined outside the component
+return (
     <>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
