@@ -5,7 +5,34 @@ import {   BarberProfile, BarberBookings, BarberShop, BarberStore  } from "../co
 
 const Profile = () => {
   const [tab, setTab] = useState("profile");
+useEffect(() => {
+  const token = getCookie('token');
+  //console.log("this is token",token)
+  if (token) {
+    
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(
+          'https://unique-barbers.onrender.com/api/v1/users/one',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
+        const userData = response.data;
+        setUser(userData.user);
+        //console.log("user",response.data)
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+
+    fetchUserDetails();
+  }
+}, []);
   return (
     <section className='container mx-auto  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3'>
       <div className='col-span-1 h-[450px] flex items-center justify-center flex-col '>
@@ -13,9 +40,9 @@ const Profile = () => {
           <img src={avatar} alt='' className='w-full block rounded-full' />
         </div>
         <div className='flex flex-col justify-center items-center flex-1'>
-          <p className='text-textColor leading-5'>Ryan Scott</p>
+          <p className='text-textColor leading-5'>{user.firstNam} {user.lastName}</p>
           <div className='flex justify-center items-center gap-1'>
-            <p>Profesional Barber</p>
+            <p>{user.role}</p>
             <MdVerified />
           </div>
         </div>
