@@ -13,7 +13,7 @@ import list from "../assets/list.svg";
 import tag from "../assets/tag.svg";
 import award from "../assets/award.svg";
 import axios from 'axios';
-
+import { classNames, getCookie } from '../utils';
 import ViewThread from "./ViewThread"
 // import React, {, useState } from 'react';
 
@@ -120,7 +120,8 @@ export default function Layout() {
             }
           );
 
-          const { messages } = response.data; // Assuming messages is an array in the response
+          const messages = response.data; // Assuming messages is an array in the response
+          console.log(messages)
           setMessages(messages);
         }
       } catch (error) {
