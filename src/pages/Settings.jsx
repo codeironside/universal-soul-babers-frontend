@@ -27,7 +27,7 @@ export default function Settings() {
 
 useEffect(() => {
   const token = getCookie('token');
-  console.log("this is token",token)
+  //console.log("this is token",token)
   if (token) {
     
     const fetchUserDetails = async () => {
@@ -44,7 +44,7 @@ useEffect(() => {
 
         const userData = response.data;
         setUser(userData.user);
-        console.log("user",response.data)
+        //console.log("user",response.data)
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
@@ -132,7 +132,7 @@ function General({user}) {
   const handleImageLoaded = (imageurl) => {
     setUserImage(imageurl)
   }
-  console.log(user)
+  //console.log(user)
   return (
     <>
       <div className="space-y-1">
