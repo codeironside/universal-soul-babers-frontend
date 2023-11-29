@@ -106,13 +106,15 @@ export default function Settings() {
 
               {/* Description list with inline editing */}
               <div className="mt-10 divide-y divide-gray-200">
-                {tabs.map((component, index) => {
-                  const ComponentName = componentMap[component.name];
-                  if (ComponentName) {
-                    console.log("data",ComponentName)
-                    return <ComponentName key={index} user={user} />;
-                  }
-                })}
+  {tabs.map((component, index) => {
+    if (tab === component.name) {
+      const ComponentName = componentMap[component.name];
+      if (ComponentName) {
+        return <ComponentName key={index} user={user} />;
+      }
+    }
+    return null; // Return null when the tab doesn't match
+  })}
               </div>
             </div>
           </div>
