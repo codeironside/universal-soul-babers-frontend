@@ -129,7 +129,7 @@ export default function Layout() {
     };
 
     fetchMessages();
-  }, [getCookie]); // Ensure getCookie is a dependency if it's defined outside the component
+  }, []); // Ensure getCookie is a dependency if it's defined outside the component
 return (
     <>
       <div>
