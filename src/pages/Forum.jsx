@@ -41,9 +41,9 @@ const navigation = [
   // { name: 'Ranking', href: '#', icon: award, current: false },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Your Profile', href: '/dashboard' },
+  { name: 'Settings', href: '/settings' },
+  { name: 'Sign out', href: '/logout' },
 ]
 
 function classNames(...classes) {
