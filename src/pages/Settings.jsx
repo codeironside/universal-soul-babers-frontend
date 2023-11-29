@@ -22,7 +22,6 @@ const tabs = [
 
 export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
-  console.log(tab)
   const [user, setUser] = useState([]);
   const [userImage, setUserImage] = useState('')
 
@@ -44,6 +43,7 @@ export default function Settings() {
 
           const userData = response.data;
           setUser(userData.user);
+          console.log(user)
         } catch (error) {
           console.error('Error fetching user details:', error);
         }
@@ -109,6 +109,7 @@ export default function Settings() {
                 {tabs.map((component, index) => {
                   const ComponentName = componentMap[component.name];
                   if (ComponentName) {
+                    console,log(ComponentName)
                     return <ComponentName key={index} user={user} />;
                   }
                 })}
