@@ -63,7 +63,7 @@ export default function Auth({ signup = false }) {
               console.log("this is auth",auth)
               // Extract the token from the header
               //const token = auth.split(' ')[1];
-              //setCookie("token", token);
+              setCookie("token", token);
 
               navigate("/dashboard");
             } else {
