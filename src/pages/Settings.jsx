@@ -25,33 +25,34 @@ export default function Settings() {
   const [user, setUser] = useState([]);
   const [userImage, setUserImage] = useState('')
 
-  useEffect(() => {
-    const token = getCookie('token');
-    
-    if (token) {
-      const fetchUserDetails = async () => {
-        try {
-          const response = await axios.get(
-            'https://unique-barbers.onrender.com/api/v1/users/one',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+useEffect(() => {
+  const token = getCookie('token');
+  
+  if (token) {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(
+          'https://unique-barbers.onrender.com/api/v1/users/one',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
-          const userData = response.data;
-          setUser(userData.user);
-          console.log("user",userData)
-        } catch (error) {
-          console.error('Error fetching user details:', error);
-        }
-      };
+        const userData = response.data;
+        setUser(userData.user);
+        console.log("user",response.data)
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
 
-      fetchUserDetails();
-    }
-  }, []);
+    fetchUserDetails();
+  }
+}, []);
+
 
 
 
