@@ -13,7 +13,7 @@ import list from "../assets/list.svg";
 import tag from "../assets/tag.svg";
 import award from "../assets/award.svg";
 import axios from 'axios';
-import { classNames, getCookie } from '../utils';
+import { getCookie } from '../utils';
 import ViewThread from "./ViewThread"
 // import React, {, useState } from 'react';
 
