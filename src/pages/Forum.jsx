@@ -102,34 +102,34 @@ function _CommonLogo() {
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { threadId } = useParams();
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    const token = getCookie('token'); // Assuming getCookie function is available
+  // useEffect(() => {
+  //   const token = getCookie('token'); // Assuming getCookie function is available
 
-    const fetchMessages = async () => {
-      try {
-        if (token) {
-          const response = await axios.get(
-            'https://unique-barbers.onrender.com/api/v1/chats/getall',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+  //   const fetchMessages = async () => {
+  //     try {
+  //       if (token) {
+  //         const response = await axios.get(
+  //           'https://unique-barbers.onrender.com/api/v1/chats/getall',
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //               'Content-Type': 'application/json',
+  //             },
+  //           }
+  //         );
 
-          const { messages } = response.data; // Assuming messages is an array in the response
-          setMessages(messages);
-        }
-      } catch (error) {
-        console.error('Error fetching messages:', error);
-      }
-    };
+  //         const { messages } = response.data; // Assuming messages is an array in the response
+  //         setMessages(messages);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching messages:', error);
+  //     }
+  //   };
 
-    fetchMessages();
-  }, [getCookie]); // Ensure getCookie is a dependency if it's defined outside the component
+  //   fetchMessages();
+  // }, [getCookie]); // Ensure getCookie is a dependency if it's defined outside the component
 return (
     <>
       <div>
