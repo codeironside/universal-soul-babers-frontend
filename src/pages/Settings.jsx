@@ -127,7 +127,7 @@ function General({user}) {
   const handleImageLoaded = (imageurl) => {
     setUserImage(imageurl)
   }
-  consolw.log(user)
+  console.log(user)
   return (
     <>
       <div className="space-y-1">
