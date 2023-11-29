@@ -5,6 +5,7 @@ import {   BarberProfile, BarberBookings, BarberShop, BarberStore  } from "../co
 
 const Profile = () => {
   const [tab, setTab] = useState("profile");
+  const [user, setUser] = useState([]);
 useEffect(() => {
   const token = getCookie('token');
   //console.log("this is token",token)
