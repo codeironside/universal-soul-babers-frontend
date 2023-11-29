@@ -99,6 +99,11 @@ export default [
     standalone: true
   },
   {
+    path: "/login",
+    component: <UserPanel fragment={<Loginogin />} />,
+    standalone: true
+  },
+  {
     path: "/settings",
     component: <UserPanel fragment={<Settings />} />,
     standalone: true
