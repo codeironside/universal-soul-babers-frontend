@@ -122,7 +122,7 @@ export default function () {
             <div className="flex flex-col">
               <div className="flex flex-row justify-between">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">Visit forum</h3>
-                <Link to='/appointments/new' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
+                <Link to='/forum' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
                   Visit forum
                 </Link>
               </div>
