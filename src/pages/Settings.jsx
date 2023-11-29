@@ -27,9 +27,9 @@ export default function Settings() {
 
 useEffect(() => {
   const token = getCookie('token');
-  
+  console.log("this is token",token)
   if (token) {
-    console.log(token)
+    
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
