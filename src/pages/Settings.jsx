@@ -14,48 +14,40 @@ const componentMap = {
   Plan,
 };
 
-const tabs = [
-  { name: 'General' },
-  { name: 'Password' },
-  { name: 'Plan' },
-];
+const tabs = [{ name: 'General' }, { name: 'Password' }, { name: 'Plan' }];
 
 export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
   const [user, setUser] = useState([]);
-  const [userImage, setUserImage] = useState('')
+  const [userImage, setUserImage] = useState('');
 
-useEffect(() => {
-  const token = getCookie('token');
-  //console.log("this is token",token)
-  if (token) {
-    
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.get(
-          'https://unique-barbers.onrender.com/api/v1/users/one',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+  useEffect(() => {
+    const token = getCookie('token');
+    //console.log("this is token",token)
+    if (token) {
+      const fetchUserDetails = async () => {
+        try {
+          const response = await axios.get(
+            'https://unique-barbers.onrender.com/api/v1/users/one',
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-        const userData = response.data;
-        setUser(userData.user);
-        //console.log("user",response.data)
-      } catch (error) {
-        console.error('Error fetching user details:', error);
-      }
-    };
+          const userData = response.data;
+          setUser(userData.user);
+          //console.log("user",response.data)
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      };
 
-    fetchUserDetails();
-  }
-}, []);
-
-
-
+      fetchUserDetails();
+    }
+  }, []);
 
   return (
     <main className="flex-1">
@@ -108,15 +100,15 @@ useEffect(() => {
 
               {/* Description list with inline editing */}
               <div className="mt-10 divide-y divide-gray-200">
-  {tabs.map((component, index) => {
-    if (tab === component.name) {
-      const ComponentName = componentMap[component.name];
-      if (ComponentName) {
-        return <ComponentName key={index} user={user} />;
-      }
-    }
-    return null; // Return null when the tab doesn't match
-  })}
+                {tabs.map((component, index) => {
+                  if (tab === component.name) {
+                    const ComponentName = componentMap[component.name];
+                    if (ComponentName) {
+                      return <ComponentName key={index} user={user} />;
+                    }
+                  }
+                  return null; // Return null when the tab doesn't match
+                })}
               </div>
             </div>
           </div>
@@ -126,12 +118,12 @@ useEffect(() => {
   );
 }
 
-function General({user}) {
-  const [userImage, setUserImage] = useState('')
-  
+function General({ user }) {
+  const [userImage, setUserImage] = useState('');
+
   const handleImageLoaded = (imageurl) => {
-    setUserImage(imageurl)
-  }
+    setUserImage(imageurl);
+  };
   //console.log(user)
   return (
     <>
@@ -162,12 +154,11 @@ function General({user}) {
             <dt className="text-sm font-medium text-gray-500">Photo</dt>
             <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span className="flex-grow">
-                
                 <ProfileImage />
               </span>
               <span className="flex items-start flex-shrink-0 ml-4 space-x-4">
                 <UpdateImage onImageLoaded={handleImageLoaded} />
-                
+
                 <span className="text-gray-300" aria-hidden="true">
                   |
                 </span>
@@ -196,9 +187,9 @@ function General({user}) {
           </div>
         </dl>
       </div>
-      
+
       {/* Shop settings */}
-       <div className="pt-10 mt-10 border-t border-gray-200">
+      <div className="pt-10 mt-10 border-t border-gray-200">
         <div className="space-y-1">
           <h3 className="text-lg font-medium leading-6 text-gray-900">Shop</h3>
           <p className="max-w-2xl text-sm text-gray-500">
@@ -591,4 +582,3 @@ function Plan() {
     </>
   );
 }
-
