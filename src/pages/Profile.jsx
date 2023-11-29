@@ -3,6 +3,7 @@ import { MdVerified } from "react-icons/md";
 import { Fragment, useState, useEffect } from 'react';
 import { classNames, getCookie } from '../utils';
 import {   BarberProfile, BarberBookings, BarberShop, BarberStore  } from "../components";
+import axios from 'axios';
 
 const Profile = () => {
   const [tab, setTab] = useState("profile");
