@@ -29,6 +29,7 @@ useEffect(() => {
   const token = getCookie('token');
   
   if (token) {
+    console.log(token)
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
