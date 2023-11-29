@@ -1,6 +1,7 @@
 import avatar from "../assets/img/avatar-icon.png";
 import { MdVerified } from "react-icons/md";
 import { Fragment, useState, useEffect } from 'react';
+import { classNames, getCookie } from '../utils';
 import {   BarberProfile, BarberBookings, BarberShop, BarberStore  } from "../components";
 
 const Profile = () => {
