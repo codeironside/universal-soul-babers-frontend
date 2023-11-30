@@ -324,7 +324,8 @@ export default function Layout() {
                         {/* <Pill img={checkCircle} text="Closed" /> */}
                       </div>
 
-<QuestionCard messages={response.data.chatsWithThreadCount || []} />
+{messages.length > 0 && <QuestionCard messages={messages} />}
+
 
                       {/*<QuestionCard />
                       <QuestionCard />
