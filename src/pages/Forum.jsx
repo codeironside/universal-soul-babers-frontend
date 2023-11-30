@@ -480,7 +480,8 @@ function QuestionCard(messages){
 //       </div>
 //     ))}
 //   </div>
-// )}
+// )
+}
 function QuestionMenu() {
   return (
     <Menu as="div" className="relative inline-block text-left">
