@@ -1,13 +1,13 @@
-import {pricing} from '../data'
+import { pricing } from '../data'
 import SectionHeader from './SectionHeader'
-import {AiOutlineCheck} from 'react-icons/ai';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 const Pricing = () => {
 
   return (
     <>
-      <SectionHeader title='Pricing' subTitle='Available Plans'/>
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 py-8 max-w-7xl mx-auto px-8 '>
+      <SectionHeader title='Pricing' subTitle='Available Plans' />
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 py-8 max-w-7xl mx-auto px-8 '>
         {pricing.map((plan) => {
           // destructure pricing data from plan
           const {
@@ -59,7 +59,7 @@ const Pricing = () => {
                         className='text-sm text-textColor leading-5 flex  '>
                         <span
                           className='h-5 w-5 bg-black text-white shrink-0 rounded-full flex items-center p-1 justify-center'>
-                          <AiOutlineCheck className='text-white'/>
+                          <AiOutlineCheck className='text-white' />
                         </span>
                         <span className='ml-3'> {feature}</span>
                       </li>
@@ -72,11 +72,10 @@ const Pricing = () => {
 
               <a
                 href=''
-                className={`${
-                  recommended
+                className={`${recommended
                     ? "text-white bg-primaryDark hover:bg-primaryColor"
                     : "text-headingColor bg-warm-gray-100 hover:bg-warm-gray-200"
-                } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
+                  } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
                 {cta}
               </a>
             </div>

@@ -1,20 +1,18 @@
-import { quickLinks, quickLinks02, quickLinks03 } from "../data";
+import { quickLinks, quickLinks02, } from "../data";
 import { Link } from "react-router-dom";
-import { AiOutlineInstagram,  } from "react-icons/ai";
+import { AiOutlineInstagram, } from "react-icons/ai";
 import { RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
+import { AppLogo } from "./Header";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className='pb-16 pt-10'>
-      <div className='container'>
+      <div className='max-w-4xl mx-auto'>
         <div className='flex justify-between flex-col flex-wrap md:flex-row gap-[30px] '>
           <div className=''>
-            {/* logo  */}
-            <div className='flex items-start gap-3 justify-start'>
-              <div className='w-5 h-5 bg-black rounded-full'></div>
-              <p className='text-sm'>UniverSoul Babers</p>
-            </div>
+            <AppLogo />
+
             {/* Copyright  */}
             <p className='text-[16px] leading-7 font-[400] text-textColor mt-4 '>
               Copyright {year} Developed by SMAC TEAM
@@ -43,23 +41,6 @@ const Footer = () => {
             </h2>
             <ul>
               {quickLinks.map((link, i) => {
-                const { path, display } = link;
-                return (
-                  <li
-                    key={i}
-                    className='mb-4 text-[16px] leading-7 font-[400] text-textColor'>
-                    <Link to={path}>{display}</Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div>
-            <h2 className='text-[20px] leading-[30px] font-[700] mb-6 text-headingColor '>
-              Help?
-            </h2>
-            <ul>
-              {quickLinks03.map((link, i) => {
                 const { path, display } = link;
                 return (
                   <li

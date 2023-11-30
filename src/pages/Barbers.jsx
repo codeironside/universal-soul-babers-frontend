@@ -1,7 +1,7 @@
 import { BarberCard, Testimonials } from "../components";
 // import { barbers } from "../data";
-import { BallTriangle } from "react-loader-spinner";
-import React,{ useState, useEffect } from "react";
+import { BallTriangleAnim } from "./Home";
+import { useState, useEffect } from "react";
 import axios from "axios";
 const Barbers = () => {
   const [barbersData, setBarbersData] = useState([]);
@@ -30,6 +30,21 @@ const Barbers = () => {
   }, []);
   return (
     <>
+      <section className='bg-[#fff9ea] '>
+        <div className='container text-center relative '>
+          <h2 className='heading'>Find A Barber</h2>
+          <div className='max-w-[570px] mt-[30px] mx-auto rounded-md flex items-center justify-between'>
+            <input
+              type='search'
+              className='py-3 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer border-3 border-slate-400'
+              placeholder='Search for A Barber'
+            />
+            <button className='btn mt-0 rounded-r-md rounded-[0px]  '>
+              Search
+            </button>
+          </div>
+        </div>
+      </section>
       {/* Existing code ... */}
       <section>
         <div className='container'>
@@ -43,18 +58,14 @@ const Barbers = () => {
           {/* Loading spinner */}
           {loading && (
             <div className='flex justify-center mt-4'>
-              <BallTriangle
-                height={40}
-                width={40}
-                color='#000'
-                visible={true}
-              />
+              <BallTriangleAnim />
             </div>
           )}
         </div>
       </section>
       <section>
         {/* Render Testimonials component here */}
+        <Testimonials />
       </section>
     </>
   );

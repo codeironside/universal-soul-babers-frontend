@@ -47,10 +47,6 @@ export const quickLinks = [
 
 export const quickLinks02 = [
   {
-    path: "/find-abarber-shp",
-    display: "Community",
-  },
-  {
     path: "/contact",
     display: "Contact Us",
   },
@@ -58,27 +54,8 @@ export const quickLinks02 = [
     path: "/forum",
     display: "Forum",
   }
- 
-];
-export const quickLinks03 = [
-  {
-    path: "/find-abarber-shp",
-    display: "Find A Barber",
-  },
-  {
-    path: "/",
-    display: "Book a service",
-  },
-  {
-    path: "/home",
-    display: "Home",
-  },
-  {
-    path: "/home",
-    display: "Find A Location",
-  },
-];
 
+];
 export const testimonials = [
   {
     id: 1,
@@ -151,10 +128,10 @@ export const navLinks = [
   { path: "/barbers", label: "Find a Barber" },
 ];
 
-export  const statistics = [
-  { value: 60, label: "Brands", suffix:'+' },
-  { value: 70, label: "Shops", suffix:'+' },
-  { value: 100, label: "Satisfaction" , suffix:'%' },
+export const statistics = [
+  { value: 60, label: "Brands", suffix: '+' },
+  { value: 70, label: "Shops", suffix: '+' },
+  { value: 100, label: "Satisfaction", suffix: '%' },
 ];
 
 export const categories = [
