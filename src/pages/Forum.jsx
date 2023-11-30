@@ -434,7 +434,7 @@ function Pill({ img, text, active }) {
 //   )
 // }
 
-const QuestionCard = ({ messages }) => (
+function QuestionCard(messages){
   <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
     {messages.map((message, index) => (
       <div key={index}>
@@ -478,10 +478,7 @@ const QuestionCard = ({ messages }) => (
       </div>
     ))}
   </div>
-);
-
-export default QuestionCard;
-
+)}
 function QuestionMenu() {
   return (
     <Menu as="div" className="relative inline-block text-left">
