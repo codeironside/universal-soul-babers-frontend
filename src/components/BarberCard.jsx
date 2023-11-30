@@ -33,7 +33,7 @@ const BarberCard = ({ barber }) => {
               className='flex items gap-[6px]
               text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor
               '>
-              ({total})
+              ({price})
             </span>
           </div>
         </div>
