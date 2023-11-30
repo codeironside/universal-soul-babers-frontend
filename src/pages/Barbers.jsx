@@ -1,47 +1,55 @@
 import { BarberCard, Testimonials } from "../components";
-import { barbers } from "../data";
+// import { barbers } from "../data";
 import { BallTriangle } from "react-loader-spinner";
+import React,{ useState, useEffect } from "react";
+import axios from "axios";
 const Barbers = () => {
+  const [barbersData, setBarbersData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("https://www.universoulbabers.hair/api/v1/shops/all");
+        setBarbersData(response.data.filter(item => item.category === 'barbers'));
+      } catch (error) {
+        console.error("Error fetching barbers data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <section className='bg-[#fff9ea] '>
-        <div className='container text-center relative '>
-          <div className='absolute top-[15%] right-[7%] h-[100px] w-[100px] '>
-            <BallTriangle
-              height={100}
-              width={100}
-              radius={5}
-              color='black'
-              ariaLabel='ball-triangle-loading'
-              wrapperClass={{}}
-              wrapperStyle=''
-              visible={true}
-            />
-          </div>
-          <h2 className='heading'>Find A Barber</h2>
-          <div className='max-w-[570px] mt-[30px] mx-auto rounded-md flex items-center justify-between'>
-            <input
-              type='search'
-              className='py-3 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer border-3 border-slate-400'
-              placeholder='Search for A Barber'
-            />
-            <button className='btn mt-0 rounded-r-md rounded-[0px]  '>
-              Search
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Existing code ... */}
       <section>
         <div className='container'>
-          <div className='grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-5 lg:gap-[30px] mt-[0px] lg:mt-[-38px]'>
-            {barbers.map((barber) => {
-              return <BarberCard key={barber.id} barber={barber} />;
-            })}
+          {/* Display filtered barber data */}
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-[30px] mt-[0px] lg:mt-[-38px]'>
+            {barbersData.map((barber) => (
+              <BarberCard key={barber._id} barber={barber} />
+            ))}
           </div>
+
+          {/* Loading spinner */}
+          {loading && (
+            <div className='flex justify-center mt-4'>
+              <BallTriangle
+                height={40}
+                width={40}
+                color='#000'
+                visible={true}
+              />
+            </div>
+          )}
         </div>
       </section>
       <section>
-        <Testimonials />
+        {/* Render Testimonials component here */}
       </section>
     </>
   );
