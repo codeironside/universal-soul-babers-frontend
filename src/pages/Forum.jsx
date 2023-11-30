@@ -121,7 +121,7 @@ export default function Layout() {
           );
 
           const { chatsWithThreadCount } = response.data // Assuming messages is an array in the response
-          console.log(chatsWithThreadCount)
+          console.log(typeof chatsWithThreadCount)
           setMessages(chatsWithThreadCount);
         }
       } catch (error) {
@@ -435,6 +435,7 @@ function Pill({ img, text, active }) {
 // }
 
 function QuestionCard(messages) {
+  console.log(messages)
   //   return (
   //   <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
   //     const but= ["ss","sasdssd,"sdsdf","asdad","sacdfse"]
@@ -482,7 +483,6 @@ function QuestionCard(messages) {
   //   </div>
   // )
 }
-
 function QuestionMenu() {
   return (
     <Menu as="div" className="relative inline-block text-left">
