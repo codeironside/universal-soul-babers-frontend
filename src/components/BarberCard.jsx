@@ -12,10 +12,10 @@ const BarberCard = ({ barber }) => {
         data-aos-delay='500'
       >
         <div className=' h-auto w-full flex items-center justify-center lg:justify-center md:justify-center'>
-          <img src={img} alt={name} className='w-[300px]   rounded-lg ' />
+          <img src={images} alt={shop_name} className='w-[300px]   rounded-lg ' />
         </div>
         <h2 className='text-[18px] leading-[30px]  lg:text-[26px] lg:leading-8 text-headingColor font-[700] mt-2 '>
-          {name}
+          {shop_name}
         </h2>
         <div className='mt-1 flex lg:mt-2 items-center justify-between'>
           <span className='bg-red-300 text-red-700 py-1 px-3 lg:py-1 lg:px-6 text-[12px] rounded leading-4 lg:text-[16px] lg:leading-7 font-semibold '>
@@ -44,11 +44,11 @@ const BarberCard = ({ barber }) => {
               {customers}
             </h3>
             <p className='text-[14px] text-textColor leading-6 font-[400] '>
-              At {location}
+              At {shop_address}
             </p>
           </div>
           <Link
-            to={`/barber/${id}`}
+            to={`/barber/${_id}`}
             className='w-[45px] h-[45px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none  '>
             <BsArrowRight className='group-hover:text-white w-6 h-5' />
           </Link>
