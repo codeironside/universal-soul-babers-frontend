@@ -121,7 +121,7 @@ export default function Layout() {
           );
 
           const { chatsWithThreadCount } = response.data // Assuming messages is an array in the response
-          // console.log(chatsWithThreadCount)
+          console.log(typeof chatsWithThreadCount)
           setMessages(chatsWithThreadCount);
         }
       } catch (error) {
