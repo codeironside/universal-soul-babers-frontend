@@ -11,8 +11,13 @@ const Barbers = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://unique-barbers.onrender.com/api/v1/shops/all");
-        setBarbersData(response.data.filter(item => item.category === 'barbers'));
+        const response = await axios.get("https://www.universoulbabers.hair/api/v1/users/home");
+        if (Array.isArray(response.data)) {
+          const filteredBarbers = response.data.filter(item => item.category === 'barbers');
+          setBarbersData(filteredBarbers);
+        } else {
+          console.error("Data received is not an array:", response.data);
+        }
       } catch (error) {
         console.error("Error fetching barbers data:", error);
       } finally {
@@ -22,7 +27,6 @@ const Barbers = () => {
 
     fetchData();
   }, []);
-
   return (
     <>
       {/* Existing code ... */}
