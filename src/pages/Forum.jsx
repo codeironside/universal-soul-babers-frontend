@@ -437,7 +437,7 @@ function Pill({ img, text, active }) {
 function QuestionCard(messages){
   return (
   <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
-    const but ["ss","sasdssd,"sdsdf","asdad","sacdfse"]
+    const but= ["ss","sasdssd,"sdsdf","asdad","sacdfse"]
     {but.map((message, index) => (
       <div key={index}>
         <div className="flex justify-between w-full h-10">
