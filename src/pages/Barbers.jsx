@@ -11,7 +11,7 @@ const Barbers = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://www.universoulbabers.hair/api/v1/users/home");
+        const response = await axios.get("https://unique-barbers.onrender.com/api/v1/users/home");
         if (Array.isArray(response.data)) {
           const filteredBarbers = response.data.filter(item => item.category === 'barbers');
           setBarbersData(filteredBarbers);
