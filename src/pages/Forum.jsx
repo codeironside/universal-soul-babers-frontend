@@ -435,52 +435,52 @@ function Pill({ img, text, active }) {
 // }
 
 function QuestionCard(messages){
-  return (
-  <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
-    const but= ["ss","sasdssd,"sdsdf","asdad","sacdfse"]
-    {but.map((message, index) => (
-      <div key={index}>
-        <div className="flex justify-between w-full h-10">
-          <div className="flex items-center">
-            {message.images && (
-              <img className="w-10 h-10 rounded-full" alt="Ava" src={message.images} />
-            )}
-            <div className="ml-3">
-              <p className="text-black text-xs">{message.createdAt}</p>
-              <p className="text-zinc-500 text-xs">{message.userName}</p>
-            </div>
-          </div>
-          {/* Assuming QuestionMenu is imported */}
-          {/* <QuestionMenu /> */}
-        </div>
-        <Link to={`/forum/thread/${message._id}`}>
-          <p className="font-bold mb-4">{message.chat}</p>
-        </Link>
-        <div className="flex justify-between w-full">
-          <div className="flex items-center gap-3">
-            <p className="text-[10px]">{message.category}</p>
-            <p className="text-[10px]">{message.topic}</p>
-          </div>
-          <div className="flex items-center gap-4 bg-white overflow-hidden">
-            <div className="inline-flex text-sm gap-1">
-              {/* Assuming eye, messageSquare, and ArrowUp are available */}
-              <img className="" alt="Eye" src={eye} />
-              <span className="text-subtitle-text-color">125</span>
-            </div>
-            <div className="inline-flex text-sm gap-1">
-              <img className="" alt="Eye" src={messageSquare} />
-              <span className="text-subtitle-text-color">15</span>
-            </div>
-            <div className="inline-flex text-sm gap-1">
-              <img className="" alt="Eye" src={ArrowUp} />
-              <span className="text-subtitle-text-color">155</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-)}
+//   return (
+//   <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
+//     const but= ["ss","sasdssd,"sdsdf","asdad","sacdfse"]
+//     {but.map((message, index) => (
+//       <div key={index}>
+//         <div className="flex justify-between w-full h-10">
+//           <div className="flex items-center">
+//             {message.images && (
+//               <img className="w-10 h-10 rounded-full" alt="Ava" src={message.images} />
+//             )}
+//             <div className="ml-3">
+//               <p className="text-black text-xs">{message.createdAt}</p>
+//               <p className="text-zinc-500 text-xs">{message.userName}</p>
+//             </div>
+//           </div>
+//           {/* Assuming QuestionMenu is imported */}
+//           {/* <QuestionMenu /> */}
+//         </div>
+//         <Link to={`/forum/thread/${message._id}`}>
+//           <p className="font-bold mb-4">{message.chat}</p>
+//         </Link>
+//         <div className="flex justify-between w-full">
+//           <div className="flex items-center gap-3">
+//             <p className="text-[10px]">{message.category}</p>
+//             <p className="text-[10px]">{message.topic}</p>
+//           </div>
+//           <div className="flex items-center gap-4 bg-white overflow-hidden">
+//             <div className="inline-flex text-sm gap-1">
+//               {/* Assuming eye, messageSquare, and ArrowUp are available */}
+//               <img className="" alt="Eye" src={eye} />
+//               <span className="text-subtitle-text-color">125</span>
+//             </div>
+//             <div className="inline-flex text-sm gap-1">
+//               <img className="" alt="Eye" src={messageSquare} />
+//               <span className="text-subtitle-text-color">15</span>
+//             </div>
+//             <div className="inline-flex text-sm gap-1">
+//               <img className="" alt="Eye" src={ArrowUp} />
+//               <span className="text-subtitle-text-color">155</span>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     ))}
+//   </div>
+// )}
 function QuestionMenu() {
   return (
     <Menu as="div" className="relative inline-block text-left">
