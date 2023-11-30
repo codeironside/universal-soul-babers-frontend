@@ -120,9 +120,9 @@ export default function Layout() {
             }
           );
 
-          const messages = response.data.chatsWithThreadCount // Assuming messages is an array in the response
-          console.log(messages)
-          setMessages(messages);
+          const { chatsWithThreadCount } = response.data // Assuming messages is an array in the response
+          console.log(chatsWithThreadCount)
+          setMessages(chatsWithThreadCount);
         }
       } catch (error) {
         console.error('Error fetching messages:', error);
