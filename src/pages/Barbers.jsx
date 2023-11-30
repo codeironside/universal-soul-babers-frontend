@@ -11,7 +11,7 @@ const Barbers = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://www.universoulbabers.hair/api/v1/shops/all");
+        const response = await axios.get("https://unique-barbers.onrender.com/api/v1/shops/all");
         setBarbersData(response.data.filter(item => item.category === 'barbers'));
       } catch (error) {
         console.error("Error fetching barbers data:", error);
