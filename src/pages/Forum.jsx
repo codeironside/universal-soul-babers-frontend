@@ -38,8 +38,8 @@ import { isLoggedIn } from '../utils'
 
 const navigation = [
   { name: 'Questions', href: '#', icon: list, current: true },
-  // { name: 'Tags', href: '#', icon: tag, current: false },
-  // { name: 'Ranking', href: '#', icon: award, current: false },
+  { name: 'forum', href: '/forum', icon: tag, current: false },
+  { name: 'home', href: '/', icon: award, current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/dashboard' },
