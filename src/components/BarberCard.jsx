@@ -2,7 +2,7 @@ import StarIcon from '../assets/img/Star.png'
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 const BarberCard = ({ barber }) => {
-  const { _id, images, shop_name, customers, badge, shop_address, reviews, total } = barber;
+  const { _id, images, shop_name, customers, badge, shop_address, reviews, price} = barber;
   return (
     <div className='p-3 lg:p-5 flex items-center justify-center shadow-card'>
       <div
