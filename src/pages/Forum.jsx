@@ -323,7 +323,7 @@ export default function Layout() {
                         <Pill img={whhHot} text="Hot" />
                         {/* <Pill img={checkCircle} text="Closed" /> */}
                       </div>
-
+console.log(messages.length)
 {messages.length > 0 && <QuestionCard messages={messages} />}
 
 
