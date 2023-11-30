@@ -49,7 +49,7 @@ const Barbers = () => {
       <section>
         <div className='container'>
           {/* Display filtered barber data */}
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-[30px] mt-[0px] lg:mt-[-38px]'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
             {barbersData.map((barber) => (
               <BarberCard key={barber._id} barber={barber} />
             ))}
