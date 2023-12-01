@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { classNames, getCookie } from '../utils';
 import { Tab } from '@headlessui/react';
 import axios from 'axios';
+import { UserContext } from './UserPanel';
 
 import UpdateImage from '../components/UpdateImage';
 import ProfileImage from '../components/ProfileImage';
@@ -18,38 +19,14 @@ const tabs = [{ name: 'General' }, { name: 'Password' }, { name: 'Plan' }];
 
 export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
-  const [user, setUser] = useState([]);
   const [userImage, setUserImage] = useState('');
 
-  useEffect(() => {
-    const token = getCookie('token');
-    //console.log("this is token",token)
-    if (token) {
-      const fetchUserDetails = async () => {
-        try {
-          const response = await axios.get(
-            'https://unique-barbers.onrender.com/api/v1/users/one',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+  const token = getCookie('token');
+  const user = JSON.parse(getCookie('user'));
 
-          const userData = response.data;
-          setUser(userData.user);
-          //console.log("user",response.data)
-        } catch (error) {
-          console.error('Error fetching user details:', error);
-        }
-      };
-
-      fetchUserDetails();
-    }
-  }, []);
 
   return (
+    <UserContext.Provider value={user}>
     <main className="flex-1">
       <div className="relative max-w-4xl mx-auto md:px-8 xl:px-0">
         <div className="pt-10 pb-16">
@@ -114,7 +91,7 @@ export default function Settings() {
           </div>
         </div>
       </div>
-    </main>
+    </main></UserContext.Provider>
   );
 }
 
@@ -297,7 +274,7 @@ function General({ user }) {
   );
 }
 
-function Password() {
+function Password({user}) {
   return (
     <>
       <div className="space-y-1">
@@ -380,7 +357,7 @@ function Password() {
   );
 }
 
-function Notifications() {
+function Notifications({user}) {
   return (
     <>
       <div className="space-y-1">
