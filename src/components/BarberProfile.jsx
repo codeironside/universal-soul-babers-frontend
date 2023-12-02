@@ -5,16 +5,16 @@ import Experience from './Experience'
 import Hours from './Hours'
 
 const BarberProfile = () => {
-  const [name, setName] = useState('Ryan Scott')
-  const [email, setEmail] = useState('someone@gmail.com')
-  const [phoneNumber, setPhoneNumber] = useState('+1 (437) 234-5050')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [bio, setBio] = useState('')
   const [qualification, setQualification] = useState(false)
   const [experience, setExperience] = useState(false)
 const [hours, setHours] = useState(false)
 
   return (
-    <div className='flex items-center justify-start flex-col gap-5 w-full h-auto'>
+    <div className='flex flex-col items-center justify-start w-full h-auto gap-5'>
       <h1 className='text-headingColor font-[500] text-left leading-5'>
         Profile Information
       </h1>
@@ -47,7 +47,7 @@ const [hours, setHours] = useState(false)
       </div>
       <div className='flex w-[90%]'>
         <textarea
-          className='border border-solid  border-slate-300 focus:outline outline-primaryColor w-full px-4 py-3 rounded-md '
+          className='w-full px-4 py-3 border border-solid rounded-md border-slate-300 focus:outline outline-primaryColor '
           rows='6'
           placeholder='Your Bio'
           onChange={(e) => setBio(e.target.value)}></textarea>
@@ -55,7 +55,7 @@ const [hours, setHours] = useState(false)
       <div className='flex w-[90%] '>
         <button
           onClick={() => setQualification(!qualification)}
-          className='py-2 px-5 bg-black text-white rounded-lg my-4 '>
+          className='px-5 py-2 my-4 text-white bg-black rounded-lg '>
           Add Qualifications
         </button>
       </div>
@@ -69,7 +69,7 @@ const [hours, setHours] = useState(false)
       <div className='flex w-[90%] '>
         <button
           onClick={() => setExperience(!experience)}
-          className='py-2 px-5 bg-black text-white rounded-lg my-4 '>
+          className='px-5 py-2 my-4 text-white bg-black rounded-lg '>
           Add Experience
         </button>
       </div>
@@ -83,7 +83,7 @@ const [hours, setHours] = useState(false)
       <div className='flex w-[90%] '>
         <button
           onClick={() => setHours(!hours)}
-          className='py-2 px-5 bg-black text-white rounded-lg my-4 '>
+          className='px-5 py-2 my-4 text-white bg-black rounded-lg '>
           Add Working Hours
         </button>
       </div>
@@ -95,7 +95,7 @@ const [hours, setHours] = useState(false)
         )}
       </div>
       <div className='flex w-[90%] '>
-        <button className='py-2 px-5 bg-black text-white rounded-lg my-4 w-full '>
+        <button className='w-full px-5 py-2 my-4 text-white bg-black rounded-lg '>
           Update Profile
         </button>
       </div>
