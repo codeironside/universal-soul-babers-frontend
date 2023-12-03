@@ -13,6 +13,7 @@ import ProductDetails from './ProductDetails'
 import Profile from './Profile'
 import Login from './Login.jsx'
 import UserPanel from './UserPanel'
+import Funding from './Funding'
 
 export {
   Home,
@@ -30,4 +31,5 @@ export {
   ProductDetails,
   Login,
   UserPanel,
+  Funding,
 }

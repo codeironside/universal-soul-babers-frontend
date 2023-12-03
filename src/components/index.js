@@ -16,6 +16,10 @@ import BarberProfile from './BarberProfile'
 import BarberBookings from './BarberBookings'
 import BarberShop from './BarberShop'
 import BarberStore from './BarberStore'
+import SetupCard from './SetupCard'
+import FundraiseResult from './FundraiseResult'
+import FundraiseProgress from './FundraiseProgress'
+import FundraisingModal from './FundraisingModal'
 
 
 export {
@@ -36,5 +40,9 @@ export {
     SidePanel,
     CartItem,
     Product,
-    Input
+    Input,
+    SetupCard,
+    FundraiseResult,
+    FundraiseProgress,
+    FundraisingModal,
 }

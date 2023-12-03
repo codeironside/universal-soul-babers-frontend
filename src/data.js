@@ -42,7 +42,7 @@ export const quickLinks = [
   {
     path: '/barbers',
     display: 'Find A Barber'
-  }
+  },
 ]
 
 export const quickLinks02 = [
