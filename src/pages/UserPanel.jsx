@@ -20,6 +20,7 @@ import {
   UserGroupIcon,
   XMarkIcon,
   UserIcon,
+  CurrencyDollarIcon
 } from '@heroicons/react/24/outline';
 
 import {
@@ -39,6 +40,7 @@ const navigation = [
   { name: 'Customers', href: '/customers', icon: UserGroupIcon },
   { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
   { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
+  { name: 'Crowd Funding', href: '/funding', icon: CurrencyDollarIcon },
   // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
   // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
 ];

@@ -13,6 +13,7 @@ import {
   ProductDetails,
   MarketPlace,
   Login,
+  Funding,
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -122,6 +123,11 @@ export default [
   {
     path: '/appointments',
     component: <UserPanel fragment={<AppointMents />} />,
+    standalone: true,
+  },
+  {
+    path: '/funding',
+    component: <UserPanel fragment={<Funding />} />,
     standalone: true,
   },
   {
