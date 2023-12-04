@@ -212,3 +212,41 @@ export const pricing = [
     recommended: false,
   },
 ];
+
+export const fundRaisingProgress = [
+        {
+          donation_title: "Kids Donation",
+          donation_progress: 40
+        },
+        {
+          donation_title: "Orphans Donation",
+          donation_progress: 100
+        },
+        {
+          donation_title: "Refugees Donation",
+          donation_progress: 30
+        },
+        {
+          donation_title: "Homeless Kids Donation",
+          donation_progress: 50
+        }
+]
+
+export const fundRaisingResult = [
+  {
+    donation_result: 200,
+    donation_period: 4,
+  },
+  {
+    donation_result: 1000,
+    donation_period: 24,
+  },
+  {
+    donation_result: 100,
+    donation_period: 8,
+  },
+  {
+    donation_result: 200,
+    donation_period: 6,
+  },
+]

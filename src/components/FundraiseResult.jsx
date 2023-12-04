@@ -1,4 +1,5 @@
 import React from 'react'
+import { fundRaisingResult } from '../data'
 
 const FundraiseResult = () => {
   return (
@@ -8,26 +9,18 @@ const FundraiseResult = () => {
    </div>
    <div class="flow-root">
         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                    0$ donated in the last 24hrs
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-            <div class="flex items-center">
-                    0$ donated in the last 24hrs
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-            <div class="flex items-center">
-                    0$ donated in the last 24hrs
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-            <div class="flex items-center">
-                    0$ donated in the last 24hrs
-                </div>
-            </li>
+            {
+                fundRaisingResult?.map((result)=> {
+                    const {donation_result, donation_period} = result;
+                    return(
+                        <li class="py-3 sm:py-4">
+                        <div class="flex items-center">
+                            ${donation_result} donated in the last {donation_period}hrs
+                        </div>
+                    </li>
+                    )
+                })
+            }
         </ul>
    </div>
 </div>

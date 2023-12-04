@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { SetupCard, FundraiseResult, FundraiseProgress, FundraisingModal } from '../components'
  
 const Funding = () => {
-  const [modalDisplay, setModalDisplay] = useState(true);
+  const [modalDisplay, setModalDisplay] = useState(false);
   return (
     <>
     <section>
