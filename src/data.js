@@ -250,3 +250,36 @@ export const fundRaisingResult = [
     donation_period: 6,
   },
 ]
+
+
+export const UserA = [
+  {
+    forumUser: "A",
+    forumMessage: "Hey How are you today?",
+  },
+
+  {
+    forumUser: "A",
+    forumMessage: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ipsa commodi illum saepe numquam maxime asperiores voluptate sit, minima perspiciatis.    ",
+  },
+]
+
+export const UserB = [
+  {
+    forumUser: "B",
+    forumMessage: "I'm ok what about you?",
+  },
+
+  {
+    forumUser: "B",
+    forumMessage: "Lorem ipsum dolor sit, amet consectetur adipisicing. ?",
+  },
+]
+
+export const UserC = [
+  {
+    forumUser: "C",
+    forumMessage: "Lorem ipsum dolor sit amet !",
+  },
+
+]

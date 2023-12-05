@@ -20,7 +20,8 @@ import {
   UserGroupIcon,
   XMarkIcon,
   UserIcon,
-  CurrencyDollarIcon
+  CurrencyDollarIcon,
+  ChatBubbleBottomCenterTextIcon
 } from '@heroicons/react/24/outline';
 
 import {
@@ -41,6 +42,7 @@ const navigation = [
   { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
   { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
   { name: 'Crowd Funding', href: '/funding', icon: CurrencyDollarIcon },
+  { name: 'Forum', href: '/forum', icon: ChatBubbleBottomCenterTextIcon },
   // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
   // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
 ];

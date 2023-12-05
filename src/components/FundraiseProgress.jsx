@@ -1,7 +1,6 @@
 import React from 'react'
 import { fundRaisingProgress } from '../data'
 
-
 const FundraiseProgress = () => {
   return (
   <>
