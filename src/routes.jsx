@@ -88,7 +88,7 @@ export default [
   },
   {
     path: '/forum',
-    component: <Forum />,
+    component: <UserPanel fragment={<Forum />} />,
     standalone: true,
   },
   {

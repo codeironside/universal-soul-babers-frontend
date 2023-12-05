@@ -1,529 +1,209 @@
-import ava from "../assets/Ava.jpg";
-import ArrowUp from "../assets/arrow-up.svg";
-import eye from "../assets/eye.svg";
-import featherMoreVertical from "../assets/feather-more-vertical.svg";
-import messageSquare from "../assets/message-square.svg";
-import arrowUpRight from "../assets/arrow-up-right.svg";
-import checkCircle from "../assets/check-circle.svg";
-import whhHot from "../assets/whh_hot.svg";
-import clock from "../assets/clock.svg";
-import link from "../assets/link.svg";
-import star from "../assets/star.svg";
-import list from "../assets/list.svg";
-import tag from "../assets/tag.svg";
-import award from "../assets/award.svg";
 import axios from 'axios';
 import { getCookie } from '../utils';
-import ViewThread from "./ViewThread"
-// import React, {, useState } from 'react';
+import {  useState, useEffect } from 'react'
+import { UserA, UserB, UserC } from '../data';
 
-import { Link, useParams } from "react-router-dom";
-
-import logo from '../assets/img/Logo.png'
-import textLogo from '../assets/img/Universoul.png'
-
-import { Fragment, useState, useEffect } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
-import {
-  Bars3BottomLeftIcon,
-  BellIcon,
-  TagIcon,
-  ListBulletIcon,
-  XMarkIcon,
-
-} from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon, EllipsisVerticalIcon } from '@heroicons/react/20/solid'
-
-import { isLoggedIn } from '../utils'
-
-const navigation = [
-  { name: 'Questions', href: '#', icon: list, current: true },
-  { name: 'forum', href: '/forum', icon: tag, current: false },
-  { name: 'home', href: '/', icon: award, current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '/dashboard' },
-  { name: 'Settings', href: '/settings' },
-  { name: 'Sign out', href: '/logout' },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+ 
 
-const options = [
-  { name: "Add to favourite", action: () => console.log("Favourited") },
-  { name: "Delete", action: () => console.log("Deleted") }
-]
+const Forum = () => {
 
-function _CommonNav({ cns }) {
-  return (
-    <nav className={cns}>
-      {navigation.map((item) => (
-        <a
-          key={item.name}
-          href={item.href}
-          className={classNames(
-            item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-            'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-          )}
-        >
-          <img src={item.icon} className={classNames(
-            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-            'mr-3 flex-shrink-0 h-4 w-4'
-          )}
-            aria-hidden="true" />
-
-          {item.name}
-        </a>
-      ))}
-    </nav>
-  )
-}
-
-function _CommonLogo() {
-  return (
-    <Link to="#" className="flex items-center pl-4">
-      <span className="sr-only">UnivaBarber</span>
-      <img
-        className="h-4 w-auto sm:h-10"
-        src={logo}
-        alt=""
-      />
-      <img
-        className="h-4 ml-4"
-        src={textLogo}
-        alt="UnivaBaber logo text"
-      />
-    </Link>
-  )
-}
-
-export default function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { threadId } = useParams();
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    const token = getCookie('token'); // Assuming getCookie function is available
-
-    const fetchMessages = async () => {
-      try {
-        if (token) {
-          const response = await axios.get(
-            'https://unique-barbers.onrender.com/api/v1/chats/getall',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-            }
-          );
-
-          const messages = response.data.chatsWithThreadCount// Assuming messages is an array in the response
-          console.log(typeof messages)
-          console.log("this is message", messages)
-          setMessages(messages);
-        }
-      } catch (error) {
-        console.error('Error fetching messages:', error);
-      }
-    };
-
-    fetchMessages();
-  }, []); // Ensure getCookie is a dependency if it's defined outside the component
-  return (
-    <>
-      <div>
-        <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-            </Transition.Child>
-
-            <div className="fixed inset-0 z-40 flex">
-              <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-in-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-300"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
+    return (
+      <div class="flex h-screen antialiased text-gray-800">
+          <div class="flex lg:flex-row flex-col h-full w-full overflow-x-hidden">
+            <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
+              <div class="flex flex-row items-center justify-center h-12 w-full"> 
+                <div
+                  class="flex items-center justify-center rounded-2xl text-indigo-700 h-10 w-10"
+                  style={{ backgroundColor: "#977d46" }}
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="white"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <div className="absolute top-0 right-0 -mr-12 pt-2">
-                      <button
-                        type="button"
-                        className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        onClick={() => setSidebarOpen(false)}
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="ml-2 font-bold text-2xl">QuickChat</div>
+              </div>
+            </div>
+            <div class="flex flex-col flex-auto h-full p-6">
+              <div
+                class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
+              >
+                <div class="flex flex-col h-full overflow-x-auto mb-4">
+                  <div class="flex flex-col h-full">
+                    <div class="grid grid-cols-12 gap-y-2">
+                      { 
+                        UserA?.map((item)=> {
+                           const { forumUser, forumMessage } = item;
+                          return(
+                            <>
+                                <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                        <div class="flex flex-row items-center">
+                          <div
+                          style={{ backgroundColor: "#977d46" }}
+                            class="flex items-center justify-center h-10 w-10 rounded-full text-white flex-shrink-0"
+                          >
+                            {forumUser}
+                          </div>
+                          <div
+                            class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                          >
+                            <div>{forumMessage}</div>
+                          </div>
+                        </div>
+                      </div>
+                            </>
+                          )
+                        })
+                      }
+
+                      {
+                        UserB.map((item)=> {
+                          const { forumUser, forumMessage } = item;
+
+                          return(
+                            <>
+                                                     <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                        <div class="flex items-center justify-start flex-row-reverse">
+                          <div
+                            style={{ color: "#977d46" }}
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-white flex-shrink-0"
+                          >
+                           {forumUser}
+                          </div>
+                          <div
+                            class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                          >
+                            <div>{forumMessage}</div>
+                          </div>
+                        </div>
+                      </div>
+                            </>
+                          )
+                        })
+                      }
+
+                    {
+                      UserC?.map((item)=> {
+                        const { forumUser, forumMessage } = item;
+                        return(
+                          <>
+                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                        <div class="flex flex-row items-center">
+                          <div
+                            style={{ backgroundColor: "#977d46" }}
+                            class="flex items-center justify-center h-10 w-10 rounded-full text-white flex-shrink-0"
+                          >
+                            {forumUser}
+                          </div>
+                          <div
+                            class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                          >
+                            <div>{forumMessage}</div>
+                          </div>
+                        </div>
+                      </div>
+                          </>
+                        )
+                      })
+                    }
+
+                      
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
+                >
+                  <div>
+                    <button
+                      class="flex items-center justify-center text-gray-400 hover:text-gray-600"
+                    >
+                      <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="flex-grow ml-4">
+                    <div class="relative w-full">
+                      <input
+                        type="text"
+                        class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                      />
+                      <button
+                        class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
+                      >
+                        <svg
+                          class="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
                       </button>
                     </div>
-                  </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4">
-                    <_CommonLogo />
                   </div>
-                  <div className="mt-8 h-0 flex-1 overflow-y-auto">
-                    <_CommonNav cns="px-2 space-y-1" />
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-              <div className="w-14 flex-shrink-0" aria-hidden="true">
-                {/* Dummy element to force sidebar to shrink to fit close icon */}
-              </div>
-            </div>
-          </Dialog>
-        </Transition.Root>
-
-        {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
-            <_CommonLogo />
-            <div className="mt-10 flex flex-grow flex-col">
-              <_CommonNav cns="flex-1 space-y-1 px-2 pb-4" />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-1 flex-col md:pl-64">
-          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-            <button
-              type="button"
-              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <span className="sr-only">Open sidebar</span>
-              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-            <div className="flex flex-1 justify-between px-4">
-              <div className="flex flex-1">
-                <form className="flex w-full md:ml-0" action="#" method="GET">
-                  <label htmlFor="search-field" className="sr-only">
-                    Search
-                  </label>
-                  <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                      <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <input
-                      id="search-field"
-                      className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                      placeholder="Search"
-                      type="search"
-                      name="search"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div className="ml-4 flex items-center md:ml-6">
-                {isLoggedIn() ? (
-                  <>
-                    {/* TO BE REMOVED */}
-                    {/* <button
-                      type="button"
-                      className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  <div class="ml-4">
+                    <button
+                      style={{ backgroundColor: "#977d46" }}
+                      class="flex items-center justify-center  hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
                     >
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button> */}
-
-                    {/* Profile dropdown */}
-                    <Menu as="div" className="relative ml-3">
-                      <div>
-                        <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                          <span className="sr-only">Open user menu</span>
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                          />
-                        </Menu.Button>
-                      </div>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          {userNavigation.map((item) => (
-                            <Menu.Item key={item.name}>
-                              {({ active }) => (
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    active ? 'bg-gray-100' : '',
-                                    'block px-4 py-2 text-sm text-gray-700'
-                                  )}
-                                >
-                                  {item.name}
-                                </a>
-                              )}
-                            </Menu.Item>
-                          ))}
-                        </Menu.Items>
-                      </Transition>
-                    </Menu></>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="text-warm-gray-900 hover:text-warm-gray-500 font-medium"
-                  >
-                    Login
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <main className="flex-1">
-            <div className="py-6">
-              {threadId ? (
-                <>
-                  <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                    <h1 className="text-2xl font-semibold text-gray-900">View Thread</h1>
+                      <span>Send</span>
+                      <span class="ml-2">
+                        <svg
+                          class="w-4 h-4 transform rotate-45 -mt-px"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                          ></path>
+                        </svg>
+                      </span>
+                    </button>
                   </div>
-                  <ViewThread />
-                </>
-              ) : (
-                <>
-                  <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                    <h1 className="text-2xl font-semibold text-gray-900">Questions</h1>
-                  </div>
-                  <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                    {/* Replace with your content */}
-                    <div className="py-4">
-                      <div className="flex gap-1">
-                        <Pill img={clock} text="New" active={true} />
-                        <Pill img={arrowUpRight} text="Top" />
-                        <Pill img={whhHot} text="Hot" />
-                        {/* <Pill img={checkCircle} text="Closed" /> */}
-                      </div>
-console.log(messages.length)
-{messages.length > 0 && <QuestionCard messages={messages} />}
-
-
-                      {/*<QuestionCard />
-                      <QuestionCard />
-                      <QuestionCard />
-                      <QuestionCard /> */}
-
-                      <RightSide />
-
-                    </div>
-                    {/* /End replace */}
-                  </div>
-                </>
-              )
-              }
-            </div>
-          </main>
-
-
-        </div>
-      </div >
-
-    </>
-  )
-}
-
-function RightSide() {
-  return (
-    <div className="fixed z-20 top-[11rem] right-[max(20px,calc(50%-45rem))] w-[19.5rem] overflow-y-auto hidden xl:block px-5 py-7 bg-white rounded shadow border border-gray-200">
-      <div className="flex">
-        <img src={star} className="mr-2" />
-        <p className="text-x">Must-read posts</p>
-      </div>
-      <div className="my-3 h-px border border-gray-200"></div>
-
-      <ul className="list-disc text-blue-500">
-        <li className="ml-5 mb-4">Please read rules before you start working on a platform</li>
-        <li className="ml-5 mb-4">Vision & Strategy of UnivacBaber</li>
-      </ul>
-
-      <div className="flex mt-10">
-        <img src={link} className="mr-2" />
-        <p className="text-x">Featured links</p>
-      </div>
-      <div className="my-3 h-px border border-gray-200"></div>
-
-      <ul className="list-disc text-blue-500">
-        <li className="ml-5 mb-4">UnivacBaber source-code on GitHub</li>
-        <li className="ml-5 mb-4">Golang best-practices</li>
-        <li className="ml-5 mb-4">UnivacBaber dashboard</li>
-      </ul>
-    </div>
-  )
-}
-
-function Pill({ img, text, active }) {
-  return (
-    <div className={"min-w-16 h-6 px-2.5 py-1 rounded-full justify-start items-center gap-1 inline-flex " + (active ? "bg-blue-500 text-white" : "bg-gray-200 text-zinc-500")}>
-      <img src={img} />
-      <div className="text-xs capitalize tracking-wide">{text}</div>
-    </div>
-  )
-}
-
-// function QuestionCard(messages) {
-//   return (
-//     <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
-//       <div className="flex justify-between w-full h-10">
-//         <div className="flex items-center">
-//           <img className="w-10 h-10 rounded-full" alt="Ava" src={ava} />
-//           <div className="ml-3">
-//             <p className="text-black text-xs">5 min ago</p>
-//             <p className="text-zinc-500 text-xs">Golanginya</p>
-//           </div>
-//         </div>
-//         <QuestionMenu />
-//       </div>
-//       <Link to="/forum/thread/1">
-//         <p className="font-bold mb-4">How to patch KDE on FreeBSD?</p>
-//         <p className="text-[14px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla</p>
-//       </Link>
-//       <div className="flex justify-between w-full">
-//         <div className="flex items-center gap-3">
-//           <div className="px-2 py-1 rounded-md bg-gray-200">
-//             <p className="text-[10px]">golang</p>
-//           </div>
-//           <div className="px-2 py-1 rounded-md bg-gray-200">
-//             <p className="text-[10px]">linux</p>
-//           </div>
-//           <div className="px-2 py-1 rounded-md bg-gray-200">
-//             <p className="text-[10px]">overflow</p>
-//           </div>
-//         </div>
-//         <div className="flex items-center gap-4 bg-white overflow-hidden">
-//           <div className="inline-flex text-sm gap-1">
-//             <img className="" alt="Eye" src={eye} />
-//             <span className="text-subtitle-text-color">125</span>
-//           </div>
-//           <div className="inline-flex text-sm gap-1">
-//             <img className="" alt="Eye" src={messageSquare} />
-//             <span className="text-subtitle-text-color">15</span>
-//           </div>
-//           <div className="inline-flex text-sm gap-1">
-//             <img className="" alt="Eye" src={ArrowUp} />
-//             <span className="text-subtitle-text-color">155</span>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-function QuestionCard(messages) {
-    return (
-    <div className="mt-6 flex flex-col max-w-[620px] items-start gap-4 px-8 py-6 relative bg-white rounded-md overflow-hidden border border-solid border-border shadow">
-     
-      {messages.map((message, index) => (
-        <div key={index}>
-          <div className="flex justify-between w-full h-10">
-            <div className="flex items-center">
-              {message.images && (
-                <img className="w-10 h-10 rounded-full" alt="Ava" src={message.images} />
-              )}
-              <div className="ml-3">
-                <p className="text-black text-xs">{message.createdAt}</p>
-                <p className="text-zinc-500 text-xs">{message.userName}</p>
-              </div>
-            </div>
-            {/* Assuming QuestionMenu is imported */}
-            {/* <QuestionMenu /> */}
-          </div>
-          <Link to={`/forum/thread/${message._id}`}>
-            <p className="font-bold mb-4">{message.chat}</p>
-          </Link>
-          <div className="flex justify-between w-full">
-            <div className="flex items-center gap-3">
-              <p className="text-[10px]">{message.category}</p>
-              <p className="text-[10px]">{message.topic}</p>
-            </div>
-            <div className="flex items-center gap-4 bg-white overflow-hidden">
-              <div className="inline-flex text-sm gap-1">
-                {/* Assuming eye, messageSquare, and ArrowUp are available */}
-                <img className="" alt="Eye" src={eye} />
-                <span className="text-subtitle-text-color">125</span>
-              </div>
-              <div className="inline-flex text-sm gap-1">
-                <img className="" alt="Eye" src={messageSquare} />
-                <span className="text-subtitle-text-color">15</span>
-              </div>
-              <div className="inline-flex text-sm gap-1">
-                <img className="" alt="Eye" src={ArrowUp} />
-                <span className="text-subtitle-text-color">155</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      ))}
-    </div>
   )
 }
-function QuestionMenu() {
-  return (
-    <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="flex items-center rounded-full text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2 focus:ring-offset-gray-100">
-          <span className="sr-only">Open options</span>
-          <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
-        </Menu.Button>
-      </div>
 
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            {options.map((option, i) => (
-              <Menu.Item key={i}>
-                {({ active }) => (
-                  <div
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
-                    )}
-                    onClick={option.action}
-                  >
-                    {option.name}
-                  </div>
-                )}
-              </Menu.Item>
-            ))}
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-  )
-}
+export default Forum;
