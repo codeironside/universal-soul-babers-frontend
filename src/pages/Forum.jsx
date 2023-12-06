@@ -169,7 +169,7 @@ const Forum = () => {
                         const userNameArray = userName.split('');
                         return(
                           <>
-                            <div className={`${userName === user?.userName? 'col-start-6 col-end-13 p-3 rounded-lg' : 'col-start-1 col-end-8 p-3 rounded-lg'}`}>
+                            <div className={`${userName === user?.userName? 'lg:col-start-6 col-start-3 col-end-13 p-3 rounded-lg' : 'col-start-1 col-end-10 lg:col-end-8 p-3 rounded-lg'}`}>
                       <div class={`flex items-center ${userName === user?.userName? 'justify-start flex-row-reverse': 'flex-row'}`}>
                         <div
                       style={{ backgroundColor: userName === user?.userName ? 'white' : '#977d46',
