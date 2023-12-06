@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { getCookie } from '../utils';
 import {  useState, useEffect } from 'react'
-import { UserA, UserB, UserC } from '../data';
+import { buildApiEndpoint, getCookie } from "../utils"
+import Spinner from '../components/Spinner';
+import { TrashIcon } from "@heroicons/react/20/solid";
 
 
 function classNames(...classes) {
@@ -10,6 +11,115 @@ function classNames(...classes) {
  
 
 const Forum = () => {
+  const [chatMessage, setChatMessage] = useState("");
+  const [allMessage, setAllMessage] = useState();
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
+
+  const token = getCookie('token');
+
+  const fetchAllChats = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        'https://unique-barbers.onrender.com/api/v1/chats/getall',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      setLoading(false);
+      console.log(response.data.allChats);
+      let allMessages = response.data.allChats;
+      const reversedMessages = allMessages.slice().reverse();
+      setAllMessage(reversedMessages);
+    } catch (error) {
+      console.error('Error fetching chats:', error);
+    }
+  };
+
+  const handleDeleteChat = async (id) => {
+    try {
+      const chatId = id; 
+      const response = await axios.delete(
+        `https://unique-barbers.onrender.com/api/v1/chats/delete/:${chatId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      console.log(response.data); // Handle the response as needed
+    } catch (error) {
+      console.error('Error deleting chat:', error);
+      // Handle errors as needed
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      fetchAllChats();
+       
+      const fetchUserDetails = async () => {
+        try {
+          const response = await axios.get(
+            'https://unique-barbers.onrender.com/api/v1/users/one',
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+  
+          const userData = response.data;
+          console.log(userData)
+          setUser(userData.user);
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      };
+
+      fetchUserDetails();
+      
+    }
+
+  }, []);
+
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    const values = JSON.stringify({
+      chat: chatMessage,
+    });
+
+    console.log(values);
+    if (token) {
+      try {
+        const response = await axios.post(
+         buildApiEndpoint("/chats/send-message"), // Replace with your actual backend API endpoint
+          values,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        fetchAllChats();
+        setChatMessage("");
+        setChatResponse(response.data.chatCreate);
+        console.log('Server Response:', response.data);
+      } catch (error) {
+        console.error('Error:', error.message);
+        // Handle error, show a message to the user, or perform other actions
+      }
+    } 
+  };
 
     return (
       <div class="flex h-screen antialiased text-gray-800">
@@ -42,89 +152,55 @@ const Forum = () => {
               <div
                 class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
               >
+                {
+                loading? 
+                <div className='flex flex-col h-full overflow-x-auto mb-4 justify-center items-center'>
+                <Spinner />
+                 </div>
+                :
+                   
                 <div class="flex flex-col h-full overflow-x-auto mb-4">
-                  <div class="flex flex-col h-full">
-                    <div class="grid grid-cols-12 gap-y-2">
-                      { 
-                        UserA?.map((item)=> {
-                           const { forumUser, forumMessage } = item;
-                          return(
-                            <>
-                                <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                        <div class="flex flex-row items-center">
-                          <div
-                          style={{ backgroundColor: "#977d46" }}
-                            class="flex items-center justify-center h-10 w-10 rounded-full text-white flex-shrink-0"
-                          >
-                            {forumUser}
-                          </div>
-                          <div
-                            class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                          >
-                            <div>{forumMessage}</div>
-                          </div>
-                        </div>
-                      </div>
-                            </>
-                          )
-                        })
-                      }
-
-                      {
-                        UserB.map((item)=> {
-                          const { forumUser, forumMessage } = item;
-
-                          return(
-                            <>
-                                                     <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                        <div class="flex items-center justify-start flex-row-reverse">
-                          <div
-                            style={{ color: "#977d46" }}
-                            class="flex items-center justify-center h-10 w-10 rounded-full bg-white flex-shrink-0"
-                          >
-                           {forumUser}
-                          </div>
-                          <div
-                            class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-                          >
-                            <div>{forumMessage}</div>
-                          </div>
-                        </div>
-                      </div>
-                            </>
-                          )
-                        })
-                      }
-
-                    {
-                      UserC?.map((item)=> {
-                        const { forumUser, forumMessage } = item;
+                <div class="flex flex-col h-full">
+                  <div class="grid grid-cols-12 gap-y-2">
+                    { 
+                      allMessage?.map((item)=> {
+                         const { userName, chat, _id} = item;
+                        //  const firstLetter = capitalizeFirstLetter(userName);
+                        const userNameArray = userName.split('');
                         return(
                           <>
-                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                        <div class="flex flex-row items-center">
-                          <div
-                            style={{ backgroundColor: "#977d46" }}
-                            class="flex items-center justify-center h-10 w-10 rounded-full text-white flex-shrink-0"
-                          >
-                            {forumUser}
-                          </div>
-                          <div
-                            class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                          >
-                            <div>{forumMessage}</div>
-                          </div>
+                            <div className={`${userName === user?.userName? 'lg:col-start-6 col-start-3 col-end-13 p-3 rounded-lg' : 'col-start-1 col-end-10 lg:col-end-8 p-3 rounded-lg'}`}>
+                      <div class={`flex items-center ${userName === user?.userName? 'justify-start flex-row-reverse': 'flex-row'}`}>
+                        <div
+                      style={{ backgroundColor: userName === user?.userName ? 'white' : '#977d46',
+                               color: userName === user?.userName ? '#977d46' : 'white'
+                             }}
+                          class={`flex items-center justify-center h-8 px-2 w-auto rounded text-white flex-shrink-0`}
+                        >
+                          {userNameArray[0].toUpperCase()}
                         </div>
+                        <div
+                          class={`relative ${userName === user?.userName? `mr-3 bg-indigo-100`: 'ml-3 bg-white'} text-sm py-2 px-4 shadow rounded-xl`}
+                        >
+                          <div>{chat}</div>
+                        </div>
+                         {
+                          user?.role === "ADMIN" &&
+                          <TrashIcon className="w-4 h-4 mx-2" onClick={()=> handleDeleteChat(_id)}/>
+                         }
                       </div>
+                    </div>
+                   
                           </>
                         )
                       })
                     }
 
-                      
-                    </div>
+                    
                   </div>
                 </div>
+              </div>
+              }
                 <div
                   class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
                 >
@@ -151,6 +227,8 @@ const Forum = () => {
                   <div class="flex-grow ml-4">
                     <div class="relative w-full">
                       <input
+                        value={chatMessage}
+                        onChange={(e)=> setChatMessage(e.target.value)}
                         type="text"
                         class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                       />
@@ -176,6 +254,7 @@ const Forum = () => {
                   </div>
                   <div class="ml-4">
                     <button
+                      onClick={()=> handleSubmit()}
                       style={{ backgroundColor: "#977d46" }}
                       class="flex items-center justify-center  hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
                     >

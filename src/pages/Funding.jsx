@@ -3,6 +3,7 @@ import { SetupCard, FundraiseResult, FundraiseProgress, FundraisingModal } from 
  
 const Funding = () => {
   const [modalDisplay, setModalDisplay] = useState(false);
+  
   return (
     <>
     <section>
