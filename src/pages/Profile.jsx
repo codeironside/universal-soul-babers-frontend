@@ -26,7 +26,7 @@ useEffect(() => {
 
         const userData = response.data;
         setUser(userData.user);
-        //console.log("user",response.data)
+        console.log("user",response.data)
       } catch (error) {
         console.error('Error fetching user details:', error);
       }

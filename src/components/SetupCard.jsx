@@ -1,7 +1,10 @@
 import React from "react";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 
+
 const SetupCard = ({ setModalDisplay }) => {
+   
+
   return (
     <div class="col-span-1 flex m-0 w-full h-full items-center justify-center flex-col block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
