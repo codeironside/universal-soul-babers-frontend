@@ -10,7 +10,6 @@ const Profile = () => {
   const [user, setUser] = useState([]);
 useEffect(() => {
   const token = getCookie('token');
-  //console.log("this is token",token)
   if (token) {
     
     const fetchUserDetails = async () => {
@@ -105,7 +104,7 @@ useEffect(() => {
         </div>
         {/* Tab conditional rendering  */}
         <div className='mt-[50px] '>
-          {tab === "profile" && <BarberProfile />}
+          {tab === "profile" && <BarberProfile user={user} />}
           {tab === "bookings" && <BarberBookings />}
           {tab === "shop" && <BarberShop />}
           {tab === "store" && <BarberStore />}
