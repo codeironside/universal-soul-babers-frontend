@@ -52,7 +52,7 @@ export const getUserDetails = async ()=>{
       }
     };
 
-    export const getUserCampaigns = async (setCampaign)=>{
+    export const getUserCampaigns = async (setCampaign, callback)=>{
       let userId = localStorage.getItem('userId');
       console.log(userId);
       try {
@@ -67,12 +67,13 @@ export const getUserDetails = async ()=>{
         );
         console.log(response)
         setCampaign(response.data.data);
+        callback();
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
     };
 
-    export const getallCampaignDetailsWithoutContributors = async (setDetails)=> {
+    export const getallCampaignDetailsWithoutContributors = async (setDetails, callback)=> {
       try {
         const response = await axios.get(
           `https://unique-barbers.onrender.com/api/v1/campaign/getall`,
@@ -85,6 +86,7 @@ export const getUserDetails = async ()=>{
         );
         console.log(response)
         setDetails(response.data.data)
+        callback();
       } catch (error) {
         console.error('Error fetching user details:', error);
       }

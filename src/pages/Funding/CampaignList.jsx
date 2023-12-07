@@ -3,20 +3,35 @@ import { getallCampaignDetailsWithoutContributors } from '../../api'
 import { Link } from 'react-router-dom'
 import { PaymentModal } from '../../components'
 import Spinner from '../../components/Spinner';
+import { useNavigate } from 'react-router-dom'
+import {
+  ArrowLongLeftIcon
+} from "@heroicons/react/20/solid";
 
 const CampaignList = () => {
      const [details, setDetails] = useState([]);
      const [modalShow, setModalShow] = useState(false);
+     const [loading, setLoading] = useState(true);
+     const navigate = useNavigate();
     
     useEffect(()=> {
-       getallCampaignDetailsWithoutContributors(setDetails);
+       getallCampaignDetailsWithoutContributors(setDetails, (()=> {
+        setLoading(false)
+       }));
     },[])
 
   return (
     <>
     <div className='mx-8 py-5'>
        <h1 className='mt-12 mb-20 text-2xl text-center'>Available Campaigns</h1>
-       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+       {
+        loading?
+         <div className='mt-20 flex justify-center items-center'>
+        <Spinner />
+         </div>
+         :
+       
+         <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
        {details?.map((campaignItem) => {
         const { _id, campaignName, currentAmount, description, goalAmount, createdAt, endDate } = campaignItem;
         const words = description?.split(' ');
@@ -47,6 +62,14 @@ const CampaignList = () => {
         );
       })}
       </div>
+
+       }
+      
+      <div onClick={() => navigate(-1)} className="inline-flex text-xs mt-10 flex text-blue-500 cursor-pointer">
+            <ArrowLongLeftIcon className="w-4 h-4 ml-2" />
+           Back
+        </div>
+
     </div>
     {
       modalShow &&
