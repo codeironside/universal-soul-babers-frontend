@@ -23,26 +23,20 @@ const BarberProfile = () => {
     setFirstname(`${user.firstName} `);
     setLastname(`${user.lastName}`);
     setEmail(user.email);
+    setBio(user.bio);
+    setPhonenumber(user.phoneNumber);
   }, []);
 
   const userId = user._id;
   const updateProfile = async () => {
     try {
-      const updateData =  {
+      const updateData = {
         firstName: firstname,
         lastName: lastname,
         email: email,
+        phoneNumber: phoneNumber,
+        bio: bio,
       };
-
-      if (phoneNumber) {
-        updateData.phoneNumber = phoneNumber
-      }
-
-      if(bio) {
-        updateData.bio = bio
-      }
-
-      console.log(updateData);
 
       const response = await axios.put(
         buildApiEndpoint(`/users/update/${userId}`),
@@ -96,9 +90,7 @@ const BarberProfile = () => {
       <div className="flex w-[90%]">
         <Input
           label="Phone number"
-          onChange={(e) => {
-            console.log(e.target.value)
-            setPhonenumber(e.target.value)}}
+          onChange={(e) => setPhonenumber(e.target.value)}
           id="phoneNumber"
           type="phone"
           value={phoneNumber}

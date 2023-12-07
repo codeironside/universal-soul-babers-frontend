@@ -19,9 +19,7 @@ const tabs = [{ name: 'General' }, { name: 'Password' }, { name: 'Plan' }];
 
 export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
-  const [userImage, setUserImage] = useState('');
 
-  const token = getCookie('token');
   const user = JSON.parse(getCookie('user'));
 
   return (
