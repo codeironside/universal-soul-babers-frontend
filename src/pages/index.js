@@ -13,7 +13,9 @@ import ProductDetails from './ProductDetails'
 import Profile from './Profile'
 import Login from './Login.jsx'
 import UserPanel from './UserPanel'
-import Funding from './Funding'
+import Funding from './Funding/Funding.jsx'
+import UserCampaign from './Funding/UserCampaign.jsx'
+import CampaignList from './Funding/CampaignList.jsx'
 
 export {
   Home,
@@ -32,4 +34,6 @@ export {
   Login,
   UserPanel,
   Funding,
+  UserCampaign,
+  CampaignList,
 }

@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Card from '../components/Card'
+import { getUserDetails } from '../api';
 
 import {
   CalendarDaysIcon,
@@ -38,6 +40,10 @@ const statusStyles = {
 }
 
 export default function () {
+
+  useEffect(()=> {
+     getUserDetails();
+  },[])
   return (
     <main className="flex-1 pb-8">
       {/* <h1 className='text-4xl text-center mt-4'>Dashboard design and content coming soon</h1> */}

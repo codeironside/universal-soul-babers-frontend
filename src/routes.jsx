@@ -14,6 +14,8 @@ import {
   MarketPlace,
   Login,
   Funding,
+  UserCampaign,
+  CampaignList,
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -128,6 +130,16 @@ export default [
   {
     path: '/funding',
     component: <UserPanel fragment={<Funding />} />,
+    standalone: true,
+  },
+  {
+    path: '/userCampaign',
+    component: <UserPanel fragment={<UserCampaign />} />,
+    standalone: true,
+  },
+  {
+    path: '/campaignList',
+    component: <UserPanel fragment={<CampaignList />} />,
     standalone: true,
   },
   {

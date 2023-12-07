@@ -20,6 +20,7 @@ import SetupCard from './SetupCard'
 import FundraiseResult from './FundraiseResult'
 import FundraiseProgress from './FundraiseProgress'
 import FundraisingModal from './FundraisingModal'
+import PaymentModal from './PaymentModal'
 
 
 export {
@@ -45,4 +46,5 @@ export {
     FundraiseResult,
     FundraiseProgress,
     FundraisingModal,
+    PaymentModal,
 }
