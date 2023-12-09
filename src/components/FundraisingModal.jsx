@@ -3,39 +3,36 @@ import axios from 'axios';
 import { buildApiEndpoint, getCookie } from "../utils"
 
 const FundraisingModal = ({ setModalDisplay }) => {
-  const [formData, setFormData] = useState({
-    campaignName: '',
-    goalAmount: '',
-    description: '',
-    startDate: '',
-    endDate: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
+  const [campaignName, setCampaignName] = useState("");
+  const [goalAmount, setGoalAmount] = useState();
+  const [description, setDescription] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   
   const token = getCookie('token');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+
+    const values = JSON.stringify({
+      campaignName: campaignName,
+      goalAmount: goalAmount,
+      description: description,
+      startDate: startDate,
+      endDate: endDate,
+    });
 
     try {
-
-      // Make the Axios request with the appropriate headers, including the cookie
       const response = await axios.post(
-        'https://unique-barbers.onrender.com/api/v1/chats/getall',
-        formData,
+        'https://unique-barbers.onrender.com/api/v1/Campaign/create',
+        values,
         {
           headers: {
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${userCookie}`, // Include the cookie in the Authorization header
           },
         }
       );
 
-      // Handle the response as needed
       console.log('Response:', response.data);
     } catch (error) {
       // Handle errors
@@ -62,18 +59,18 @@ const FundraisingModal = ({ setModalDisplay }) => {
             <input
              type="text"
              name="campaignName"
-              value={formData.campaignName}
-              onChange={handleChange}
+              value={campaignName}
+              onChange={(e)=> setCampaignName(e.target.value)}
               placeholder="Campaign Name"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
               className="w-full mb-4 py-3 rounded-xl"
             />
 
               <input
-             type="text"
+             type="number"
              name="goalAmount"
-              value={formData.goalAmount}
-              onChange={handleChange}
+              value={goalAmount}
+             onChange={(e)=> setGoalAmount(e.target.value)}
               placeholder="Goal Amount"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
               className="w-full mb-4 py-3 rounded-xl"
@@ -82,8 +79,8 @@ const FundraisingModal = ({ setModalDisplay }) => {
            <input
              type="text"
              name="description"
-              value={formData.description}
-              onChange={handleChange}
+              value={description}
+              onChange={(e)=> setDescription(e.target.value)}
               placeholder="Description"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
               className="w-full mb-4 py-3 rounded-xl"
@@ -92,25 +89,26 @@ const FundraisingModal = ({ setModalDisplay }) => {
             <input
               type="date"
               name="startDate"
-              value={formData.startDate}
-              onChange={handleChange}
+              value={startDate}
+               onChange={(e)=> setStartDate(e.target.value)}
               placeholder="Start Date"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
-              className="w-full mb-4 py-3 rounded-xl"
+              className="w-full mb-4 py-6 rounded-xl"
             />
 
              <input
               type="date"
               name="endDate"
-              value={formData.endDate}
-              onChange={handleChange}
+              value={endDate}
+              onChange={(e)=> setEndDate(e.target.value)}
               placeholder="End Date"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
-              className="w-full mb-4 py-3 rounded-xl"
+              className="w-full mb-4 py-6 rounded-xl"
             />
 
 
             <button
+              onClick={()=> handleSubmit()}
               type="button"
               className="w-full py-3 rounded-xl text-white mb-4"
               style={{ backgroundColor: "#977d46" }}
