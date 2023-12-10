@@ -1,12 +1,31 @@
 import { tinyMCEInit } from '../utils'
 import Card from '../components/Card'
-
+import { addBlogPost } from "../api/blog";
 import React, { useState,useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import MyBlogs from '../components/MyBlogs'
+import BlogModal from '../components/BlogModal';
 
 export default function () {
   const editorRef = useRef(null);
+  const [editorContent, setEditorContent] = useState('');
+  const [blogTitle, setBlogTitle] = useState('');
+  const [category, setCategory] = useState("");
+  const [showModal, setModalShow] = useState(false);
+
+  const handleEditorChange = (content) => {
+    setEditorContent(content);
+  };
+
+  const tinyMCEInit = {
+    // Your TinyMCE configuration options here
+    // ...
+    setup: (editor) => {
+      editor.on('change', () => {
+        handleEditorChange(editor.getContent());
+      });
+    },
+  };
 
   const log = () => {
     if (editorRef.current) {
@@ -14,8 +33,21 @@ export default function () {
     }
   };
 
+const handleAddBlog = () => {
+      
+  const values = JSON.stringify({
+    blog_title: blogTitle, 
+    category: category,
+    reading_time: 4,
+    content: editorContent,
+  });
+    addBlogPost(values);
+
+  }
+
   return (
-    <div className='max-w-lg px-6 py-8 mx-auto lg:max-w-4xl xl:max-w-6xl'>
+    <>
+    <div className='max-w-lg px-6 pt-8 pb-20 mx-auto lg:max-w-4xl xl:max-w-6xl'>
       <h2 className="text-lg font-semibold text-gray-900">Blog</h2>
       <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
         <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
@@ -34,9 +66,32 @@ export default function () {
               init={tinyMCEInit}
             />
           </Card>
+
+
+          <div className='bg-red-400 relative'>
+          <button 
+          onClick={()=> setModalShow(true)}
+                        style={{ backgroundColor: "#977d46" }}
+                        class="text-white focus:ring-4 absolute right-0 mt-5 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2  me-2 mb-2 focus:outline-none"
+          >Create blog</button>
+          </div>
         </div>
       </div>
     </div>
+
+{
+  showModal &&
+  <BlogModal
+  handleAddBlog={handleAddBlog}
+    blogTitle={blogTitle}
+    setBlogTitle={setBlogTitle}
+    category={category}
+    setCategory={setCategory}
+    setModalShow={setModalShow}
+/>
+}
+   
+    </>
   )
 }
 

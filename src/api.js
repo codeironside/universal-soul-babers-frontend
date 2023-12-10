@@ -5,7 +5,7 @@ const token = getCookie('token');
 
 export const getPosts = async () => {
   try {
-    const response = await axios.get("https://unique-barbers.onrender.com/api/v1/blogs/all");
+    const response = await axios.get(buildApiEndpoint("/blogs/all"));
     return response.data;
   } catch (error) {
     console.error("Error fetching blog posts:", error)
@@ -16,7 +16,7 @@ export const getUserDetails = async ()=>{
 
       try {
         const response = await axios.get(
-          'https://unique-barbers.onrender.com/api/v1/users/one',
+          buildApiEndpoint('users/one'),
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ export const getUserDetails = async ()=>{
       console.log(userId);
       try {
         const response = await axios.get(
-          `https://unique-barbers.onrender.com/api/v1/campaign/contributions/${userId}`,
+          buildApiEndpoint(`campaign/contributions/${userId}`),
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ export const getUserDetails = async ()=>{
       console.log(userId);
       try {
         const response = await axios.get(
-          `https://unique-barbers.onrender.com/api/v1/campaign/user/${userId}`,
+          buildApiEndpoint(`/campaign/user/${userId}`),
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ export const getUserDetails = async ()=>{
     export const getallCampaignDetailsWithoutContributors = async (setDetails, callback)=> {
       try {
         const response = await axios.get(
-          `https://unique-barbers.onrender.com/api/v1/campaign/getall`,
+          buildApiEndpoint(`/campaign/getall`),
           {
             headers: {
               Authorization: `Bearer ${token}`,

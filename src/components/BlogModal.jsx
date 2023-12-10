@@ -1,7 +1,6 @@
 import React from 'react'
-import CheckoutForm from '../stripe/checkoutForm'
 
-const PaymentModal = ({setModalShow}) => {
+const BlogModal = ({ handleAddBlog, blogTitle, setBlogTitle, category, setCategory, setModalShow}) => {
   return (
     <>
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none px-4">
@@ -15,23 +14,36 @@ const PaymentModal = ({setModalShow}) => {
           className="text-center text-xl font-bold mb-4"
           style={{ color: "rgba(41, 44, 56, 1)" }}
         >
-         Donate
+        Add Blog Post
         </h1>
       
         <input
          type="text"
-         name="amount"
-          placeholder="Input an Amount"
+         name="blog-title"
+         onChange={(e)=> setBlogTitle(e.target.value)}
+         value={blogTitle}
+          placeholder="Blog Title"
+          style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
+          className="w-full mb-4 py-3 rounded-xl"
+        />
+
+          <input
+         type="text"
+         name="category"
+          placeholder="Category"
+          value={category}
+          onChange={(e)=> setCategory(e.target.value)}
           style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
           className="w-full mb-4 py-3 rounded-xl"
         />
 
         <button
+        onClick={()=>handleAddBlog()}
           type="button"
           className="w-full py-3 rounded-xl text-white mb-4"
           style={{ backgroundColor: "#977d46" }}
         >
-       Donate
+      Save
         </button>
         {/* <CheckoutForm /> */}
         <button
@@ -52,4 +64,4 @@ const PaymentModal = ({setModalShow}) => {
   )
 }
 
-export default PaymentModal
+export default BlogModal
