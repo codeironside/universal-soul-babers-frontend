@@ -8,12 +8,17 @@ import { buildApiEndpoint, getCookie } from "../utils";
 export default function MyShop() {
   const [openAddProduct, setOpenAddProduct] = useState(false);
 
+  const user = JSON.parse(getCookie('user'));
+  const owner = user._id
+  const contact_number = user.phoneNumber
+  const contact_email = user.email
+
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
   const maxSize = 1 * 1024 * 1024; // 1MB in bytes
 
   const [productData, setProductData] = useState({
-    name: "",
+    shop_name: "",
     category: "",
     price: "",
     description: "",
@@ -70,11 +75,16 @@ export default function MyShop() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", productData.name);
+    formData.append("name", productData.shop_name);
     formData.append("category", productData.category);
     formData.append("price", productData.price);
+    formData.append("owner", owner)
+    formData.append("contact_number", contact_number)
+    formData.append("contact_email", contact_email)
     formData.append("description", productData.description);
     formData.append("image", file);
+
+    console.log(Object.fromEntries(formData));
 
     try {
       const response = await axios.post(
@@ -90,7 +100,7 @@ export default function MyShop() {
 
       if (response.status === 200) {
         alert("Product created successfully");
-        console.log(response);
+        console.log(response.data);
         setOpenAddProduct(false);
 
         setProductData({
@@ -173,14 +183,14 @@ export default function MyShop() {
                             <div className="grid grid-cols-6 gap-6">
                               <div className="col-span-6">
                                 <label
-                                  htmlFor="name"
+                                  htmlFor="shop_name"
                                   className="block text-sm font-medium text-gray-700"
                                 >
                                   Product name
                                 </label>
                                 <input
                                   type="text"
-                                  name="name"
+                                  name="shop_name"
                                   id="name"
                                   autoComplete="name"
                                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
