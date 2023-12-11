@@ -3,17 +3,17 @@ import { makeBooking } from '../api/booking'
 
 const SidePanel = () => {
 
-  useEffect(()=> {
-    const values = JSON.stringify({
-      service: 'MyService',
-     date: '01-12-2003',
-    no_persons: 2,
-    time: '15:03pm',
-    shop_id: '652403697ee3e611c69abe1d',
-    });
+  // useEffect(()=> {
+  //   const values = JSON.stringify({
+  //     service: 'MyService',
+  //    date: '01-12-2003',
+  //   no_persons: 2,
+  //   time: '15:03pm',
+  //   shop_id: '652403697ee3e611c69abe1d',
+  //   });
 
-      makeBooking(values)
-  },[])
+  //     makeBooking(values)
+  // },[])
   return (
     <div className='shadow-panelShadow p-3 lg:p-5 rounded-md' >
         <div className="flex items-center justify-between">
