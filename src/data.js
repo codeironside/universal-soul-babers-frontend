@@ -141,6 +141,7 @@ export const categories = [
     content:
       "We have a marketplace for all members to showcase barbing equipment with a link to their social media accounts. This service is absolutely free!",
     btnText: "Go to Marketplace",
+    link: "/marketplace"
   },
   {
     img: catImg02,
@@ -148,6 +149,7 @@ export const categories = [
     content:
       "Comprehensive list of all barbers can be accessed from here.If you a need a barber to book solo or get a barber for your organization",
     btnText: "View All Babers",
+    link: '/barbers'
   },
   {
     img: catImg03,
@@ -155,14 +157,15 @@ export const categories = [
     content:
       "This is where all barbers around the world connect to discuss issues and make connection. THe forum is moderated to ensure a safe space for all voices",
     btnText: "Go to Forum",
+    link: '/forum'
   },
-  {
-    img: catImg04,
-    title: "Request For Assistance",
-    content:
-      "Anyone in need of urgent assistance can apply here. The funding is provided by various Government agencies and Private contractors",
-    btnText: "Request for Assistance",
-  },
+  // {
+  //   img: catImg04,
+  //   title: "Request For Assistance",
+  //   content:
+  //     "Anyone in need of urgent assistance can apply here. The funding is provided by various Government agencies and Private contractors",
+  //   btnText: "Request for Assistance",
+  // },
 ];
 
 export const pricing = [

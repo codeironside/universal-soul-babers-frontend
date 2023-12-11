@@ -246,7 +246,7 @@ export default function Home() {
       <section
         className='max-w-[1100px] mx-auto rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-11 lg:gap-[30px] p-[30px]  '>
         {categories.map((category, index) => {
-          const { img, title, content, btnText } = category;
+          const { img, title, content, btnText, link } = category;
           return (<div
             className='flex items-center flex-col p-8 justify-center w-full bg-white rounded-lg shadow-2xl '
             key={index}>
@@ -260,6 +260,7 @@ export default function Home() {
                 '>
               {content}
             </p>
+            <Link to={link}>
             <button
               className='
                 bg-black
@@ -270,7 +271,7 @@ export default function Home() {
                 mt-6
                 '>
               {btnText}
-            </button>
+            </button></Link>
           </div>);
         })}
       </section>
@@ -302,18 +303,18 @@ export default function Home() {
             </span>
           </h2>
           <div className="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
-            <a
+            {/* <a
               href="#"
               className="flex items-center justify-center rounded-md border border-transparent bg-primaryDark bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm"
             >
               Learn more
-            </a>
-            <a
-              href="#"
+            </a> */}
+            <Link
+              to="/signup"
               className="flex items-center justify-center rounded-md border border-transparent bg-warm-gray-100 px-4 py-3 text-base font-medium shadow-sm hover:bg-warm-gray-200"
             >
               Get started
-            </a>
+            </Link>
           </div>
         </div>
       </div>
