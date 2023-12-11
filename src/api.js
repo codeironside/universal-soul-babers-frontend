@@ -27,7 +27,7 @@ export const getUserDetails = async ()=>{
 
         const userData = response.data;
         localStorage.setItem('userId', userData.user._id);
-       setTimeout(callback, 3000);
+      //  setTimeout(callback, 3000);
       } catch (error) {
         console.error('Error fetching user details:', error);
       }

@@ -1,50 +1,52 @@
 import axios from 'axios';
 import { useImage } from '../context/ImageContext';
-import { getCookie } from '../utils';
+import { getCookie, setCookie } from '../utils';
 
-export default function UpdateImage({ onImageLoaded }) {
-  const {setImageUrl} = useImage()
+export default function UpdateImage() {
+  const { setImageUrl } = useImage();
   const cloudName = 'di36rc30e';
   const uploadPreset = 'mrh3qf9';
 
   const token = getCookie('token');
+  const user = JSON.parse(getCookie('user'));
 
   async function handleFile(e) {
+    e.preventDefault();
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', uploadPreset);
 
-  //   axios
-  //     .post(
-  //       `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-  //       formData
-  //     )
-  //     .then((res) => {
-  //       setImageUrl(res.data.secure_url)
-  //     })
-  //     .catch((err) => console.error(err));
-  // }
 
-   try {
-    const response = axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData)
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        formData
+      );
 
-    const imageId = response.data.public_id;
+      const imageId = response.data.public_id;
+      const imageRes = response.data.secure_url;
 
-    await axios.put(``, {image_url:imageId}, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
+      const userId = user._id;
 
-    setImageUrl(response.data.secure_url)
+      await axios
+        .put(
+          `https://unique-barbers.onrender.com/api/v1/users/update/${userId}`,
+          { pictureUrl: imageRes },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
-    
-   } catch (error) {
-    console.error('Error updating image: ',);
-    
-   }
+      setCookie('user', JSON.stringify({ ...user, pictureUrl: imageId }));
+
+      setImageUrl(response.data.secure_url);
+    } catch (error) {
+      console.error('Error updating image:', error);
+    }
   }
 
   return (
@@ -60,6 +62,7 @@ export default function UpdateImage({ onImageLoaded }) {
         id="fileInput"
         className="hidden"
         onChange={handleFile}
+        accept="image/jpg, image/jpeg, image/png"
       />
     </form>
   );
