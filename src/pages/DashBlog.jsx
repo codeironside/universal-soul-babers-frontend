@@ -4,7 +4,9 @@ import { addBlogPost } from "../api/blog";
 import React, { useState,useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import MyBlogs from '../components/MyBlogs'
+import { ToastContainer } from "react-toastify";
 import BlogModal from '../components/BlogModal';
+  
 
 export default function () {
   const editorRef = useRef(null);
@@ -41,7 +43,10 @@ const handleAddBlog = () => {
     reading_time: 4,
     content: editorContent,
   });
-    addBlogPost(values);
+    addBlogPost(values, (()=> {
+      setModalShow(false)
+      set
+    }));
 
   }
 
@@ -91,6 +96,8 @@ const handleAddBlog = () => {
 />
 }
    
+<ToastContainer position="top-center" />
+
     </>
   )
 }

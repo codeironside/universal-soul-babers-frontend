@@ -5,10 +5,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 const token = getCookie('token');
 
-export const addBlogPost = async (values) => {
+export const makeBooking = async (values) => {
     try {
       const response = await axios.post(
-        buildApiEndpoint(`/Blog/create`),
+        buildApiEndpoint(`/Booking/create`),
         values,
         {
           headers: {
@@ -19,7 +19,7 @@ export const addBlogPost = async (values) => {
       );
 
       console.log('Response:', response.data);
-      toast.success("New Blog Added");
+      toast.success("New Booking Created");
     } catch (error) {
       // Handle errors
       console.error('Error:', error.message);

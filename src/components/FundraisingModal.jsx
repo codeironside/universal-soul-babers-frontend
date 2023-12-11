@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { buildApiEndpoint, getCookie } from "../utils"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FundraisingModal = ({ setModalDisplay }) => {
   const [campaignName, setCampaignName] = useState("");
@@ -34,9 +36,12 @@ const FundraisingModal = ({ setModalDisplay }) => {
       );
 
       console.log('Response:', response.data);
+      toast.success("New Campaign Created");
+      setModalDisplay(false)
     } catch (error) {
       // Handle errors
       console.error('Error:', error.message);
+      toast.error("Error");
     }
   };
 

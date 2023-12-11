@@ -35,7 +35,6 @@ export const getUserDetails = async ()=>{
 
     export const getUserContributions = async (setUser)=>{
       let userId = localStorage.getItem('userId');
-      console.log(userId);
       try {
         const response = await axios.get(
           buildApiEndpoint(`campaign/contributions/${userId}`),
@@ -46,7 +45,6 @@ export const getUserDetails = async ()=>{
             },
           }
         );
-        console.log(response)
       } catch (error) {
         console.error('Error fetching user contributions:', error);
       }
@@ -54,7 +52,6 @@ export const getUserDetails = async ()=>{
 
     export const getUserCampaigns = async (setCampaign, callback)=>{
       let userId = localStorage.getItem('userId');
-      console.log(userId);
       try {
         const response = await axios.get(
           buildApiEndpoint(`/campaign/user/${userId}`),
@@ -65,7 +62,6 @@ export const getUserDetails = async ()=>{
             },
           }
         );
-        console.log(response)
         setCampaign(response.data.data);
         callback();
       } catch (error) {
