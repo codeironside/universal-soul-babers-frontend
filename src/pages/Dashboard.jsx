@@ -113,7 +113,7 @@ export default function () {
             <div className="flex flex-col">
               <div className="flex flex-row justify-between">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">Add your first blog</h3>
-                <Link to='/appointments/new' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
+                <Link to='/user/blog' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
                   Add blog
                 </Link>
               </div>
@@ -144,7 +144,7 @@ export default function () {
             <div className="flex flex-col">
               <div className="flex flex-row justify-between">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">Inventory and shop</h3>
-                <Link to='/appointments/new' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
+                <Link to='/my-store' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
                   Visit shop
                 </Link>
               </div>
