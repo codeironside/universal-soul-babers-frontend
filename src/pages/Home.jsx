@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   ArrowUturnLeftIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -11,7 +12,7 @@ import {
   TrashIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline'
-
+import { scrollToTop } from '../ScollToTop.js';
 import Design1 from "../assets/img/barber-brush.gif";
 import { categories, statistics } from "../data.js";
 import CountUp from "react-countup";
@@ -31,6 +32,10 @@ import Vid from "../assets/img/video-icon.png";
 import Design4 from "../assets/img/pie-chart.gif";
 
 export default function Home() {
+
+  useEffect(()=> {
+      scrollToTop();
+  },[])
   return (
     <main className="mt-10">
       {/* Hero section */}
@@ -57,12 +62,12 @@ export default function Home() {
                   Discover talented babers to give you the best cut. Are you
                   also a professional baber? create your shop now!
                 </p>
-                <div
+                {/* <div
                   className='w-full flex items-center justify-center lg:justify-start '
                   data-aos='zoom-in'
                   data-aos-delay='600'>
                   <button className='btn'>Request A Demo</button>
-                </div>
+                </div> */}
               </div>
 
               {/* Counter  */}
@@ -93,21 +98,24 @@ export default function Home() {
                 className='flex items-center gap-5 mt-12 justify-center lg:justify-normal'
                 data-aos='fade-up'
                 data-aos-delay='800'>
-                <Link
-                  to=''
+                <a
+                  href='https://www.youtube.com/@universoulbarbers'
+                  target="_blank"
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                   <RiYoutubeFill className='group-hover:text-white w-4 h-5' />
-                </Link>
-                <Link
-                  to=''
+                </a>
+                <a
+                 href='https://www.linkedin.com/company/universoulbarbers'
+                 target="_blank"
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                   <RiLinkedinFill className='group-hover:text-white w-4 h-5' />
-                </Link>
-                <Link
-                  to=''
+                </a>
+                <a
+                  href='https://www.instagram.com/universoulbarbers'
+                  target="_blank"
                   className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                   <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />
-                </Link>
+                </a>
               </div>
             </div>
             {/* hero img  */}
@@ -231,13 +239,13 @@ export default function Home() {
             management, and powerful marketing tools. Elevate your salon experience and unlock the potential for growth
             and success. Join us today and revolutionize the way you run your salon!
           </p>
-          <div
+          <Link to="/my-store"
             className='flex flex-center justify-center'
             data-aos='zoom-in'
             data-aos-duration='500'
             data-aos-delay='900'>
             <button className='btn '> Create A Shop</button>
-          </div>
+          </Link>
         </div>
       </div>
 

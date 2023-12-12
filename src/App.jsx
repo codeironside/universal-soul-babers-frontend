@@ -1,11 +1,9 @@
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import './App.css'
-
 import { Routes, Route } from "react-router-dom";
 
 import routes from "./routes.jsx"
-
 import MasterLayout from './layouts/MasterLayout.jsx'
 import { NotFound, } from "./pages";
 
