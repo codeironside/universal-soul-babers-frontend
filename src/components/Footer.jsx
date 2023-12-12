@@ -18,21 +18,24 @@ const Footer = () => {
               Copyright {year} Developed by SMAC TEAM
             </p>
             <div className='flex items-center gap-3 mt-4'>
-              <Link
-                to=''
+              <a
+                href='https://www.youtube.com/@universoulbarbers'
+                target="_blank"
                 className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                 <RiYoutubeFill className='group-hover:text-white w-4 h-5' />
-              </Link>
-              <Link
-                to=''
+              </a>
+              <a
+                href='https://www.linkedin.com/company/universoulbarbers'
+                target="_blank"
                 className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                 <RiLinkedinFill className='group-hover:text-white w-4 h-5' />
-              </Link>
-              <Link
-                to=''
+              </a>
+              <a
+                href='https://www.instagram.com/universoulbarbers'
+                target="_blank"
                 className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                 <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />
-              </Link>
+              </a>
             </div>
           </div>
           <div>

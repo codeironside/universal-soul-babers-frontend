@@ -16,6 +16,7 @@ import {
   Funding,
   UserCampaign,
   CampaignList,
+  Privacy,
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -96,6 +97,10 @@ export default [
   {
     path: '/cart',
     component: <Cart />,
+  },
+  {
+    path: '/privacy',
+    component: <Privacy />,
   },
   {
     path: '/dashboard',

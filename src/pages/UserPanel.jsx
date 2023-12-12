@@ -35,10 +35,10 @@ import { getCookie, isLoggedIn, deleteAllCookies, isOwner } from '../utils';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
-  { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
+  // { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
   // { name: 'Services', href: '/services', icon: BriefcaseIcon },
   // { name: 'Barbers', href: '/my-barbers', icon: UsersIcon },
-  { name: 'Customers', href: '/customers', icon: UserGroupIcon },
+  // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
   { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
   { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
   { name: 'Crowd Funding', href: '/funding', icon: CurrencyDollarIcon },
@@ -57,7 +57,7 @@ const ownerNav = [
 const secondaryNavigation = [
   { name: 'Settings', href: '/settings', icon: CogIcon },
   // { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
-  { name: 'Privacy', href: '#', icon: ShieldCheckIcon },
+  { name: 'Privacy', href: '/privacy', icon: ShieldCheckIcon },
 ];
 
 const announcements = [
