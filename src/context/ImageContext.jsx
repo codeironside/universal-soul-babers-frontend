@@ -5,7 +5,7 @@ const ImageContext = createContext();
 
 export function ImageProvider({ children }) {
   const user = JSON.parse(getCookie("user"));
-  const initialImageUrl = user.pictureUrl || "";
+  const initialImageUrl = user?.pictureUrl || "";
   const [imageUrl, setImageUrl] = useState(initialImageUrl);
 
   useEffect(() => {
