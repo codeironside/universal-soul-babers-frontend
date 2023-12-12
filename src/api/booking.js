@@ -25,3 +25,20 @@ export const makeBooking = async (values) => {
       console.error('Error:', error.message);
     }
   };
+
+  export const fetchDataOne = async (shopId) => {
+    console.log(shopId);
+    try {
+      const response = await axios.get(`https://unique-barbers.onrender.com/api/v1/shops/getOne/${shopId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      // Handle errors
+      console.error('Error:', error.message);
+    }
+  };
+  

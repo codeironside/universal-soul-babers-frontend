@@ -1,6 +1,5 @@
-
-import { useState, useContext } from "react";
-
+import { useState, useContext, useEffect } from "react";
+import { scrollToTop } from '../ScollToTop.js';
 import { products, statistics } from "../data";
 import { SectionHeader, Product } from '../components'
 import { ProductCard } from "../components/MarketPlace";
@@ -14,6 +13,10 @@ const MarketPlace = () => {
 
   const [currentImg, setCurrentImg] = useState(product1);
 
+
+  useEffect(()=> {
+      scrollToTop();
+  },[])
   return (
     <main>
       <section className='mx-auto  max-w-[1200px] mb-8'>
@@ -25,13 +28,13 @@ const MarketPlace = () => {
               data-aos-duration='1200'>
               Our Store
             </p>
-            <h1 className='mt-[20px] text-8xl max-sm:text-[62px] max-sm:leading-[72px] font-bold'>
+            <h1 className='mt-[20px] text-8xl max-sm:text-[50px] max-sm:leading-[72px] font-bold'>
               <span className='xl:bg-white shadow-xl xl:whitespace-nowrap relative lg:text-[88px] rounded-lg z-10 pr-[110px]'>
                 Marketplace
               </span>
 
               <span
-                className=' inline-block mt-[-28px] text-5xl'
+                className=' inline-block mt-[-28px] text-4xl'
                 data-aos='fade-up'
                 data-aos-duration='1200'
                 data-aos-delay='700'>
@@ -74,13 +77,13 @@ const MarketPlace = () => {
             </div>
 
             {/* Button   */}
-            <div
+            {/* <div
               className='w-full flex items-center justify-center md:justify-start lg:justify-start '
               data-aos='zoom-in'
               data-aos-duration='1200'
               data-aos-delay='600'>
               <button className='btn'>Shop</button>
-            </div>
+            </div> */}
           </div>
           <div
             data-aos='fade-right'

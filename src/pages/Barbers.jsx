@@ -1,5 +1,6 @@
 import { BarberCard, Testimonials } from "../components";
 // import { barbers } from "../data";
+import { scrollToTop } from '../ScollToTop.js';
 import { BallTriangleAnim } from "./Home";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -27,6 +28,7 @@ const Barbers = () => {
     };
 
     fetchData();
+    scrollToTop();
   }, []);
   return (
     <>

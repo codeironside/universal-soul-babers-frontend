@@ -3,6 +3,7 @@ import {FaSpinner} from "react-icons/fa6";
 import {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { getPosts } from '../api';
+import { scrollToTop } from '../ScollToTop';
 
 
 function calculateReadingTime(content) {
@@ -37,6 +38,7 @@ export default function Blog() {
     }
     
     fetchPosts();
+    scrollToTop();
   }, []);
 
 
