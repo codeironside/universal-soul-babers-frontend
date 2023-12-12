@@ -4,20 +4,23 @@ import baberImg from "../assets/img/about-1.jpg";
 import star from "../assets/img/Star.png";
 import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
-import {SidePanel} from '../components'
+import {SidePanel, BookingModal} from '../components'
 import { useParams } from 'react-router-dom';
 import { fetchDataOne } from "../api/booking";
+import { ToastContainer } from "react-toastify";
 
 const BarbersDetails = () => {
   const [tab, setTab] = useState("about");
+  const [showModal, setModalShow] = useState(false);
   const params = useParams(); 
     const shopId = params.id;
 
-    useEffect(()=> {
-       fetchDataOne(shopId);
-    },[])
+    // useEffect(()=> {
+    //    fetchDataOne(shopId);
+    // },[])
     
   return (
+    <>
     <section className='px-5 mx-auto container'>
       <div className='grid md:grid-cols-3 gap-[50px] '>
         <div className='md:col-span-2'>
@@ -84,10 +87,16 @@ const BarbersDetails = () => {
           </div>
         </div>
         <div className='md:col-span-1'>
-          <SidePanel />
+          <SidePanel setModalShow={setModalShow}/>
         </div>
       </div>
     </section>
+    {
+      showModal && 
+      <BookingModal setModalShow={setModalShow} shopId={shopId} />
+    }
+    <ToastContainer position="top-center" />
+    </>
   );
 };
 

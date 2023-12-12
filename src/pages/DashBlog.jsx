@@ -45,7 +45,6 @@ const handleAddBlog = () => {
   });
     addBlogPost(values, (()=> {
       setModalShow(false)
-      set
     }));
 
   }

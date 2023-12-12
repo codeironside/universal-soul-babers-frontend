@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const token = getCookie('token');
 
-export const addBlogPost = async (values) => {
+export const addBlogPost = async (values, callback) => {
     try {
       const response = await axios.post(
         buildApiEndpoint(`/Blog/create`),
@@ -17,7 +17,7 @@ export const addBlogPost = async (values) => {
           },
         }
       );
-
+      callback();
       console.log('Response:', response.data);
       toast.success("New Blog Added");
     } catch (error) {

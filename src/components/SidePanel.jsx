@@ -1,19 +1,8 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 
-const SidePanel = () => {
+const SidePanel = ({ setModalShow }) => {
 
-  // useEffect(()=> {
-  //   const values = JSON.stringify({
-  //     service: 'MyService',
-  //    date: '01-12-2003',
-  //   no_persons: 2,
-  //   time: '15:03pm',
-  //   shop_id: '652403697ee3e611c69abe1d',
-  //   });
-
-  //     makeBooking(values)
-  // },[])
   return (
     <div className='shadow-panelShadow p-3 lg:p-5 rounded-md' >
         <div className="flex items-center justify-between">
@@ -47,7 +36,7 @@ const SidePanel = () => {
             </li>
           </ul>
         </div>
-        <button className='btn px-2 w-full rounded-md' >Hire Me</button>
+        <button onClick={()=> setModalShow(true)} className='btn px-2 w-full rounded-md' >Hire Me</button>
     </div>
   )
 }
