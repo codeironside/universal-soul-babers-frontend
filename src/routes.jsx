@@ -17,6 +17,7 @@ import {
   UserCampaign,
   CampaignList,
   Privacy,
+  ThankYou,
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -150,6 +151,10 @@ export default [
   {
     path: '/old-profile',
     component: <Profile_ />,
+  },
+  {
+    path: '/thank-you',
+    component: <ThankYou />,
   },
   {
     path: '/profile',
