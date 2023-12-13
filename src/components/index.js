@@ -21,6 +21,7 @@ import FundraiseResult from './FundraiseResult'
 import FundraiseProgress from './FundraiseProgress'
 import FundraisingModal from './FundraisingModal'
 import PaymentModal from './PaymentModal'
+import { BookingModal } from './BookingModal'
 
 export {
     Card,
@@ -46,4 +47,5 @@ export {
     FundraiseProgress,
     FundraisingModal,
     PaymentModal,
+    BookingModal
 }

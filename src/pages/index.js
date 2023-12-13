@@ -17,6 +17,8 @@ import Funding from './Funding/Funding.jsx'
 import UserCampaign from './Funding/UserCampaign.jsx'
 import CampaignList from './Funding/CampaignList.jsx'
 import Privacy from './Privacy.jsx'
+import ThankYou from './ThankYou.jsx'
+
 
 export {
   Home,
@@ -38,4 +40,5 @@ export {
   UserCampaign,
   CampaignList,
   Privacy,
+  ThankYou,
 }

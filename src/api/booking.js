@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const token = getCookie('token');
 
-export const makeBooking = async (values) => {
+export const makeBooking = async (values, callback) => {
     try {
       const response = await axios.post(
         buildApiEndpoint(`/Booking/create`),
@@ -18,6 +18,7 @@ export const makeBooking = async (values) => {
         }
       );
 
+      callback();
       console.log('Response:', response.data);
       toast.success("New Booking Created");
     } catch (error) {
