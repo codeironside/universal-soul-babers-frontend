@@ -22,12 +22,12 @@ const MarketPlace = () => {
       <section className='mx-auto  max-w-[1200px] mb-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-20 justify-center items-center '>
           <div className='col-span-1 w-full h-full '>
-            <p
+            {/* <p
               className='text-para text-textColor leading-7 font-thin'
               data-aos='fade-down'
               data-aos-duration='1200'>
               Our Store
-            </p>
+            </p> */}
             <h1 className='mt-[20px] text-8xl max-sm:text-[50px] max-sm:leading-[72px] font-bold'>
               <span className='xl:bg-white shadow-xl xl:whitespace-nowrap relative lg:text-[88px] rounded-lg z-10 pr-[110px]'>
                 Marketplace
@@ -92,7 +92,7 @@ const MarketPlace = () => {
             className='col-span-1  w-full h-[600px] my-[-70px] relative flex items-center justify-items-center '>
             <img src={product1} alt='' className='block rounded-lg ' />
 
-            <div className='flex sm:gap-6 gap-4 absolute -bottom-[7%] sm:left-[10%] max-sm:px-6'>
+            <div className='flex hidden sm:gap-6 gap-4 absolute -bottom-[7%] sm:left-[10%] max-sm:px-6'>
               {products.map((image, index) => (
                 <ProductCard
                   key={index}
