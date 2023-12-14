@@ -14,9 +14,7 @@ const Footer = () => {
             <AppLogo />
 
             {/* Copyright  */}
-            <p className='text-[16px] leading-7 font-[400] text-textColor mt-4 '>
-              Copyright {year} Developed by SMAC TEAM
-            </p>
+           
             <div className='flex items-center gap-3 mt-4'>
               <a
                 href='https://www.youtube.com/@universoulbarbers'
@@ -73,6 +71,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+        <p className='text-[16px] text-center leading-7 font-[400] text-textColor mt-20 '>
+              Copyright {year} Developed by SMAC TEAM
+            </p>
       </div>
     </footer>
   );

@@ -169,7 +169,7 @@ export default Header;
 
 export function AppLogo() {
   return (
-    <Link to="#" className="flex items-center">
+    <Link to="/" className="flex items-center">
       <span className="sr-only">UnivaBarber</span>
       <img
         className="h-8 w-auto sm:h-10"

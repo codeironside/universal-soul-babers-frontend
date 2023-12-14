@@ -2,7 +2,7 @@ import StarIcon from '../assets/img/Star.png'
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 const BarberCard = ({ barber }) => {
-  const { _id, images, shop_name, customers, badge, shop_address, reviews, price} = barber;
+  const { _id, images, shop_name, customers, badge, shop_address, description, reviews, price} = barber;
   return (
     <div className='p-3 lg:p-5 flex items-center justify-center shadow-card'>
       <div
@@ -33,7 +33,7 @@ const BarberCard = ({ barber }) => {
               className='flex items gap-[6px]
               text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor
               '>
-              ({price})
+              {price}
             </span>
           </div>
         </div>
@@ -45,6 +45,9 @@ const BarberCard = ({ barber }) => {
             </h3>
             <p className='text-[14px] text-textColor leading-6 font-[400] '>
               At {shop_address}
+            </p>
+            <p className='text-[14px] text-textColor leading-6 font-[400] '>
+             {description}
             </p>
           </div>
           <Link
