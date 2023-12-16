@@ -41,9 +41,4 @@ export const addBlogPost = async (values, callback) => {
   
       console.log('Response:', response.data.dict);
       setBlogContent(response.data.dict);
-    } catch (error) {
-      console.error('Error:', error.message);
-      // Handle errors appropriately
-    }
-  };
   

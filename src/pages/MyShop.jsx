@@ -4,61 +4,17 @@ import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { buildApiEndpoint, getCookie } from "../utils";
-import { fetchShops } from "../api/product";
-import Select from "react-select"
-import { ImSpinner8 } from "react-icons/im";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-
-
 
 export default function MyShop() {
   const [shopData, setShopData] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
   const [openAddProduct, setOpenAddProduct] = useState(false);
-  const [loading, setLoading] = useState(false);
 
- 
-  const [availability, setAvailability] = useState({});
-
-  const handleTimeChange = (day, selectedTimes) => {
-    setAvailability((prevAvailability) => ({
-      ...prevAvailability,
-      [day]: selectedTimes.map((time) => time.value),
-    }));
-  };
-
-
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
-  const timeOptions = [];
-  for (let hour = 8; hour <= 22; hour++) {
-    for (let minute = 0; minute < 60; minute += 30) {
-      const formattedTime = `${hour % 12 || 12}:${minute
-        .toString()
-        .padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
-      timeOptions.push({ value: formattedTime, label: formattedTime });
-    }
-  }
-
-  
-
-  const barbersData = shopData.filter((item) => item.category === "barbers");
-
-  const user = JSON.parse(getCookie("user"));
-  const owner = user._id;
-  const contact_number = user.phoneNumber;
-  const contact_email = user.email;
+  const user = JSON.parse(getCookie('user'));
+  const owner = user._id
+  const contact_number = user.phoneNumber
+  const contact_email = user.email
 
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
@@ -77,6 +33,7 @@ export default function MyShop() {
     const selectedFile = e.target.files[0];
     previewFile(selectedFile);
   };
+
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -124,47 +81,35 @@ export default function MyShop() {
      e.preventDefault();
      setLoading(true)
 
-     const formData = new FormData();
-     formData.append("shop_name", productData.shop_name);
-     formData.append("category", productData.category);
-     formData.append("price", productData.price);
-     formData.append("owner", owner);
-     formData.append("contact_number", contact_number);
-     formData.append("contact_email", contact_email);
-     formData.append("workinghours", JSON.stringify(availability));
-     formData.append("description", productData.description);
+    const formData = new FormData();
+    formData.append("name", productData.shop_name);
+    formData.append("category", productData.category);
+    formData.append("price", productData.price);
+    formData.append("owner", owner)
+    formData.append("contact_number", contact_number)
+    formData.append("contact_email", contact_email)
+    formData.append("description", productData.description);
+    formData.append("image", file);
 
      formData.append("file", file);
      formData.append("upload_preset", uploadPreset);
 
-     try {
-       const response = await axios.post(
-         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-         formData
-       );
+    try {
+      const response = await axios.post(
+        buildApiEndpoint("/shops/register"),
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-       
-       const imageRes = response.data.secure_url;
-       formData.append("images", imageRes);
-
-       const formDataObject = {};
-       for (const [key, value] of formData.entries()) {
-         if (key !== "upload_preset" && key !== "file") {
-           formDataObject[key] = value;
-         }
-       }
-
-       await axios.post(buildApiEndpoint("/shops/register"), formDataObject, {
-         headers: {
-           Authorization: `Bearer ${token}`,
-           "Content-Type": "application/json",
-         },
-       });
-        
-       if (response.status >= 200 && response.status < 300) {
-         // Show success notification
-         toast.success("Shop Created successfully!");
-         setOpenAddProduct(false);
+      if (response.status === 200) {
+        alert("Product created successfully");
+        console.log(response.data);
+        setOpenAddProduct(false);
 
          setProductData({
            name: "",
@@ -190,8 +135,8 @@ export default function MyShop() {
   }, []);
   return (
     <>
-      <div className='px-8 py-6'>
-        <h1 className='text-4xl font-semibold text-gray-900'>Shop</h1>
+      <div className="px-8 py-6">
+        <h1 className="text-4xl font-semibold text-gray-900">Shop</h1>
 
         <p className='mt-12 text-xl text-gray-700'>
           Activate your shop in
@@ -217,9 +162,10 @@ export default function MyShop() {
 
           <Transition.Root show={openAddProduct} as={Fragment}>
             <Dialog
-              as='div'
-              className='relative z-10'
-              onClose={() => setOpenAddProduct(false)}>
+              as="div"
+              className="relative z-10"
+              onClose={() => setOpenAddProduct(false)}
+            >
               <Transition.Child
                 as={Fragment}
                 enter='ease-out duration-300'
@@ -254,12 +200,12 @@ export default function MyShop() {
                                   Shop name
                                 </label>
                                 <input
-                                  type='text'
-                                  name='shop_name'
-                                  id='name'
-                                  autoComplete='name'
-                                  className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-                                  value={productData.shop_name}
+                                  type="text"
+                                  name="shop_name"
+                                  id="name"
+                                  autoComplete="name"
+                                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                  value={productData.name}
                                   onChange={handleInputChange}
                                 />
                               </div>
@@ -378,40 +324,8 @@ export default function MyShop() {
                                 </div>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Working Hours  */}
-                          <div className='relative col-span-10 mt-6 gap-4'>
-                            {daysOfWeek.map((day) => (
-                              <div
-                                key={day}
-                                className='flex flex-col justify-center  w-full items-start'>
-                                <label className='block text-[18px] text-left font-medium mt-6 text-gray-700'>
-                                  {day}
-                                </label>
-                                <Select
-                                  styles={customStyles}
-                                  options={timeOptions}
-                                  isMulti
-                                  onChange={(selectedTimes) =>
-                                    handleTimeChange(day, selectedTimes)
-                                  }
-                                  menuPortalTarget={document.body}
-                                  components={{
-                                    DropdownIndicator: customDropdownIndicator,
-                                  }}
-                                  className='w-full mt-4' // Use Tailwind CSS classes for width
-                                />
-                              </div>
-                            ))}
-                            <p className='mt-2 text-sm text-gray-500'>
-                              You can decide to make changes if you want. Your
-                              availability can be updated at a go!
-                            </p>
-                          </div>
-
-                          <div className='relative inline-block text-left my-4 w-full'>
-                            <div className='px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6'>
+                            <div className="px-4 py-3 mt-4 text-right bg-gray-50 sm:px-6">
                               <button
                                 type='submit'
                                 className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-primaryDark shadow-sm focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
@@ -422,6 +336,11 @@ export default function MyShop() {
                                 )}
                               </button>
                             </div>
+
+                            <div onClick={() => setOpenAddProduct(false)} className="px-4 py-3 bg-gray-300 cursor-pointer flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
+                                Cancel
+                            </div>
+
                           </div>
                         </form>
                       </div>
@@ -618,4 +537,4 @@ const handleDeleteShop = (id) => {
       </div>
     </div>
   );
-};
+}
