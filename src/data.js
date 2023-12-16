@@ -28,12 +28,8 @@ export const products = [
 
 export const quickLinks = [
   {
-    path: '/home',
+    path: '/',
     display: 'Home'
-  },
-  {
-    path: '/about',
-    display: 'About us'
   },
   {
     path: '/blog',

@@ -1,4 +1,5 @@
 import Input from "../components/Input";
+import { CheckBox } from "../components";
 import { useState, useCallback, useEffect } from "react";
 import formImg from "../assets/img/Placeholder.gif";
 import formImg2 from "../assets/img/Sign up.gif";
@@ -230,6 +231,12 @@ export default function Auth({ signup = false }) {
               required={true}
               value={password}
             />
+          </div>
+          <div
+            className='flex w-full'
+            data-aos='fade-up'
+            data-aos-duration='1200'>
+            <CheckBox />
           </div>
 
           <button

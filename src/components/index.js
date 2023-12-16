@@ -1,4 +1,5 @@
 import Card from './Card'
+import CheckBox from './CheckBox'
 import Footer from './Footer'
 import Header from './Header'
 import SectionHeader from './SectionHeader'
@@ -25,6 +26,7 @@ import { BookingModal } from './BookingModal'
 
 export {
     Card,
+    CheckBox,
     Footer,
     Header,
     SectionHeader,
