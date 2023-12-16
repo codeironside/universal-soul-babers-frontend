@@ -29,7 +29,7 @@ const MarketPlace = () => {
               Our Store
             </p> */}
             <h1 className='mt-[20px] text-8xl max-sm:text-[50px] max-sm:leading-[72px] font-bold'>
-              <span className='xl:bg-white shadow-xl xl:whitespace-nowrap relative lg:text-[88px] rounded-lg z-10 pr-[110px]'>
+              <span className='lg:bg-white w-auto bg-white shadow-xl lg:whitespace-nowrap relative lg:text-[88px] rounded-lg z-30 md:pr-[110px] lg:pr-[110px] lg:pl-[20px] pr-[19px]'>
                 Marketplace
               </span>
 
@@ -46,7 +46,7 @@ const MarketPlace = () => {
               data-aos='fade-up'
               data-aos-duration='1500'
               data-aos-delay='900'
-              className='font-montserrat text-slate-gray text-lg leading-8 mt-4 sm:max-w-sm'>
+              className='font-montserrat text-slate-gray text-lg leading-8 my-8 sm:max-w-sm'>
               Get your equipment with ease. Super fast delivery and instant pay.
               get started now!!!
             </p>
