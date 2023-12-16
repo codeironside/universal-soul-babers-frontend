@@ -37,9 +37,8 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
   // { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
   // { name: 'Services', href: '/services', icon: BriefcaseIcon },
-  // { name: 'Barbers', href: '/my-barbers', icon: UsersIcon },
+  // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
   // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
-  { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
   { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
   { name: 'Crowd Funding', href: '/funding', icon: CurrencyDollarIcon },
   { name: 'Forum', href: '/forum', icon: ChatBubbleBottomCenterTextIcon },
@@ -103,6 +102,7 @@ export default function UserPanel({ fragment, owner = false }) {
 
   useEffect(() => {
     if (owner && user.role !== 'OWNER') navigate('/login');
+    console.log(user)
   }, []);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;

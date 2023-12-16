@@ -1,6 +1,7 @@
 import React from 'react'
+import { ImSpinner8 } from "react-icons/im";
 
-const BlogModal = ({ handleAddBlog, blogTitle, setBlogTitle, category, setCategory, setModalShow}) => {
+const BlogModal = ({ handleAddBlog, blogTitle, setBlogTitle, category, setCategory, setModalShow, loading}) => {
   return (
     <>
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none px-4">
@@ -40,10 +41,14 @@ const BlogModal = ({ handleAddBlog, blogTitle, setBlogTitle, category, setCatego
         <button
         onClick={()=>handleAddBlog()}
           type="button"
-          className="w-full py-3 rounded-xl text-white mb-4"
+          className="w-full py-3 flex items-center justify-center rounded-xl text-white mb-4"
           style={{ backgroundColor: "#977d46" }}
         >
-      Save
+          {
+            loading === true?
+            <ImSpinner8 />:
+            <span>Save</span>
+          }
         </button>
         {/* <CheckoutForm /> */}
         <button

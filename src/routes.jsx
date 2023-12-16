@@ -162,11 +162,6 @@ export default [
     standalone: true,
   },
   {
-    path: '/user/blog',
-    component: <UserPanel fragment={<DashBlog />} />,
-    standalone: true,
-  },
-  {
     path: '/customers',
     component: <UserPanel fragment={<Customers />} />,
     standalone: true,
@@ -203,7 +198,7 @@ export default [
   },
   {
     path: '/owner/blog',
-    component: <UserPanel fragment={<OwnerBlog />} owner={true} />,
+    component: <UserPanel fragment={<DashBlog />} owner={true} />,
     standalone: true,
   },
   {
