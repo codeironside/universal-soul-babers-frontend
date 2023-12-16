@@ -16,7 +16,6 @@ import {
   Funding,
   UserCampaign,
   CampaignList,
-  Privacy,
   ThankYou,
 } from './pages';
 import BlogContent from './pages/BlogContent';
@@ -99,10 +98,7 @@ export default [
     path: '/cart',
     component: <Cart />,
   },
-  {
-    path: '/privacy',
-    component: <Privacy />,
-  },
+
   {
     path: '/dashboard',
     component: <UserPanel fragment={<Dashboard />} />,

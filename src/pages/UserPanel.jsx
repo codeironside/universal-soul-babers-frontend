@@ -55,9 +55,7 @@ const ownerNav = [
 ];
 
 const secondaryNavigation = [
-  { name: 'Settings', href: '/settings', icon: CogIcon },
-  // { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
-  { name: 'Privacy', href: '/privacy', icon: ShieldCheckIcon },
+  { name: 'Settings', href: '/settings', icon: CogIcon }
 ];
 
 const announcements = [
