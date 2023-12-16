@@ -4,6 +4,7 @@ import {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { getPosts } from '../api';
 import { scrollToTop } from '../ScollToTop';
+import { getBlog } from '../api/blog'
 
 
 function calculateReadingTime(content) {
@@ -24,12 +25,22 @@ export default function Blog() {
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const handleFetchBlog =(blogId)=> {
+    // const values = JSON.stringify({
+    //   blog_id: blogId
+    // });
+
+    // console.log(values);
+    getBlog(blogId);
+  }
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setIsLoading(true)
        const postsData = await getPosts();
        setPosts(postsData.data);
+       console.log(postsData)
       } catch (error) {
         console.error("Error fetching blog posts:", error)
       } finally {
@@ -50,7 +61,7 @@ export default function Blog() {
         {posts && <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
             <div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0" onClick={()=> handleFetchBlog(post._id)}>
                 <img className="object-cover w-full h-48" src={post.media_url} alt=""/>
               </div>
               <div className="flex flex-col justify-between flex-1 p-6 bg-white">
