@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrowUturnLeftIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -30,11 +30,36 @@ import Service from "../assets/img/service.jpg";
 import Card from "../assets/img/card.png";
 import Vid from "../assets/img/video-icon.png";
 import Design4 from "../assets/img/pie-chart.gif";
+import axios from "axios";
 
 export default function Home() {
+  const [barbersData, setBarbersData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const selectedBarbers = barbersData?.slice(0, 3);
 
   useEffect(()=> {
       scrollToTop();
+
+        const fetchData = async () => {
+          setLoading(true);
+          try {
+            const response = await axios.get("https://unique-barbers.onrender.com/api/v1/shops/all");
+            if (Array.isArray(response.data.data)) {
+              const filteredBarbers = response.data.data.filter(item => item.category === 'barbers');
+              console.log(filteredBarbers)
+              setBarbersData(filteredBarbers);
+            } else {
+              console.error("Data received is not an array:", response.data);
+            }
+          } catch (error) {
+            console.error("Error fetching barbers data:", error);
+          } finally {
+            setLoading(false);
+          }
+        };
+
+        fetchData();
+
   },[])
   return (
     <main className="mt-10">
@@ -286,7 +311,7 @@ export default function Home() {
 
       <section className='container mx-auto items-center justify-center relative'>
         <BallTriangleAnim />
-        <BarberList />
+        <BarberList selectedBarbers={selectedBarbers} />
       </section>
 
 

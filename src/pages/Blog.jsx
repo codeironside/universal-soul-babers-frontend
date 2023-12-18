@@ -62,16 +62,14 @@ export default function Blog() {
           {posts.map((post) => (
             <div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
               <div className="flex-shrink-0" onClick={()=> handleFetchBlog(post._id)}>
-                <img className="object-cover w-full h-48" src={post.media_url} alt=""/>
+                <img className="object-cover w-full h-48" src="https://i.imgur.com/R6ncc8X.jpg" alt=""/>
               </div>
               <div className="flex flex-col justify-between flex-1 p-6 bg-white">
                 <div className="flex-1">
                   <p className="text-sm font-medium text-indigo-600">
-                    <a href={post.category} className="hover:underline">
                       {post.category}
-                    </a>
                   </p>
-                  <Link to={post.href} className="block mt-2">
+                  <Link to={`content/${post._id}`} className="block mt-2 underline">
                     <p className="text-xl font-semibold text-gray-900">{post.blog_title}</p>
                     <p className="mt-3 text-base text-gray-500">{post.description}</p>
                   </Link>
@@ -80,7 +78,7 @@ export default function Blog() {
                   <div className="flex-shrink-0">
                     <a href={post.owner_id}>
                       <span className="sr-only">{post.owner_name}</span>
-                      <img className="w-10 h-10 rounded-full" src={post.media_url} alt=""/>
+                      <img className="w-10 h-10 rounded-full" src="https://i.imgur.com/Qq1VF6Q.jpg" alt=""/>
                     </a>
                   </div>
                   <div className="ml-3">
@@ -101,172 +99,13 @@ export default function Blog() {
           }
         </div>}
         
-
-        <div className="relative">
-          {isLoading &&
+        {isLoading &&
             <div
               className="absolute top-0 left-0 flex items-center justify-center w-full h-full bg-white bg-opacity-70">
               <FaSpinner className="w-16 h-16 text-primaryDark animate-spin"/>
             </div>
           }
 
-          <h2 className="mt-12 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">All posts</h2>
-         {posts && <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:max-w-none lg:grid-cols-3">
-            {posts.map((post) => (<div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0">
-                <img className="object-cover w-full h-48" src={post.media_url} alt=""/>
-              </div>
-              <div className="flex flex-col justify-between flex-1 p-6 bg-white">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-indigo-600">
-                    <a href={post.category.href} className="hover:underline">
-                      {post.category.name}
-                    </a>
-                  </p>
-                  <Link to={post.href} className="block mt-2">
-                    <p className="text-xl font-semibold text-gray-900">{post.blog_title}</p>
-                    <p className="mt-3 text-base text-gray-500">{post.description}</p>
-                  </Link>
-                </div>
-                <div className="flex items-center mt-6">
-                  <div className="flex-shrink-0">
-                    <a href={post.owner_id}>
-                      <span className="sr-only">{post.owner_name}</span>
-                      <img className="w-10 h-10 rounded-full" src={post.media_url} alt=""/>
-                    </a>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">
-                      <a href={post.owner_id} className="hover:underline">
-                        {post.owner_name}
-                      </a>
-                    </p>
-                    <div className="flex space-x-1 text-sm text-gray-500">
-                      <time dateTime={formatDate(post.createdAt)}>{post.date}</time>
-                      <span aria-hidden="true">&middot;</span>
-                      <span>{calculateReadingTime(post.content)} read</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>),)}
-            {posts.map((post) => (<div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0">
-                <img className="object-cover w-full h-48" src={post.media_url} alt=""/>
-              </div>
-              <div className="flex flex-col justify-between flex-1 p-6 bg-white">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-indigo-600">
-                    <a href={post.category.href} className="hover:underline">
-                      {post.category.name}
-                    </a>
-                  </p>
-                  <Link to={post.href} className="block mt-2">
-                    <p className="text-xl font-semibold text-gray-900">{post.blog_title}</p>
-                    <p className="mt-3 text-base text-gray-500">{post.description}</p>
-                  </Link>
-                </div>
-                <div className="flex items-center mt-6">
-                  <div className="flex-shrink-0">
-                    <a href={post.owner_id}>
-                      <span className="sr-only">{post.owner_name}</span>
-                      <img className="w-10 h-10 rounded-full" src={post.media_url} alt=""/>
-                    </a>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">
-                      <a href={post.owner_id} className="hover:underline">
-                        {post.owner_name}
-                      </a>
-                    </p>
-                    <div className="flex space-x-1 text-sm text-gray-500">
-                      <time dateTime={formatDate(post.createdAt)}>{post.date}</time>
-                      <span aria-hidden="true">&middot;</span>
-                      <span>{calculateReadingTime(post.content)} read</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>),)}
-            {posts.map((post) => (<div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0">
-                <img className="object-cover w-full h-48" src={post.media_url} alt=""/>
-              </div>
-              <div className="flex flex-col justify-between flex-1 p-6 bg-white">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-indigo-600">
-                    <a href={post.category.href} className="hover:underline">
-                      {post.category.name}
-                    </a>
-                  </p>
-                  <Link to={post.href} className="block mt-2">
-                    <p className="text-xl font-semibold text-gray-900">{post.blog_title}</p>
-                    <p className="mt-3 text-base text-gray-500">{post.description}</p>
-                  </Link>
-                </div>
-                <div className="flex items-center mt-6">
-                  <div className="flex-shrink-0">
-                    <a href={post.owner_id}>
-                      <span className="sr-only">{post.owner_name}</span>
-                      <img className="w-10 h-10 rounded-full" src={post.media_url} alt=""/>
-                    </a>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">
-                      <a href={post.owner_id} className="hover:underline">
-                        {post.owner_name}
-                      </a>
-                    </p>
-                    <div className="flex space-x-1 text-sm text-gray-500">
-                      <time dateTime={formatDate(post.createdAt)}>{post.date}</time>
-                      <span aria-hidden="true">&middot;</span>
-                      <span>{calculateReadingTime(post.content)} read</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>),)}
-            {posts.map((post) => (<div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0">
-                <img className="object-cover w-full h-48" src={post.media_url} alt=""/>
-              </div>
-              <div className="flex flex-col justify-between flex-1 p-6 bg-white">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-indigo-600">
-                    <a href={post.category.href} className="hover:underline">
-                      {post.category.name}
-
-                    </a>
-                  </p>
-                  <Link to={post.href} className="block mt-2">
-                    <p className="text-xl font-semibold text-gray-900">{post.blog_title}</p>
-                    <p className="mt-3 text-base text-gray-500">{post.description}</p>
-                  </Link>
-                </div>
-                <div className="flex items-center mt-6">
-                  <div className="flex-shrink-0">
-                    <a href={post.owner_id}>
-                      <span className="sr-only">{post.owner_name}</span>
-                      <img className="w-10 h-10 rounded-full" src={post.media_url} alt=""/>
-                    </a>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">
-                      <a href={post.owner_id} className="hover:underline">
-                        {post.owner_name}
-                      </a>
-                    </p>
-                    <div className="flex space-x-1 text-sm text-gray-500">
-                      <time dateTime={formatDate(post.createdAt)}>{post.date}</time>
-                      <span aria-hidden="true">&middot;</span>
-                      <span>{calculateReadingTime(post.content)} read</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>),)}
-          </div> }
-        </div>
 
         <nav className="flex items-center justify-between px-4 mt-12 border-t border-gray-200 sm:px-0">
           <div className="flex flex-1 w-0 -mt-px">

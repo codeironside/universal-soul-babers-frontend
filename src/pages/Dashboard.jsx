@@ -106,20 +106,6 @@ export default function () {
           </h2>
 
           {/* todo: unduplicate */}
-          <Card
-            extraClasses='border mt-4'
-          >
-            {/* title, description and button */}
-            <div className="flex flex-col">
-              <div className="flex flex-row justify-between">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">Add your first blog</h3>
-                <Link to='/user/blog' className="text-sm font-medium text-cyan-700 hover:text-cyan-900">
-                  Add blog
-                </Link>
-              </div>
-              <p className="mt-1 text-sm text-gray-500">Add your first blog to get started with your business</p>
-            </div>
-          </Card>
 
           <Card
             extraClasses='border mt-4'
