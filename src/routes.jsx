@@ -70,7 +70,7 @@ export default [
     component: <Blog />,
   },
   {
-    path: '/blog/content',
+    path: '/blog/content/:blogId',
     component: <BlogContent />,
   },
   {

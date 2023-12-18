@@ -26,7 +26,7 @@ export const addBlogPost = async (values, callback) => {
     }
   };
 
- export const getBlog = async (blogId) => {
+ export const getBlog = async (blogId, setBlogContent) => {
     try {
       // Replace 'your_api_endpoint' with the actual endpoint
       const response = await axios.get(       
@@ -39,8 +39,8 @@ export const addBlogPost = async (values, callback) => {
         },
       );
   
-      console.log('Response:', response.data);
-      // Handle the response as needed
+      console.log('Response:', response.data.dict);
+      setBlogContent(response.data.dict);
     } catch (error) {
       console.error('Error:', error.message);
       // Handle errors appropriately

@@ -8,6 +8,7 @@ import {SidePanel, BookingModal} from '../components'
 import { useParams } from 'react-router-dom';
 import { fetchDataOne } from "../api/booking";
 import { ToastContainer } from "react-toastify";
+import { scrollToTop } from '../ScollToTop.js';
 
 const BarbersDetails = () => {
   const [tab, setTab] = useState("about");
@@ -15,9 +16,10 @@ const BarbersDetails = () => {
   const params = useParams(); 
     const shopId = params.id;
 
-    // useEffect(()=> {
-    //    fetchDataOne(shopId);
-    // },[])
+    useEffect(()=> {
+       fetchDataOne(shopId);
+       scrollToTop();
+    },[])
     
   return (
     <>

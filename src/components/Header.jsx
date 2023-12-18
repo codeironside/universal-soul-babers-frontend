@@ -127,9 +127,9 @@ const Header = () => {
                   <div className='px-2 pt-2 pb-3 space-y-1'>
                     {navLinks.map((item) => (
                       <Link
+                      onClick={close}
                         key={item.label}
                         to={item.path}
-                        onClick={close}
                         className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
                         {item.label}
                       </Link>
@@ -142,12 +142,14 @@ const Header = () => {
                     </div>
 
                     <Link
+                    onClick={close}
                       to="/login"
                       className="block w-full rounded-md border border-transparent bg-warm-gray-100 hover:bg-warm-gray-200 py-2 px-4 text-center font-medium shadow text-black"
                     >
                       Login
                     </Link>
                     <Link
+                    onClick={close}
                       to="/dashboard"
                       className="block w-full rounded-md border border-transparent py-2 px-4 text-center font-medium text-white shadow bg-primaryColor mt-4"
                     >
