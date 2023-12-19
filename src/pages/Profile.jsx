@@ -98,46 +98,14 @@ const Profile = () => {
           >
             My Profile
           </button>
-          <button
-            onClick={() => {
-              setTab("bookings");
-            }}
-            className={`
-              ${
-                tab === "bookings" &&
-                "border-b border-solid border-primaryColor"
-              }
-              py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
-          >
-            Bookings
-          </button>
-          <button
-            onClick={() => {
-              setTab("shop");
-            }}
-            className={`
-              ${tab === "shop" && "border-b border-solid border-primaryColor"}
-              py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
-          >
-            Shop(s)
-          </button>
-          <button
-            onClick={() => {
-              setTab("store");
-            }}
-            className={`
-              ${tab === "store" && "border-b border-solid border-primaryColor"}
-              py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
-          >
-            My Store
-          </button>
+         
+         
+        
         </div>
         {/* Tab conditional rendering  */}
         <div className="mt-[50px] ">
           {tab === "profile" && <BarberProfile user={user} />}
-          {tab === "bookings" && <BarberBookings />}
-          {tab === "shop" && <BarberShop />}
-          {tab === "store" && <BarberStore />}
+          
         </div>
       </div>
     </section>
