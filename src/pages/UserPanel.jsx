@@ -37,9 +37,8 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
   // { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
   // { name: 'Services', href: '/services', icon: BriefcaseIcon },
-  // { name: 'Barbers', href: '/my-barbers', icon: UsersIcon },
+  // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
   // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
-  { name: 'Blog', href: '/user/blog', icon: DocumentTextIcon },
   { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
   { name: 'Crowd Funding', href: '/funding', icon: CurrencyDollarIcon },
   { name: 'Forum', href: '/forum', icon: ChatBubbleBottomCenterTextIcon },
@@ -55,9 +54,7 @@ const ownerNav = [
 ];
 
 const secondaryNavigation = [
-  { name: 'Settings', href: '/settings', icon: CogIcon },
-  // { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
-  { name: 'Privacy', href: '/privacy', icon: ShieldCheckIcon },
+  { name: 'Settings', href: '/settings', icon: CogIcon }
 ];
 
 const announcements = [
@@ -103,6 +100,7 @@ export default function UserPanel({ fragment, owner = false }) {
 
   useEffect(() => {
     if (owner && user.role !== 'OWNER') navigate('/login');
+    console.log(user)
   }, []);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
@@ -319,6 +317,19 @@ export default function UserPanel({ fragment, owner = false }) {
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {!isOwner() && (
                         <>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/"
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-gray-700'
+                                )}
+                              >
+                                Home
+                              </Link>
+                            )}
+                          </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
                               <Link

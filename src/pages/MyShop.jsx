@@ -4,14 +4,35 @@ import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { buildApiEndpoint, getCookie } from "../utils";
+import {fetchShops} from '../api/product'
 
 export default function MyShop() {
   const [openAddProduct, setOpenAddProduct] = useState(false);
+  const [selectedHours, setSelectedHours] = useState({
+    Monday: "",
+    Tuesday: "",
+    Wednesday: "",
+    Thursday: "",
+    Friday: "",
+    Saturday: "",
+    Sunday: "",
+  });
 
-  const user = JSON.parse(getCookie('user'));
-  const owner = user._id
-  const contact_number = user.phoneNumber
-  const contact_email = user.email
+  const selectedHoursString = JSON.stringify(selectedHours);
+
+
+  const handleRadioChange = (day, value) => {
+    setSelectedHours((prevHours) => ({
+      ...prevHours,
+      [day]: value,
+    }));
+  };
+  
+
+  const user = JSON.parse(getCookie("user"));
+  const owner = user._id;
+  const contact_number = user.phoneNumber;
+  const contact_email = user.email;
 
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
@@ -30,6 +51,7 @@ export default function MyShop() {
     const selectedFile = e.target.files[0];
     previewFile(selectedFile);
   };
+
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -75,12 +97,13 @@ export default function MyShop() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", productData.shop_name);
+    formData.append("shop_name", productData.shop_name);
     formData.append("category", productData.category);
     formData.append("price", productData.price);
-    formData.append("owner", owner)
-    formData.append("contact_number", contact_number)
-    formData.append("contact_email", contact_email)
+    formData.append("owner", owner);
+    formData.append("contact_number", contact_number);
+    formData.append("contact_email", contact_email);
+    formData.append("workinghours", selectedHoursString);
     formData.append("description", productData.description);
     formData.append("image", file);
 
@@ -95,7 +118,7 @@ export default function MyShop() {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -122,7 +145,7 @@ export default function MyShop() {
   return (
     <>
       <div className="px-8 py-6">
-        <h1 className="text-4xl font-semibold text-gray-900">Shop</h1>
+        <h1 className="text-4xl font-semibold text-gray-900" onClick={()=> fetchShops()}>Shop</h1>
 
         <p className="mt-12 text-xl text-gray-700">
           Activate your shop in{" "}
@@ -143,14 +166,14 @@ export default function MyShop() {
             onClick={() => setOpenAddProduct(true)}
           >
             <PlusIcon className="w-5 h-5 mr-2 -ml-1" aria-hidden="true" />
-            Add product
+            Add Shop
           </button>
 
           <Transition.Root show={openAddProduct} as={Fragment}>
             <Dialog
               as="div"
               className="relative z-10"
-              onClose={() => setOpenAddProduct(false)}
+              onClose={()=> setOpenAddProduct(false)}
             >
               <Transition.Child
                 as={Fragment}
@@ -194,7 +217,7 @@ export default function MyShop() {
                                   id="name"
                                   autoComplete="name"
                                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                  value={productData.name}
+                                  value={productData.shop_name}
                                   onChange={handleInputChange}
                                 />
                               </div>
@@ -210,7 +233,6 @@ export default function MyShop() {
                                   type="text"
                                   name="category"
                                   id="category"
-                                  autoComplete="email"
                                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                   value={productData.category}
                                   onChange={handleInputChange}
@@ -319,8 +341,53 @@ export default function MyShop() {
                                 </div>
                               </div>
                             </div>
+</div>
+                            <div className="relative inline-block text-left my-6 w-full">
+      <label
+      className="block text-md font-medium text-gray-700"
+      >
+       Select working hours:
+      </label>
 
-                            <div className="px-4 py-3 mt-4 text-right bg-gray-50 sm:px-6">
+      {/* Dropdown menu */}
+      { Object.keys(selectedHours).map((day) => (
+        
+  <div key={day} className="mt-2 flex flex-col w-full bg-gray-50">
+    <p>{day}</p>
+    <label>
+      <input
+        type="radio"
+        name={day}
+        className="mr-2 cursor-pointer"
+        value={`${day.toLowerCase()}_morning`}
+        onChange={() => handleRadioChange(day, "morning")}
+      />
+      Morning (09:30:00)
+    </label>
+    <label>
+      <input
+        type="radio"
+        name={day}
+        className="mr-2 curor-pointer"
+        value={`${day.toLowerCase()}_afternoon`}
+        onChange={() => handleRadioChange(day, "afternoon")}
+      />
+      Afternoon (14:00:00)
+    </label>
+    <label>
+      <input
+        type="radio"
+        name={day}
+        className="mr-2 cursor-pointer"
+        value={`${day.toLowerCase()}_evening`}
+        onChange={() => handleRadioChange(day, "evening")}
+        
+      />
+      Evening (18:00:00)
+    </label>
+  </div>
+))}
+                            <div className="px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
                               <button
                                 type="submit"
                                 className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-primaryDark shadow-smfocus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
@@ -328,6 +395,11 @@ export default function MyShop() {
                                 Save product
                               </button>
                             </div>
+
+                            <div onClick={() => setOpenAddProduct(false)} className="px-4 py-3 bg-gray-300 cursor-pointer flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
+                                Cancel
+                            </div>
+
                           </div>
                         </form>
                       </div>

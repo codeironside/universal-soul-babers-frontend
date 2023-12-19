@@ -14,9 +14,15 @@ export default function () {
   const [blogTitle, setBlogTitle] = useState('');
   const [category, setCategory] = useState("");
   const [showModal, setModalShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleEditorChange = (content) => {
     setEditorContent(content);
+  };
+  const clearEditorContent = () => {
+    if (editorRef.current) {
+      editorRef.current.setContent('');
+    }
   };
 
   const tinyMCEInit = {
@@ -36,15 +42,20 @@ export default function () {
   };
 
 const handleAddBlog = () => {
-      
+  if(blogTitle === "" || category === "" || editorContent === ""){
+    return;
+  }
+      setLoading(true);
   const values = JSON.stringify({
     blog_title: blogTitle, 
     category: category,
-    reading_time: 4,
     content: editorContent,
   });
     addBlogPost(values, (()=> {
       setModalShow(false)
+      setEditorContent("");
+      setLoading(false);
+      clearEditorContent();
     }));
 
   }
@@ -92,6 +103,7 @@ const handleAddBlog = () => {
     category={category}
     setCategory={setCategory}
     setModalShow={setModalShow}
+    loading={loading}
 />
 }
    
