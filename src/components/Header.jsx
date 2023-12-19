@@ -259,7 +259,6 @@ const Header = () => {
             </div>
           </nav>
         </div>
-
         <Transition
           as={Fragment}
           enter='duration-150 ease-out'
@@ -320,7 +319,6 @@ const Header = () => {
                       </Link>
 
                       {/* conditionals for login and signup btns  */}
-
                       {isLoggedIn() ? (
                         <Link
                           onClick={logout}
