@@ -24,8 +24,8 @@ const Header = () => {
     navigate('/login');
   }
   const { itemCount } = useContext(CartContext)
-
-  const user = JSON.parse(getCookie('user'))
+  const userCookie = getCookie('user')
+  const user = userCookie ? JSON.parse(userCookie) : null;
 
   return (
     <UserContext.Provider value={user}>
@@ -38,7 +38,6 @@ const Header = () => {
               <div className='flex w-full items-center justify-between lg:w-auto'>
                 <AppLogo />
                 <div className='-mr-2 flex items-center lg:hidden'>
-                  
                   {/* Cart icon for mobile view beside the harmburger  */}
                   <Link to='/cart' className='inline-flex mr-3'>
                     <ShoppingCartIcon className='w-6 h-6 cursor-pointer mr-1' />
@@ -46,85 +45,91 @@ const Header = () => {
                   </Link>
 
                   {/* Profile icon for mobile view  */}
-                  <Menu as='div' className='relative ml-3 mr-3'>
-                    <div>
-                      <Menu.Button className='flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-warm-gray-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50'>
-                        <ProfileImage />
-                        <span className='hidden ml-3 text-sm font-medium text-gray-700 lg:block'>
-                          <span className='sr-only'>Open user menu for </span>
-                          {user.userName}
-                        </span>
-                        <ChevronDownIcon
-                          className='flex-shrink-0 hidden w-5 h-5 ml-1 text-gray-400 lg:block'
-                          aria-hidden='true'
-                        />
-                      </Menu.Button>
-                    </div>
-                    <Transition
-                      as={Fragment}
-                      enter='transition ease-out duration-100'
-                      enterFrom='transform opacity-0 scale-95'
-                      enterTo='transform opacity-100 scale-100'
-                      leave='transition ease-in duration-75'
-                      leaveFrom='transform opacity-100 scale-100'
-                      leaveTo='transform opacity-0 scale-95'>
-                      <Menu.Items className='absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                        {!isOwner() && (
-                          <>
+                  {isLoggedIn() && (
+                    <>
+                      <Menu as='div' className='relative ml-3 mr-3'>
+                        <div>
+                          <Menu.Button className='flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-warm-gray-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50'>
+                            <ProfileImage />
+                            <span className='hidden ml-3 text-sm font-medium text-gray-700 lg:block'>
+                              <span className='sr-only'>
+                                Open user menu for{" "}
+                              </span>
+                              {/* {user.userName} */}
+                            </span>
+                            <ChevronDownIcon
+                              className='flex-shrink-0 hidden w-5 h-5 ml-1 text-gray-400 lg:block'
+                              aria-hidden='true'
+                            />
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter='transition ease-out duration-100'
+                          enterFrom='transform opacity-0 scale-95'
+                          enterTo='transform opacity-100 scale-100'
+                          leave='transition ease-in duration-75'
+                          leaveFrom='transform opacity-100 scale-100'
+                          leaveTo='transform opacity-0 scale-95'>
+                          <Menu.Items className='absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                            {!isOwner() && (
+                              <>
+                                <Menu.Item>
+                                  {({ active }) => (
+                                    <Link
+                                      to='/'
+                                      className={classNames(
+                                        active ? "bg-gray-100" : "",
+                                        "block px-4 py-2 text-sm text-gray-700"
+                                      )}>
+                                      Home
+                                    </Link>
+                                  )}
+                                </Menu.Item>
+                                <Menu.Item>
+                                  {({ active }) => (
+                                    <Link
+                                      to='/profile'
+                                      className={classNames(
+                                        active ? "bg-gray-100" : "",
+                                        "block px-4 py-2 text-sm text-gray-700"
+                                      )}>
+                                      Your Profile
+                                    </Link>
+                                  )}
+                                </Menu.Item>
+                                <Menu.Item>
+                                  {({ active }) => (
+                                    <Link
+                                      to='/settings'
+                                      className={classNames(
+                                        active ? "bg-gray-100" : "",
+                                        "block px-4 py-2 text-sm text-gray-700"
+                                      )}>
+                                      Settings
+                                    </Link>
+                                  )}
+                                </Menu.Item>
+                              </>
+                            )}
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  to='/'
+                                  to='/login'
                                   className={classNames(
                                     active ? "bg-gray-100" : "",
                                     "block px-4 py-2 text-sm text-gray-700"
-                                  )}>
-                                  Home
+                                  )}
+                                  onClick={logout}>
+                                  Logout
                                 </Link>
                               )}
                             </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <Link
-                                  to='/profile'
-                                  className={classNames(
-                                    active ? "bg-gray-100" : "",
-                                    "block px-4 py-2 text-sm text-gray-700"
-                                  )}>
-                                  Your Profile
-                                </Link>
-                              )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <Link
-                                  to='/settings'
-                                  className={classNames(
-                                    active ? "bg-gray-100" : "",
-                                    "block px-4 py-2 text-sm text-gray-700"
-                                  )}>
-                                  Settings
-                                </Link>
-                              )}
-                            </Menu.Item>
-                          </>
-                        )}
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              to='/login'
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                              onClick={logout}>
-                              Logout
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </>
+                  )}
                   <Popover.Button className='focus-ring-inset inline-flex items-center justify-center rounded-md bg-warm-gray-50 p-2 text-warm-gray-400 hover:bg-warm-gray-100 focus:outline-none focus:ring-2 focus:ring-primaryDark'>
                     <span className='sr-only'>Open main menu</span>
                     <Bars3Icon className='h-6 w-6' aria-hidden='true' />
@@ -169,7 +174,7 @@ const Header = () => {
                       <ProfileImage />
                       <span className='hidden ml-3 text-sm font-medium text-gray-700 lg:block'>
                         <span className='sr-only'>Open user menu for </span>
-                        {user.userName}
+                        {user && user.userName}
                       </span>
                       <ChevronDownIcon
                         className='flex-shrink-0 hidden w-5 h-5 ml-1 text-gray-400 lg:block'
