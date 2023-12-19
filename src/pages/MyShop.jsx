@@ -233,7 +233,6 @@ export default function MyShop() {
                                   type="text"
                                   name="category"
                                   id="category"
-                                  autoComplete="email"
                                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                   value={productData.category}
                                   onChange={handleInputChange}
