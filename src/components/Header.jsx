@@ -38,7 +38,6 @@ const Header = () => {
               <div className='flex w-full items-center justify-between lg:w-auto'>
                 <AppLogo />
                 <div className='-mr-2 flex items-center lg:hidden'>
-                  
                   {/* Cart icon for mobile view beside the harmburger  */}
                   <Link to='/cart' className='inline-flex mr-3'>
                     <ShoppingCartIcon className='w-6 h-6 cursor-pointer mr-1' />
@@ -169,7 +168,7 @@ const Header = () => {
                       <ProfileImage />
                       <span className='hidden ml-3 text-sm font-medium text-gray-700 lg:block'>
                         <span className='sr-only'>Open user menu for </span>
-                        {user.userName}
+                        {user && user.userName}
                       </span>
                       <ChevronDownIcon
                         className='flex-shrink-0 hidden w-5 h-5 ml-1 text-gray-400 lg:block'
