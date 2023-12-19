@@ -39,6 +39,7 @@ const Header = () => {
               <div className='flex w-full items-center justify-between lg:w-auto'>
                 <AppLogo />
                 <div className='-mr-2 flex items-center lg:hidden'>
+                  
                   {/* Cart icon for mobile view beside the harmburger  */}
                   <Link to='/cart' className='inline-flex mr-3'>
                     <ShoppingCartIcon className='w-6 h-6 cursor-pointer mr-1' />
