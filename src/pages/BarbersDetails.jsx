@@ -19,15 +19,16 @@ const BarbersDetails = () => {
   const params = useParams(); 
     const shopId = params.id;
 
- // useEffect(() => {
- //    const fetchData = async () => {
- //      const response = await fetchDataOne(shopId); // Fetch the data
- //      setData(response); // Store the fetched data in state
- //    };
+ useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetchDataOne(shopId); // Fetch the data
+      console.log(response)
+      setData(response); // Store the fetched data in state
+    };
 
- //    fetchData();
- //    scrollToTop();
- //  }, []);
+    fetchData();
+    scrollToTop();
+  }, []);
     
   return (
     <>
