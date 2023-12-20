@@ -24,12 +24,13 @@ const BarbersDetails = () => {
       const response = await fetchDataOne(shopId); // Fetch the data
      
       setData(response); // Store the fetched data in state
+      console.log("this is data", data)
     };
 
     fetchData();
     scrollToTop();
   }, []);
-     console.log("this is data", data)
+     
   return (
     <>
       <section className='px-5 mx-auto container'>
