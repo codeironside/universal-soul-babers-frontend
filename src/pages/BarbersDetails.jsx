@@ -29,7 +29,7 @@ useEffect(() => {
   fetchData();
   scrollToTop();
 }, []);
-
+console.log("this is data", data)
      
   return (
     <>
