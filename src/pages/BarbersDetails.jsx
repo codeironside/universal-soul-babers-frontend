@@ -22,14 +22,14 @@ const BarbersDetails = () => {
  useEffect(() => {
     const fetchData = async () => {
       const response = await fetchDataOne(shopId); // Fetch the data
-      console.log("this is data", response)
+     
       setData(response); // Store the fetched data in state
     };
 
     fetchData();
     scrollToTop();
   }, []);
-    
+     console.log("this is data", data)
   return (
     <>
       <section className='px-5 mx-auto container'>
