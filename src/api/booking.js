@@ -37,7 +37,7 @@ export const makeBooking = async (values, callback) => {
           'Content-Type': 'application/json',
         },
       });
-        return response
+    return response
       console.log(response);
     } catch (error) {
       // Handle errors
