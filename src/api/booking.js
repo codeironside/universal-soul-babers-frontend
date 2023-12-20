@@ -31,7 +31,7 @@ export const makeBooking = async (values, callback) => {
     console.log(shopId);
     try {
         console.log(token)
-      const response = await axios.get(`https://unique-barbers.onrender.com/api/v1/shops/getOne/${shopId}`, {
+      const response = await axios.get(`https://unique-barbers.onrender.com/api/v1/shops/getone/${shopId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
