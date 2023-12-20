@@ -47,9 +47,10 @@ useEffect(() => {
         '>
                   Professional
                 </span>
-                <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
-                  ${data.data.owner.firstName} ${data.data.owner.lastName}
-                </h3>
+              <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
+  {data && data.data && data.data.owner ? `${data.data.owner.firstName} ${data.data.owner.lastName}` : 'Loading...'}
+</h3>
+
                 <div className='flex items-center gap-2 '>
                   <span className='flex items-center text-[14px] leading-5 gap-[6px] lg:text-[16px] lg:leading-7 font-semibold text-headingColor '>
                     <img src={star} alt='' /> 4.6
