@@ -15,13 +15,19 @@ import { scrollToTop } from '../ScollToTop.js';
 const BarbersDetails = () => {
   const [tab, setTab] = useState("about");
   const [showModal, setModalShow] = useState(false);
+  const [data, setData] = useState(null);
   const params = useParams(); 
     const shopId = params.id;
 
-    useEffect(()=> {
-       fetchDataOne(shopId);
-       scrollToTop();
-    },[])
+ useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetchDataOne(shopId); // Fetch the data
+      setData(response); // Store the fetched data in state
+    };
+
+    fetchData();
+    scrollToTop();
+  }, []);
     
   return (
     <>
