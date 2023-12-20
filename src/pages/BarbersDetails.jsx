@@ -47,6 +47,7 @@ useEffect(() => {
         '>
                   Professional
                 </span>
+                console.log(data)
               <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
   {data && data.data && data.data.owner ? `${data.data.owner.firstName} ${data.data.owner.lastName}` : 'Loading...'}
 </h3>
