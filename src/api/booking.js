@@ -38,7 +38,7 @@ export const makeBooking = async (values, callback) => {
         },
       });
     return response
-      console.log(response);
+      console.log(response.data);
     } catch (error) {
       // Handle errors
       console.error('Error:', error.message);
