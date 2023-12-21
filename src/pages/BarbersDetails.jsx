@@ -133,7 +133,7 @@ console.log("this is data here", data);
             </div>
           </div>
           <div className='md:col-span-1'>
-            <SidePanel setModalShow={setModalShow} />
+            <SidePanel setModalShow={setModalShow} data={data} />
           </div>
         </div>
       </section>
