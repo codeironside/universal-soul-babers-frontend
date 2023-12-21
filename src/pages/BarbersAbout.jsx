@@ -1,4 +1,5 @@
 import formatDate from "../utils/formatDate";
+import React, { useState, useEffect } from "react";
 const BarbersAbout = () => {
     const [showModal, setModalShow] = useState(false);
   const [data, setData] = useState(null);
