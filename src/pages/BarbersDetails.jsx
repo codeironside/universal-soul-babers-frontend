@@ -29,10 +29,10 @@ useEffect(() => {
   fetchData();
   scrollToTop();
 }, []);
-console.log("this is data", data)
+console.log("this is data here", data)
      
   return (
-    console.log("this is data here", data)
+    
     <>
       <section className='px-5 mx-auto container'>
         <div className='grid md:grid-cols-3 gap-[50px] '>
