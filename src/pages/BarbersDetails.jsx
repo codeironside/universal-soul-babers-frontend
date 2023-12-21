@@ -13,23 +13,7 @@ import { ToastContainer } from "react-toastify";
 import { scrollToTop } from '../ScollToTop.js';
 
  const BarbersDetails = () => {
-//   const [tab, setTab] = useState("about");
-//   const [showModal, setModalShow] = useState(false);
-//   const [data, setData] = useState(null);
-//   const params = useParams(); 
-//     const shopId = params.id;
 
-// useEffect(() => {
-//   const fetchData = async () => {
-//     const response = await fetchDataOne(shopId); // Fetch the data
-//      return setData(response); // Store the fetched data in state
-//     console.log("this is data", response); // Log the fetched data
-//   };
-
-//   fetchData();
-//   scrollToTop();
-// }, []);
-// console.log("this is data here", data)
  const [tab, setTab] = useState("about");
   const [showModal, setModalShow] = useState(false);
   const [data, setData] = useState(null);
@@ -93,12 +77,11 @@ import { scrollToTop } from '../ScollToTop.js';
                   </span>
                 </div>
                 <p className='text-para text-[14px] leading-6 md:text-[15px] lg:max-w-[300px] '>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Debitis, possimus.
+{data && data.data ? `${data.data.description}` : 'Loading...'}
                 </p>
 
                 {/* social links  */}
-                <div className='flex items-center gap-3 mt-4'>
+{/*                 <div className='flex items-center gap-3 mt-4'>
                   <a
                     href='https://www.youtube.com/@universoulbarbers'
                     target='_blank'
@@ -117,7 +100,7 @@ import { scrollToTop } from '../ScollToTop.js';
                     className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                     <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className='mt-[50px] border-b border-solid border-[#0066ff34]  '>
