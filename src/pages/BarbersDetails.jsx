@@ -12,7 +12,7 @@ import { fetchDataOne } from "../api/booking";
 import { ToastContainer } from "react-toastify";
 import { scrollToTop } from '../ScollToTop.js';
 
-// const BarbersDetails = () => {
+ const BarbersDetails = () => {
 //   const [tab, setTab] = useState("about");
 //   const [showModal, setModalShow] = useState(false);
 //   const [data, setData] = useState(null);
