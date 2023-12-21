@@ -1,5 +1,7 @@
 import formatDate from "../utils/formatDate";
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { fetchDataOne } from "../api/booking";
 const BarbersAbout = () => {
     const [showModal, setModalShow] = useState(false);
   const [data, setData] = useState(null);
