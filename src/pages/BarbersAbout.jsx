@@ -36,16 +36,13 @@ const BarbersAbout = () => {
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2 '>
           About
           <span className='text-headingColor font-semibold text-[24px] leading-9 '>
-            Ryan Scott
+           {data && data.data && data.data.owner ? `${data.data.owner.firstName} ${data.data.owner.lastName}` : 'Loading...'}
           </span>
         </h3>
         <p className='text-para  '>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-          atque magnam quibusdam iusto maxime cumque corporis unde voluptate
-          nobis, natus ipsam perspiciatis assumenda deserunt iste labore iure
-          neque aspernatur cupiditate!
+       {data && data.data ? `${data.data.owner.description}` : 'Loading...'}
         </p>
-      </div>
+{/*       </div>
       <div className='mt-12'>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
           Qualifications
@@ -82,11 +79,11 @@ const BarbersAbout = () => {
             </p>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Experience  */}
 
-      <div className='mt-'>
+{/*       <div className='mt-'>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
           Experience
         </h3>
@@ -115,7 +112,7 @@ const BarbersAbout = () => {
           </li>
 
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
