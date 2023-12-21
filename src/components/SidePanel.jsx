@@ -9,7 +9,7 @@ const SidePanel = ({ setModalShow, data }) => {
             <p className="text-para mt-0 font-semibold">
                 Booking Price 
             </p>
-            <span className="text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  ">{data ?`${data.price}`:"not available"}</span>
+            <span className="text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  ">$ {data ?`${data.price}`:"not available"}</span>
         </div>
         <div className="mt-[30px]">
           <p className='text-para mt-0 font-semibold text-headingColor ' >Working Hours: </p>
