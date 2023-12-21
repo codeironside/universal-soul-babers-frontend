@@ -1,5 +1,31 @@
 import formatDate from "../utils/formatDate";
 const BarbersAbout = () => {
+    const [showModal, setModalShow] = useState(false);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // New loading state
+  const params = useParams();
+  const shopId = params.id;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchDataOne(shopId); // Fetch the data
+        setData(response.data); // Store the fetched data in state
+        console.log("this is about", response.data); // Log the fetched data
+        setIsLoading(false); // Set loading to false when data is fetched
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false); // Set loading to false on error
+      }
+    };
+
+    fetchData();
+    scrollToTop();
+  }, [shopId]);
+
+  if (isLoading) {
+    return <p>Loading...</p>; // Display a loading message until data is fetched
+  }
   return (
     <div>
       <div>
