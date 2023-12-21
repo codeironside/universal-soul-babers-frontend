@@ -32,6 +32,7 @@ useEffect(() => {
 console.log("this is data", data)
      
   return (
+    console.log("this is data here", data)
     <>
       <section className='px-5 mx-auto container'>
         <div className='grid md:grid-cols-3 gap-[50px] '>
@@ -47,7 +48,7 @@ console.log("this is data", data)
         '>
                   Professional
                 </span>
-                console.log("this is data here", data)
+                
                 <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
   {data && data.data && data.data.owner ? `${data.data.owner.firstName} ${data.data.owner.lastName}` : 'Loading...'}
 </h3>
