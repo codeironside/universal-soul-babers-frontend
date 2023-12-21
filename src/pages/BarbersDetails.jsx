@@ -62,7 +62,7 @@ import { scrollToTop } from '../ScollToTop.js';
                 </span>
                 
                 <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
-  {data && data.data && data.data.owner ? `${data.data.owner.firstName} ${data.data.owner.lastName}` : 'Loading...'}
+  {data && data.owner ? `${data.owner.firstName} ${data.owner.lastName}` : 'Loading...'}
 </h3>
 
                 <div className='flex items-center gap-2 '>
