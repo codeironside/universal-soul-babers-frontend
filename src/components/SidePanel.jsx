@@ -7,9 +7,9 @@ console.log("this is side panel",data)
     <div className='shadow-panelShadow p-3 lg:p-5 rounded-md' >
         <div className="flex items-center justify-between">
             <p className="text-para mt-0 font-semibold">
-                Booking Price
+                Booking Price 
             </p>
-            <span className="text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  ">200 USDT</span>
+            <span className="text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  ">{data ?`${data.price}`:"not available"}</span>
         </div>
         <div className="mt-[30px]">
           <p className='text-para mt-0 font-semibold text-headingColor ' >Working Hours: </p>
