@@ -26,7 +26,7 @@ import { scrollToTop } from '../ScollToTop.js';
       try {
         const response = await fetchDataOne(shopId); // Fetch the data
         setData(response.data); // Store the fetched data in state
-        console.log("this is data", response.data); // Log the fetched data
+        // console.log("this is data", response.data); // Log the fetched data
         setIsLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,7 +41,6 @@ import { scrollToTop } from '../ScollToTop.js';
   if (isLoading) {
     return <p>Loading...</p>; // Display a loading message until data is fetched
   }
-console.log("this is data here", data);
      
   return (
     
@@ -114,7 +113,7 @@ console.log("this is data here", data);
                 }  py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
                 About
               </button>
-              <button
+{/*               <button
                 onClick={() => {
                   setTab("reviews");
                   console.log(tab);
@@ -125,7 +124,7 @@ console.log("this is data here", data);
               }
               py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
                 Reviews
-              </button>
+              </button> */}
             </div>
             <div className='mt-[50px] '>
               {tab === "about" && <BarbersAbout />}
