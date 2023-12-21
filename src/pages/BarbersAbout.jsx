@@ -42,7 +42,8 @@ const BarbersAbout = () => {
         <p className='text-para  '>
        {data && data.data ? `${data.data.owner.description}` : 'Loading...'}
         </p>
-{/*       </div>
+ </div>
+        {/*      
       <div className='mt-12'>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
           Qualifications
