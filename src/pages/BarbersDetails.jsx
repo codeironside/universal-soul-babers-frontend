@@ -22,7 +22,7 @@ const BarbersDetails = () => {
 useEffect(() => {
   const fetchData = async () => {
     const response = await fetchDataOne(shopId); // Fetch the data
-    setData(response); // Store the fetched data in state
+     return setData(response); // Store the fetched data in state
     console.log("this is data", response); // Log the fetched data
   };
 
