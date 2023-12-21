@@ -36,11 +36,11 @@ const BarbersAbout = () => {
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2 '>
           About
           <span className='text-headingColor font-semibold text-[24px] leading-9 '>
-           {data `${data.shop_name}` : 'Loading...'}
+           {data ?`${data.shop_name}` : 'Loading...'}
           </span>
         </h3>
         <p className='text-para  '>
-       {data ? `${data.data.description}` : 'Loading...'}
+       {data ? `${data.description}` : 'Loading...'}
         </p>
  </div>
         {/*      
