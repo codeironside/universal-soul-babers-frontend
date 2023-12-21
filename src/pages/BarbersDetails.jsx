@@ -12,24 +12,52 @@ import { fetchDataOne } from "../api/booking";
 import { ToastContainer } from "react-toastify";
 import { scrollToTop } from '../ScollToTop.js';
 
-const BarbersDetails = () => {
-  const [tab, setTab] = useState("about");
+// const BarbersDetails = () => {
+//   const [tab, setTab] = useState("about");
+//   const [showModal, setModalShow] = useState(false);
+//   const [data, setData] = useState(null);
+//   const params = useParams(); 
+//     const shopId = params.id;
+
+// useEffect(() => {
+//   const fetchData = async () => {
+//     const response = await fetchDataOne(shopId); // Fetch the data
+//      return setData(response); // Store the fetched data in state
+//     console.log("this is data", response); // Log the fetched data
+//   };
+
+//   fetchData();
+//   scrollToTop();
+// }, []);
+// console.log("this is data here", data)
+ const [tab, setTab] = useState("about");
   const [showModal, setModalShow] = useState(false);
   const [data, setData] = useState(null);
-  const params = useParams(); 
-    const shopId = params.id;
+  const [isLoading, setIsLoading] = useState(true); // New loading state
+  const params = useParams();
+  const shopId = params.id;
 
-useEffect(() => {
-  const fetchData = async () => {
-    const response = await fetchDataOne(shopId); // Fetch the data
-     return setData(response); // Store the fetched data in state
-    console.log("this is data", response); // Log the fetched data
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchDataOne(shopId); // Fetch the data
+        setData(response.data); // Store the fetched data in state
+        console.log("this is data", response.data); // Log the fetched data
+        setIsLoading(false); // Set loading to false when data is fetched
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false); // Set loading to false on error
+      }
+    };
 
-  fetchData();
-  scrollToTop();
-}, []);
-console.log("this is data here", data)
+    fetchData();
+    scrollToTop();
+  }, [shopId]);
+
+  if (isLoading) {
+    return <p>Loading...</p>; // Display a loading message until data is fetched
+  }
+
      
   return (
     
