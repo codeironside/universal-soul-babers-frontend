@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 
 const SidePanel = ({ setModalShow, data }) => {
-console.log("this is side panel",data)
+
   return (
     <div className='shadow-panelShadow p-3 lg:p-5 rounded-md' >
         <div className="flex items-center justify-between">
