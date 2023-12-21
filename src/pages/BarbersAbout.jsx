@@ -15,7 +15,7 @@ const BarbersAbout = () => {
       try {
         const response = await fetchDataOne(shopId); // Fetch the data
         setData(response.data); // Store the fetched data in state
-        console.log("this is about", response.data); // Log the fetched data
+        //console.log("this is about", response.data); // Log the fetched data
         setIsLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         console.error("Error fetching data:", error);
