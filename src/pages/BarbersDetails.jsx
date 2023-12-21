@@ -77,7 +77,7 @@ console.log("this is data here", data);
                   </span>
                 </div>
                 <p className='text-para text-[14px] leading-6 md:text-[15px] lg:max-w-[300px] '>
-{data && data.data ? `${data.data.description}` : 'Loading...'}
+{data  ? `${data.description}` : 'Loading...'}
                 </p>
 
                 {/* social links  */}
