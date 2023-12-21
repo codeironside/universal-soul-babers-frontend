@@ -41,7 +41,7 @@ import { scrollToTop } from '../ScollToTop.js';
   if (isLoading) {
     return <p>Loading...</p>; // Display a loading message until data is fetched
   }
-console.log("this is data", data.firstName);
+console.log("this is data here", data);
      
   return (
     
