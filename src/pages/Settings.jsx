@@ -6,8 +6,8 @@ import { Tab } from '@headlessui/react';
 import axios from 'axios';
 import { UserContext } from './UserPanel';
 
-import UpdateImage from '../components/UpdateImage';
-import ProfileImage from '../components/ProfileImage';
+import {UpdateImage, ProfileImage, UpdateModal } from '../components';
+
 
 const componentMap = {
   General,
@@ -94,7 +94,11 @@ export default function Settings() {
 }
 
 function General({ user }) {
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [title, setTitle] = useState("Update Your Profile Information");
+   const [inputValue, setInputValue] = useState(''); 
   const [userImage, setUserImage] = useState('');
+  const [updateFieldName, setUpdateFieldName] = useState('')
 
   const handleImageLoaded = (imageurl) => {
     setUserImage(imageurl);
@@ -102,171 +106,100 @@ function General({ user }) {
   //console.log(user)
   return (
     <>
-      <div className="space-y-1">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-        <p className="max-w-2xl text-sm text-gray-500">
+      <div className='space-y-1'>
+        <UpdateModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          initialValue={inputValue}
+          title={title}
+          fieldName= {updateFieldName}
+        />
+        <h3 className='text-lg font-medium leading-6 text-gray-900'>Profile</h3>
+        <p className='max-w-2xl text-sm text-gray-500'>
           This information will be displayed publicly so be careful what you
           share.
         </p>
       </div>
-      <div className="mt-6">
-        <dl className="divide-y divide-gray-200">
-          <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-            <dt className="text-sm font-medium text-gray-500">Name</dt>
-            <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span className="flex-grow">{`${user.firstName} ${user.lastName}`}</span>
-              <span className="flex-shrink-0 ml-4">
+      <div className='mt-6'>
+        <dl className='divide-y divide-gray-200'>
+          <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5'>
+            <dt className='text-sm font-medium text-gray-500'>User name</dt>
+            <dd className='flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+              <span className='flex-grow'>{`${user.userName} `}</span>
+              <span className='flex-shrink-0 ml-4'>
                 <button
-                  type="button"
-                  className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                >
+                  onClick={() => {
+                    setIsModalOpen(true);
+                    setTitle('Update Your User Name')
+                    setInputValue(`${user.userName}`);
+                    setUpdateFieldName('userName')
+                  }}
+                  type='button'
+                  className='font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
                   Update
                 </button>
               </span>
             </dd>
           </div>
-          <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-            <dt className="text-sm font-medium text-gray-500">Photo</dt>
-            <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span className="flex-grow">
+          <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5'>
+            <dt className='text-sm font-medium text-gray-500'>Photo</dt>
+            <dd className='flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+              <span className='flex-grow'>
                 <ProfileImage />
               </span>
-              <span className="flex items-start flex-shrink-0 ml-4 space-x-4">
+              <span className='flex items-start flex-shrink-0 ml-4 space-x-4'>
                 <UpdateImage onImageLoaded={handleImageLoaded} />
 
-                <span className="text-gray-300" aria-hidden="true">
+                <span className='text-gray-300' aria-hidden='true'>
                   |
                 </span>
                 <button
-                  type="button"
-                  className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                >
+                  type='button'
+                  className='font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
                   Remove
                 </button>
               </span>
             </dd>
           </div>
-          <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-            <dt className="text-sm font-medium text-gray-500">Email</dt>
-            <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span className="flex-grow">{user.email}</span>
-              <span className="flex-shrink-0 ml-4">
+          <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5'>
+            <dt className='text-sm font-medium text-gray-500'>PhoneNumber</dt>
+            <dd className='flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+              <span className='flex-grow'>{user.phoneNumber}</span>
+              <span className='flex-shrink-0 ml-4'>
                 <button
-                  type="button"
-                  className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                >
+                  onClick={() => {
+                     setIsModalOpen(true);
+                    setTitle('Update Your Phone Number')
+                    setInputValue(`${user.phoneNumber}`);
+                    setUpdateFieldName('phoneNumber')
+                  }}
+                  type='button'
+                  className='font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
+                  Update
+                </button>
+              </span>
+            </dd>
+          </div>
+          <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5'>
+            <dt className='text-sm font-medium text-gray-500'>Email</dt>
+            <dd className='flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+              <span className='flex-grow'>{user.email}</span>
+              <span className='flex-shrink-0 ml-4'>
+                <button
+                  onClick={() => {
+                    setIsModalOpen(true);
+                    setTitle("Update Your Email");
+                    setInputValue(`${user.email}`);
+                    setUpdateFieldName("Email");
+                  }}
+                  type='button'
+                  className='font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
                   Update
                 </button>
               </span>
             </dd>
           </div>
         </dl>
-      </div>
-
-      {/* Shop settings */}
-      <div className="pt-10 mt-10 border-t border-gray-200">
-        <div className="space-y-1">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">Shop</h3>
-          <p className="max-w-2xl text-sm text-gray-500">
-            This information will be displayed publicly so be careful what you
-            share.
-          </p>
-        </div>
-        <div className="mt-6">
-          <dl className="divide-y divide-gray-200">
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Store name</dt>
-              <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <span className="flex-grow">Chelsea's Store</span>
-                <span className="flex-shrink-0 ml-4">
-                  <button
-                    type="button"
-                    className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                </span>
-              </dd>
-            </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-              <dt className="text-sm font-medium text-gray-500">Store URL</dt>
-              <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <span className="flex-grow">
-                  https://univacbaber.com/store/1
-                </span>
-                <span className="flex-shrink-0 ml-4">
-                  {/* copy to clipboard button and handler */}
-                  <button
-                    type="button"
-                    className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                    onClick={() => {
-                      navigator.clipboard.writeText(
-                        'https://univacbaber.com/store/1'
-                      );
-                    }}
-                  >
-                    Copy
-                  </button>
-                  {/* <button
-                    type="button"
-                    className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                  >
-                    Update
-                  </button> */}
-                </span>
-              </dd>
-            </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-              <dt className="text-sm font-medium text-gray-500">
-                Store Description
-              </dt>
-              <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <span className="flex-grow">
-                  We sell the best stuff around.
-                </span>
-                <span className="flex-shrink-0 ml-4">
-                  <button
-                    type="button"
-                    className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                </span>
-              </dd>
-            </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">
-                Social Sharing Image
-              </dt>
-              <dd className="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <span className="flex-grow">
-                  <img
-                    className="w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </span>
-                <span className="flex items-start flex-shrink-0 ml-4 space-x-4">
-                  <button
-                    type="button"
-                    className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                  <span className="text-gray-300" aria-hidden="true">
-                    |
-                  </span>
-                  <button
-                    type="button"
-                    className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                  >
-                    Remove
-                  </button>
-                </span>
-              </dd>
-            </div>
-          </dl>
-        </div>
       </div>
     </>
   );
@@ -344,7 +277,7 @@ function Password({ user }) {
           <div className="max-w-4xl mx-auto">
             <button
               type="button"
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primaryDark hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-primaryDark"
+              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primaryDark hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark"
             >
               Save
             </button>

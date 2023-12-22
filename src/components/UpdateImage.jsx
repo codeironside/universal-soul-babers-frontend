@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useImage } from '../context/ImageContext';
 import { getCookie, setCookie } from '../utils';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UpdateImage() {
   const { setImageUrl } = useImage();
@@ -40,6 +42,13 @@ export default function UpdateImage() {
             },
           }
         );
+          if (response.status >= 200 && response.status < 300) {
+            // Show success notification
+            toast.success("Profile Updated successfully!");
+          } else {
+            // Show error notification
+            toast.error("Failed to submit data. Please try again.");
+          }
 
       setCookie('user', JSON.stringify({ ...user, pictureUrl: imageId }));
 
@@ -51,18 +60,18 @@ export default function UpdateImage() {
 
   return (
     <form>
+      <ToastContainer />
       <label
-        htmlFor="fileInput"
-        className="font-medium bg-white rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-      >
+        htmlFor='fileInput'
+        className='font-medium bg-white cursor-pointer  rounded-md text-primaryDark hover:text-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
         Update
       </label>
       <input
-        type="file"
-        id="fileInput"
-        className="hidden"
+        type='file'
+        id='fileInput'
+        className='hidden'
         onChange={handleFile}
-        accept="image/jpg, image/jpeg, image/png"
+        accept='image/jpg, image/jpeg, image/png'
       />
     </form>
   );

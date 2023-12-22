@@ -133,18 +133,22 @@ export default function Auth({ signup = false }) {
 
   return (
     <section className='container grid items-center justify-center h-full grid-cols-1 mx-auto md:grid-cols-2 lg:grid-cols-2 '>
-      {errorMessage.desc && <Notification type={errorMessage.type} title={errorMessage.title} desc={errorMessage.desc} superHandler={() => setErrorMessage(mockErrorMsg)} />}
-      <div
-        className='h-full col-span-1 '>
+      {errorMessage.desc && (
+        <Notification
+          type={errorMessage.type}
+          title={errorMessage.title}
+          desc={errorMessage.desc}
+          superHandler={() => setErrorMessage(mockErrorMsg)}
+        />
+      )}
+      <div className='h-full col-span-1 '>
         <img
           src={variant === "Login" ? formImg : formImg2}
           alt=''
           className='h-[550px] hidden lg:block md:block'
         />
       </div>
-      <form method='POST'
-        onSubmit={handleSubmitForm}
-      >
+      <form method='POST' onSubmit={handleSubmitForm}>
         <div className='col-span-1 w-[95%] px-5 h-full flex flex-col gap-5 items-center justify-start'>
           <h1
             data-aos='fade-down'
@@ -232,12 +236,14 @@ export default function Auth({ signup = false }) {
               value={password}
             />
           </div>
-          <div
-            className='flex w-full'
-            data-aos='fade-up'
-            data-aos-duration='1200'>
-            <CheckBox />
-          </div>
+          {variant === "Register" && (
+            <div
+              className='flex w-full'
+              data-aos='fade-up'
+              data-aos-duration='1200'>
+              <CheckBox />
+            </div>
+          )}
 
           <button
             type='submit'
@@ -251,14 +257,17 @@ export default function Auth({ signup = false }) {
             className='text-neutral-500 mt'
             data-aos='fade-up'
             data-aos-duration='1500'>
-            {variant == "Login" ? "First time here?" : "Already have an account"}
+            {variant == "Login"
+              ? "First time here?"
+              : "Already have an account"}
             <span
-              onClick={() => navigate(variant === "Login" ? "/signup" : "/login")}
+              onClick={() =>
+                navigate(variant === "Login" ? "/signup" : "/login")
+              }
               className='ml-2 text-black cursor-pointer hover:underline'>
               {variant === "Login" ? "Create an account" : "Login"}
             </span>
           </p>
-
         </div>
       </form>
     </section>

@@ -2,29 +2,30 @@ import { Fragment } from "react";
 import logo from "../assets/img/Logo.png";
 import textLogo from "../assets/img/Universoul.png";
 import { Popover, Transition, Menu } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, ShoppingCartIcon, } from "@heroicons/react/24/outline/index.js";
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { navLinks } from '../data'
+import {
+  Bars3Icon,
+  XMarkIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/24/outline/index.js";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { navLinks } from "../data";
 import { isLoggedIn, deleteAllCookies } from "../utils";
 import { UserContext } from "../pages/UserPanel";
-import { getCookie, isOwner,classNames } from "../utils";
+import { getCookie, isOwner, classNames } from "../utils";
 import ProfileImage from "./ProfileImage";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
-import {
-  ChevronDownIcon
-} from '@heroicons/react/20/solid';
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 const Header = () => {
-   
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    function logout() {
+  function logout() {
     deleteAllCookies();
-    navigate('/login');
+    navigate("/login");
   }
-  const { itemCount } = useContext(CartContext)
-  const userCookie = getCookie('user')
+  const { itemCount } = useContext(CartContext);
+  const userCookie = getCookie("user");
   const user = userCookie ? JSON.parse(userCookie) : null;
 
   return (
@@ -359,21 +360,12 @@ const Header = () => {
 
 export default Header;
 
-
 export function AppLogo() {
   return (
-    <Link to="/" className="flex items-center">
-      <span className="sr-only">UnivaBarber</span>
-      <img
-        className="h-8 w-auto sm:h-10"
-        src={logo}
-        alt=""
-      />
-      <img
-        className="h-4 ml-4"
-        src={textLogo}
-        alt="UnivaBaber logo text"
-      />
+    <Link to='/' className='flex items-center'>
+      <span className='sr-only'>UnivaBarber</span>
+      <img className='h-8 w-auto sm:h-10' src={logo} alt='' />
+      <img className='h-4 ml-4' src={textLogo} alt='UnivaBaber logo text' />
     </Link>
   );
 }

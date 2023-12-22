@@ -23,8 +23,14 @@ import FundraiseProgress from './FundraiseProgress'
 import FundraisingModal from './FundraisingModal'
 import PaymentModal from './PaymentModal'
 import { BookingModal } from './BookingModal'
+import UpdateModal from './UpdateModal'
+import UpdateImage from './UpdateImage'
+import ProfileImage from './ProfileImage'
 
 export {
+    ProfileImage,
+    UpdateImage,
+    UpdateModal,
     Card,
     CheckBox,
     Footer,
