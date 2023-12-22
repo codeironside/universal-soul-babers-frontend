@@ -102,6 +102,7 @@ const BarberProfile = () => {
           rows="6"
           placeholder="Your Bio"
           onChange={(e) => setBio(e.target.value)}
+          value={bio}
         ></textarea>
       </div>
       <div className="flex w-[90%] ">

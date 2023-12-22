@@ -1,38 +1,46 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 
-const SidePanel = ({ setModalShow }) => {
+const SidePanel = ({ setModalShow, data }) => {
 
   return (
     <div className='shadow-panelShadow p-3 lg:p-5 rounded-md' >
         <div className="flex items-center justify-between">
             <p className="text-para mt-0 font-semibold">
-                Booking Price
+                Booking Price 
             </p>
-            <span className="text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  ">200 USDT</span>
+            <span className="text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  ">$ {data ?`${data.price}`:"not available"}</span>
         </div>
         <div className="mt-[30px]">
           <p className='text-para mt-0 font-semibold text-headingColor ' >Working Hours: </p>
           <ul className="mt-3">
             <li className="flex items-center justify-between mb-2">
                 <p className='text-[15px]  leading-6 text-textColor  font-semibold' >Sunday</p>
-                <p className='text-[15px]  leading-6 text-textColor font-semibold' >4:00 PM - 10:00 PM</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.sunday.morning}`:"not available"} -{data ?`${data.whours.hours.sunday.evening}`:"not available"}</p>
             </li>
             <li className="flex items-center justify-between mb-2">
                 <p className='text-[15px]  leading-6 text-textColor font-semibold' >Monday</p>
-                <p className='text-[15px]  leading-6 text-textColor font-semibold' >4:00 PM - 10:00 PM</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.monday.morning}`:"not available"} -{data ?`${data.whours.hours.monday.evening}`:"not available"}</p>
             </li>
             <li className="flex items-center justify-between mb-2">
                 <p className='text-[15px]  leading-6 text-textColor font-semibold' >Teusday</p>
-                <p className='text-[15px]  leading-6 text-textColor font-semibold' >4:00 PM - 10:00 PM</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.tuesday.morning}`:"not available"} -{data ?`${data.whours.hours.tuesday.evening}`:"not available"}</p>
             </li>
             <li className="flex items-center justify-between mb-2">
                 <p className='text-[15px]  leading-6 text-textColor font-semibold' >Wednesday</p>
-                <p className='text-[15px]  leading-6 text-textColor font-semibold' >4:00 PM - 10:00 PM</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.wednesday.morning}`:"not available"} -{data ?`${data.whours.hours.wednesday.evening}`:"not available"}</p>
             </li>
             <li className="flex items-center justify-between mb-2">
                 <p className='text-[15px]  leading-6 text-textColor font-semibold' >Thursday</p>
-                <p className='text-[15px]  leading-6 text-textColor font-semibold' >4:00 PM - 10:00 PM</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.thursday.morning}`:"not available"} -{data ?`${data.whours.hours.thursday.evening}`:"not available"}</p>
+            </li>
+              <li className="flex items-center justify-between mb-2">
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >friday</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.friday.morning}`:"not available"} -{data ?`${data.whours.hours.friday.evening}`:"not available"}</p>
+            </li>
+              <li className="flex items-center justify-between mb-2">
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >satuday</p>
+                <p className='text-[15px]  leading-6 text-textColor font-semibold' >{data ?`${data.whours.hours.saturday.morning}`:"not available"} -{data ?`${data.whours.hours.saturday.evening}`:"not available"}</p>
             </li>
           </ul>
         </div>

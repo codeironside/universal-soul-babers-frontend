@@ -54,9 +54,7 @@ const ownerNav = [
 ];
 
 const secondaryNavigation = [
-  { name: 'Settings', href: '/settings', icon: CogIcon },
-  // { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
-  { name: 'Privacy', href: '/privacy', icon: ShieldCheckIcon },
+  { name: 'Settings', href: '/settings', icon: CogIcon }
 ];
 
 const announcements = [
@@ -319,6 +317,19 @@ export default function UserPanel({ fragment, owner = false }) {
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {!isOwner() && (
                         <>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/"
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-gray-700'
+                                )}
+                              >
+                                Home
+                              </Link>
+                            )}
+                          </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
                               <Link

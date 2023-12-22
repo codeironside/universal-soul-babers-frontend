@@ -1,4 +1,5 @@
 import Card from './Card'
+import CheckBox from './CheckBox'
 import Footer from './Footer'
 import Header from './Header'
 import SectionHeader from './SectionHeader'
@@ -26,6 +27,7 @@ import { PaymentButton } from './PaymentButton'
 
 export {
     Card,
+    CheckBox,
     Footer,
     Header,
     SectionHeader,

@@ -16,7 +16,6 @@ import UserPanel from './UserPanel'
 import Funding from './Funding/Funding.jsx'
 import UserCampaign from './Funding/UserCampaign.jsx'
 import CampaignList from './Funding/CampaignList.jsx'
-import Privacy from './Privacy.jsx'
 import ThankYou from './ThankYou.jsx'
 import Payment from './Payment.jsx'
 import CrowdfundingThankYou from './ThankYou/CrowdfundingThankYou.jsx'
@@ -41,7 +40,6 @@ export {
   Funding,
   UserCampaign,
   CampaignList,
-  Privacy,
   ThankYou,
   Payment,
   CrowdfundingThankYou,
