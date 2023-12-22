@@ -38,7 +38,7 @@ export const getUserDetails = async ()=>{
      console.log(userId)
       try {
         const response = await axios.get(
-          buildApiEndpoint(`/campaign/contributions/${userId._id}`),
+          buildApiEndpoint(`/campaign/contributions/${userId?._id}`),
           {
             headers: {
               Authorization: `Bearer ${token}`,
