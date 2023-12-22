@@ -4,13 +4,20 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import { buildApiEndpoint, getCookie } from "../utils"
 import { PaymentButton } from '../components';
+import { useParams } from 'react-router-dom';
 
 
 const token = getCookie('token');
 const stripePromise = loadStripe('pk_test_51NoiuxA0Wdj6YMZbxZ2YpHpr4GoYnqHrZSm1MURYmtu2Tdl2odtp4kPNdIDfyt7maFJwMYPAFJhqhUrFdhxnfkTG00i36KyXhA');
 
-const About = () => {
+const Payment = () => {
    const [clientSecret, setClientSecret] = useState("");
+   const params = useParams(); 
+  const page = params.page;
+   const amount = params.amount;
+   const itemId = params.itemId;
+
+    const amountValue = parseInt(amount, 10);
 
    const options = {
     // passing the client secret obtained from the server
@@ -24,7 +31,7 @@ const About = () => {
         const { data } = await axios.post( buildApiEndpoint(`/stripe/payment-intent`),
         
         {
-          amount: 1000, // Replace with the desired amount
+          amount: amountValue, // Replace with the desired amount
           currency: 'usd', // Replace with the desired currency
           // Add other required fields if necessary
         },
@@ -53,7 +60,7 @@ const About = () => {
   {
     stripePromise && clientSecret && (
       <Elements stripe={stripePromise} options={options}>
-      <PaymentButton />
+      <PaymentButton amount={amountValue} page={page} itemId={itemId} />
       </Elements>
     )
   }
@@ -61,4 +68,4 @@ const About = () => {
   )
 }
 
-export default About
+export default Payment;

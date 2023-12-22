@@ -17,6 +17,7 @@ import {
   UserCampaign,
   CampaignList,
   ThankYou,
+  CrowdfundingThankYou
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -37,6 +38,7 @@ import OwnerNotification from './pages/OwnerNotification';
 import OwnerNotificationView from './pages/OwnerNotificationView';
 import OwnerDashboard from './pages/OwnerDashboard';
 import OwnerBlog from './pages/OwnerBlog';
+import Payment from './pages/Payment';
 
 export default [
   {
@@ -135,6 +137,11 @@ export default [
     standalone: true,
   },
   {
+    path: '/payment/:page/:itemId/:amount',
+    component: <Payment /> ,
+    standalone: true,
+  },
+  {
     path: '/userCampaign',
     component: <UserPanel fragment={<UserCampaign />} />,
     standalone: true,
@@ -151,6 +158,10 @@ export default [
   {
     path: '/thank-you',
     component: <ThankYou />,
+  },
+  {
+    path: '/contribution-thank-you',
+    component: <CrowdfundingThankYou />,
   },
   {
     path: '/profile',
