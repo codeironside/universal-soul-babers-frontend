@@ -7,12 +7,20 @@ import { useNavigate } from 'react-router-dom'
 import {
   ArrowLongLeftIcon
 } from "@heroicons/react/20/solid";
+import { contributeToCrowdfunding } from '../../api';
 
 const CampaignList = () => {
      const [details, setDetails] = useState([]);
+     const [itemId, setItemId] = useState("");
      const [modalShow, setModalShow] = useState(false);
      const [loading, setLoading] = useState(true);
+     const amount = 2000;
      const navigate = useNavigate();
+
+     const handleModal=(id)=>{
+      setItemId(id);
+      setModalShow(true)
+     }
     
     useEffect(()=> {
        getallCampaignDetailsWithoutContributors(setDetails, (()=> {
@@ -52,7 +60,7 @@ const CampaignList = () => {
               <p className="text-sm mb-2 text-left" style={{color: "rgba(38, 60, 87, 1)"}}><span className="mr-2">Current Amount</span>${currentAmount}</p>
               <button
               type="button"
-              onClick={()=> setModalShow(true)}
+              onClick={()=>handleModal(_id)}
               style={{ backgroundColor: "#977d46" }}
               class="text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mt-4 me-2 mb-2 focus:outline-none"
             >
@@ -73,7 +81,7 @@ const CampaignList = () => {
     </div>
     {
       modalShow &&
-      <PaymentModal setModalShow={setModalShow} />
+      <PaymentModal setModalShow={setModalShow} itemId={itemId} />
     }
     </>
   )

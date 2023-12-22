@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 const Funding = () => {
   const [modalDisplay, setModalDisplay] = useState(false);
   const [user, setUser] = useState({})
-  const [contrubutions, setContributions] = useState();
+  const [contributions, setContributions] = useState();
   const userId = user?._id;
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Funding = () => {
     <SetupCard setModalDisplay={setModalDisplay} />
   </div>
   <div className='flex items-center justify-center'>
-  <FundraiseResult />
+  <FundraiseResult contributions={contributions} />
   </div>
   {/* <div className='flex items-center justify-center'>
   <FundraiseProgress />
