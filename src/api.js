@@ -2,6 +2,7 @@ import axios from "axios";
 import { buildApiEndpoint, getCookie } from "./utils"
 
 const token = getCookie('token');
+const userId = JSON.parse(getCookie('user'))
 
 export const getPosts = async () => {
   try {
@@ -33,11 +34,11 @@ export const getUserDetails = async ()=>{
       }
     };
 
-    export const getUserContributions = async (setUser)=>{
-      let userId = localStorage.getItem('userId');
+    export const getUserContributions = async (setContributions)=>{
+     console.log(userId)
       try {
         const response = await axios.get(
-          buildApiEndpoint(`campaign/contributions/${userId}`),
+          buildApiEndpoint(`/campaign/contributions/${userId._id}`),
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,6 +46,9 @@ export const getUserDetails = async ()=>{
             },
           }
         );
+        
+        setContributions(response.data.data);
+        console.log(response);
       } catch (error) {
         console.error('Error fetching user contributions:', error);
       }
@@ -87,3 +91,22 @@ export const getUserDetails = async ()=>{
         console.error('Error fetching user details:', error);
       }
     }
+
+    // Function to contribute to crowdfunding
+export const contributeToCrowdfunding = async (amount, crowdfundingId, callback) => {
+  try {
+    const response = await axios.put(
+      buildApiEndpoint(`/campaign/contribute/${crowdfundingId}`), // Replace with your actual API endpoint
+      { amount },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Replace with your actual access token
+        },
+      }
+    );
+    callback();
+    console.log('Contribution successful:', response.data);
+  } catch (error) {
+    console.error('Error contributing to crowdfunding:', error.response.data);
+  }
+};

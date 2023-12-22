@@ -22,6 +22,7 @@ import FundraiseProgress from './FundraiseProgress'
 import FundraisingModal from './FundraisingModal'
 import PaymentModal from './PaymentModal'
 import { BookingModal } from './BookingModal'
+import { PaymentButton } from './PaymentButton'
 
 export {
     Card,
@@ -47,5 +48,6 @@ export {
     FundraiseProgress,
     FundraisingModal,
     PaymentModal,
-    BookingModal
+    BookingModal,
+    PaymentButton,
 }
