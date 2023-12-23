@@ -27,7 +27,12 @@ import UpdateModal from './UpdateModal'
 import UpdateImage from './UpdateImage'
 import ProfileImage from './ProfileImage'
 
+
 import { PaymentButton } from './PaymentButton'
+
+
+import { PaymentButton } from './PaymentButton'
+
 
 
 export {
