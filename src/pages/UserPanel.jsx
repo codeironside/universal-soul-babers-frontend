@@ -100,7 +100,6 @@ export default function UserPanel({ fragment, owner = false }) {
 
   useEffect(() => {
     if (owner && user.role !== 'OWNER') navigate('/login');
-    console.log(user)
   }, []);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;

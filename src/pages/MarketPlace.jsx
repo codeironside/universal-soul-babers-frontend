@@ -1,22 +1,21 @@
 import { useState, useContext, useEffect } from "react";
-import { scrollToTop } from '../ScollToTop.js';
+import { scrollToTop } from "../ScollToTop.js";
 import { products, statistics } from "../data";
-import { SectionHeader, Product } from '../components'
+import { SectionHeader, Product } from "../components";
 import { ProductCard } from "../components/MarketPlace";
 import product1 from "../assets/img/product-1.JPG";
 import CountUp from "react-countup";
-import { ProductContext } from '../context/ProductContext'
+import { ProductContext } from "../context/ProductContext";
 
 const MarketPlace = () => {
-  // get all products from the product context 
-  const { productItem } = useContext(ProductContext)
+  // get all products from the product context
+  const { productItem } = useContext(ProductContext);
 
   const [currentImg, setCurrentImg] = useState(product1);
 
-
-  useEffect(()=> {
-      scrollToTop();
-  },[])
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
     <main>
       <section className='mx-auto  max-w-[1200px] mb-8'>
@@ -92,19 +91,6 @@ const MarketPlace = () => {
             className='col-span-1  w-full h-[600px] my-[-70px] relative flex items-center justify-items-center '>
             <img src={product1} alt='' className='block rounded-lg ' />
 
-            <div className='flex  sm:gap-6 gap-4 absolute -bottom-[7%] sm:left-[10%] max-sm:px-6'>
-              {products.map((image, index) => (
-                <ProductCard
-                  key={index}
-                  imgURL={image}
-                  changeProductImage={(img) => {
-                    setCurrentImg(img);
-                    console.log(img);
-                  }}
-                  productImg={currentImg}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -123,7 +109,6 @@ const MarketPlace = () => {
           })}
         </div>
       </section>
-
     </main>
   );
 };

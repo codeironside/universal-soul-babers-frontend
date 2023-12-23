@@ -25,6 +25,7 @@ const Profile = () => {
 
   useEffect(() => {
     const token = getCookie("token");
+    
     if (token) {
       const fetchUserDetails = async () => {
         try {
@@ -37,7 +38,7 @@ const Profile = () => {
 
           const userData = response.data;
           setUser(userData.user);
-          console.log("user", response.data);
+          
         } catch (error) {
           console.error("Error fetching user details:", error);
         }
@@ -59,7 +60,7 @@ const Profile = () => {
           <img
             src={imageUrl}
             alt={`Image${user.firstName} ${user.lastName}`}
-            className="block rounded-full"
+            className="block rounded-full  w-full"
           />
         </div>
         <div className="flex flex-col items-center justify-center flex-1">
@@ -74,14 +75,12 @@ const Profile = () => {
 
         <div className="flex flex-col items-center justify-center flex-1 w-full mt-12">
           <button
-            className="bg-black rounded-lg p-3 text-white my-3 w-[90%]"
+            className="bg-primaryDark rounded-lg p-3 text-white my-3 w-[90%]"
             onClick={logout}
           >
             Logout
           </button>
-          <button className="bg-red-500 rounded-lg p-3 text-white my-0 w-[90%]">
-            Delete Account
-          </button>
+         
         </div>
       </div>
 

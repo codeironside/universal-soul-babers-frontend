@@ -6,6 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import ProductProvider from "./context/ProductContext";
 import SidebarProvider from "./context/SidebarContext";
 import CartProvider from "./context/CartContext";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 //here
 ReactDOM.createRoot(document.getElementById("root")).render(
