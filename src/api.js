@@ -35,10 +35,9 @@ export const getUserDetails = async ()=>{
     };
 
     export const getUserContributions = async (setContributions)=>{
-     console.log(userId)
       try {
         const response = await axios.get(
-          buildApiEndpoint(`/campaign/contributions/${userId._id}`),
+          buildApiEndpoint(`/campaign/contributions/${userId?._id}`),
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -55,10 +54,10 @@ export const getUserDetails = async ()=>{
     };
 
     export const getUserCampaigns = async (setCampaign, callback)=>{
-      let userId = localStorage.getItem('userId');
+      console.log(userId?._id);
       try {
         const response = await axios.get(
-          buildApiEndpoint(`/campaign/user/${userId}`),
+          buildApiEndpoint(`/campaign/user/${userId?._id}`),
           {
             headers: {
               Authorization: `Bearer ${token}`,

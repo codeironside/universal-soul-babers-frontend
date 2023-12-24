@@ -1,15 +1,24 @@
+import { useState, useEffect } from 'react'
 import { pricing } from '../data'
 import SectionHeader from './SectionHeader'
 import { AiOutlineCheck } from 'react-icons/ai';
+import { useNavigate, Link } from 'react-router-dom';
+import { createSubscription } from '../api/subscription'
 
 const Pricing = () => {
+  const [amount, setAmount] = useState("");
+  const page = "subscription";
+  const navigate = useNavigate();
 
+  useEffect(()=> {
+    createSubscription();
+  }
+  )
   return (
     <>
       <SectionHeader title='Pricing' subTitle='Available Plans' />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 py-8 max-w-7xl mx-auto px-8 '>
         {pricing.map((plan) => {
-          // destructure pricing data from plan
           const {
             title,
             price,
@@ -70,14 +79,19 @@ const Pricing = () => {
 
               {/* CTA  */}
 
-              <a
-                href=''
-                className={`${recommended
-                    ? "text-white bg-primaryDark hover:bg-primaryColor"
-                    : "text-headingColor bg-warm-gray-100 hover:bg-warm-gray-200"
-                  } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
-                {cta}
-              </a>
+{
+  title === "Basic"?
+  null:
+  <Link
+              
+  to={`/payment/${page}/${title}/${price}`}
+  className={`${recommended
+      ? "text-white bg-primaryDark hover:bg-primaryColor"
+      : "text-headingColor bg-warm-gray-100 hover:bg-warm-gray-200"
+    } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
+  {cta}
+</Link>
+}
             </div>
           );
         })}
