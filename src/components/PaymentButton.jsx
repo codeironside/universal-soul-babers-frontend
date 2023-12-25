@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { contributeToCrowdfunding } from '../api';
+import { createSubscription } from '../api/subscription'
 import { useNavigate } from 'react-router-dom';
 
 export const PaymentButton = ({amount, page, itemId}) => {
@@ -31,9 +32,16 @@ export const PaymentButton = ({amount, page, itemId}) => {
     console.log(paymentIntent.status)
     if(paymentIntent?.status === "succeeded"){
     setMessage(paymentIntent?.status)
-    contributeToCrowdfunding(amount, itemId, (()=> {
-      navigate('/contribution-thank-you');
-    }));
+    if(page === "contribution"){
+      contributeToCrowdfunding(amount, itemId, (()=> {
+        navigate('/contribution-thank-you');
+      }));
+    } else{
+      createSubscription(amount, itemId, (()=> {
+        navigate('/contribution-thank-you');
+      }))
+    }
+  
   } else if (error) {
     setMessage(error.message);
   }
