@@ -17,7 +17,7 @@ const Payment = () => {
    const amount = params.amount;
    const itemId = params.itemId;
 
-    const amountValue = parseInt(amount);
+    const amountValue = parseInt(amount, 10);
 
    const options = {
     // passing the client secret obtained from the server
@@ -26,7 +26,7 @@ const Payment = () => {
 
 
   useEffect(() => {
-   
+
     const fetchData = async () => {
       try {
         const { data } = await axios.post( buildApiEndpoint(`/stripe/payment-intent`),
