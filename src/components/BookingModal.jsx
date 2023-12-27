@@ -1,14 +1,27 @@
 import React, {useState} from 'react'
-import { makeBooking } from '../api/booking';
 import { ImSpinner8 } from "react-icons/im";
+import { useNavigate } from 'react-router-dom';
 
-export const BookingModal = ({ setModalShow, shopId }) => {
+export const BookingModal = ({ setModalShow, shopId, data }) => {
    const [service, setService] = useState("");
    const [date, setDate] = useState("");
    const [noPersons, setNoOfPersons] = useState();
    const [time, setTime] = useState("");
    const [loading, setLoading] = useState(false);
+   const [inputType, setInputType] = useState('text');
+   const [dateType, setDateType] = useState('text');
+   const navigate = useNavigate();
 
+  const page = "booking";
+
+
+   const handleFocus = () => {
+    setInputType('time');
+  };
+
+  const handleBlur = () => {
+    setInputType('text');
+  };
 
     const handleCreateNewBooking = ()=> {
   if (!service || !date || !noPersons || !time || !shopId) {
@@ -24,10 +37,8 @@ export const BookingModal = ({ setModalShow, shopId }) => {
     shop_id: shopId,
   });
 setLoading(true)
-  makeBooking(values, (()=> {
-    setModalShow(false)
-    setLoading(false);
-  }));
+localStorage.setItem("booking", values)
+navigate(`/payment/${page}/${shopId}/${data?.price}`)
     }
 
   return (
@@ -56,8 +67,11 @@ setLoading(true)
         />
 
          <input
-         type="date"
+         placeholder="Input date"
          value={date}
+         type={dateType}
+         onFocus={()=> setDateType('date')}
+          onBlur={()=> setDateType('text')}
          onChange={(e)=> setDate(e.target.value)}
           style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
           className="w-full mb-4 py-3 rounded-xl"
@@ -75,8 +89,10 @@ setLoading(true)
           <input
           value={time}
           onChange={(e)=> setTime(e.target.value)}
-         type="time"
-          placeholder="time"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+         type={inputType}
+          placeholder="set time"
           style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
           className="w-full mb-4 py-3 rounded-xl"
         />

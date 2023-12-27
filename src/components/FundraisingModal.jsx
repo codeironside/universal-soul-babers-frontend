@@ -10,10 +10,47 @@ const FundraisingModal = ({ setModalDisplay }) => {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [inputType, setInputType] = useState('text');
   
   const token = getCookie('token');
 
+  const handleStartDateChange = (e) => {
+    const newStartDate = e.target.value;
+    setStartDate(newStartDate);
+
+    // Add validation to ensure end date is not earlier than start date
+    if (endDate && new Date(endDate) < new Date(newStartDate)) {
+      setEndDate('');
+    }
+  };
+
+  const handleEndDateChange = (e) => {
+    const newEndDate = e.target.value;
+    setEndDate(newEndDate);
+
+    // Add validation to ensure end date is not earlier than start date
+    if (new Date(newEndDate) < new Date(startDate)) {
+      // You can handle the validation error here (e.g., display a message)
+      // For simplicity, this example just clears the end date
+      setEndDate('');
+    }
+  };
+
+
+  const handleFocus = () => {
+    setInputType('date');
+  };
+
+  const handleBlur = () => {
+    setInputType('text');
+  };
   const handleSubmit = async () => {
+
+    if (!campaignName || !goalAmount || !description || !startDate || !endDate) {
+      toast.error("Please fill in all the required fields");
+      return;
+    }
+  
 
     const values = JSON.stringify({
       campaignName: campaignName,
@@ -63,6 +100,7 @@ const FundraisingModal = ({ setModalDisplay }) => {
           
             <input
              type="text"
+             required
              name="campaignName"
               value={campaignName}
               onChange={(e)=> setCampaignName(e.target.value)}
@@ -74,6 +112,7 @@ const FundraisingModal = ({ setModalDisplay }) => {
               <input
              type="number"
              name="goalAmount"
+             required
               value={goalAmount}
              onChange={(e)=> setGoalAmount(e.target.value)}
               placeholder="Goal Amount"
@@ -84,6 +123,7 @@ const FundraisingModal = ({ setModalDisplay }) => {
            <input
              type="text"
              name="description"
+             required
               value={description}
               onChange={(e)=> setDescription(e.target.value)}
               placeholder="Description"
@@ -92,20 +132,26 @@ const FundraisingModal = ({ setModalDisplay }) => {
             />
 
             <input
-              type="date"
+            required
+              type={inputType}
               name="startDate"
               value={startDate}
-               onChange={(e)=> setStartDate(e.target.value)}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+               onChange={handleStartDateChange}
               placeholder="Start Date"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
-              className="w-full mb-4 py-6 rounded-xl"
+              className="w-full mb-4 py-4 rounded-xl"
             />
 
              <input
-              type="date"
+              type={inputType}
+              required
               name="endDate"
               value={endDate}
-              onChange={(e)=> setEndDate(e.target.value)}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onChange={handleEndDateChange}
               placeholder="End Date"
               style={{ border: "1px solid rgba(224, 229, 237, 1)" }}
               className="w-full mb-4 py-6 rounded-xl"

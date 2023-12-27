@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
@@ -142,6 +142,10 @@ export default function MyShop() {
     }
   };
 
+
+  useEffect(()=> {
+     fetchShops();
+  },[])
   return (
     <>
       <div className="px-8 py-6">

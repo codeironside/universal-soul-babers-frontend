@@ -23,10 +23,10 @@ export const addProduct = async (values) => {
     }
   };
 
-  export const fetchShops = async (setUser) => {
+  export const fetchShops = async () => {
     try {
       const response = await axios.get(
-        buildApiEndpoint(`/shops/all`),
+        buildApiEndpoint(`/shops/getall`),
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,6 +38,6 @@ export const addProduct = async (values) => {
       const userData = response.data;
       console.log(userData)
     } catch (error) {
-      console.error('Error fetching user details:', error);
+      console.error('Error fetching shop details:', error);
     }
   };
