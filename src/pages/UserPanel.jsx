@@ -99,7 +99,7 @@ export default function UserPanel({ fragment, owner = false }) {
   }
 console.log(owner,user.role)
   useEffect(() => {
-    if (owner && user.role !== 'superadmin') navigate('/dashboard');
+    if (!owner || user.role !== 'superadmin') navigate('/dashboard');
   }, []);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
