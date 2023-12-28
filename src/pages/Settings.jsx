@@ -5,7 +5,9 @@ import { classNames, getCookie } from '../utils';
 import { Tab } from '@headlessui/react';
 import axios from 'axios';
 import { UserContext } from './UserPanel';
-
+import { pricing } from '../data'
+import {PlanModal} from '../components';
+import { ToastContainer } from "react-toastify";
 import {UpdateImage, ProfileImage, UpdateModal } from '../components';
 
 
@@ -16,6 +18,7 @@ const componentMap = {
 };
 
 const tabs = [{ name: 'General' }, { name: 'Password' }, { name: 'Plan' }];
+const userId = JSON.parse(getCookie('user'))
 
 export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
@@ -423,10 +426,14 @@ function Notifications({ user }) {
 }
 
 function Plan() {
+  const filteredPricing = pricing.filter((item) => item.title.toLowerCase() === userId?.type.toLowerCase());
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <>
+    <ToastContainer position='top-center' />
       <div className="space-y-1">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">Plan</h3>
+        <h3 className="text-lg font-medium leading-6 text-gray-900" onClick={()=> console.log(filteredPricing)}>Plan</h3>
         <p className="max-w-2xl text-sm text-gray-500">
           Change your plan, cancel anytime.
         </p>
@@ -444,29 +451,48 @@ function Plan() {
             </div>
             <div className="px-4 py-5 border-t border-gray-200 sm:p-0">
               <dl className="sm:divide-y sm:divide-gray-200">
-                <div className="flex justify-between py-3 text-sm font-medium">
-                  <dt className="text-gray-500">Price</dt>
-                  <dd className="text-gray-900">$29 / month</dd>
+                {
+                  filteredPricing.map((item)=>{
+                    return(
+                      <>
+                      <div className="flex justify-between py-3 text-sm font-medium">
+                      <dt className="text-gray-500">Price</dt>
+                      <div className="text-gray-900">${item.price} / month</div>
+                    </div>   
+
+                     <div className="flex justify-between py-3 text-sm font-medium">
+                      <dt className="text-gray-500">Features</dt>
+                      <dd className="text-gray-900 h-20 flex flex-col justify-end">{
+                        item.features.map((item)=> {
+                          return(
+                            <span>{item}</span>
+                          )
+                        })
+                      }</dd>
+                     </div>
+
+                     <div className="flex justify-between py-3 text-sm font-medium">
+                        <dt className="text-gray-500">Frequency</dt>
+                       <dd className="text-gray-900">{item.frequency}</dd>
+                     </div>
+
+                     <div className="flex justify-between py-3 text-sm font-medium">
+                  <dt className="text-gray-500">Title</dt>
+                  <dd className="text-gray-900">{item.title}</dd>
                 </div>
-                <div className="flex justify-between py-3 text-sm font-medium">
-                  <dt className="text-gray-500">Features</dt>
-                  <dd className="text-gray-900">Up to 5 active job postings</dd>
-                </div>
-                <div className="flex justify-between py-3 text-sm font-medium">
-                  <dt className="text-gray-500">Importing</dt>
-                  <dd className="text-gray-900">Easy CSV import</dd>
-                </div>
-                <div className="flex justify-between py-3 text-sm font-medium">
-                  <dt className="text-gray-500">Analytics</dt>
-                  <dd className="text-gray-900">Basic dashboard</dd>
-                </div>
-                <div className="flex justify-between py-3 text-sm font-medium">
-                  <dt className="text-gray-500">Support</dt>
-                  <dd className="text-gray-900">Email support</dd>
-                </div>
+
+                {
+        modalShow && 
+        <PlanModal setModalShow={setModalShow} plan={item.title} amount={item.price} />
+      }
+                    </>
+                    )
+                  })
+                }
               </dl>
               <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
                 <button
+                onClick={()=> setModalShow(true)}
                   type="button"
                   className="flex items-center justify-center w-full px-8 py-2 text-base font-medium text-white border border-transparent rounded-md bg-primaryDark hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2 sm:w-auto"
                 >

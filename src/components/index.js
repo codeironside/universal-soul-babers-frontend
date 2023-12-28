@@ -27,6 +27,7 @@ import UpdateModal from './UpdateModal'
 import UpdateImage from './UpdateImage'
 import ProfileImage from './ProfileImage'
 import { PaymentButton } from './PaymentButton'
+import PlanModal from './PlanModal'
 
 export {
     ProfileImage,
@@ -58,4 +59,5 @@ export {
     PaymentModal,
     BookingModal,
     PaymentButton,
+    PlanModal,
 }

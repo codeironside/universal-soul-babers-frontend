@@ -30,6 +30,7 @@ const Payment = () => {
 
 
   useEffect(() => {
+    // window.location.reload()
     if (page === "subscription" && (userId?.type === "premium" || userId?.type === "diamond")) {
       toast.error("You are already subscribed to a plan");
     }

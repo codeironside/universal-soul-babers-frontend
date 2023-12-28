@@ -23,21 +23,26 @@ export const addProduct = async (values) => {
     }
   };
 
-  export const fetchShops = async () => {
+  export const fetchShops = async (setShopData, page, totalPages) => {
     try {
       const response = await axios.get(
-        buildApiEndpoint(`/shops/getall`),
-        {
+        buildApiEndpoint('/shops/getallone'), {
+          params: {
+            page: page,
+            pageSize: totalPages, // Set your pageSize value here
+          },
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         }
       );
-
-      const userData = response.data;
-      console.log(userData)
+  
+      const userData = response.data.data;
+      console.log(userData);
+      setShopData(userData);
     } catch (error) {
       console.error('Error fetching shop details:', error);
     }
   };
+  

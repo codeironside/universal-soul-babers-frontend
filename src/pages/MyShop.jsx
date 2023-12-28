@@ -4,9 +4,13 @@ import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { buildApiEndpoint, getCookie } from "../utils";
-import {fetchShops} from '../api/product'
+import { fetchShops } from "../api/product";
+import Select from "react-dropdown-select"
 
 export default function MyShop() {
+  const [shopData, setShopData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(10);
   const [openAddProduct, setOpenAddProduct] = useState(false);
   const [selectedHours, setSelectedHours] = useState({
     Monday: "",
@@ -20,6 +24,7 @@ export default function MyShop() {
 
   const selectedHoursString = JSON.stringify(selectedHours);
 
+  const barbersData = shopData.filter((item) => item.category === "barbers");
 
   const handleRadioChange = (day, value) => {
     setSelectedHours((prevHours) => ({
@@ -27,7 +32,6 @@ export default function MyShop() {
       [day]: value,
     }));
   };
-  
 
   const user = JSON.parse(getCookie("user"));
   const owner = user._id;
@@ -40,7 +44,7 @@ export default function MyShop() {
 
   const [productData, setProductData] = useState({
     shop_name: "",
-    category: "",
+    category: "barbers",
     price: "",
     description: "",
   });
@@ -51,7 +55,6 @@ export default function MyShop() {
     const selectedFile = e.target.files[0];
     previewFile(selectedFile);
   };
-
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -125,7 +128,7 @@ export default function MyShop() {
         alert("Product created successfully");
         console.log(response.data);
         setOpenAddProduct(false);
-
+        fetchShops(setShopData, page, totalPages);
         setProductData({
           name: "",
           category: "",
@@ -142,14 +145,13 @@ export default function MyShop() {
     }
   };
 
-
-  useEffect(()=> {
-     fetchShops();
-  },[])
+  useEffect(() => {
+    fetchShops(setShopData, page, totalPages);
+  }, []);
   return (
     <>
       <div className="px-8 py-6">
-        <h1 className="text-4xl font-semibold text-gray-900" onClick={()=> fetchShops()}>Shop</h1>
+        <h1 className="text-4xl font-semibold text-gray-900">Shop</h1>
 
         <p className="mt-12 text-xl text-gray-700">
           Activate your shop in{" "}
@@ -160,7 +162,10 @@ export default function MyShop() {
         </p>
 
         <div className="pt-6 mt-12 border-t border-gray-200">
-          <h1 className="mb-6 text-4xl font-semibold text-gray-900">
+          <h1
+            onClick={() => console.log(barbersData)}
+            className="mb-6 text-4xl font-semibold text-gray-900"
+          >
             Inventory
           </h1>
 
@@ -177,7 +182,7 @@ export default function MyShop() {
             <Dialog
               as="div"
               className="relative z-10"
-              onClose={()=> setOpenAddProduct(false)}
+              onClose={() => setOpenAddProduct(false)}
             >
               <Transition.Child
                 as={Fragment}
@@ -237,7 +242,8 @@ export default function MyShop() {
                                   type="text"
                                   name="category"
                                   id="category"
-                                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                  disabled
+                                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm cursor-not-allowed bg-gray-100 text-gray-500"
                                   value={productData.category}
                                   onChange={handleInputChange}
                                 />
@@ -345,52 +351,12 @@ export default function MyShop() {
                                 </div>
                               </div>
                             </div>
-</div>
-                            <div className="relative inline-block text-left my-6 w-full">
-      <label
-      className="block text-md font-medium text-gray-700"
-      >
-       Select working hours:
-      </label>
-
-      {/* Dropdown menu */}
-      { Object.keys(selectedHours).map((day) => (
-        
-  <div key={day} className="mt-2 flex flex-col w-full bg-gray-50">
-    <p>{day}</p>
-    <label>
-      <input
-        type="radio"
-        name={day}
-        className="mr-2 cursor-pointer"
-        value={`${day.toLowerCase()}_morning`}
-        onChange={() => handleRadioChange(day, "morning")}
-      />
-      Morning (09:30:00)
-    </label>
-    <label>
-      <input
-        type="radio"
-        name={day}
-        className="mr-2 curor-pointer"
-        value={`${day.toLowerCase()}_afternoon`}
-        onChange={() => handleRadioChange(day, "afternoon")}
-      />
-      Afternoon (14:00:00)
-    </label>
-    <label>
-      <input
-        type="radio"
-        name={day}
-        className="mr-2 cursor-pointer"
-        value={`${day.toLowerCase()}_evening`}
-        onChange={() => handleRadioChange(day, "evening")}
-        
-      />
-      Evening (18:00:00)
-    </label>
-  </div>
-))}
+                          </div>
+                          <div className="relative inline-block text-left my-6 w-full">
+                            <label className="block text-md font-medium text-gray-700">
+                              Select working hours:
+                            </label>
+                            
                             <div className="px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
                               <button
                                 type="submit"
@@ -400,10 +366,12 @@ export default function MyShop() {
                               </button>
                             </div>
 
-                            <div onClick={() => setOpenAddProduct(false)} className="px-4 py-3 bg-gray-300 cursor-pointer flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
-                                Cancel
+                            <div
+                              onClick={() => setOpenAddProduct(false)}
+                              className="px-4 py-3 bg-gray-300 cursor-pointer flex items-center justify-center mt-4 text-right bg-transparent sm:px-6"
+                            >
+                              Cancel
                             </div>
-
                           </div>
                         </form>
                       </div>
@@ -414,179 +382,55 @@ export default function MyShop() {
             </Dialog>
           </Transition.Root>
         </div>
-      </div>
-    </>
-  );
-}
-
-function OldStore() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <div className="px-8 py-6">
-        <h1 className="text-4xl font-semibold text-gray-900">Store</h1>
-        <div className="flex flex-col gap-10 mt-10">
-          <p className="mt-2 text-xl text-gray-700">
-            Setup your Univacbaber store in 3 easy steps and start selling right
-            from your dashboard
-          </p>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm w-fit bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-            onClick={() => setOpen(true)}
-          >
-            Add store
-          </button>
+        <h1 className="my-8">Your Shops</h1>
+        <div className="w-full bg-red-300 grid grid-cols-2">
+        {barbersData.map((item) => {
+          return <BarberCard data={item} />;
+        })}
         </div>
       </div>
-
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={setOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enterTo="opacity-100 translate-y-0 sm:scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              >
-                <Dialog.Panel className="relative px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-sm md:max-w-md sm:p-6">
-                  <div className="mt-5 md:col-span-2 md:mt-0">
-                    <form action="#" method="POST">
-                      <div className="overflow-hidden">
-                        <h1 className="mb-4 text-xl">Store Information</h1>
-                        <div className="grid grid-cols-6 gap-6">
-                          <div className="col-span-6">
-                            <label
-                              htmlFor="last-name"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Store name
-                            </label>
-                            <input
-                              type="text"
-                              name="last-name"
-                              id="last-name"
-                              autoComplete="family-name"
-                              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
-                          </div>
-
-                          <div className="col-span-6">
-                            <label
-                              htmlFor="email-address"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Store URL
-                            </label>
-                            <input
-                              type="text"
-                              name="email-address"
-                              id="email-address"
-                              autoComplete="email"
-                              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                              value="https://univacbaber.com/store/1"
-                              disabled={true}
-                            />
-                          </div>
-
-                          <div className="col-span-6">
-                            <label
-                              htmlFor="about"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Store Description
-                            </label>
-                            <div className="mt-1">
-                              <textarea
-                                id="about"
-                                name="about"
-                                rows={3}
-                                className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                defaultValue={""}
-                              />
-                            </div>
-                            <p className="mt-2 text-sm text-gray-500">
-                              Brief description for your store.
-                            </p>
-                          </div>
-
-                          <div className="col-span-6">
-                            <label className="block text-sm font-medium text-gray-700">
-                              Social Sharing Image
-                            </label>
-                            <div className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
-                              <div className="space-y-1 text-center">
-                                <svg
-                                  className="w-12 h-12 mx-auto text-gray-400"
-                                  stroke="currentColor"
-                                  fill="none"
-                                  viewBox="0 0 48 48"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                                <div className="flex text-sm text-gray-600">
-                                  <label
-                                    htmlFor="file-upload"
-                                    className="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-                                  >
-                                    <span>Upload a file</span>
-                                    <input
-                                      id="file-upload"
-                                      name="file-upload"
-                                      type="file"
-                                      className="sr-only"
-                                    />
-                                  </label>
-                                  <p className="pl-1">or drag and drop</p>
-                                </div>
-                                <p className="text-xs text-gray-500">
-                                  PNG, JPG up to 1MB
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="px-4 py-3 mt-4 text-right bg-gray-50 sm:px-6">
-                          <button
-                            type="submit"
-                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-primaryDark shadow-smfocus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                          >
-                            Create Store
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition.Root>
     </>
   );
 }
+
+const BarberCard = ({ data }) => {
+  const {
+    shop_name,
+    description,
+    price,
+    contact_email,
+    contact_number,
+    shop_address,
+    createdAt,
+  } = data;
+
+  return (
+    <div className="max-w-md bg-red-300 mx-auto bg-white rounded-md overflow-hidden shadow-lg">
+      <img
+        className="w-full h-40 object-cover object-center"
+        src="https://via.placeholder.com/300" // Add your image source here
+        alt={shop_name}
+      />
+      <div className="p-4">
+        <h2 className="text-xl font-semibold text-gray-800">{shop_name}</h2>
+        <p className="text-gray-600 text-sm mb-2">{description}</p>
+        <p className="text-gray-600 text-sm mb-2">
+          <strong>Price:</strong> ${price}
+        </p>
+        <p className="text-gray-600 text-sm mb-2">
+          <strong>Email:</strong> {contact_email}
+        </p>
+        <p className="text-gray-600 text-sm mb-2">
+          <strong>Phone:</strong> {contact_number}
+        </p>
+        <p className="text-gray-600 text-sm mb-2">
+          <strong>Address:</strong> {shop_address}
+        </p>
+        <p className="text-gray-600 text-sm">
+          <strong>Created At:</strong>{" "}
+          {new Date(createdAt).toLocaleDateString()}
+        </p>
+      </div>
+    </div>
+  );
+};

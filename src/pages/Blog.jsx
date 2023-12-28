@@ -61,7 +61,7 @@ export default function Blog() {
         {posts && <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
             <div key={post._id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-              <div className="flex-shrink-0" onClick={()=> handleFetchBlog(post._id)}>
+              <div className="flex-shrink-0" onClick={()=> handleFetchBlog(post?._id)}>
                 <img className="object-cover w-full h-48" src="https://i.imgur.com/R6ncc8X.jpg" alt=""/>
               </div>
               <div className="flex flex-col justify-between flex-1 p-6 bg-white">
