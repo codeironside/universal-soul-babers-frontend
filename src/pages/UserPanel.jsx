@@ -97,10 +97,14 @@ export default function UserPanel({ fragment, owner = false }) {
     deleteAllCookies();
     navigate('/login');
   }
-console.log(owner,user.role)
-  useEffect(() => {
-    if (!owner || user.role !== 'superadmin') navigate('/dashboard');
-  }, []);
+useEffect(() => {
+  console.log('Owner:', owner);
+  console.log('User Role:', user.role);
+  if (!owner || user.role !== 'superadmin') {
+    console.log('Navigating to /dashboard');
+    navigate('/dashboard');
+  }
+}, [owner, user.role]);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
 
