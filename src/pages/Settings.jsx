@@ -9,6 +9,7 @@ import { pricing } from '../data'
 import {PlanModal} from '../components';
 import { ToastContainer } from "react-toastify";
 import {UpdateImage, ProfileImage, UpdateModal } from '../components';
+import { createSubscription, updateSubscription } from '../api/subscription';
 
 
 const componentMap = {
@@ -429,11 +430,15 @@ function Plan() {
   const filteredPricing = pricing.filter((item) => item.title.toLowerCase() === userId?.type.toLowerCase());
   const [modalShow, setModalShow] = useState(false);
 
+  const handleUpdate = ()=> {
+    updateSubscription();
+  }
+
   return (
     <>
     <ToastContainer position='top-center' />
       <div className="space-y-1">
-        <h3 className="text-lg font-medium leading-6 text-gray-900" onClick={()=> console.log(filteredPricing)}>Plan</h3>
+        <h3 className="text-lg font-medium leading-6 text-gray-900" onClick={()=> handleUpdate()}>Plan</h3>
         <p className="max-w-2xl text-sm text-gray-500">
           Change your plan, cancel anytime.
         </p>

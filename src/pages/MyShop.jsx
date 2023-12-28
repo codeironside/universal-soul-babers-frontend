@@ -12,15 +12,14 @@ export default function MyShop() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
   const [openAddProduct, setOpenAddProduct] = useState(false);
-  const [selectedHours, setSelectedHours] = useState({
-    Monday: "",
-    Tuesday: "",
-    Wednesday: "",
-    Thursday: "",
-    Friday: "",
-    Saturday: "",
-    Sunday: "",
-  });
+  const selectedHours = [
+    {day: "Monday"},
+    {day: "Tuesday"},
+    {day: "Wednesday"},
+    {day: "Thursday"},
+    {day: "Friday"},
+    {day: "Saturday"},
+  ];
 
   const selectedHoursString = JSON.stringify(selectedHours);
 
@@ -356,7 +355,16 @@ export default function MyShop() {
                             <label className="block text-md font-medium text-gray-700">
                               Select working hours:
                             </label>
-                            
+
+                          
+                              <Select
+                              name="select"
+                              options={selectedHours}
+                              labelField="id"
+                              valueField={"day"}
+                              multi
+                             />
+                       
                             <div className="px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
                               <button
                                 type="submit"
