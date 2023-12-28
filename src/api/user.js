@@ -6,7 +6,7 @@ const token = getCookie('token');
 export const fetchUserDetails = async (setUser) => {
     try {
       const response = await axios.get(
-        buildApiEndpoint(`users/one`),
+        buildApiEndpoint(`/users/one`),
         {
           headers: {
             Authorization: `Bearer ${token}`,
