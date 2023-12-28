@@ -97,9 +97,9 @@ export default function UserPanel({ fragment, owner = false }) {
     deleteAllCookies();
     navigate('/login');
   }
-
+console.log(owner,user.role)
   useEffect(() => {
-    if (owner && user.role !== 'superadmin') navigate('/login');
+    if (owner && user.role !== 'superadmin') navigate('/dashboard');
   }, []);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
