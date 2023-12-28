@@ -5,6 +5,7 @@ const token = getCookie('token');
 
 export const fetchUserDetails = async (setUser) => {
     try {
+    console.log("we are here")
       const response = await axios.get(
         buildApiEndpoint(`/users/one`),
         {
