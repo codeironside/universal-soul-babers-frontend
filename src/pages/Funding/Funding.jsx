@@ -49,7 +49,7 @@ const Funding = () => {
         <FundraisingModal setModalDisplay={setModalDisplay} />
        }
         </div>
-        
+        <ToastContainer position='top-center' />
     </section>
     </>
   )

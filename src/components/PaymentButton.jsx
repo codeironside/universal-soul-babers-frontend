@@ -4,6 +4,7 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { contributeToCrowdfunding } from '../api';
 import { createSubscription } from '../api/subscription'
 import { useNavigate } from 'react-router-dom';
+import { makeBooking } from '../api/booking';
 
 export const PaymentButton = ({amount, page, itemId}) => {
    const [message, setMessage] = useState("");
@@ -36,10 +37,15 @@ export const PaymentButton = ({amount, page, itemId}) => {
       contributeToCrowdfunding(amount, itemId, (()=> {
         navigate('/contribution-thank-you');
       }));
-    } else{
+    } else if(page === "subscription"){
       createSubscription(amount, itemId, (()=> {
-        navigate('/contribution-thank-you');
+        navigate('/subscription-thank-you');
       }))
+    }else{
+      const values = localStorage.getItem("booking");
+       makeBooking(values, (()=> {
+        navigate('/booking-thank-you');
+  }));
     }
   
   } else if (error) {

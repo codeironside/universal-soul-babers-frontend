@@ -19,6 +19,8 @@ import CampaignList from './Funding/CampaignList.jsx'
 import ThankYou from './ThankYou.jsx'
 import Payment from './Payment.jsx'
 import CrowdfundingThankYou from './ThankYou/CrowdfundingThankYou.jsx'
+import SubscriptionThankYou from './ThankYou/SubscriptionThankYou.jsx'
+import BookingThankYou from './ThankYou/BookingThankYou.jsx'
 
 
 export {
@@ -43,4 +45,6 @@ export {
   ThankYou,
   Payment,
   CrowdfundingThankYou,
+  BookingThankYou,
+  SubscriptionThankYou,
 }

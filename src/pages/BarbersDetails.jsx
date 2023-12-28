@@ -137,7 +137,7 @@ import { scrollToTop } from '../ScollToTop.js';
         </div>
       </section>
       {showModal && (
-        <BookingModal setModalShow={setModalShow} shopId={shopId} />
+        <BookingModal setModalShow={setModalShow} shopId={shopId} data={data} />
       )}
       <ToastContainer position='top-center' />
     </>

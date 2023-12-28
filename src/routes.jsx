@@ -17,7 +17,9 @@ import {
   UserCampaign,
   CampaignList,
   ThankYou,
-  CrowdfundingThankYou
+  CrowdfundingThankYou,
+  SubscriptionThankYou,
+  BookingThankYou,
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -162,6 +164,14 @@ export default [
   {
     path: '/contribution-thank-you',
     component: <CrowdfundingThankYou />,
+  },
+  {
+    path: '/subscription-thank-you',
+    component: <SubscriptionThankYou />,
+  },
+  {
+    path: '/booking-thank-you',
+    component: <BookingThankYou />,
   },
   {
     path: '/profile',
