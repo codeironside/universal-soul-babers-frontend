@@ -7,6 +7,7 @@ import Nav from './Nav'
 import BarberCard from './BarberCard'
 import Pricing from './Pricing'
 import BarberList from './BarberList'
+import  ShopList from "./ShopList";
 import Testimonials from './Testimonials'
 import FeedBackForm from './FeedBackForm'
 import SidePanel from './SidePanel'
@@ -35,6 +36,7 @@ export {
     CheckBox,
     Footer,
     Header,
+    ShopList,
     SectionHeader,
     BarberProfile,
     BarberBookings,

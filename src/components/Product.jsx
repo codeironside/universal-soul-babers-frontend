@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from "../context/CartContext";
+import productImg from "../assets/img/product-2.jpg";
 
 
 const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext)
   // console.log(product);
   // destricture product
-  const { id, price, name, img, category } = product;
+  const { _id, price, keywords,  category, images } = product;
   return (
     <div>
       <div className='rounded-lg h-fit mb-4 overflow-hidden relative group transition shadow-card'>
@@ -16,7 +17,7 @@ const Product = ({ product }) => {
           {/* image  */}
           <img
             className='w-full group-hover:scale-110 transition duration-300 '
-            src={img}
+            src={productImg}
             alt=''
           />
         </div>
@@ -29,7 +30,7 @@ const Product = ({ product }) => {
               </div>
             </button>
             <Link
-              to={`/product/${id}`}
+              to={`/product/${_id}`}
               className='w-12 h-12 bg-white rounded-lg flex items-center justify-center text-headingColor drop-shadow-xl '>
               <BsEyeFill />
             </Link>
@@ -38,8 +39,8 @@ const Product = ({ product }) => {
       </div>
       {/* name and Description  */}
       <Link to='#' className="text-primaryDark text-sm font-medium">{category}</Link>
-      <Link to={`/product/${id}`} className="flex justify-between">
-        <h2 className='font-semibold mb-1'>{name}</h2>
+      <Link to={`/product/${_id}`} className="flex justify-between">
+        <h2 className='font-semibold mb-1'>{keywords}</h2>
         <div className='font-semibold'>${price}</div>
       </Link>
     </div>

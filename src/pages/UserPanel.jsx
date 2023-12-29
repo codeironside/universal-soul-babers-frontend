@@ -500,7 +500,7 @@ function _CommonSidebarNav({ extra }) {
         aria-label="Sidebar"
       >
         <div className="px-2 space-y-1">
-          {user.role === 'USER'
+          {user.role === 'USER' || "SHOP_OWNER"
             ? navigation.map((item) => (
                 // <div key={item.name} onClick={() => setSidebarOpen(false)}>
                 <Link
@@ -546,7 +546,7 @@ function _CommonSidebarNav({ extra }) {
         </div>
         <div className="pt-6 mt-6">
           <div className="px-2 space-y-1">
-            {user.role === 'USER' &&
+            {user.role === 'USER' ||"SHOP_OWNER" &&
               secondaryNavigation.map((item) => (
                 <Link
                   key={item.name}

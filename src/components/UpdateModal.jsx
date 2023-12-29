@@ -54,9 +54,8 @@ const UpdateModal = ({
         toast.error("Failed to submit data. Please try again.");
       }
 
-      setCookie("user", JSON.stringify(response.data));
       setLoading(false);
-      console.log("submitted");
+      setCookie("user", JSON.stringify(response.data));
     } catch (error) {
       toast.error("An error occurred. Please try again.");
       console.log("Error updating profile", error);

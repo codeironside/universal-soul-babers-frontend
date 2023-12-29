@@ -21,7 +21,7 @@ export default function Cart() {
 
             <ul role="list" className="border-t border-b border-gray-200 divide-y divide-gray-200">
               {cart.map((product, productIdx) => (
-                <li key={product.id} className="flex py-6 sm:py-10">
+                <li key={product._id} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
                     <img
                       src={product.img}
@@ -35,7 +35,7 @@ export default function Cart() {
                       <div>
                         <div className="flex justify-between">
                           <h3 className="text-sm">
-                            <Link to={`/product/${product.id}`} className="font-medium text-gray-700 hover:text-gray-800">
+                            <Link to={`/product/${product._id}`} className="font-medium text-gray-700 hover:text-gray-800">
                               {product.name}
                             </Link>
                           </h3>
@@ -47,7 +47,7 @@ export default function Cart() {
                       <div className="mt-4 sm:mt-0 sm:pr-9">
                         <div className="absolute top-0 right-0">
                           <button type="button" className="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => removeFromCart(product.id)}>
+                            onClick={() => removeFromCart(product._id)}>
                             <span className="sr-only">Remove</span>
                             <XMarkIcon className="w-5 h-5" aria-hidden="true" />
                           </button>
@@ -59,7 +59,7 @@ export default function Cart() {
                       <button
                         type="button"
                         className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 focus:z-10 focus:border-primaryDark focus:outline-none focus:ring-1 focus:ring-primaryDark"
-                        onClick={() => decreaseAmount(product.id)}
+                        onClick={() => decreaseAmount(product._id)}
                       >
                         <span className="sr-only">Previous</span>
                         <MinusIcon className="w-5 h-5" aria-hidden="true" />
@@ -71,14 +71,14 @@ export default function Cart() {
                         value={product.amount}
                         onChange={(e) => {
                           let amt = e.target.valueAsNumber;
-                          amt < 1 ? removeFromCart(product.id) : addToCart(product, amt);
+                          amt < 1 ? removeFromCart(product._id) : addToCart(product, amt);
                         }}
                       />
 
                       <button
                         type="button"
                         className="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 focus:z-10 focus:border-primaryDark focus:outline-none focus:ring-1 focus:ring-primaryDark"
-                        onClick={() => increaseAmount(product.id)}
+                        onClick={() => increaseAmount(product._id)}
                       >
                         <span className="sr-only">Next</span>
                         <PlusIcon className="w-5 h-5" aria-hidden="true" />

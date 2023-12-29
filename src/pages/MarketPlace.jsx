@@ -7,13 +7,16 @@ import product1 from "../assets/img/product-1.JPG";
 import CountUp from "react-countup";
 import { ProductContext } from "../context/ProductContext";
 
+
 const MarketPlace = () => {
   // get all products from the product context
   const { productItem } = useContext(ProductContext);
+  const [products, setProducts] = useState([])
 
   const [currentImg, setCurrentImg] = useState(product1);
 
   useEffect(() => {
+    
     scrollToTop();
   }, []);
   return (
@@ -105,7 +108,7 @@ const MarketPlace = () => {
         <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
           {productItem.map((item) => {
             // console.log(item);
-            return <Product key={item.id} product={item} />;
+            return <Product key={item._id} product={item} />;
           })}
         </div>
       </section>
