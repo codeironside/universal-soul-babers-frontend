@@ -4,7 +4,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import Confetti from "react-confetti";
 import { Link } from 'react-router-dom'
 
-const ThankYou = () => {
+const CrowdfundingThankYou = () => {
     const { width, height } = useWindowSize();
   return (
     <section
@@ -34,4 +34,4 @@ const ThankYou = () => {
   );
 }
 
-export default ThankYou
+export default CrowdfundingThankYou

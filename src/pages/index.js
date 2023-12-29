@@ -17,6 +17,8 @@ import Funding from './Funding/Funding.jsx'
 import UserCampaign from './Funding/UserCampaign.jsx'
 import CampaignList from './Funding/CampaignList.jsx'
 import ThankYou from './ThankYou.jsx'
+import Payment from './Payment.jsx'
+import CrowdfundingThankYou from './ThankYou/CrowdfundingThankYou.jsx'
 
 
 export {
@@ -39,4 +41,6 @@ export {
   UserCampaign,
   CampaignList,
   ThankYou,
+  Payment,
+  CrowdfundingThankYou,
 }

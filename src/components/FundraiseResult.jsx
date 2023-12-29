@@ -1,40 +1,48 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {
-    ArrowLongRightIcon
-  } from "@heroicons/react/20/solid";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowLongRightIcon } from "@heroicons/react/20/solid";
 
-const FundraiseResult = () => {
-  return (
-<div class="col-span-1 flex items-center justify-center flex-col block max-w-sm p-6 w-full h-full bg-white border border-gray-200 rounded-lg shadow">
-    <div class="flex items-center justify-between mb-4">
-        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Your Contributions</h5>
-   </div>
-   <div className='my-32'>
-    <p>You have not made any contributions</p>
-    </div>
-    <Link to="/campaignList" className="inline-flex text-xs mt-10 flex text-blue-500 cursor-pointer">
-            <ArrowLongRightIcon className="w-4 h-4 ml-2" />
-           Contribute to other Campaigns
+const FundraiseResult = ({ contributions }) => {
+  if (contributions?.length === 0) {
+    return (
+      <div className="bg-white border border-gray-200 rounded-lg shadow p-6 flex flex-col items-center justify-center">
+        <h5 className="text-xl font-bold mb-4">Your Contributions</h5>
+        <p className="text-gray-600 mb-8">You have not made any contributions</p>
+        <Link to="/campaignList" className="text-blue-500 inline-flex items-center cursor-pointer">
+          <ArrowLongRightIcon className="w-4 h-4 mr-2" />
+          Contribute to other Campaigns
         </Link>
-   {/* <div class="flow-root">
-        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            {
-                fundRaisingResult?.map((result)=> {
-                    const {donation_result, donation_period} = result;
-                    return(
-                        <li class="py-3 sm:py-4">
-                        <div class="flex items-center">
-                            ${donation_result} donated in the last {donation_period}hrs
-                        </div>
-                    </li>
-                    )
-                })
-            }
-        </ul>
-   </div> */}
-</div>
-  )
-}
+      </div>
+    );
+  }
 
-export default FundraiseResult
+  return (
+    <div className="bg-white border border-gray-200 h-full rounded-lg shadow p-6">
+      <h5 className="text-xl font-bold mb-4">Your Contributions</h5>
+      <ul className="divide-y divide-gray-200">
+        {contributions?.map((result) => (
+          <li key={result._id} className="py-4">
+            <h2 className="text-lg font-bold mb-2">{result.campaignName}</h2>
+            <div className="flex justify-between items-center text-gray-500">
+              <div>
+                <p className='text-sm font-normal text-gray-500 dark:text-gray-300'>Organizer: {result.organizer_name}</p>
+                <p className='text-sm font-normal text-gray-500 dark:text-gray-300'>Start Date: {new Date(result.startDate).toLocaleDateString()}</p>
+                <p className='text-sm font-normal text-gray-500 dark:text-gray-300'>End Date: {new Date(result.endDate).toLocaleDateString()}</p>
+                <div className="font-bold text-sm mt-4">
+                Current Amount: ${result.currentAmount}
+              </div>
+              </div>
+              
+            </div>
+          </li>
+        ))}
+      </ul>
+      <Link to="/campaignList" className="text-blue-500 mt-8 inline-flex items-center cursor-pointer">
+          <ArrowLongRightIcon className="w-4 h-4 mr-2" />
+          Contribute to other Campaigns
+        </Link>
+    </div>
+  );
+};
+
+export default FundraiseResult;

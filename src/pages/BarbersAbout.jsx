@@ -1,21 +1,49 @@
 import formatDate from "../utils/formatDate";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { fetchDataOne } from "../api/booking";
+import { scrollToTop } from '../ScollToTop.js';
 const BarbersAbout = () => {
+    const [showModal, setModalShow] = useState(false);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // New loading state
+  const params = useParams();
+  const shopId = params.id;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchDataOne(shopId); // Fetch the data
+        setData(response.data); // Store the fetched data in state
+        //console.log("this is about", response.data); // Log the fetched data
+        setIsLoading(false); // Set loading to false when data is fetched
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false); // Set loading to false on error
+      }
+    };
+
+    fetchData();
+    scrollToTop();
+  }, [shopId]);
+
+  if (isLoading) {
+    return <p>Loading...</p>; // Display a loading message until data is fetched
+  }
   return (
     <div>
       <div>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2 '>
           About
           <span className='text-headingColor font-semibold text-[24px] leading-9 '>
-            Ryan Scott
+           {data ?`${data.shop_name}` : 'Loading...'}
           </span>
         </h3>
         <p className='text-para  '>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-          atque magnam quibusdam iusto maxime cumque corporis unde voluptate
-          nobis, natus ipsam perspiciatis assumenda deserunt iste labore iure
-          neque aspernatur cupiditate!
+       {data ? `${data.description}` : 'Loading...'}
         </p>
-      </div>
+ </div>
+        {/*      
       <div className='mt-12'>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
           Qualifications
@@ -52,11 +80,11 @@ const BarbersAbout = () => {
             </p>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Experience  */}
 
-      <div className='mt-'>
+{/*       <div className='mt-'>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold '>
           Experience
         </h3>
@@ -85,7 +113,7 @@ const BarbersAbout = () => {
           </li>
 
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
