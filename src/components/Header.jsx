@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <UserContext.Provider value={user}>
-      <Popover as='header' className='sticky top-0 z-50 pb-3 bg-white'>
+      <Popover as='header' className='sticky top-0 z-30 pb-3 bg-white'>
         <div>
           <nav
             className='relative flex items-center justify-between px-6 pt-6 mx-auto max-w-7xl xl:px-8'

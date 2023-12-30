@@ -43,7 +43,6 @@ import { scrollToTop } from '../ScollToTop.js';
   }
      
   return (
-    
     <>
       <section className='px-5 mx-auto container'>
         <div className='grid md:grid-cols-3 gap-[50px] '>
@@ -59,10 +58,10 @@ import { scrollToTop } from '../ScollToTop.js';
         '>
                   Professional
                 </span>
-                
+
                 <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
-  {data && data.owner ? `${data.shop_name}` : 'Loading...'}
-</h3>
+                  {data && data.owner ? `${data.shop_name}` : "Loading..."}
+                </h3>
 
                 <div className='flex items-center gap-2 '>
                   <span className='flex items-center text-[14px] leading-5 gap-[6px] lg:text-[16px] lg:leading-7 font-semibold text-headingColor '>
@@ -76,11 +75,11 @@ import { scrollToTop } from '../ScollToTop.js';
                   </span>
                 </div>
                 <p className='text-para text-[14px] leading-6 md:text-[15px] lg:max-w-[300px] '>
-{data  ? `${data.description}` : 'Loading...'}
+                  {data ? `${data.description}` : "Loading..."}
                 </p>
 
                 {/* social links  */}
-{/*                 <div className='flex items-center gap-3 mt-4'>
+                {/*                 <div className='flex items-center gap-3 mt-4'>
                   <a
                     href='https://www.youtube.com/@universoulbarbers'
                     target='_blank'
@@ -113,7 +112,7 @@ import { scrollToTop } from '../ScollToTop.js';
                 }  py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
                 About
               </button>
-{/*               <button
+              {/*               <button
                 onClick={() => {
                   setTab("reviews");
                   console.log(tab);
@@ -128,7 +127,6 @@ import { scrollToTop } from '../ScollToTop.js';
             </div>
             <div className='mt-[50px] '>
               {tab === "about" && <BarbersAbout />}
-              {tab === "reviews" && <Feedback />}
             </div>
           </div>
           <div className='md:col-span-1'>
@@ -137,7 +135,7 @@ import { scrollToTop } from '../ScollToTop.js';
         </div>
       </section>
       {showModal && (
-        <BookingModal setModalShow={setModalShow} shopId={shopId} />
+        <BookingModal open={showModal} onClose={() => setModalShow(false)} />
       )}
       <ToastContainer position='top-center' />
     </>
