@@ -8,7 +8,7 @@ const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext)
   // console.log(product);
   // destricture product
-  const { id, price, name, img, category } = product;
+  const { _id, price, shop_name, images, category } = product;
   return (
     <div>
       <div className='rounded-lg h-fit mb-4 overflow-hidden relative group transition shadow-card'>
@@ -16,7 +16,7 @@ const Product = ({ product }) => {
           {/* image  */}
           <img
             className='w-full group-hover:scale-110 transition duration-300 '
-            src={img}
+            src={images}
             alt=''
           />
         </div>
@@ -29,7 +29,7 @@ const Product = ({ product }) => {
               </div>
             </button>
             <Link
-              to={`/product/${id}`}
+              to={`/product/${_id}`}
               className='w-12 h-12 bg-white rounded-lg flex items-center justify-center text-headingColor drop-shadow-xl '>
               <BsEyeFill />
             </Link>
@@ -39,7 +39,7 @@ const Product = ({ product }) => {
       {/* name and Description  */}
       <Link to='#' className="text-primaryDark text-sm font-medium">{category}</Link>
       <Link to={`/product/${id}`} className="flex justify-between">
-        <h2 className='font-semibold mb-1'>{name}</h2>
+        <h2 className='font-semibold mb-1'>{shop_name}</h2>
         <div className='font-semibold'>${price}</div>
       </Link>
     </div>
