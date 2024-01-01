@@ -128,7 +128,7 @@ import { scrollToTop } from '../ScollToTop.js';
             </div>
             <div className='mt-[50px] '>
               {tab === "about" && <BarbersAbout />}
-              {tab === "reviews" && <Feedback />}
+             
             </div>
           </div>
           <div className='md:col-span-1'>
@@ -137,7 +137,7 @@ import { scrollToTop } from '../ScollToTop.js';
         </div>
       </section>
       {showModal && (
-        <BookingModal setModalShow={setModalShow} shopId={shopId} data={data} />
+        <BookingModal open={showModal}  onClose={()=> setModalShow(false)} />
       )}
       <ToastContainer position='top-center' />
     </>
