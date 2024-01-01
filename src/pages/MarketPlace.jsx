@@ -9,16 +9,14 @@ import { ProductContext } from "../context/ProductContext";
 import axios from 'axios';
 
 const MarketPlace = () => {
- const { productItem, setProductItem } = useContext('');
-  const [currentImg, setCurrentImg] = useState('');
+  const [currentImg, setCurrentImg] = useState('');  
+ const { productItem, setProductItem } = useContext(ProductContext);
+  const [loading, setLoading] = useState(true);
   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
 // ... (other imports and code)
 
 useEffect(() => {
-  scrollToTop();
-  // Fetch data using axios
-  useEffect(() => {
     const fetchData = async () => {
       try {
         scrollToTop();
