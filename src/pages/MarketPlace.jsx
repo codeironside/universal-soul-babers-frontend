@@ -18,25 +18,34 @@ const MarketPlace = () => {
 useEffect(() => {
   scrollToTop();
   // Fetch data using axios
-  axios.get(apiUrl)
-    .then((response) => {
-      if (Array.isArray(response.data.shops)) {
-        // Filter out shops with category 'barbers'
-        const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
-       console.log(filteredShops)
-        // Update productItem state with filtered shops
-        setProductItem(filteredShops);
-      } else {
-        console.error('Data structure is not as expected');
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        scrollToTop();
+        const response = await axios.get(apiUrl);
+        if (Array.isArray(response.data.shops)) {
+          const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
+          setProductItem(filteredShops);
+        } else {
+          console.error('Data structure is not as expected');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false); // Set loading state to false after fetching data (success or failure)
       }
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
-}, []);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <main>
+     {loading ? (
+       
+        <div>Loading...</div>
+      ) : (
+        // Render content once data has been fetched
       <section className='mx-auto  max-w-[1200px] mb-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-20 justify-center items-center '>
           <div className='col-span-1 w-full h-full '>
@@ -128,6 +137,7 @@ useEffect(() => {
           })}
         </div>
       </section>
+      )}
     </main>
   );
 };
