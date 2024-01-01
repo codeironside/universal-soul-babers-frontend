@@ -18,14 +18,17 @@ const MarketPlace = () => {
     // Fetch data using axios
     axios.get(apiUrl)
       .then((response) => {
-        // Update productItem state with data from API
-       console.log(response.data)
-        setProductItem(response.data);
+        // Filter out items with category 'barbers'
+        const filteredProducts = response.data.filter(item => item.category !== 'barbers');
+        // Update productItem state with filtered data
+       console.log(filteredProducts)
+        setProductItem(filteredProducts);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
   }, []);
+
   return (
     <main>
       <section className='mx-auto  max-w-[1200px] mb-8'>
