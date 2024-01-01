@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+
 import { scrollToTop } from "../ScollToTop.js";
 import { products, statistics } from "../data";
 import { SectionHeader, Product } from "../components";
@@ -9,41 +9,34 @@ import { ProductContext } from "../context/ProductContext";
 import axios from 'axios';
 
 const MarketPlace = () => {
-  const [currentImg, setCurrentImg] = useState('');  
  const { productItem, setProductItem } = useContext(ProductContext);
-  const [loading, setLoading] = useState(true);
+  const [currentImg, setCurrentImg] = useState('');
   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
 // ... (other imports and code)
 
 useEffect(() => {
-    const fetchData = async () => {
-      try {
-        scrollToTop();
-        const response = await axios.get(apiUrl);
-        if (Array.isArray(response.data.shops)) {
-          const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
-          setProductItem(filteredShops);
-        } else {
-          console.error('Data structure is not as expected');
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false); // Set loading state to false after fetching data (success or failure)
+  scrollToTop();
+  // Fetch data using axios
+  axios.get(apiUrl)
+    .then((response) => {
+      if (Array.isArray(response.data.shops)) {
+        // Filter out shops with category 'barbers'
+        const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
+       console.log(filteredShops)
+        // Update productItem state with filtered shops
+        setProductItem(filteredShops);
+      } else {
+        console.error('Data structure is not as expected');
       }
-    };
-
-    fetchData();
-  }, []);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}, []);
 
   return (
-       <main>
-      {loading ? (
-        // Show loading indicator or spinner while fetching data
-        <div>Loading...</div>
-      ) : (
-        // Render content once data has been fetched
+    <main>
       <section className='mx-auto  max-w-[1200px] mb-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-20 justify-center items-center '>
           <div className='col-span-1 w-full h-full '>
@@ -131,13 +124,13 @@ useEffect(() => {
         <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
           {productItem.map((item) => {
             console.log(item);
-            return <Product key={item._id} product={item} />;
+            return <Product key={item.id} product={item} />;
           })}
         </div>
       </section>
-         )}
     </main>
   );
 };
 
 export default MarketPlace;
+"
