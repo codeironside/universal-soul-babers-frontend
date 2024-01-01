@@ -19,7 +19,7 @@ const MarketPlace = () => {
     axios.get(apiUrl)
       .then((response) => {
         // Update productItem state with data from API
-       console.log(response)
+       console.log(response.data)
         setProductItem(response.data);
       })
       .catch((error) => {
