@@ -124,7 +124,7 @@ useEffect(() => {
         <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
           {productItem.map((item) => {
             console.log(item);
-            return <Product key={item.id} product={item} />;
+            return <Product key={item._id} product={item} />;
           })}
         </div>
       </section>
