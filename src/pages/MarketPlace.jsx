@@ -1,4 +1,4 @@
-
+import { useState, useContext, useEffect } from "react";
 import { scrollToTop } from "../ScollToTop.js";
 import { products, statistics } from "../data";
 import { SectionHeader, Product } from "../components";
@@ -133,4 +133,3 @@ useEffect(() => {
 };
 
 export default MarketPlace;
-"
