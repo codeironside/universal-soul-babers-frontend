@@ -14,12 +14,12 @@ const MarketPlace = () => {
 
   useEffect(() => {
     scrollToTop();
-    // Fetch data from API
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
+    // Fetch data using axios
+    axios.get(apiUrl)
+      .then((response) => {
         // Update productItem state with data from API
-        setProductItem(data);
+       console.log(response)
+        setProductItem(response.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
