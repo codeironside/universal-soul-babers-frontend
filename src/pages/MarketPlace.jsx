@@ -9,7 +9,7 @@ import { ProductContext } from "../context/ProductContext";
 import axios from 'axios';
 
 const MarketPlace = () => {
- const { productItem, setProductItem } = useContext('');
+ const { productItem, setProductItem } = useContext( ProductContext);
   const [currentImg, setCurrentImg] = useState('');
   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
