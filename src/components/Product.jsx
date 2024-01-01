@@ -14,11 +14,19 @@ const Product = ({ product }) => {
       <div className='rounded-lg h-fit mb-4 overflow-hidden relative group transition shadow-card'>
         <div className='flex justify-center items-center '>
           {/* image  */}
-          <img
-            className='w-full group-hover:scale-110 transition duration-300 '
-            src={images}
-            alt=''
-          />
+      {images ? (
+        <img
+          className='w-full group-hover:scale-110 transition duration-300 '
+          src={images}
+          alt=''
+        />
+      ) : (
+        <img
+          className='w-full group-hover:scale-110 transition duration-300 '
+          src={placeholderImage}
+          alt='Placeholder'
+        />
+      )}
         </div>
         <div>
           {/* buttons  */}
