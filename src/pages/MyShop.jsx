@@ -391,9 +391,9 @@ export default function MyShop() {
           </Transition.Root>
         </div>
         <h1 className="my-8">Your Shops</h1>
-        <div className="w-full bg-red-300 grid grid-cols-2">
+        <div className="w-full grid grid-cols-2 item-center">
         {barbersData.map((item) => {
-          return <BarberCard data={item} />;
+          return <BarberCard data={item} key={item._id} />;
         })}
         </div>
       </div>
@@ -413,7 +413,7 @@ const BarberCard = ({ data }) => {
   } = data;
 
   return (
-    <div className="max-w-md bg-red-300 mx-auto bg-white rounded-md overflow-hidden shadow-lg">
+    <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-lg">
       <img
         className="w-full h-40 object-cover object-center"
         src="https://via.placeholder.com/300" // Add your image source here
