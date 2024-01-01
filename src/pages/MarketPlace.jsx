@@ -9,30 +9,29 @@ import { ProductContext } from "../context/ProductContext";
 import axios from 'axios';
 
 const MarketPlace = () => {
- const { productItem, setProductItem } = useContext(ProductContext);
+ const { productItem, setProductItem } = useContext('');
   const [currentImg, setCurrentImg] = useState('');
   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
 // ... (other imports and code)
 
 useEffect(() => {
-  scrollToTop();
-  // Fetch data using axios
-  axios.get(apiUrl)
-    .then((response) => {
+  const fetchData = async () => {
+    try {
+      scrollToTop();
+      const response = await axios.get(apiUrl);
       if (Array.isArray(response.data.shops)) {
-        // Filter out shops with category 'barbers'
         const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
-       console.log(filteredShops)
-        // Update productItem state with filtered shops
         setProductItem(filteredShops);
       } else {
         console.error('Data structure is not as expected');
       }
-    })
-    .catch((error) => {
+    } catch (error) {
       console.error('Error fetching data:', error);
-    });
+    }
+  };
+
+  fetchData();
 }, []);
 
   return (
