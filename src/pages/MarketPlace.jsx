@@ -40,12 +40,6 @@ useEffect(() => {
   }, []);
 
   return (
-    <main>
-     {loading ? (
-       
-        <div>Loading...</div>
-      ) : (
-        // Render content once data has been fetched
       <section className='mx-auto  max-w-[1200px] mb-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-20 justify-center items-center '>
           <div className='col-span-1 w-full h-full '>
@@ -137,7 +131,6 @@ useEffect(() => {
           })}
         </div>
       </section>
-      )}
     </main>
   );
 };
