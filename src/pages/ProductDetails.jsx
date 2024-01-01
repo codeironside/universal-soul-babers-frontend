@@ -29,21 +29,22 @@ const ProductDetails = () => {
     <section className='pt-32 lg:py-32 h-screen flex items-center'>
       <div className='container mx-auto'>
         <div className='flex flex-col lg:flex-row items-center'>
-          <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
-                 {images ? (
-        <img
-          className='w-full group-hover:scale-110 transition duration-300 '
-          src={images}
-          alt=''
-        />
-      ) : (
-        <img
-          className='w-full group-hover:scale-110 transition duration-300 '
-          src={product1}
-          alt={shop_name}
-        />
-      )}
-          </div>
+<div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
+  {images ? (
+    <img
+      className='w-full max-w-[200px] max-h-[200px] rounded-md shadow-md group-hover:shadow-lg transition duration-300'
+      src={images}
+      alt=''
+    />
+  ) : (
+    <img
+      className='w-full max-w-[200px] max-h-[200px] rounded-md shadow-md group-hover:shadow-lg transition duration-300'
+      src={product1}
+      alt={shop_name}
+    />
+  )}
+</div>
+
           <div className='flex-1 text-center lg:text-left'>
             <h1 className='text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0'>{shop_name}</h1>
             <div className='text-xl text-red-500 font-medium mb-6'>$ {price}</div>
