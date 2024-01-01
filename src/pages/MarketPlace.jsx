@@ -13,21 +13,27 @@ const MarketPlace = () => {
   const [currentImg, setCurrentImg] = useState('');
   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
-  useEffect(() => {
-    scrollToTop();
-    // Fetch data using axios
-    axios.get(apiUrl)
-      .then((response) => {
+// ... (other imports and code)
+
+useEffect(() => {
+  scrollToTop();
+  // Fetch data using axios
+  axios.get(apiUrl)
+    .then((response) => {
+      // Check if response data is an array before filtering
+      if (Array.isArray(response.data)) {
         // Filter out items with category 'barbers'
         const filteredProducts = response.data.filter(item => item.category !== 'barbers');
         // Update productItem state with filtered data
-       console.log(filteredProducts)
         setProductItem(filteredProducts);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+      } else {
+        console.error('Data received is not an array');
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}, []);
 
   return (
     <main>
