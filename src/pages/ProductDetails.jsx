@@ -30,7 +30,7 @@ const ProductDetails = () => {
   // console.log(productItem.find(item => console.log(item.id)));
 
   // destructure products 
-  const { title, price, content, img } = product
+  const { shop_name, price, description, images } = product
   console.log(img);
 
   return (
