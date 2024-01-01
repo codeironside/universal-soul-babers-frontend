@@ -15,19 +15,26 @@ const MarketPlace = () => {
 
 // ... (other imports and code)
 
-  useEffect(() => {
-    scrollToTop();
-    // Fetch data using axios
-    axios.get(apiUrl)
-      .then((response) => {
-        // Update productItem state with data from API
-       console.log(response.data)
-        setProductItem(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+useEffect(() => {
+  scrollToTop();
+  // Fetch data using axios
+  axios.get(apiUrl)
+    .then((response) => {
+      if (Array.isArray(response.data.shops)) {
+        // Filter out shops with category 'barbers'
+        const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
+       console.log(filteredShops)
+        // Update productItem state with filtered shops
+        setProductItem(filteredShops);
+      } else {
+        console.error('Data structure is not as expected');
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}, []);
+
   return (
     <main>
       <section className='mx-auto  max-w-[1200px] mb-8'>
