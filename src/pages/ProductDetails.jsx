@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { ProductContext } from '../context/ProductContext';
+import product1 from "../assets/img/product-1.JPG";
 
 const ProductDetails = () => {
   const { id: itemId } = useParams();
@@ -38,8 +39,8 @@ const ProductDetails = () => {
       ) : (
         <img
           className='w-full group-hover:scale-110 transition duration-300 '
-          src={placeholderImage}
-          alt='Placeholder'
+          src={product1}
+          alt={shop_name}
         />
       )}
           </div>
