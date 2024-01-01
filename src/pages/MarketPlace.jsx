@@ -15,25 +15,20 @@ const MarketPlace = () => {
 
 // ... (other imports and code)
 
-useEffect(() => {
-  scrollToTop();
-  // Fetch data using axios
-  axios.get(apiUrl)
-    .then((response) => {
-      // Check if response data is an array before filtering
-      if (Array.isArray(response.data)) {
-        // Filter out items with category 'barbers'
-        const filteredProducts = response.data.filter(item => item.category !== 'barbers');
+  useEffect(() => {
+    scrollToTop();
+    // Fetch data using axios
+    axios.get(apiUrl)
+      .then((response) => {
+        // Filter items with category 'barbers'
+        const filteredProducts = response.data.filter(item => item.category === 'barbers');
         // Update productItem state with filtered data
         setProductItem(filteredProducts);
-      } else {
-        console.error('Data received is not an array');
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
-}, []);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <main>
