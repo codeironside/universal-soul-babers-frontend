@@ -6,6 +6,7 @@ import { ProductCard } from "../components/MarketPlace";
 import product1 from "../assets/img/product-1.JPG";
 import CountUp from "react-countup";
 import { ProductContext } from "../context/ProductContext";
+import axios from 'axios';
 
 const MarketPlace = () => {
  const { productItem, setProductItem } = useContext(ProductContext);
