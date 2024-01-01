@@ -10,7 +10,7 @@ import { ProductContext } from "../context/ProductContext";
 const MarketPlace = () => {
  const { productItem, setProductItem } = useContext(ProductContext);
   const [currentImg, setCurrentImg] = useState('');
-  const apiUrl = 'https://api.example.com/products'; // Replace with your API endpoint
+  const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
   useEffect(() => {
     scrollToTop();
