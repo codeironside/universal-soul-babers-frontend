@@ -11,28 +11,28 @@ import axios from 'axios';
 const MarketPlace = () => {
  const { productItem, setProductItem } = useContext( ProductContext);
   const [currentImg, setCurrentImg] = useState('');
-  const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
+//   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
-// ... (other imports and code)
+// // ... (other imports and code)
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      scrollToTop();
-      const response = await axios.get(apiUrl);
-      if (Array.isArray(response.data.shops)) {
-        const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
-        setProductItem(filteredShops);
-      } else {
-        console.error('Data structure is not as expected');
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       scrollToTop();
+//       const response = await axios.get(apiUrl);
+//       if (Array.isArray(response.data.shops)) {
+//         const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
+//         setProductItem(filteredShops);
+//       } else {
+//         console.error('Data structure is not as expected');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   };
 
-  fetchData();
-}, []);
+//   fetchData();
+// }, []);
 
   return (
     <main>
@@ -123,7 +123,7 @@ useEffect(() => {
         <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
           {productItem.map((item) => {
             console.log(item);
-            return <Product key={item.id} product={item} />;
+            return <Product key={item._id} product={item} />;
           })}
         </div>
       </section>
