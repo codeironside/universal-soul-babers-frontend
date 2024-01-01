@@ -32,18 +32,19 @@ const ProductDetails = () => {
 <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
   {images ? (
     <img
-      className='w-full max-w-[200px] max-h-[200px] rounded-md shadow-md group-hover:shadow-lg transition duration-300'
+      className='w-full max-w-[350px] max-h-[350px] rounded-md shadow-md transform transition duration-300 hover:scale-105'
       src={images}
       alt=''
     />
   ) : (
     <img
-      className='w-full max-w-[200px] max-h-[200px] rounded-md shadow-md group-hover:shadow-lg transition duration-300'
+      className='w-full max-w-[350px] max-h-[350px] rounded-md shadow-md transform transition duration-300 hover:scale-105'
       src={product1}
       alt={shop_name}
     />
   )}
 </div>
+
 
           <div className='flex-1 text-center lg:text-left'>
             <h1 className='text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0'>{shop_name}</h1>
