@@ -8,13 +8,22 @@ import CountUp from "react-countup";
 import { ProductContext } from "../context/ProductContext";
 
 const MarketPlace = () => {
-  // get all products from the product context
-  const { productItem } = useContext(ProductContext);
-
-  const [currentImg, setCurrentImg] = useState(product1);
+ const { productItem, setProductItem } = useContext(ProductContext);
+  const [currentImg, setCurrentImg] = useState('');
+  const apiUrl = 'https://api.example.com/products'; // Replace with your API endpoint
 
   useEffect(() => {
     scrollToTop();
+    // Fetch data from API
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        // Update productItem state with data from API
+        setProductItem(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }, []);
   return (
     <main>
