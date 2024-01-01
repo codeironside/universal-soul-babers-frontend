@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from "../context/CartContext";
-
+import product1 from "../assets/img/product-1.JPG";
 
 const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext)
@@ -23,8 +23,8 @@ const Product = ({ product }) => {
       ) : (
         <img
           className='w-full group-hover:scale-110 transition duration-300 '
-          src={placeholderImage}
-          alt='Placeholder'
+          src={product1}
+          alt={shop_name}
         />
       )}
         </div>
