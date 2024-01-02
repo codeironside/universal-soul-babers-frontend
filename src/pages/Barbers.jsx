@@ -47,7 +47,7 @@ const Barbers = () => {
         const response = await axios.get("https://unique-barbers.onrender.com/api/v1/shops/all");
         if (Array.isArray(response.data.data)) {
           const filteredBarbers = response.data.data.filter(item => item.category === 'barbers');
-          console.log(filteredBarbers)
+          
           setBarbersData(filteredBarbers);
         } else {
           console.error("Data received is not an array:", response.data);

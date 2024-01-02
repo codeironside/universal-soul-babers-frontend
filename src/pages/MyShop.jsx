@@ -5,32 +5,50 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { buildApiEndpoint, getCookie } from "../utils";
 import { fetchShops } from "../api/product";
-import Select from "react-dropdown-select"
+import Select from "react-select"
+
+
+
 
 export default function MyShop() {
   const [shopData, setShopData] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
   const [openAddProduct, setOpenAddProduct] = useState(false);
-  const selectedHours = [
-    {day: "Monday"},
-    {day: "Tuesday"},
-    {day: "Wednesday"},
-    {day: "Thursday"},
-    {day: "Friday"},
-    {day: "Saturday"},
-  ];
+ 
+  const [availability, setAvailability] = useState({});
 
-  const selectedHoursString = JSON.stringify(selectedHours);
-
-  const barbersData = shopData.filter((item) => item.category === "barbers");
-
-  const handleRadioChange = (day, value) => {
-    setSelectedHours((prevHours) => ({
-      ...prevHours,
-      [day]: value,
+  const handleTimeChange = (day, selectedTimes) => {
+    setAvailability((prevAvailability) => ({
+      ...prevAvailability,
+      [day]: selectedTimes.map((time) => time.value),
     }));
   };
+
+
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  const timeOptions = [];
+  for (let hour = 8; hour <= 22; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const formattedTime = `${hour % 12 || 12}:${minute
+        .toString()
+        .padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
+      timeOptions.push({ value: formattedTime, label: formattedTime });
+    }
+  }
+
+  
+
+  const barbersData = shopData.filter((item) => item.category === "barbers");
 
   const user = JSON.parse(getCookie("user"));
   const owner = user._id;
@@ -95,54 +113,68 @@ export default function MyShop() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+   const handleSubmit = async (e) => {
+     const cloudName = "di36rc30e";
+     const uploadPreset = "mrh3qf9";
+     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("shop_name", productData.shop_name);
-    formData.append("category", productData.category);
-    formData.append("price", productData.price);
-    formData.append("owner", owner);
-    formData.append("contact_number", contact_number);
-    formData.append("contact_email", contact_email);
-    formData.append("workinghours", selectedHoursString);
-    formData.append("description", productData.description);
-    formData.append("image", file);
+     const formData = new FormData();
+     formData.append("shop_name", productData.shop_name);
+     formData.append("category", productData.category);
+     formData.append("price", productData.price);
+     formData.append("owner", owner);
+     formData.append("contact_number", contact_number);
+     formData.append("contact_email", contact_email);
+     formData.append("workinghours", JSON.stringify(availability));
+     formData.append("description", productData.description);
 
-    console.log(Object.fromEntries(formData));
+     formData.append("file", file);
+     formData.append("upload_preset", uploadPreset);
 
-    try {
-      const response = await axios.post(
-        buildApiEndpoint("/shops/register"),
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        },
-      );
+     try {
+       const response = await axios.post(
+         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+         formData
+       );
 
-      if (response.status === 200) {
-        alert("Product created successfully");
-        console.log(response.data);
-        setOpenAddProduct(false);
-        fetchShops(setShopData, page, totalPages);
-        setProductData({
-          name: "",
-          category: "",
-          price: "",
-          description: "",
-        });
-        setFile(null);
-        setPreview("");
-      } else {
-        console.error("Error creating product:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error creating product:", error.message);
-    }
-  };
+       
+       const imageRes = response.data.secure_url;
+       formData.append("images", imageRes);
+
+       const formDataObject = {};
+       for (const [key, value] of formData.entries()) {
+         if (key !== "upload_preset" && key !== "file") {
+           formDataObject[key] = value;
+         }
+       }
+
+       await axios.post(buildApiEndpoint("/shops/register"), formDataObject, {
+         headers: {
+           Authorization: `Bearer ${token}`,
+           "Content-Type": "application/json",
+         },
+       });
+       if (response.status === 200) {
+         alert("Product created successfully");
+
+         setOpenAddProduct(false);
+
+         setProductData({
+           name: "",
+           category: "barbers",
+           price: "",
+           description: "",
+         });
+         setFile(null);
+         setPreview("");
+       } else {
+         console.error("Error creating product:", response.statusText);
+       }
+     } catch (error) {
+       console.log(error);
+     }
+   };
+
 
   useEffect(() => {
     fetchShops(setShopData, page, totalPages);
@@ -153,16 +185,15 @@ export default function MyShop() {
         <h1 className="text-4xl font-semibold text-gray-900">Shop</h1>
 
         <p className="mt-12 text-xl text-gray-700">
-          Activate your shop in{" "}
+          Activate your shop in  
           <Link className="text-indigo-500" to="/settings">
             settings
-          </Link>{" "}
+          </Link>  
           to start selling
         </p>
 
         <div className="pt-6 mt-12 border-t border-gray-200">
           <h1
-            onClick={() => console.log(barbersData)}
             className="mb-6 text-4xl font-semibold text-gray-900"
           >
             Inventory
@@ -210,14 +241,14 @@ export default function MyShop() {
                       <div className="mt-5 md:col-span-2 md:mt-0">
                         <form onSubmit={handleSubmit}>
                           <div className="overflow-hidden">
-                            <h1 className="mb-4 text-xl">Add product</h1>
+                            <h1 className="mb-4 text-xl">Create Shop</h1>
                             <div className="grid grid-cols-6 gap-6">
                               <div className="col-span-6">
                                 <label
                                   htmlFor="shop_name"
                                   className="block text-sm font-medium text-gray-700"
                                 >
-                                  Product name
+                                  Shop name
                                 </label>
                                 <input
                                   type="text"
@@ -276,7 +307,7 @@ export default function MyShop() {
                                   htmlFor="description"
                                   className="block text-sm font-medium text-gray-700"
                                 >
-                                  Product Description
+                                Shop Description
                                 </label>
                                 <div className="mt-1">
                                   <textarea
@@ -289,13 +320,13 @@ export default function MyShop() {
                                   />
                                 </div>
                                 <p className="mt-2 text-sm text-gray-500">
-                                  Brief description for your product.
+                                  Brief description of your shop
                                 </p>
                               </div>
 
                               <div className="relative col-span-6">
                                 <label className="block text-sm font-medium text-gray-700">
-                                  Product Image
+                                  Shop Image
                                 </label>
                                 <div
                                   className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md"
@@ -307,7 +338,7 @@ export default function MyShop() {
                                       <img
                                         src={preview}
                                         alt="Preview"
-                                        className="w-12 h-auto mx-auto"
+                                        className="w-full h-auto mx-auto"
                                       />
                                     ) : (
                                       <svg
@@ -351,34 +382,45 @@ export default function MyShop() {
                               </div>
                             </div>
                           </div>
-                          <div className="relative inline-block text-left my-6 w-full">
-                            <label className="block text-md font-medium text-gray-700">
-                              Select working hours:
-                            </label>
 
-                          
-                              <Select
-                              name="select"
-                              options={selectedHours}
-                              labelField="id"
-                              valueField={"day"}
-                              multi
-                             />
-                       
-                            <div className="px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6">
-                              <button
-                                type="submit"
-                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-primaryDark shadow-smfocus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-                              >
-                                Save product
-                              </button>
+                          {/* Working Hours  */}
+                             <div className='relative col-span-10 mt-6 gap-4'>
+                              {daysOfWeek.map((day) => (
+                                <div
+                                  key={day}
+                                  className='flex flex-col justify-center  w-full items-start'>
+                                  <label className='block text-[18px] text-left font-medium mt-6 text-gray-700'>
+                                    {day}
+                                  </label>
+                                  <Select
+                                    styles={customStyles}
+                                    options={timeOptions}
+                                    isMulti
+                                    onChange={(selectedTimes) =>
+                                      handleTimeChange(day, selectedTimes)
+                                    }
+                                    menuPortalTarget={document.body}
+                                    components={{
+                                      DropdownIndicator:
+                                        customDropdownIndicator,
+                                    }}
+                                    className='w-full mt-4' // Use Tailwind CSS classes for width
+                                  />
+                                </div>
+                              ))}
+                              <p className='mt-2 text-sm text-gray-500'>
+                                You can decide to make changes if you want. Your availability can be updated at a go!
+                              </p>
+                             
                             </div>
-
-                            <div
-                              onClick={() => setOpenAddProduct(false)}
-                              className="px-4 py-3 bg-gray-300 cursor-pointer flex items-center justify-center mt-4 text-right bg-transparent sm:px-6"
-                            >
-                              Cancel
+                          
+                          <div className='relative inline-block text-left my-4 w-full'>
+                            <div className='px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6'>
+                              <button
+                                type='submit'
+                                className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-primaryDark shadow-sm focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
+                                Create Shop
+                              </button>
                             </div>
                           </div>
                         </form>
@@ -390,10 +432,15 @@ export default function MyShop() {
             </Dialog>
           </Transition.Root>
         </div>
+
+ 
+
+
+
         <h1 className="my-8">Your Shops</h1>
-        <div className="w-full grid grid-cols-2 item-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[20px] lg:mt-[55px]">
         {barbersData.map((item) => {
-          return <BarberCard data={item} key={item._id} />;
+          return <BarberCard data={item} key={item._id}  displayModal={openAddProduct} />;
         })}
         </div>
       </div>
@@ -401,7 +448,59 @@ export default function MyShop() {
   );
 }
 
-const BarberCard = ({ data }) => {
+const customDropdownIndicator = (props) => {
+  return (
+    <div className='text-gray-500' onClick={props.selectProps.onMenuOpen}>
+      &#9660;
+    </div>
+  );
+};
+
+   const customStyles = {
+     control: (provided) => ({
+       ...provided,
+       height: "auto",
+       width: "100%",
+       borderRadius: "4px",
+       borderColor: "#a0aec0",
+       boxShadow: "0 0 0 1px #a0aec0",
+     }),
+
+     multiValue: (provided) => ({
+       ...provided,
+       backgroundColor: "#CBD5E0",
+     }),
+
+     multiValueLabel: (provided) => ({
+       ...provided,
+       color: "#2d3748",
+     }),
+
+     multiValueRemove: (provided) => ({
+       ...provided,
+       color: "#718096",
+       "&:hover": {
+         backgroundColor: "#CBD5E0",
+         color: "#2d3748",
+       },
+     }),
+
+     dropdownIndicator: (provided) => ({
+       ...provided,
+       color: "#2d3748",
+     }),
+
+     menuPortal: (provided) => ({
+       ...provided,
+       zIndex: 9999, // Increase the z-index value as needed
+     }),
+   };
+
+const BarberCard = ({ data, displayModal }) => {
+   
+   const [open
+    , setOpen
+     ] = useState(displayModal)
   const {
     shop_name,
     description,
@@ -410,34 +509,111 @@ const BarberCard = ({ data }) => {
     contact_number,
     shop_address,
     createdAt,
+    images
   } = data;
 
+  const mockData = [
+    {
+      _id: "658e0ce752d50b25110bf0095",
+      shop_name: "ima and caleb stores",
+      description: "Teusday stores",
+      workinghours: {
+        Monday: ["10:00 AM", "12:30 PM", "03:00 PM"],
+        Tuesday: ["08:30 AM", "11:00 AM"],
+        Wednesday: ["02:00 PM", "04:30 PM", "07:00 PM"],
+        Thursday: ["06:30 PM", "08:00 PM"],
+        Friday: ["12:00 PM", "02:30 PM"],
+        Saturday: ["08:30 PM", "10:00 PM"],
+        Sunday: ["09:00 AM", "11:30 AM"],
+      },
+      category: "barbers",
+      owner: "65659eea6c68adee2fc9220a",
+      contact_number: "0908795123",
+      contact_email: "fury25423@gmail.cm",
+      price: 900,
+      availabilty: false,
+      subscriptionType: "basic",
+    }]
+  
+
+
+ const {workinghours} = mockData[0]
+
+ 
+
+
+
   return (
-    <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-lg">
-      <img
-        className="w-full h-40 object-cover object-center"
-        src="https://via.placeholder.com/300" // Add your image source here
-        alt={shop_name}
-      />
-      <div className="p-4">
-        <h2 className="text-xl font-semibold text-gray-800">{shop_name}</h2>
-        <p className="text-gray-600 text-sm mb-2">{description}</p>
-        <p className="text-gray-600 text-sm mb-2">
-          <strong>Price:</strong> ${price}
+    <div
+      className='p-8  flex flex-col items-center justify-center rounded-lg shadow-card'
+      data-aos='zoom-in'
+      data-aos-duration='750'
+      data-aos-delay='500'>
+      <div className='h-auto  w-full flex items-center justify-center my-4'>
+        <img
+          src={images || "https://i.imgur.com/h9YQFtC.jpg"}
+          alt={shop_name}
+          className='h-full rounded-lg object-cover'
+        />
+      </div>
+      <div className='flex flex-col justify-start items-start w-full'>
+        <h2 className='text-xl font-semibold my-3 text-gray-800'>
+          Shop name: {shop_name}
+        </h2>
+        <p className='text-gray-600 text-sm mb-2'>
+          <strong>Description:</strong> {description}
         </p>
-        <p className="text-gray-600 text-sm mb-2">
+        <p className='text-gray-600 text-sm mb-2'>
+          <strong>Price:</strong>${price}
+        </p>
+        <p className='text-gray-600 text-sm mb-2'>
           <strong>Email:</strong> {contact_email}
         </p>
-        <p className="text-gray-600 text-sm mb-2">
+        <p className='text-gray-600 text-sm mb-2'>
           <strong>Phone:</strong> {contact_number}
         </p>
-        <p className="text-gray-600 text-sm mb-2">
+        <p className='text-gray-600 text-sm mb-2'>
           <strong>Address:</strong> {shop_address}
         </p>
-        <p className="text-gray-600 text-sm">
-          <strong>Created At:</strong>{" "}
+        <p className='text-gray-600 text-sm'>
+          <strong>Created At:</strong>
           {new Date(createdAt).toLocaleDateString()}
         </p>
+
+        {/* working hours  */}
+        <div className='mt-[30px] w-full'>
+          <p className='text-para mt-0 font-semibold text-headingColor '>
+            Working Hours:
+          </p>
+          <ul className='mt-3 '>
+            {Object.entries(workinghours).map(([day, hours]) => (
+              <li
+                key={day}
+                className='flex items-center  w-full justify-between mb-2'>
+                <p className='text-[15px] leading-6 text-textColor font-semibold'>
+                  {day}
+                </p>
+                <p className='text-[15px] leading-6 text-textColor font-semibold'>
+                  {hours.length > 0
+                    ? `${hours[0]} - ${hours[hours.length - 1]}`
+                    : "not available"}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Buttons  */}
+        <div className='flex items-center justify-between my-6 w-full'>
+          <button
+            className='w-[45%] rounded-lg py-2 bg-green-500 text-white'
+            onClick={() => setOpen(!open)}>
+            Edit
+          </button>
+          <button className='w-[45%] rounded-lg py-2 bg-red-500 text-white'>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

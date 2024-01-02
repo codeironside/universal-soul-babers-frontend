@@ -11,9 +11,9 @@ const BarberCard = ({ barber }) => {
         data-aos-duration='750'
         data-aos-delay='500'
       >
-        <div className='h-48 w-full flex items-center justify-center lg:justify-center md:justify-center'>
-          <img src="https://i.imgur.com/h9YQFtC.jpg" alt={shop_name} className='h-full rounded-lg ' />
-        </div>
+          <div className='h-48 w-full flex items-center justify-center lg:justify-center md:justify-center'>
+           <img src="https://i.imgur.com/h9YQFtC.jpg" alt={shop_name} className='h-full rounded-lg ' />
+          </div>
         <h2 className='text-[18px] leading-[30px]  lg:text-[26px] lg:leading-8 text-headingColor font-[700] mt-2 '>
           {shop_name}
         </h2>
@@ -29,12 +29,7 @@ const BarberCard = ({ barber }) => {
               <img src={StarIcon} alt='' className='w-[20px] h-[20px] mt-1' />
               {price}
             </span>
-            <span
-              className='flex items gap-[6px]
-              text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor
-              '>
-              {price}
-            </span>
+           
           </div>
         </div>
 

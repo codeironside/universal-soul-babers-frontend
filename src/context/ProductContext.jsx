@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import productImg from '../assets/img/product-2.jpg'
+import axios from "axios";
 
 
 //Create Context 
@@ -29,13 +30,32 @@ const ProductProvider = ({ children }) => {
 
   // fetch Products 
   useEffect(() => {
-    //   const fetchProducts = async ()=> {
-    //     const response = await fetch('backend resources');
-    //     const data = await response.json()
-    //   }
-    //    fetchProducts()
-    setProductItem(data)
+   
+    const products = async () => {
+      
+      try {
+        const response = await axios.get(
+          "https://unique-barbers.onrender.com/api/v1/shops/all"
+        );
+
+        const dataRes = await response.data.shops
+        
+         const filteredProducts = dataRes.filter((item) => item.category !== 'barbers')
+        
+
+
+          setProductItem(filteredProducts);
+       
+      } catch (error) {
+        console.error("Error fetching barbers data:", error);
+      } 
+    };
+
+    products()
+
   }, [])
+
+  console.log(productItem);
 
 
 
