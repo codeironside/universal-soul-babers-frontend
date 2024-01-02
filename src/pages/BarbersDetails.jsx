@@ -66,7 +66,7 @@ console.log(data)
                 </span>
                 
                 <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
-  {data && data.owner ? `${data.shop_name}` : 'Loading...'}
+  {data && data.owner ? data.shop_name: 'Loading...'}
 </h3>
 
                 <div className='flex items-center gap-2 '>
