@@ -58,7 +58,7 @@ const ProductProvider = ({ children }) => {
   const [productItem, setProductItem] = useState([]);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
+    const apiUrl = 'https://unique-barbers.onrender.com/api/v1/shops/all'; // Replace with your API endpoint
 
     const fetchData = async () => {
       try {
