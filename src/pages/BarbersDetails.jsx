@@ -50,7 +50,12 @@ import { scrollToTop } from '../ScollToTop.js';
           <div className='md:col-span-2'>
             <div className='flex flex-col md:flex-row lg:flex-row items-center  gap-5'>
               <figure className='max-w-[200px] max-h-[200px] rounded-lg '>
-                <img src={baberImg} alt='' className='w-full rounded-lg' />
+                <img src={} alt=''  />
+                     <img
+  src={images || baberImg}
+  alt={shop_name}
+  className='w-full rounded-lg'
+/>
               </figure>
               <div>
                 <span
