@@ -53,7 +53,7 @@ console.log(data)
                {/*<img src={} alt=''  /> */}
                      <img
   src={data.images || baberImg}
-  alt={shop_name}
+  alt={data.shop_name}
   className='w-full rounded-lg'
 />
               </figure>
