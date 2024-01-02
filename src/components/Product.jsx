@@ -5,6 +5,7 @@ import { CartContext } from "../context/CartContext";
 import img from '../assets/img/product-2.jpg'
 
 
+
 const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext)
   // console.log(product);
@@ -15,6 +16,7 @@ const Product = ({ product }) => {
       <div className='rounded-lg h-fit mb-4 overflow-hidden relative group transition shadow-card'>
         <div className='flex justify-center items-center '>
           {/* image  */}
+
           <img
             className='w-full group-hover:scale-110 transition duration-300 '
             src={images || img}
