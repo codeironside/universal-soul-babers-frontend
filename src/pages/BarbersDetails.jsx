@@ -37,7 +37,7 @@ import { scrollToTop } from '../ScollToTop.js';
     fetchData();
     scrollToTop();
   }, [shopId]);
-
+console.log(data)
   if (isLoading) {
     return <p>Loading...</p>; // Display a loading message until data is fetched
   }
