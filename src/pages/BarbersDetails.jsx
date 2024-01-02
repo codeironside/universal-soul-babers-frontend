@@ -131,15 +131,16 @@ import { scrollToTop } from '../ScollToTop.js';
              
             </div>
           </div>
-          <div className='md:col-span-1'>
+           {/* needs to be worked on by the devs devs */}
+{/*           <div className='md:col-span-1'>
             <SidePanel setModalShow={setModalShow} data={data} />
-          </div>
+          </div> */}
         </div>
       </section>
-      {showModal && (
-        <BookingModal open={showModal}  onClose={()=> setModalShow(false)} />
-      )}
-      <ToastContainer position='top-center' />
+       {/*{showModal && (
+      //   <BookingModal open={showModal}  onClose={()=> setModalShow(false)} />
+      // )}
+      // <ToastContainer position='top-center' /> */}
     </>
   );
 };
