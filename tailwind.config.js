@@ -33,10 +33,9 @@
 //   ],
 // };
 /** @type {import('tailwindcss').Config} */
-
 const colors = require('tailwindcss/colors')
 
-export default {
+module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -53,12 +52,14 @@ export default {
         teal: colors.teal,
         cyan: colors.cyan,
         // end
+        // new colors
+        'dark-purple': '#800080',
+        'dark-gold': '#b8860b',
+        'golden-green': '#adff2f',
       },
-
       boxShadow: {
         panelShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;",
         'card': '1px 4px 12px -2px rgba(0,0,0,.14)',
-
       },
     },
   },
