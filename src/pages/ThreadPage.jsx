@@ -82,7 +82,7 @@ const ThreadPage = () => {
       minute: "2-digit",
     });
   };
- return (
+return (
   <>
     <style>
       {`
@@ -102,14 +102,34 @@ const ThreadPage = () => {
 .border-animated {
   animation: border-animation 6s infinite;
 }
+@keyframes bg-animation {
+  0% { background-color: #FFFDD0; }
+  8% { background-color: #E6E4BB; }
+  15% { background-color: #CCCAA6; }
+  23% { background-color: #B3B192; }
+  31% { background-color: #99987D; }
+  38% { background-color: #807F68; }
+  46% { background-color: #666553; }
+  54% { background-color: #4D4C3E; }
+  62% { background-color: #87CEFA; }
+  69% { background-color: #C6FCFF; }
+  77% { background-color: #4D4C3E; }
+  85% { background-color: #666553; }
+  92% { background-color: #807F68; }
+  100% { background-color: #FFFDD0; }
+}
+.bg-animated {
+  animation: bg-animation 13s infinite;
+}
 .inner-card {
   border-top: 5px solid teal; /* Darker glistening teal */
   border-radius: 15px 15px 0 0; /* Top two border radius are rounded */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Box shadow */
+  margin-top: 20px; /* Space between the picture and the nested card */
 }
 `}
     </style>
-    <div className="container mx-auto p-4 flex flex-col items-center">
+    <div className="container mx-auto p-4 flex flex-col items-center bg-animated">
       <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden">
         <div className="relative z-20 flex items-center justify-center">
           {thread?.image ? (
