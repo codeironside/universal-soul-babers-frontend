@@ -117,7 +117,7 @@ const Forum = () => {
           </button>
         </div>
         <div className="mb-4">
-                   {threads.map(({ _id, topic, userName, createdAt, image, comments }) => (
+                   {threads.map(({ _id,thread, topic, userName, createdAt, image, comments }) => (
             <Thread
               key={_id}
               _id={_id}
