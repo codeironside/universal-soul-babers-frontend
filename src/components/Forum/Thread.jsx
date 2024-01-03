@@ -120,7 +120,7 @@ const AnimatedThread = styled.div`
 `;
 
 const Thread = ({_id,topic, userName, createdAt, image, comments }) => {
-  // console.log('items',items)
+  console.log('items',userName)
   // const {  } = thread;
   
 
