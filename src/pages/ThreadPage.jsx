@@ -158,9 +158,10 @@ const ThreadPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">{thread?.topic}</h1>
+      
       <div className="flex items-center justify-center mb-2 relative">
-        <div className="image-container" style={{ width: '80px', height: '80px', position: 'relative' }}>
+        <div className="image-container" style={{ width: '600px', height: '60px', position: 'relative' }}>
+
           {thread?.image ? (
             <img
               className="w-16 h-16 rounded-full object-cover z-10"
@@ -175,23 +176,25 @@ const ThreadPage = () => {
           <div 
             className="broken-border" 
             style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              width: '100%',
-              height: '100%',
-              borderRadius: '50%',
-              border: '2px dashed transparent',
-              animation: 'moveBorder 10s linear infinite',
-              animationDelay: '1s', // Add delay to animation
-            }}
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                border: '15px dashed transparent',
+                animation: 'moveBorder 10s linear infinite',
+                animationDelay: '1s', // Add delay to animation
+              }}
           ></div>
         </div>
-        <p className="text-gray-600 text-sm absolute bottom-0 left-0 ml-2">
-          Posted by {thread?.userName} on {thread?.createdAt}
-        </p>
+        
       </div>
       <p className="text-gray-800">{thread?.thread}</p>
+      <p className="text-gray-600 text-sm absolute bottom-0 left-0 ml-2">
+          Posted by {thread?.userName} on {thread?.createdAt}
+        </p>
+      <h1 className="text-3xl font-bold mb-4">{thread?.topic}</h1>
       <div className="mt-4">
         <h2 className="text-lg font-semibold mb-2">Comments</h2>
         {comments?.map((comment) => (
