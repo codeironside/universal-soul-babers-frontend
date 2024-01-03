@@ -142,7 +142,7 @@ const AnimatedThread = styled.div`
   animation: ${animateBorder} 2s infinite alternate;
 `;
 
-const Thread = ({_id,topic, userName, createdAt, image, comments }) => {
+const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
   console.log('items',userName)
   // const {  } = thread;
   
