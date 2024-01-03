@@ -143,8 +143,14 @@ const AnimatedThread = styled.div`
 `;
 
 const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
-  console.log('items',userName)
-  // const {  } = thread;
+    const [expanded, setExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setExpanded(!expanded);
+  };
+
+  const truncatedContent = thread && thread.substring(0, 200);
+
   
 
   const getInitials = (userName) => {
