@@ -126,6 +126,7 @@ const Forum = () => {
               createdAt={createdAt}
               image={image}
               comments={comments}
+              thread={thread)
             />
           ))}
         </div>
