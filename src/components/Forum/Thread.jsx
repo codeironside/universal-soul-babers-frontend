@@ -119,9 +119,9 @@ const AnimatedThread = styled.div`
   animation: ${animateBorder} 2s infinite alternate;
 `;
 
-const Thread = ({ threads }) => {
-  const { _id, topic, userName, createdAt, image, comments } = threads;
-  console.log(thread)
+const Thread = ({ items }) => {
+  const { _id, topic, userName, createdAt, image, comments } = items;
+  console.log(items)
 
   const getInitials = (userName) => {
     const names = userName.split(' ');
