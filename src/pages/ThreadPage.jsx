@@ -5,6 +5,17 @@ import { getCookie } from "../utils";
 import axios from "axios";
 
 const token = getCookie("token");
+const borderAnimation = keyframes`
+  0% { border-color: golden-green; }
+  25% { border-color: dark-gold; }
+  50% { border-color: brown; }
+  100% { border-color: golden-green; }
+`;
+
+const AnimatedImage = styled.img`
+  border: 4px solid;
+  animation: ${borderAnimation} 2s infinite;
+`;
 
 const ThreadPage = () => {
   const [newComment, setNewComment] = useState("");
@@ -85,20 +96,20 @@ const ThreadPage = () => {
   };
 
 return (
-  <div className="container mx-auto p-4 flex flex-col items-center">
-    <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative">
-      <div className="absolute top-0 left-0 right-0 bg-dark-gold h-1/2 z-10 rounded-full border-4 border-golden-green overflow-hidden">
-        <div className="absolute w-full h-full top-0 left-0 transform -rotate-45 bg-dark-purple bg-gradient-to-b from-dark-purple via-transparent to-transparent"></div>
-        <div className="absolute w-full h-full top-0 left-0 transform rotate-45 bg-dark-gold bg-gradient-to-b from-dark-gold via-transparent to-transparent"></div>
-      </div>
-      <div className="relative z-20 flex items-center justify-center">
-        {thread?.image ? (
-          <img
-            src={thread?.image} // Add image source here
-            alt="Thread Image"
-            className="rounded-full border-4 border-golden-green animate-pulse w-32 h-32 object-cover"
-          />
-        ) : (
+    <div className="container mx-auto p-4 flex flex-col items-center">
+      <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative">
+        <div className="absolute top-0 left-0 right-0 bg-dark-gold h-1/2 z-10 rounded-full border-4 border-golden-green overflow-hidden">
+          <div className="absolute w-full h-full top-0 left-0 transform -rotate-45 bg-dark-purple bg-gradient-to-b from-dark-purple via-transparent to-transparent"></div>
+          <div className="absolute w-full h-full top-0 left-0 transform rotate-45 bg-dark-gold bg-gradient-to-b from-dark-gold via-transparent to-transparent"></div>
+        </div>
+        <div className="relative z-20 flex items-center justify-center">
+          {thread?.image ? (
+            <AnimatedImage
+              src={thread?.image} // Add image source here
+              alt="Thread Image"
+              className="rounded-full animate-pulse w-32 h-32 object-cover"
+            />
+          ) : : (
           <div className="flex items-center justify-center rounded-full border-4 border-golden-green animate-pulse w-32 h-32 bg-gray-100 text-gray-600 text-2xl font-semibold">
             {getInitial()}
           </div>
