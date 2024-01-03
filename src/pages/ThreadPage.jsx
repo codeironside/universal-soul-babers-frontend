@@ -38,7 +38,6 @@ const ThreadPage = () => {
         `https://unique-barbers.onrender.com/api/v1/threads/thread/${id}`,
         {
           content: newComment,
-          image: "Owner Name",
         },
         {
           headers: {
