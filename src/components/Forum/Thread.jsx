@@ -189,6 +189,17 @@ const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
               ))}
           </div>
         </div>
+                <div className="thread-content">
+          {expanded ? (
+            <p>{thread}</p>
+          ) : (
+            <>
+              <p>{truncatedContent}</p>
+              <button onClick={toggleExpand}>
+                {truncatedContent.length < thread.length ? 'Read more' : 'Collapse'}
+              </button>
+            </>
+          )}
         {/* Additional content for thread */}
       </AnimatedThread>
     </ThreadWrapper>
