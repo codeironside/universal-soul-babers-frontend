@@ -124,10 +124,10 @@ const ThreadPage = () => {
       );
 
       console.log(response.data);
-      setThread(response.data.thread);
-      setComments(response.data.comments);
+      setThread(response.data?.thread || {});
+      setComments(response.data?.comments || []);
     } catch (error) {
-      console.error("Error fetching chats:", error);
+      console.error("Error fetching thread:", error);
     }
   };
 
@@ -163,13 +163,9 @@ const ThreadPage = () => {
     if (thread?.image) {
       return null; // Return null if image is available
     } else {
-      console.log(thread?.userName)
-      console.log(thread.userName)
-      console.log(thread)
-      return thread?.userName.charAt(0).toUpperCase(); // Return the first letter of userName
+      return thread?.userName?.charAt(0).toUpperCase() || ''; // Return the first letter of userName
     }
   };
-
   return (
     <div className="container mx-auto p-4 flex flex-col items-center">
       <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative">
