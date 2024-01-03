@@ -1,27 +1,4 @@
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-
-// const Thread = ({ _id, topic, userName, createdAt, thread, comments }) => {
-  
-//   return (
-//     <div className="bg-white shadow-md p-4 mb-4">
-//       <h2 className="text-xl font-bold mb-2 underline">
-//         <Link to={`/forum/${_id}`}>{topic}</Link>
-//       </h2>
-//       <p className="text-gray-600 text-sm mb-2">
-//         Posted by {userName} on {createdAt}
-//       </p>
-//       <p className="text-gray-800 overflow-hidden overflow-ellipsis">{thread}</p>
-//     </div>
-//   );
-// };
-
-// export default Thread;
-
-// Thread.js
-
-// Thread.js
-
+import React, { useState } from "react";
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -46,17 +23,17 @@ const glister = keyframes`
     border-color: #ffd700;
   }
 `;
-const animateBorder = keyframes`
+
+const mirrorGlister = keyframes`
   0% {
-    border-color: transparent;
+    transform: rotate(0deg);
   }
   100% {
-    border-color: #ffd700; /* Golden color */
+    transform: rotate(360deg);
   }
 `;
-
 const ThreadWrapper = styled.div`
- .thread {
+  .thread {
     background-color: #ffffff;
     padding: 16px;
     margin-bottom: 16px;
@@ -64,8 +41,8 @@ const ThreadWrapper = styled.div`
     overflow: hidden;
     border: 2px solid transparent;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Apply box shadow */
-    animation: ${glister} 6s infinite linear; /* Apply glister animation */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: ${glister} 6s infinite linear;
   }
 
   .user-details {
@@ -143,7 +120,13 @@ const CreatedAt = styled.p`
 `;
 const AnimatedThread = styled.div`
   border: 2px solid transparent;
-  animation: ${animateBorder} 2s infinite alternate;
+  animation: ${mirrorGlister} 8s infinite linear, ${glister} 6s infinite linear;
+`;
+
+const CreatedAt = styled.p`
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
 `;
 
 const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) => {
