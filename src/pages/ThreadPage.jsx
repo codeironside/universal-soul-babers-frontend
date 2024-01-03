@@ -67,6 +67,15 @@ const ThreadPage = () => {
       return thread?.userName?.charAt(0).toUpperCase() || ''; // Return the first letter of userName
     }
   };
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   const formatTime = (timestamp) => {
     const time = new Date(timestamp);
     return time.toLocaleTimeString(undefined, {
