@@ -26,12 +26,12 @@ const Forum = () => {
       );
 
       setThreads(response.data.chatsWithThreadCount)
-      console.log(response.data.chatsWithThreadCount)
+      //console.log(response.data.chatsWithThreadCount)
     } catch (error) {
       console.error('Error fetching chats:', error);
     }
   };
-  
+  console.log('threads: ', threads)
   
   useEffect(() => {
    
