@@ -142,8 +142,8 @@ const AnimatedThread = styled.div`
   animation: ${animateBorder} 2s infinite alternate;
 `;
 
-const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
-    const [expanded, setExpanded] = useState(false);
+const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) => {
+  const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
@@ -151,14 +151,12 @@ const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
 
   const truncatedContent = thread && thread.substring(0, 200);
 
-  
+  const displayedComments = comments && comments.slice(0, 5);
+  const remainingCommentsCount = Math.max(comments ? comments.length - 5 : 0, 0);
 
   const getInitials = (userName) => {
-    const names = userName.split(' ');
-    return names
-      .map((word) => word.charAt(0))
-      .join('')
-      .toUpperCase();
+    const names = name.split(' ');
+    return names.map((word) => word.charAt(0)).join('').toUpperCase();
   };
 
   return (
@@ -189,13 +187,22 @@ const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
             {comments ? comments.length : 0} {comments && comments.length === 1 ? 'Comment' : 'Comments'}
           </span>
           <div className="miniature-images">
-            {comments &&
-              comments.map((comment, index) => (
-                <img key={index} src={comment.image || 'default-image-url.jpg'} alt={`Comment by ${comment.userName}`} />
+            {displayedComments &&
+              displayedComments.map((comment, index) => (
+                <img
+                  key={index}
+                  src={comment.image || 'default-image-url.jpg'}
+                  alt={`Comment by ${comment.userName}`}
+                />
               ))}
+            {remainingCommentsCount > 0 && (
+              <span className="additional-icons" onClick={toggleExpand}>
+                ..+{remainingCommentsCount} more
+              </span>
+            )}
           </div>
         </div>
-                <div className="thread-content">
+        <div className="thread-content">
           {expanded ? (
             <p>{thread}</p>
           ) : (
@@ -206,7 +213,8 @@ const Thread = ({_id,topic,thread, userName, createdAt, image, comments }) => {
               </button>
             </>
           )}
-        {/* Additional content for thread */}
+          {/* Additional content for thread */}
+        </div>
       </AnimatedThread>
     </ThreadWrapper>
   );
