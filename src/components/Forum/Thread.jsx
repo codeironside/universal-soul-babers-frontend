@@ -29,27 +29,21 @@ import { Link } from 'react-router-dom';
 const glister = keyframes`
   0% {
     border-color: #ffd700;
-    box-shadow: 0 0 10px #ffd700;
   }
   20% {
     border-color: #e6c200;
-    box-shadow: 0 0 15px #e6c200;
   }
   40% {
     border-color: #cca300;
-    box-shadow: 0 0 20px #cca300;
   }
   60% {
     border-color: #b38e00;
-    box-shadow: 0 0 25px #b38e00;
   }
   80% {
     border-color: #998000;
-    box-shadow: 0 0 30px #998000;
   }
   100% {
     border-color: #ffd700;
-    box-shadow: 0 0 10px #ffd700;
   }
 `;
 const animateBorder = keyframes`
@@ -62,7 +56,7 @@ const animateBorder = keyframes`
 `;
 
 const ThreadWrapper = styled.div`
-  .thread {
+ .thread {
     background-color: #ffffff;
     padding: 16px;
     margin-bottom: 16px;
@@ -70,6 +64,7 @@ const ThreadWrapper = styled.div`
     overflow: hidden;
     border: 2px solid transparent;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Apply box shadow */
     animation: ${glister} 6s infinite linear; /* Apply glister animation */
   }
 
