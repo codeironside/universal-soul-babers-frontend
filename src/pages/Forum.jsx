@@ -67,7 +67,8 @@
 //   );
 // };
 
-// export default Forum;import React, { useState, useEffect } from "react";
+// export default Forum;
+import React, { useState, useEffect } from "react";
 import { Thread, ThreadModal } from "../components";
 import { getCookie } from "../utils";
 import axios from "axios";
