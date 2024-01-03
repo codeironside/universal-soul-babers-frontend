@@ -137,4 +137,6 @@ return (
   </div>
 );
 
+}
 
+export default ThreadPage
