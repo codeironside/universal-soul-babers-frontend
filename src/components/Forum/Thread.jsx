@@ -123,11 +123,7 @@ const AnimatedThread = styled.div`
   animation: ${mirrorGlister} 8s infinite linear, ${glister} 6s infinite linear;
 `;
 
-const CreatedAt = styled.p`
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-`;
+
 
 const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) => {
   const [expanded, setExpanded] = useState(false);
