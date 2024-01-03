@@ -83,19 +83,24 @@ const ThreadPage = () => {
       minute: "2-digit",
     });
   };
-it is not going in circles "  return (
+  return (
     <>
       <style>
         {`
-      @keyframes border-animation {
-  0% { border-color: #BDB369; }
-  25% { border-color: #EEBC1D; }
-  50% { border-color: #964B00; }
-  100% { border-color: #BDB369; }
+  @keyframes border-animation {
+  0% { border-image: radial-gradient(circle at 0% 0%, #BDB369, transparent); }
+  20% { border-image: radial-gradient(circle at 40% 0%, #EEBC1D, transparent); }
+  40% { border-image: radial-gradient(circle at 60% 50%, #964B00, transparent); }
+  60% { border-image: radial-gradient(circle at 80% 50%, #AA6C39, transparent); }
+  80% { border-image: radial-gradient(circle at 100% 50%, #A52A2A, transparent); }
+  100% { border-image: radial-gradient(circle at 100% 100%, #BDB369, transparent); }
 }
 .border-animated {
-  animation: border-animation 2s infinite;
+  border: 15px solid;
+  border-image-slice: 5;
+  animation: border-animation 5s infinite;
 }
+
 
         `}
       </style>
