@@ -54,7 +54,7 @@ const Forum = () => {
       </div>
           <div className="mb-4">
               {threads.map((thread) => (
-                <Thread key={thread._id} {thread} />
+                <Thread key={thread._id} {...thread} />
               ))}
             </div>
       </div>
