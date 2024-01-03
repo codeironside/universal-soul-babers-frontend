@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useRed, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Comment from "../components/Forum/Comments";
 import { getCookie } from "../utils";
@@ -83,21 +83,39 @@ const ThreadPage = () => {
       minute: "2-digit",
     });
   };
+const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    let frameCount = 0;
+    let animationFrameId;
+
+    //Our draw came here
+    const render = () => {
+      frameCount++;
+      draw(context, frameCount);
+      animationFrameId = window.requestAnimationFrame(render);
+    }
+    render();
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+    }
+  }, [])
+
+  const colors = ['#BDB369', '#EEBC1D', '#964B00', '#AA6C39', '#A52A2A', '#BDB369'];
+
+  function draw(ctx, frameCount) {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = colors[frameCount % colors.length];
+    ctx.beginPath();
+    ctx.arc(50, 50, 50, 0, frameCount * 0.01);
+    ctx.fill();
+  }
+
   return (
     <>
-      <style>{`
-@keyframes border-animation {
-  0% { border-image: conic-gradient(#BDB369, #EEBC1D, #964B00, #AA6C39, #A52A2A, #BDB369); }
-  100% { border-image: conic-gradient(#BDB369 0.83turn, #EEBC1D 0.83turn, #964B00 0.83turn, #AA6C39 0.83turn, #A52A2A 0.83turn, #BDB369 0.83turn); }
-}
-.border-animated {
-  border: 10px solid;
-  border-image-slice: 1;
-  animation: border-animation 2s infinite;
-}
-
-        `}
-      </style>
       <div className="container mx-auto p-4 flex flex-col items-center">
         <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden">
           <div className="relative z-20 flex items-center justify-center">
@@ -105,11 +123,11 @@ const ThreadPage = () => {
               <img
                 src={thread?.image} // Add image source here
                 alt="Thread Image"
-                className="rounded-full border-4 border-animated animate-pulse w-32 h-32 object-cover"
+                className="rounded-full animate-pulse w-32 h-32 object-cover"
               />
             ) : (
-              <div className="flex items-center justify-center rounded-full border-4 border-animated animate-pulse w-32 h-32 bg-gray-100 text-gray-600 text-2xl font-semibold">
-                {getInitial()}
+              <div className="flex items-center justify-center rounded-full animate-pulse w-32 h-32 bg-gray-100 text-gray-600 text-2xl font-semibold">
+                <canvas ref={canvasRef} /> {/* Use the canvas element here */}
               </div>
             )}
           </div>
