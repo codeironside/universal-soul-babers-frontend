@@ -86,19 +86,16 @@ const ThreadPage = () => {
   return (
     <>
       <style>{`
-      @keyframes border-animation {
-  0% { border-image: radial-gradient(circle at 0% 0%, #BDB369, transparent); }
-  20% { border-image: radial-gradient(circle at 40% 0%, #EEBC1D, transparent); }
-  40% { border-image: radial-gradient(circle at 60% 50%, #964B00, transparent); }
-  60% { border-image: radial-gradient(circle at 80% 50%, #AA6C39, transparent); }
-  80% { border-image: radial-gradient(circle at 100% 50%, #A52A2A, transparent); }
-  100% { border-image: radial-gradient(circle at 100% 100%, #BDB369, transparent); }
+@keyframes border-animation {
+  0% { border-image: conic-gradient(#BDB369, #EEBC1D, #964B00, #AA6C39, #A52A2A, #BDB369); }
+  100% { border-image: conic-gradient(#BDB369 0.83turn, #EEBC1D 0.83turn, #964B00 0.83turn, #AA6C39 0.83turn, #A52A2A 0.83turn, #BDB369 0.83turn); }
 }
 .border-animated {
   border: 10px solid;
   border-image-slice: 1;
   animation: border-animation 2s infinite;
 }
+
         `}
       </style>
       <div className="container mx-auto p-4 flex flex-col items-center">
