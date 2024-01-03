@@ -119,7 +119,7 @@ const Forum = () => {
         <div className="mb-4">
           {threads.map((thread, index) => {
             // console.log(`Item ${index + 1}:`, ...thread);
-            return <Thread key={thread._id} thread={...thread} />;
+            return <Thread key={thread._id} thread={thread} />;
           })}
         </div>
       </div>
