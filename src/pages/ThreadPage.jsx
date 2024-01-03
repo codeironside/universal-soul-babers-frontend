@@ -188,13 +188,16 @@ const ThreadPage = () => {
               }}
           ></div>
         </div>
-        
+                  <p className="text-gray-600 text-sm absolute bottom-0 left-0 ml-2">
+            Posted by {thread?.userName} on {thread?.createdAt}
+          </p>
       </div>
-      <p className="text-gray-800">{thread?.thread}</p>
-      <p className="text-gray-600 text-sm absolute bottom-0 left-0 ml-2">
-          Posted by {thread?.userName} on {thread?.createdAt}
-        </p>
-      <h1 className="text-3xl font-bold mb-4">{thread?.topic}</h1>
+        <div className="card-content mt-4">
+          <p className="text-gray-800">{thread?.thread}</p>
+          <p className="text-gray-600 text-sm absolute bottom-0 left-0 ml-2">
+            Posted by {thread?.userName} on {thread?.createdAt}
+          </p>
+        </div>
       <div className="mt-4">
         <h2 className="text-lg font-semibold mb-2">Comments</h2>
         {comments?.map((comment) => (
