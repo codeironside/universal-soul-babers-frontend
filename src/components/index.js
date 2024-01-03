@@ -28,6 +28,10 @@ import UpdateImage from './UpdateImage'
 import ProfileImage from './ProfileImage'
 import { PaymentButton } from './PaymentButton'
 import PlanModal from './PlanModal'
+import Thread from './Forum/Thread'
+import Comments from './Forum/Comments'
+import ThreadPage from '../pages/ThreadPage'
+import ThreadModal from './ThreadModal'
 
 export {
     ProfileImage,
@@ -60,4 +64,8 @@ export {
     BookingModal,
     PaymentButton,
     PlanModal,
+    Thread,
+    Comments,
+    ThreadPage,
+    ThreadModal
 }

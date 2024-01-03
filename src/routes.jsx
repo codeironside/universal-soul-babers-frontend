@@ -20,6 +20,7 @@ import {
   CrowdfundingThankYou,
   SubscriptionThankYou,
   BookingThankYou,
+  ThreadPage
 } from './pages';
 import BlogContent from './pages/BlogContent';
 import Forum from './pages/Forum';
@@ -96,6 +97,11 @@ export default [
   {
     path: '/forum',
     component: <UserPanel fragment={<Forum />} />,
+    standalone: true,
+  },
+  {
+    path: '/forum/:id',
+    component: <UserPanel fragment={<ThreadPage />} />,
     standalone: true,
   },
   {
