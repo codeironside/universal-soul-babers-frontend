@@ -20,6 +20,8 @@
 
 // Thread.js
 
+// Thread.js
+
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -83,29 +85,32 @@ const ThreadWrapper = styled.div`
   .comments-info {
     font-size: 14px;
     color: #777;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
   }
 
-  .comments-info img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+  .comments-count {
     margin-right: 5px;
   }
 
+  .miniature-images {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+  }
+
+  .miniature-images img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
   @media screen and (max-width: 768px) {
-    .user-avatar {
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-    }
-
-    .user-info a {
-      font-size: 12px;
-    }
-
-    .comments-info {
-      font-size: 12px;
-    }
+    /* Adjust styles for smaller screens if needed */
   }
 `;
 
@@ -116,7 +121,7 @@ const AnimatedThread = styled.div`
 
 const Thread = ({ thread }) => {
   const { _id, topic, userName, createdAt, image, comments } = thread;
-console.log(comments, userName)
+
   const getInitials = (userName) => {
     const names = userName.split(' ');
     return names
@@ -138,9 +143,6 @@ console.log(comments, userName)
           </div>
           <div className="user-info">
             <Link to={`/user/${_id}`}>{userName}</Link>
-            <span className="comments-info">
-              {comments.length} {comments.length === 1 ? 'comment' : 'comments'}
-            </span>
           </div>
         </div>
         <h2 className="text-xl font-bold mb-2 underline">
@@ -151,6 +153,17 @@ console.log(comments, userName)
         <p className="text-gray-600 text-sm mb-2">
           Posted on {new Date(createdAt).toLocaleDateString()} {/* Format date as needed */}
         </p>
+        <div className="comments-info">
+          <span className="comments-count">
+            {comments ? comments.length : 0} {comments && comments.length === 1 ? 'Comment' : 'Comments'}
+          </span>
+          <div className="miniature-images">
+            {comments &&
+              comments.map((comment, index) => (
+                <img key={index} src={comment.image || 'default-image-url.jpg'} alt={`Comment by ${comment.userName}`} />
+              ))}
+          </div>
+        </div>
         {/* Additional content for thread */}
       </AnimatedThread>
     </ThreadWrapper>
