@@ -87,39 +87,29 @@ return (
     <style>
       {`
 @keyframes border-animation {
-  0% { border-color: #BDB369; }
-  8% { border-color: #102945; } /* Color 4 */
-  17% { border-color: #000000; } /* Color 5 */
-  25% { border-color: #EEBC1D; }
-  33% { border-color: #FF7F50; } /* Color 6 */
-  42% { border-color: #FF0080; } /* Color 7 */
-  50% { border-color: #964B00; }
-  58% { border-color: #0000FF; } /* Color 8 */
-  67% { border-color: #FFBE98; } /* Color 9 */
-  75% { border-color: #FF0000; } /* Color 10 */
-  100% { border-color: #BDB369; }
+  0% { border-color: rgba(189, 179, 105, 0.5); } /* #BDB369 with 50% opacity */
+  8% { border-color: rgba(16, 41, 69, 0.5); } /* #102945 with 50% opacity */
+  17% { border-color: rgba(0, 0, 0, 0.5); } /* #000000 with 50% opacity */
+  25% { border-color: rgba(238, 188, 29, 0.5); } /* #EEBC1D with 50% opacity */
+  33% { border-color: rgba(255, 127, 80, 0.5); } /* #FF7F50 with 50% opacity */
+  42% { border-color: rgba(255, 0, 128, 0.5); } /* #FF0080 with 50% opacity */
+  50% { border-color: rgba(150, 75, 0, 0.5); } /* #964B00 with 50% opacity */
+  58% { border-color: rgba(0, 0, 255, 0.5); } /* #0000FF with 50% opacity */
+  67% { border-color: rgba(255, 190, 152, 0.5); } /* #FFBE98 with 50% opacity */
+  75% { border-color: rgba(255, 0, 0, 0.5); } /* #FF0000 with 50% opacity */
+  100% { border-color: rgba(189, 179, 105, 0.5); } /* #BDB369 with 50% opacity */
 }
 .border-animated {
   animation: border-animation 6s infinite;
 }
 @keyframes bg-animation {
-  0% { background-color: #FFFDD0; }
-  8% { background-color: #E6E4BB; }
-  15% { background-color: #CCCAA6; }
-  23% { background-color: #B3B192; }
-  31% { background-color: #99987D; }
-  38% { background-color: #807F68; }
-  46% { background-color: #666553; }
-  54% { background-color: #4D4C3E; }
-  62% { background-color: #87CEFA; }
-  69% { background-color: #C6FCFF; }
-  77% { background-color: #4D4C3E; }
-  85% { background-color: #666553; }
-  92% { background-color: #807F68; }
-  100% { background-color: #FFFDD0; }
+  0% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 .bg-animated {
-  animation: bg-animation 13s infinite;
+  background: linear-gradient(45deg, #FFFDD0, #E6E4BB, #CCCAA6, #B3B192, #99987D, #807F68, #666553, #4D4C3E, #87CEFA, #C6FCFF);
+  background-size: 200% 200%;
+  animation: bg-animation 15s infinite;
 }
 .inner-card {
   border-top: 5px solid teal; /* Darker glistening teal */
@@ -129,8 +119,8 @@ return (
 }
 `}
     </style>
-    <div className="container mx-auto p-4 flex flex-col items-center bg-animated">
-      <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden">
+    <div className="container mx-auto p-4 flex flex-col items-center">
+      <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden bg-animated">
         <div className="relative z-20 flex items-center justify-center">
           {thread?.image ? (
             <img
