@@ -86,17 +86,20 @@ const ThreadPage = () => {
   return (
     <>
       <style>
-        {`
-          @keyframes border-animation {
-            0% { border-color: golden-green; }
-            25% { border-color: dark-gold; }
-            50% { border-color: brown; }
-            100% { border-color: golden-green; }
-          }
-          .border-animated {
-            animation: border-animation 2s infinite;
-          }
-        `}
+      @keyframes border-animation {
+  0% { border-image: radial-gradient(circle at 0% 0%, #BDB369, transparent); }
+  20% { border-image: radial-gradient(circle at 40% 0%, #EEBC1D, transparent); }
+  40% { border-image: radial-gradient(circle at 60% 50%, #964B00, transparent); }
+  60% { border-image: radial-gradient(circle at 80% 50%, #AA6C39, transparent); }
+  80% { border-image: radial-gradient(circle at 100% 50%, #A52A2A, transparent); }
+  100% { border-image: radial-gradient(circle at 100% 100%, #BDB369, transparent); }
+}
+.border-animated {
+  border: 10px solid;
+  border-image-slice: 1;
+  animation: border-animation 2s infinite;
+}
+
       </style>
       <div className="container mx-auto p-4 flex flex-col items-center">
         <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden">
