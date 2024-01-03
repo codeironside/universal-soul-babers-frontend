@@ -121,7 +121,7 @@ const AnimatedThread = styled.div`
 
 const Thread = ({ thread }) => {
   const { _id, topic, userName, createdAt, image, comments } = thread;
-  console.log(thread)
+  console.log(thread.userName)
 
   const getInitials = (userName) => {
     const names = userName.split(' ');
