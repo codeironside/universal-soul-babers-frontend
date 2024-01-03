@@ -102,6 +102,7 @@ import { useParams } from "react-router-dom";
 import Comment from "../components/Forum/Comments";
 import { getCookie } from "../utils";
 import axios from "axios";
+import './ThreadPage.css'; // Import CSS file for styling
 
 const token = getCookie('token');
 
@@ -204,35 +205,3 @@ const ThreadPage = () => {
 };
 
 export default ThreadPage;
-
-// CSS for the styling
-import './ThreadPage.css';
-
-/* ThreadPage.css */
-.image-container {
-  position: relative;
-  width: 80px; /* Adjust the width and height of the image container as needed */
-  height: 80px;
-}
-
-.broken-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px dashed transparent;
-  animation: moveBorder 10s linear infinite;
-}
-
-@keyframes moveBorder {
-  0%, 100% {
-    border-image: linear-gradient(to right, #ffd700, #ffd700 25%, #b38e00 25%, #b38e00 50%, #998000 50%, #998000 75%, transparent 75%, transparent);
-  }
-  50% {
-    border-image: linear-gradient(to right, #ffd700, #ffd700 25%, #b38e00 25%, #b38e00 50%, #998000 50%, #998000 75%, #ffd700 75%, #ffd700);
-  }
-}
-
-/* Additional styles or adjustments can be made as needed */
