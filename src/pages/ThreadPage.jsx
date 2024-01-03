@@ -164,6 +164,8 @@ const ThreadPage = () => {
       return null; // Return null if image is available
     } else {
       console.log(thread?.userName)
+      console.log(thread.userName)
+      console.log(thread)
       return thread?.userName.charAt(0).toUpperCase(); // Return the first letter of userName
     }
   };
