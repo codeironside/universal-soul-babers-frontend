@@ -1,18 +1,159 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
 
-const Thread = ({ _id, topic, userName, createdAt, thread, comments }) => {
+// const Thread = ({ _id, topic, userName, createdAt, thread, comments }) => {
   
+//   return (
+//     <div className="bg-white shadow-md p-4 mb-4">
+//       <h2 className="text-xl font-bold mb-2 underline">
+//         <Link to={`/forum/${_id}`}>{topic}</Link>
+//       </h2>
+//       <p className="text-gray-600 text-sm mb-2">
+//         Posted by {userName} on {createdAt}
+//       </p>
+//       <p className="text-gray-800 overflow-hidden overflow-ellipsis">{thread}</p>
+//     </div>
+//   );
+// };
+
+// export default Thread;
+
+// Thread.js
+
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const animateBorder = keyframes`
+  0% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: #ffd700; /* Golden color */
+  }
+`;
+
+const ThreadWrapper = styled.div`
+  .thread {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .user-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc; /* Default background color for avatar */
+  }
+
+  .user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .user-info a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .comments-info {
+    font-size: 14px;
+    color: #777;
+  }
+
+  .comments-info img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .user-avatar {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .user-info a {
+      font-size: 12px;
+    }
+
+    .comments-info {
+      font-size: 12px;
+    }
+  }
+`;
+
+const AnimatedThread = styled.div`
+  border: 2px solid transparent;
+  animation: ${animateBorder} 2s infinite alternate;
+`;
+
+const Thread = ({ thread }) => {
+  const { _id, topic, userName, createdAt, image, comments } = thread;
+
+  const getInitials = (name) => {
+    const names = name.split(' ');
+    return names
+      .map((word) => word.charAt(0))
+      .join('')
+      .toUpperCase();
+  };
+
   return (
-    <div className="bg-white shadow-md p-4 mb-4">
-      <h2 className="text-xl font-bold mb-2 underline">
-        <Link to={`/forum/${_id}`}>{topic}</Link>
-      </h2>
-      <p className="text-gray-600 text-sm mb-2">
-        Posted by {userName} on {createdAt}
-      </p>
-      <p className="text-gray-800 overflow-hidden overflow-ellipsis">{thread}</p>
-    </div>
+    <ThreadWrapper>
+      <AnimatedThread className="thread">
+        <div className="user-details">
+          <div className="user-avatar">
+            {image ? (
+              <img src={image} alt={userName} />
+            ) : (
+              <span>{getInitials(userName)}</span>
+            )}
+          </div>
+          <div className="user-info">
+            <Link to={`/user/${_id}`}>{userName}</Link>
+            <span className="comments-info">
+              {comments.length} {comments.length === 1 ? 'comment' : 'comments'}
+            </span>
+          </div>
+        </div>
+        <h2 className="text-xl font-bold mb-2 underline">
+          <Link to={`/forum/${_id}`} style={{ textDecoration: 'none', color: '#333' }}>
+            {topic}
+          </Link>
+        </h2>
+        <p className="text-gray-600 text-sm mb-2">
+          Posted on {new Date(createdAt).toLocaleDateString()} {/* Format date as needed */}
+        </p>
+        {/* Additional content for thread */}
+      </AnimatedThread>
+    </ThreadWrapper>
   );
 };
 
