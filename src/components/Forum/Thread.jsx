@@ -136,7 +136,11 @@ const ThreadWrapper = styled.div`
     /* Adjust styles for smaller screens if needed */
   }
 `;
-
+const CreatedAt = styled.p`
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+`;
 const AnimatedThread = styled.div`
   border: 2px solid transparent;
   animation: ${animateBorder} 2s infinite alternate;
@@ -179,9 +183,9 @@ const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) =>
             {topic}
           </Link>
         </h2>
-        <p className="text-gray-600 text-sm mb-2">
-          Posted on {new Date(createdAt).toLocaleDateString()} {/* Format date as needed */}
-        </p>
+       <CreatedAt>
+          Posted on {new Date(createdAt).toLocaleDateString()} {/* Updated styling for creation date */}
+        </CreatedAt>
         <div className="comments-info">
           <span className="comments-count">
             {comments ? comments.length : 0} {comments && comments.length === 1 ? 'Comment' : 'Comments'}
