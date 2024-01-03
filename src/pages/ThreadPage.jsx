@@ -1,4 +1,4 @@
-import React, { useState,useRed, useEffect } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Comment from "../components/Forum/Comments";
 import { getCookie } from "../utils";
