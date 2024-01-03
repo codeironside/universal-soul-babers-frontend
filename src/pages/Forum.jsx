@@ -117,10 +117,17 @@ const Forum = () => {
           </button>
         </div>
         <div className="mb-4">
-          {threads.map((thread, index) => {
-            // console.log(`Item ${index + 1}:`, ...thread);
-            return <Thread key={thread._id} thread={thread} />;
-          })}
+                   {threads.map(({ _id, topic, userName, createdAt, image, comments }) => (
+            <Thread
+              key={_id}
+              _id={_id}
+              topic={topic}
+              userName={userName}
+              createdAt={createdAt}
+              image={image}
+              comments={comments}
+            />
+          ))}
         </div>
       </div>
       {modalShow && (
