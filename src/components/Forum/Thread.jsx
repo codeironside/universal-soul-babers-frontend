@@ -52,6 +52,14 @@ const glister = keyframes`
     box-shadow: 0 0 10px #ffd700;
   }
 `;
+const animateBorder = keyframes`
+  0% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: #ffd700; /* Golden color */
+  }
+`;
 
 const ThreadWrapper = styled.div`
   .thread {
