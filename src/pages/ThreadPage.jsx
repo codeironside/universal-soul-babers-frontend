@@ -85,7 +85,7 @@ const ThreadPage = () => {
   };
   return (
     <>
-      <style>
+      <style>{`
       @keyframes border-animation {
   0% { border-image: radial-gradient(circle at 0% 0%, #BDB369, transparent); }
   20% { border-image: radial-gradient(circle at 40% 0%, #EEBC1D, transparent); }
@@ -99,7 +99,7 @@ const ThreadPage = () => {
   border-image-slice: 1;
   animation: border-animation 2s infinite;
 }
-
+        `}
       </style>
       <div className="container mx-auto p-4 flex flex-col items-center">
         <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden">
