@@ -6,16 +6,34 @@ import { ProductCard } from "../components/MarketPlace";
 import product1 from "../assets/img/product-1.JPG";
 import CountUp from "react-countup";
 import { ProductContext } from "../context/ProductContext";
+import axios from 'axios';
 
 const MarketPlace = () => {
-  // get all products from the product context
-  const { productItem } = useContext(ProductContext);
+ const { productItem, setProductItem } = useContext( ProductContext);
+  const [currentImg, setCurrentImg] = useState('');
+//   const apiUrl = 'http://localhost:5087/api/v1/shops/all'; // Replace with your API endpoint
 
-  const [currentImg, setCurrentImg] = useState(product1);
+// // ... (other imports and code)
 
-  useEffect(() => {
-    scrollToTop();
-  }, []);
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       scrollToTop();
+//       const response = await axios.get(apiUrl);
+//       if (Array.isArray(response.data.shops)) {
+//         const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
+//         setProductItem(filteredShops);
+//       } else {
+//         console.error('Data structure is not as expected');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   };
+
+//   fetchData();
+// }, []);
+
   return (
     <main>
       <section className='mx-auto  max-w-[1200px] mb-8'>
@@ -104,8 +122,8 @@ const MarketPlace = () => {
 
         <div className='grid  md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-[32px] max-w-sm mx-auto md:max-w-none lg:max-w-none md:mx-0 '>
           {productItem.map((item) => {
-            // console.log(item);
-            return <Product key={item.id} product={item} />;
+            //console.log(item);
+            return <Product key={item._id} product={item} />;
           })}
         </div>
       </section>

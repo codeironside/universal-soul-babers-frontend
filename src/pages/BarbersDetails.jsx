@@ -37,7 +37,6 @@ import { scrollToTop } from '../ScollToTop.js';
     fetchData();
     scrollToTop();
   }, [shopId]);
-
   if (isLoading) {
     return <p>Loading...</p>; // Display a loading message until data is fetched
   }
@@ -50,7 +49,12 @@ import { scrollToTop } from '../ScollToTop.js';
           <div className='md:col-span-2'>
             <div className='flex flex-col md:flex-row lg:flex-row items-center  gap-5'>
               <figure className='max-w-[200px] max-h-[200px] rounded-lg '>
-                <img src={baberImg} alt='' className='w-full rounded-lg' />
+               {/*<img src={} alt=''  /> */}
+                     <img
+  src={data.images || baberImg}
+  alt={data.shop_name}
+  className='w-full rounded-lg'
+/>
               </figure>
               <div>
                 <span
@@ -61,7 +65,7 @@ import { scrollToTop } from '../ScollToTop.js';
                 </span>
                 
                 <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
-  {data && data.owner ? `${data.shop_name}` : 'Loading...'}
+  {data && data.owner ? data.shop_name: 'Loading...'}
 </h3>
 
                 <div className='flex items-center gap-2 '>
@@ -128,18 +132,19 @@ import { scrollToTop } from '../ScollToTop.js';
             </div>
             <div className='mt-[50px] '>
               {tab === "about" && <BarbersAbout />}
-              {tab === "reviews" && <Feedback />}
+             
             </div>
           </div>
-          <div className='md:col-span-1'>
+           {/* needs to be worked on by the devs devs */}
+{/*           <div className='md:col-span-1'>
             <SidePanel setModalShow={setModalShow} data={data} />
-          </div>
+          </div> */}
         </div>
       </section>
-      {showModal && (
-        <BookingModal setModalShow={setModalShow} shopId={shopId} data={data} />
-      )}
-      <ToastContainer position='top-center' />
+       {/*{showModal && (
+      //   <BookingModal open={showModal}  onClose={()=> setModalShow(false)} />
+      // )}
+      // <ToastContainer position='top-center' /> */}
     </>
   );
 };

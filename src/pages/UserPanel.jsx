@@ -97,10 +97,14 @@ export default function UserPanel({ fragment, owner = false }) {
     deleteAllCookies();
     navigate('/login');
   }
-
-  useEffect(() => {
-    if (owner && user.role !== 'OWNER') navigate('/login');
-  }, []);
+useEffect(() => {
+  // console.log('Owner:', owner);
+  // console.log('User Role:', user.role);
+  if (!owner || user.role !== 'superadmin') {
+    // console.log('Navigating to /dashboard');
+    navigate('/dashboard');
+  }
+}, [owner, user.role]);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
 
@@ -500,7 +504,7 @@ function _CommonSidebarNav({ extra }) {
         aria-label="Sidebar"
       >
         <div className="px-2 space-y-1">
-          {user.role === 'USER'
+          {user.role === 'USER' || 'SHOP_OWNER'
             ? navigation.map((item) => (
                 // <div key={item.name} onClick={() => setSidebarOpen(false)}>
                 <Link
@@ -546,7 +550,7 @@ function _CommonSidebarNav({ extra }) {
         </div>
         <div className="pt-6 mt-6">
           <div className="px-2 space-y-1">
-            {user.role === 'USER' &&
+            {user.role === 'USER' || 'SHOP_OWNER' &&
               secondaryNavigation.map((item) => (
                 <Link
                   key={item.name}
