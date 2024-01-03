@@ -87,21 +87,23 @@ return (
     <style>
       {`
 @keyframes border-animation {
-  0% { border-color: rgba(189, 179, 105, 0.5); } /* #BDB369 with 50% opacity */
-  8% { border-color: rgba(16, 41, 69, 0.5); } /* #102945 with 50% opacity */
-  17% { border-color: rgba(0, 0, 0, 0.5); } /* #000000 with 50% opacity */
-  25% { border-color: rgba(238, 188, 29, 0.5); } /* #EEBC1D with 50% opacity */
-  33% { border-color: rgba(255, 127, 80, 0.5); } /* #FF7F50 with 50% opacity */
-  42% { border-color: rgba(255, 0, 128, 0.5); } /* #FF0080 with 50% opacity */
-  50% { border-color: rgba(150, 75, 0, 0.5); } /* #964B00 with 50% opacity */
-  58% { border-color: rgba(0, 0, 255, 0.5); } /* #0000FF with 50% opacity */
-  67% { border-color: rgba(255, 190, 152, 0.5); } /* #FFBE98 with 50% opacity */
-  75% { border-color: rgba(255, 0, 0, 0.5); } /* #FF0000 with 50% opacity */
-  100% { border-color: rgba(189, 179, 105, 0.5); } /* #BDB369 with 50% opacity */
+  0% { border-color: #F6FFF6; } /* Lighter variation of #BDB369[^1^][1] */
+  8% { border-color: #D9D9CA; } /* Lighter variation of #102945[^2^][2] */
+  17% { border-color: #BCA7E8; } /* Lighter variation of #000000[^3^][9] */
+  25% { border-color: #E4C66A; } /* Lighter variation of #EEBC1D[^4^][19] */
+  33% { border-color: #FFCC99; } /* Lighter variation of #FF7F50[^5^][14] */
+  42% { border-color: #FF80A0; } /* Lighter variation of #FF0080[^6^][29] */
+  50% { border-color: #7D3200; } /* Lighter variation of #964B00[^7^][11] */
+  58% { border-color: #8080FF; } /* Lighter variation of #0000FF[^8^][24] */
+  67% { border-color: #FFD6BD; } /* Lighter variation of #FFBE98[^9^][20] */
+  75% { border-color: #FF8080; } /* Lighter variation of #FF0000[^10^][26] */
+  100% { border-color: #F6FFF6; } /* Lighter variation of #BDB369[^1^][1] */
 }
 .border-animated {
   animation: border-animation 6s infinite;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.75); /* Shadow for the image */
 }
+
 @keyframes bg-animation {
   0% { background-position: 100% 100%; }
   100% { background-position: 0% 0%; }
