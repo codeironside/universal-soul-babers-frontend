@@ -146,7 +146,7 @@ const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) =>
       <AnimatedThread className="thread">
         <div className="user-details">
           <div className="user-avatar">
-            {image ? (
+                       {image ? (
               <img src={image} alt={userName} />
             ) : (
               <span>{getInitials(userName)}</span>
@@ -169,11 +169,11 @@ const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) =>
             {comments ? comments.length : 0} {comments && comments.length === 1 ? 'Comment' : 'Comments'}
           </span>
           <div className="miniature-images">
-            {displayedComments &&
-              displayedComments.map((comment, index) => (
+            {comments &&
+              comments.map((comment, index) => (
                 <img
                   key={index}
-                  src={comment.image || 'default-image-url.jpg'}
+                  src={comment.image}
                   alt={`Comment by ${comment.userName}`}
                 />
               ))}
