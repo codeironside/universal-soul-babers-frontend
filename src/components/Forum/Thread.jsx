@@ -137,7 +137,7 @@ const Thread = ({ _id, topic, thread, userName, createdAt, image, comments }) =>
   const remainingCommentsCount = Math.max(comments ? comments.length - 5 : 0, 0);
 
   const getInitials = (userName) => {
-    const names = name.split(' ');
+    const names = userName.split(' ');
     return names.map((word) => word.charAt(0)).join('').toUpperCase();
   };
 
