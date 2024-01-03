@@ -85,20 +85,18 @@ const ThreadPage = () => {
   };
 it is not going in circles "  return (
     <>
-      <style>{`
+      <style>
+        {`
       @keyframes border-animation {
-  0% { border-image: radial-gradient(circle at 0% 0%, #BDB369, transparent); }
-  20% { border-image: radial-gradient(circle at 40% 0%, #EEBC1D, transparent); }
-  40% { border-image: radial-gradient(circle at 60% 50%, #964B00, transparent); }
-  60% { border-image: radial-gradient(circle at 80% 50%, #AA6C39, transparent); }
-  80% { border-image: radial-gradient(circle at 100% 50%, #A52A2A, transparent); }
-  100% { border-image: radial-gradient(circle at 100% 100%, #BDB369, transparent); }
+  0% { border-color: #BDB369; }
+  25% { border-color: #EEBC1D; }
+  50% { border-color: #964B00; }
+  100% { border-color: #BDB369; }
 }
 .border-animated {
-  border: 10px solid;
-  border-image-slice: 1;
-  animation: border-animation 5s infinite;
+  animation: border-animation 2s infinite;
 }
+
         `}
       </style>
       <div className="container mx-auto p-4 flex flex-col items-center">
