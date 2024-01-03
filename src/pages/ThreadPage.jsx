@@ -102,7 +102,6 @@ import { useParams } from "react-router-dom";
 import Comment from "../components/Forum/Comments";
 import { getCookie } from "../utils";
 import axios from "axios";
-import './ThreadPage.css'; // Import CSS file for styling
 
 const token = getCookie('token');
 
@@ -161,7 +160,7 @@ const ThreadPage = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{thread?.topic}</h1>
       <div className="flex items-center justify-center mb-2 relative">
-        <div className="image-container">
+        <div className="image-container" style={{ width: '80px', height: '80px', position: 'relative' }}>
           {thread?.image ? (
             <img
               className="w-16 h-16 rounded-full object-cover z-10"
@@ -170,10 +169,23 @@ const ThreadPage = () => {
             />
           ) : (
             <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold text-2xl z-10">
-              {thread?.userName.charAt(0)}
+              {thread?.userName ? thread.userName.charAt(0) : ''}
             </div>
           )}
-          <div className="broken-border"></div>
+          <div 
+            className="broken-border" 
+            style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              border: '2px dashed transparent',
+              animation: 'moveBorder 10s linear infinite',
+              animationDelay: '1s', // Add delay to animation
+            }}
+          ></div>
         </div>
         <p className="text-gray-600 text-sm absolute bottom-0 left-0 ml-2">
           Posted by {thread?.userName} on {thread?.createdAt}
@@ -200,6 +212,19 @@ const ThreadPage = () => {
           </button>
         </div>
       </div>
+      <style>
+        {`
+          @keyframes moveBorder {
+            0%, 100% {
+              border-image: linear-gradient(to right, #ffd700, #ffd700 25%, #b38e00 25%, #b38e00 50%, #998000 50%, #998000 75%, transparent 75%, transparent);
+            }
+            50% {
+              border-image: linear-gradient(to right, #ffd700, #ffd700 25%, #b38e00 25%, #b38e00 50%, #998000 50%, #998000 75%, #ffd700 75%, #ffd700);
+            }
+          }
+          /* Additional styles or adjustments can be made as needed */
+        `}
+      </style>
     </div>
   );
 };
