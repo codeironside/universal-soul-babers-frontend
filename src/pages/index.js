@@ -21,6 +21,7 @@ import Payment from './Payment.jsx'
 import CrowdfundingThankYou from './ThankYou/CrowdfundingThankYou.jsx'
 import SubscriptionThankYou from './ThankYou/SubscriptionThankYou.jsx'
 import BookingThankYou from './ThankYou/BookingThankYou.jsx'
+import ThreadPage from './ThreadPage.jsx'
 
 
 export {
@@ -47,4 +48,5 @@ export {
   CrowdfundingThankYou,
   BookingThankYou,
   SubscriptionThankYou,
+  ThreadPage
 }
