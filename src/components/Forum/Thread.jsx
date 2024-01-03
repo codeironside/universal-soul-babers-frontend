@@ -117,7 +117,7 @@ const AnimatedThread = styled.div`
 const Thread = ({ thread }) => {
   const { _id, topic, userName, createdAt, image, comments } = thread;
 
-  const getInitials = (name) => {
+  const getInitials = (userName) => {
     const names = name.split(' ');
     return names
       .map((word) => word.charAt(0))
