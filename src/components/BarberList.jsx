@@ -5,7 +5,7 @@ const BarberList = ({ selectedBarbers }) => {
   return (
     <>
       <SectionHeader title='Featured Barbers' subTitle='Top Rated Barbers' />
-      <div className='flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[20px] lg:mt-[55px]'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[20px] lg:mt-[55px]'>
         {selectedBarbers?.map((barber) => {
           
           return (

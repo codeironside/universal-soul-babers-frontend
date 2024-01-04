@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from "../context/CartContext";
-import product1 from "../assets/img/product-1.JPG";
+import img from '../assets/img/product-2.jpg'
+
 
 const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext)
@@ -14,19 +15,11 @@ const Product = ({ product }) => {
       <div className='rounded-lg h-fit mb-4 overflow-hidden relative group transition shadow-card'>
         <div className='flex justify-center items-center '>
           {/* image  */}
-      {images ? (
-        <img
-          className='w-full group-hover:scale-110 transition duration-300 '
-          src={images}
-          alt=''
-        />
-      ) : (
-        <img
-          className='w-full group-hover:scale-110 transition duration-300 '
-          src={product1}
-          alt={shop_name}
-        />
-      )}
+          <img
+            className='w-full group-hover:scale-110 transition duration-300 '
+            src={images || img}
+            alt=''
+          />
         </div>
         <div>
           {/* buttons  */}
