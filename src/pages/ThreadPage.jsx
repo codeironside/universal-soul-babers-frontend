@@ -11,6 +11,12 @@ const ThreadPage = () => {
   const { id } = useParams();
   const [thread, setThread] = useState({});
   const [comments, setComments] = useState([]);
+let isUser
+  if (token) {
+  isUser = true;
+} else {
+  isUser = false;
+}
 
   const fetchOneThread = async () => {
     try {
@@ -87,17 +93,10 @@ return (
     <style>
       {`
 @keyframes border-animation {
-  0% { border-color: #F6FFF6; } /* Lighter variation of #BDB369[^1^][1] */
-  8% { border-color: #D9D9CA; } /* Lighter variation of #102945[^2^][2] */
-  17% { border-color: #BCA7E8; } /* Lighter variation of #000000[^3^][9] */
-  25% { border-color: #E4C66A; } /* Lighter variation of #EEBC1D[^4^][19] */
-  33% { border-color: #FFCC99; } /* Lighter variation of #FF7F50[^5^][14] */
-  42% { border-color: #FF80A0; } /* Lighter variation of #FF0080[^6^][29] */
-  50% { border-color: #7D3200; } /* Lighter variation of #964B00[^7^][11] */
-  58% { border-color: #8080FF; } /* Lighter variation of #0000FF[^8^][24] */
-  67% { border-color: #FFD6BD; } /* Lighter variation of #FFBE98[^9^][20] */
-  75% { border-color: #FF8080; } /* Lighter variation of #FF0000[^10^][26] */
-  100% { border-color: #F6FFF6; } /* Lighter variation of #BDB369[^1^][1] */
+ 0% { border-color: #BDB369; }
+  25% { border-color: #EEBC1D; }
+  50% { border-color: #964B00; }
+  100% { border-color: #BDB369; }
 }
 .border-animated {
   animation: border-animation 6s infinite;
@@ -150,7 +149,7 @@ return (
         <div className="bg-white p-4 rounded-lg shadow-lg max-w-xl w-full z-10">
           <h2 className="text-lg font-semibold mb-2">Comments</h2>
           {comments?.map((comment) => (
-            <Comment key={comment.id} {...comment} />
+            <Comment key={comment.id} {...comment} isUser={isUser}/>
           ))}
           <div className="mt-4">
             <textarea
