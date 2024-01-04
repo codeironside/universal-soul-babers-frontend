@@ -6,6 +6,9 @@ import axios from "axios";
 import { buildApiEndpoint, getCookie } from "../utils";
 import { fetchShops } from "../api/product";
 import Select from "react-select"
+import { ImSpinner8 } from "react-icons/im";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -15,6 +18,8 @@ export default function MyShop() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
   const [openAddProduct, setOpenAddProduct] = useState(false);
+  const [loading, setLoading] = useState(false);
+
  
   const [availability, setAvailability] = useState({});
 
@@ -117,6 +122,7 @@ export default function MyShop() {
      const cloudName = "di36rc30e";
      const uploadPreset = "mrh3qf9";
      e.preventDefault();
+     setLoading(true)
 
      const formData = new FormData();
      formData.append("shop_name", productData.shop_name);
@@ -154,9 +160,10 @@ export default function MyShop() {
            "Content-Type": "application/json",
          },
        });
-       if (response.status === 200) {
-         alert("Product created successfully");
-
+        
+       if (response.status >= 200 && response.status < 300) {
+         // Show success notification
+         toast.success("Shop Created successfully!");
          setOpenAddProduct(false);
 
          setProductData({
@@ -168,10 +175,12 @@ export default function MyShop() {
          setFile(null);
          setPreview("");
        } else {
-         console.error("Error creating product:", response.statusText);
+         // Show error notification
+         toast.error("Failed to submit data. Please try again.");
        }
+       setLoading(false)
      } catch (error) {
-       console.log(error);
+        toast.error(error.message);
      }
    };
 
@@ -181,200 +190,187 @@ export default function MyShop() {
   }, []);
   return (
     <>
-      <div className="px-8 py-6">
-        <h1 className="text-4xl font-semibold text-gray-900">Shop</h1>
+      <div className='px-8 py-6'>
+        <h1 className='text-4xl font-semibold text-gray-900'>Shop</h1>
 
-        <p className="mt-12 text-xl text-gray-700">
-          Activate your shop in  
-          <Link className="text-indigo-500" to="/settings">
+        <p className='mt-12 text-xl text-gray-700'>
+          Activate your shop in
+          <Link className='text-indigo-500' to='/settings'>
             settings
-          </Link>  
+          </Link>
           to start selling
         </p>
 
-        <div className="pt-6 mt-12 border-t border-gray-200">
-          <h1
-            className="mb-6 text-4xl font-semibold text-gray-900"
-          >
+        <div className='pt-6 mt-12 border-t border-gray-200'>
+          <h1 className='mb-6 text-4xl font-semibold text-gray-900'>
             Inventory
           </h1>
 
           <button
-            type="button"
-            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm w-fit bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2"
-            onClick={() => setOpenAddProduct(true)}
-          >
-            <PlusIcon className="w-5 h-5 mr-2 -ml-1" aria-hidden="true" />
+            type='button'
+            className='inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm w-fit bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'
+            onClick={() => setOpenAddProduct(true)}>
+            <PlusIcon className='w-5 h-5 mr-2 -ml-1' aria-hidden='true' />
             Add Shop
           </button>
 
           <Transition.Root show={openAddProduct} as={Fragment}>
             <Dialog
-              as="div"
-              className="relative z-10"
-              onClose={() => setOpenAddProduct(false)}
-            >
+              as='div'
+              className='relative z-10'
+              onClose={() => setOpenAddProduct(false)}>
               <Transition.Child
                 as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <div className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
+                enter='ease-out duration-300'
+                enterFrom='opacity-0'
+                enterTo='opacity-100'
+                leave='ease-in duration-200'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'>
+                <div className='fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75' />
               </Transition.Child>
 
-              <div className="fixed inset-0 z-10 overflow-y-auto">
-                <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
+              <div className='fixed inset-0 z-10 overflow-y-auto'>
+                <div className='flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0'>
                   <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  >
-                    <Dialog.Panel className="relative px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-sm md:max-w-md sm:p-6">
-                      <div className="mt-5 md:col-span-2 md:mt-0">
+                    enter='ease-out duration-300'
+                    enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+                    enterTo='opacity-100 translate-y-0 sm:scale-100'
+                    leave='ease-in duration-200'
+                    leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+                    leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
+                    <Dialog.Panel className='relative px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-sm md:max-w-md sm:p-6'>
+                      <div className='mt-5 md:col-span-2 md:mt-0'>
                         <form onSubmit={handleSubmit}>
-                          <div className="overflow-hidden">
-                            <h1 className="mb-4 text-xl">Create Shop</h1>
-                            <div className="grid grid-cols-6 gap-6">
-                              <div className="col-span-6">
+                          <div className='overflow-hidden'>
+                            <h1 className='mb-4 text-xl'>Create Shop</h1>
+                            <div className='grid grid-cols-6 gap-6'>
+                              <div className='col-span-6'>
                                 <label
-                                  htmlFor="shop_name"
-                                  className="block text-sm font-medium text-gray-700"
-                                >
+                                  htmlFor='shop_name'
+                                  className='block text-sm font-medium text-gray-700'>
                                   Shop name
                                 </label>
                                 <input
-                                  type="text"
-                                  name="shop_name"
-                                  id="name"
-                                  autoComplete="name"
-                                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                  type='text'
+                                  name='shop_name'
+                                  id='name'
+                                  autoComplete='name'
+                                  className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                                   value={productData.shop_name}
                                   onChange={handleInputChange}
                                 />
                               </div>
 
-                              <div className="col-span-6">
+                              <div className='col-span-6'>
                                 <label
-                                  htmlFor="category"
-                                  className="block text-sm font-medium text-gray-700"
-                                >
+                                  htmlFor='category'
+                                  className='block text-sm font-medium text-gray-700'>
                                   Category
                                 </label>
                                 <input
-                                  type="text"
-                                  name="category"
-                                  id="category"
+                                  type='text'
+                                  name='category'
+                                  id='category'
                                   disabled
-                                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm cursor-not-allowed bg-gray-100 text-gray-500"
+                                  className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm cursor-not-allowed bg-gray-100 text-gray-500'
                                   value={productData.category}
                                   onChange={handleInputChange}
                                 />
                               </div>
 
                               {/* Price */}
-                              <div className="col-span-6">
+                              <div className='col-span-6'>
                                 <label
-                                  htmlFor="price"
-                                  className="block text-sm font-medium text-gray-700"
-                                >
+                                  htmlFor='price'
+                                  className='block text-sm font-medium text-gray-700'>
                                   Price
                                 </label>
-                                <div className="flex max-w-lg rounded-md shadow-sm">
-                                  <span className="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
+                                <div className='flex max-w-lg rounded-md shadow-sm'>
+                                  <span className='inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm'>
                                     $
                                   </span>
                                   <input
-                                    type="text"
-                                    name="price"
-                                    id="price"
-                                    className="flex-1 block w-full min-w-0 border-gray-300 rounded-none rounded-r-md focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    type='text'
+                                    name='price'
+                                    id='price'
+                                    className='flex-1 block w-full min-w-0 border-gray-300 rounded-none rounded-r-md focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                                     value={productData.price}
                                     onChange={handleInputChange}
                                   />
                                 </div>
                               </div>
 
-                              <div className="col-span-6">
+                              <div className='col-span-6'>
                                 <label
-                                  htmlFor="description"
-                                  className="block text-sm font-medium text-gray-700"
-                                >
-                                Shop Description
+                                  htmlFor='description'
+                                  className='block text-sm font-medium text-gray-700'>
+                                  Shop Description
                                 </label>
-                                <div className="mt-1">
+                                <div className='mt-1'>
                                   <textarea
-                                    id="description"
-                                    name="description"
+                                    id='description'
+                                    name='description'
                                     rows={3}
-                                    className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    className='block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                                     value={productData.description}
                                     onChange={handleInputChange}
                                   />
                                 </div>
-                                <p className="mt-2 text-sm text-gray-500">
+                                <p className='mt-2 text-sm text-gray-500'>
                                   Brief description of your shop
                                 </p>
                               </div>
 
-                              <div className="relative col-span-6">
-                                <label className="block text-sm font-medium text-gray-700">
+                              <div className='relative col-span-6'>
+                                <label className='block text-sm font-medium text-gray-700'>
                                   Shop Image
                                 </label>
                                 <div
-                                  className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md"
+                                  className='flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md'
                                   onDragOver={handleDragOver}
-                                  onDrop={handleDrop}
-                                >
-                                  <div className="space-y-1 text-center">
+                                  onDrop={handleDrop}>
+                                  <div className='space-y-1 text-center'>
                                     {file ? (
                                       <img
                                         src={preview}
-                                        alt="Preview"
-                                        className="w-full h-auto mx-auto"
+                                        alt='Preview'
+                                        className='w-full h-auto mx-auto'
                                       />
                                     ) : (
                                       <svg
-                                        className="w-12 h-12 mx-auto text-gray-400"
-                                        stroke="currentColor"
-                                        fill="none"
-                                        viewBox="0 0 48 48"
-                                        aria-hidden="true"
-                                      >
+                                        className='w-12 h-12 mx-auto text-gray-400'
+                                        stroke='currentColor'
+                                        fill='none'
+                                        viewBox='0 0 48 48'
+                                        aria-hidden='true'>
                                         <path
-                                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                          d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02'
                                           strokeWidth={2}
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
                                         />
                                       </svg>
                                     )}
 
-                                    <div className="flex text-sm text-gray-600">
+                                    <div className='flex text-sm text-gray-600'>
                                       <label
-                                        htmlFor="file-upload"
-                                        className="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-                                      >
+                                        htmlFor='file-upload'
+                                        className='relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'>
                                         <span>Upload a file</span>
                                         <input
-                                          id="file-upload"
-                                          name="file"
-                                          type="file"
-                                          accept="image/jpg, image/jpeg, image/png"
-                                          className="sr-only"
+                                          id='file-upload'
+                                          name='file'
+                                          type='file'
+                                          accept='image/jpg, image/jpeg, image/png'
+                                          className='sr-only'
                                           onChange={handleFileInputChange}
                                         />
                                       </label>
-                                      <p className="pl-1">or drag and drop</p>
+                                      <p className='pl-1'>or drag and drop</p>
                                     </div>
-                                    <p className="text-xs text-gray-500">
+                                    <p className='text-xs text-gray-500'>
                                       PNG, JPG up to 1MB
                                     </p>
                                   </div>
@@ -384,42 +380,45 @@ export default function MyShop() {
                           </div>
 
                           {/* Working Hours  */}
-                             <div className='relative col-span-10 mt-6 gap-4'>
-                              {daysOfWeek.map((day) => (
-                                <div
-                                  key={day}
-                                  className='flex flex-col justify-center  w-full items-start'>
-                                  <label className='block text-[18px] text-left font-medium mt-6 text-gray-700'>
-                                    {day}
-                                  </label>
-                                  <Select
-                                    styles={customStyles}
-                                    options={timeOptions}
-                                    isMulti
-                                    onChange={(selectedTimes) =>
-                                      handleTimeChange(day, selectedTimes)
-                                    }
-                                    menuPortalTarget={document.body}
-                                    components={{
-                                      DropdownIndicator:
-                                        customDropdownIndicator,
-                                    }}
-                                    className='w-full mt-4' // Use Tailwind CSS classes for width
-                                  />
-                                </div>
-                              ))}
-                              <p className='mt-2 text-sm text-gray-500'>
-                                You can decide to make changes if you want. Your availability can be updated at a go!
-                              </p>
-                             
-                            </div>
-                          
+                          <div className='relative col-span-10 mt-6 gap-4'>
+                            {daysOfWeek.map((day) => (
+                              <div
+                                key={day}
+                                className='flex flex-col justify-center  w-full items-start'>
+                                <label className='block text-[18px] text-left font-medium mt-6 text-gray-700'>
+                                  {day}
+                                </label>
+                                <Select
+                                  styles={customStyles}
+                                  options={timeOptions}
+                                  isMulti
+                                  onChange={(selectedTimes) =>
+                                    handleTimeChange(day, selectedTimes)
+                                  }
+                                  menuPortalTarget={document.body}
+                                  components={{
+                                    DropdownIndicator: customDropdownIndicator,
+                                  }}
+                                  className='w-full mt-4' // Use Tailwind CSS classes for width
+                                />
+                              </div>
+                            ))}
+                            <p className='mt-2 text-sm text-gray-500'>
+                              You can decide to make changes if you want. Your
+                              availability can be updated at a go!
+                            </p>
+                          </div>
+
                           <div className='relative inline-block text-left my-4 w-full'>
                             <div className='px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6'>
                               <button
                                 type='submit'
                                 className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-primaryDark shadow-sm focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'>
-                                Create Shop
+                                {loading ? (
+                                  <ImSpinner8 className='mx-auto animate-spin' />
+                                ) : (
+                                  <span>Create Shop </span>
+                                )}
                               </button>
                             </div>
                           </div>
@@ -433,15 +432,17 @@ export default function MyShop() {
           </Transition.Root>
         </div>
 
- 
-
-
-
-        <h1 className="my-8">Your Shops</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[20px] lg:mt-[55px]">
-        {barbersData.map((item) => {
-          return <BarberCard data={item} key={item._id}  displayModal={openAddProduct} />;
-        })}
+        <h1 className='my-8'>Your Shops</h1>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[20px] lg:mt-[55px]'>
+          {barbersData.map((item) => {
+            return (
+              <BarberCard
+                data={item}
+                key={item._id}
+                displayModal={openAddProduct}
+              />
+            );
+          })}
         </div>
       </div>
     </>
@@ -540,6 +541,9 @@ const BarberCard = ({ data, displayModal }) => {
  const {workinghours} = mockData[0]
 
  
+const handleDeleteShop = (id) => {
+  // logic to delete the shop when button is clicked 
+}
 
 
 
@@ -604,13 +608,9 @@ const BarberCard = ({ data, displayModal }) => {
         </div>
 
         {/* Buttons  */}
-        <div className='flex items-center justify-between my-6 w-full'>
-          <button
-            className='w-[45%] rounded-lg py-2 bg-green-500 text-white'
-            onClick={() => setOpen(!open)}>
-            Edit
-          </button>
-          <button className='w-[45%] rounded-lg py-2 bg-red-500 text-white'>
+        <div className='flex items-center justify-between mt-4 -mb-4 w-full'>
+         
+          <button className='w-full rounded-lg py-2 bg-red-500 text-white' onClick={handleDeleteShop}>
             Delete
           </button>
         </div>

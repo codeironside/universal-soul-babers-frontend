@@ -45,9 +45,9 @@ const Barbers = () => {
       setLoading(true);
       try {
         const response = await axios.get("https://unique-barbers.onrender.com/api/v1/shops/all");
-        if (Array.isArray(response.data.data)) {
-          const filteredBarbers = response.data.data.filter(item => item.category === 'barbers');
-          
+        if (Array.isArray(response.data.shops)) {
+          const filteredBarbers = response.data.shops.filter(item => item.category === 'barbers');
+          console.log(filteredBarbers)
           setBarbersData(filteredBarbers);
         } else {
           console.error("Data received is not an array:", response.data);
@@ -58,10 +58,29 @@ const Barbers = () => {
         setLoading(false);
       }
     };
+    
 
     fetchData();
     scrollToTop();
   }, []);
+
+  //     const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(apiUrl);
+  //       if (Array.isArray(response.data.shops)) {
+  //         const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
+  //         setProductItem(filteredShops);
+  //       } else {
+  //         console.error('Data structure is not as expected');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   return (
     <>
       <section className='bg-[#fff9ea] '>

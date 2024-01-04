@@ -5,27 +5,22 @@ import { ProductContext } from "../context/ProductContext";
 import img from '../assets/img/product-2.jpg'
 
 const ProductDetails = () => {
-  // get products from id 
-  const { id: itemId } = useParams()
-  const { productItem } = useContext(ProductContext)
-  const { addToCart } = useContext(CartContext)
+  const { id: itemId } = useParams();
+  const { productItem } = useContext(ProductContext);
+  const { addToCart } = useContext(CartContext);
+  const [product, setProduct] = useState(null);
 
-
-  // change the product id to number 
- 
-  // get single product 
-  const product = productItem.find(item => {
-    if (item._id === itemId) {
-      return item
-    }
-  })
+  useEffect(() => {
+    const foundProduct = productItem.find(item => item._id === itemId);
+    setProduct(foundProduct);
+  }, [itemId, productItem]);
 
   if (!product) {
     return (
-      <section className='h-screen flex justify-center items-center' >
-        loading...
+      <section className='h-screen flex justify-center items-center'>
+        Loading...
       </section>
-    )
+    );
   }
 
   // console.log(productItem.find(item => console.log(item.id)));
@@ -68,6 +63,6 @@ const ProductDetails = () => {
       </div>
     </section>
   );
-}
+};
 
-export default ProductDetails
+export default ProductDetails;
