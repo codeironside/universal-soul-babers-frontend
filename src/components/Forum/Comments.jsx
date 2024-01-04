@@ -114,7 +114,7 @@ const glister = keyframes`
   background-size: 200% 200%;
   animation: bg-animation 15s infinite;
 }
-
+`;
 const CommentWrapper = styled.div`
   position: relative;
   padding: 10px;
@@ -149,7 +149,7 @@ const Comment = ({ image, userName, createdAt, content, isUser }) => {
   });
 
   return (
-    <CommentWrapper style={{ flexDirection: isUser ? 'row-reverse' : 'row' }}>
+    <CommentWrapper style={{ flexDirection: 'row' }}>
       <div className="flex items-center bg-gray-100 p-2 mb-2">
         {image ? (
           <img
