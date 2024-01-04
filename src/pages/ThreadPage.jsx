@@ -121,7 +121,7 @@ return (
 `}
     </style>
     <div className="container mx-auto p-4 flex flex-col items-center">
-      <div className="bg-gray-200 rounded-lg p-6 max-w-xl w-full relative overflow-hidden bg-animated">
+      <div className="bg-gray-200 rounded-lg p-6 w-full relative overflow-hidden bg-animated lg:max-w-6xl">
         <div className="relative z-20 flex items-center justify-center">
           {thread?.image ? (
             <img
