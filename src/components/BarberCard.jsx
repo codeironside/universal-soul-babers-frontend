@@ -34,12 +34,7 @@ const BarberCard = ({ barber }) => {
               <img src={StarIcon} alt='' className='w-[20px] h-[20px] mt-1' />
               {price}
             </span>
-            <span
-              className='flex items gap-[6px]
-              text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor
-              '>
-              {price}
-            </span>
+           
           </div>
         </div>
 

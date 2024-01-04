@@ -54,7 +54,7 @@ const Header = () => {
                             <ProfileImage />
                             <span className='hidden ml-3 text-sm font-medium text-gray-700 lg:block'>
                               <span className='sr-only'>
-                                Open user menu for{" "}
+                                Open user menu for
                               </span>
                               {/* {user.userName} */}
                             </span>

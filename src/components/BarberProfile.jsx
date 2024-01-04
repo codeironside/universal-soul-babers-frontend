@@ -22,19 +22,22 @@ const BarberProfile = () => {
 
   const user = JSON.parse(getCookie('user'));
   const token = getCookie('token');
+  
+console.log(token);
 
   useEffect(() => {
+    
     setFirstname(user.firstName);
     setLastname(user.lastName);
     setUserName(user.userName)
     setEmail(user.email);
     setBio(user.bio);
     setPhonenumber(user.phoneNumber);
-    setInstagram('')
-    setLinkedIn('')
-    setYouTube('')
+    setInstagram(user.instagram)
+    setLinkedIn(user.linkedIn)
+    setYouTube(user.instagram)
 
-  }, []);
+  }, [firstname, lastname, email, phoneNumber, bio, userName, instagram, linkedIn,youTube]);
 
   const userId = user._id;
 
@@ -48,6 +51,9 @@ const BarberProfile = () => {
         userName: userName,
         phoneNumber: phoneNumber,
         bio: bio,
+        linkedIn: linkedIn,
+        youtube: youTube,
+        instagram: instagram
       };
 
       const response = await axios.put(

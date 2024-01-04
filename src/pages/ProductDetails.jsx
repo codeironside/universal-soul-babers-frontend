@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
-import { ProductContext } from '../context/ProductContext';
-import product1 from "../assets/img/product-1.JPG";
+import React, { useContext } from 'react'
+import { useParams, Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import { ProductContext } from "../context/ProductContext";
+import img from '../assets/img/product-2.jpg'
 
 const ProductDetails = () => {
   const { id: itemId } = useParams();
@@ -23,36 +23,41 @@ const ProductDetails = () => {
     );
   }
 
-  const { shop_name, price, description, images } = product;
+  // console.log(productItem.find(item => console.log(item.id)));
+
+  // destructure products 
+  const { description, shop_name,  price,  images } = product
+ 
 
   return (
-    <section className='pt-32 lg:py-32 h-screen flex items-center'>
+    <section className='pt-32 lg:py-32 h-screen flex items-center '>
       <div className='container mx-auto'>
+        {/* images wrapper  */}
         <div className='flex flex-col lg:flex-row items-center'>
-<div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
-  {images ? (
-    <img
-      className='w-full max-w-[350px] max-h-[350px] rounded-md shadow-md transform transition duration-300 hover:scale-105'
-      src={images}
-      alt=''
-    />
-  ) : (
-    <img
-      className='w-full max-w-[350px] max-h-[350px] rounded-md shadow-md transform transition duration-300 hover:scale-105'
-      src={product1}
-      alt={shop_name}
-    />
-  )}
-</div>
-
-
+          {/* images  */}
+          <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0  '>
+            <img
+              className='max-w-[200px] lg:max-w-sm rounded-xl '
+              src={images || img}
+              alt=''
+            />
+          </div>
+          {/* text  */}
           <div className='flex-1 text-center lg:text-left'>
-            <h1 className='text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0'>{shop_name}</h1>
-            <div className='text-xl text-red-500 font-medium mb-6'>$ {price}</div>
+            <h1 className='text-[26px] font-medium mb-2 max-w-[450px] mx-auto  lg:mx-0 '>
+              {shop_name}
+            </h1>
+            <div className='text-xl text-red-500 font-medium mb-6 '>
+              $ {price}
+            </div>
             <p className='mb-6'>{description}</p>
-            <button onClick={() => addToCart(product, product._id)} className='btn'>
-              Add To Cart
-            </button>
+            <Link to={'/cart'}>
+              <button
+               
+                className='btn'>
+                Checkout
+              </button>
+            </Link>
           </div>
         </div>
       </div>

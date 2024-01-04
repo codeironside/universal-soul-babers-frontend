@@ -2,17 +2,18 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 
 const glister = keyframes`
-  0% { border-color: rgba(141, 182, 205, 0.5); } /* #8DB6CD with 50% opacity */
-  8% { border-color: rgba(96, 157, 176, 0.5); } /* #609DB0 with 50% opacity */
-  17% { border-color: rgba(66, 124, 141, 0.5); } /* #427C8D with 50% opacity */
-  25% { border-color: rgba(53, 94, 108, 0.5); } /* #355E6C with 50% opacity */
-  33% { border-color: rgba(37, 63, 73, 0.5); } /* #253F49 with 50% opacity */
-  42% { border-color: rgba(23, 45, 52, 0.5); } /* #172D34 with 50% opacity */
-  50% { border-color: rgba(10, 24, 28, 0.5); } /* #0A181C with 50% opacity */
-  58% { border-color: rgba(5, 12, 14, 0.5); } /* #050C0E with 50% opacity */
-  67% { border-color: rgba(2, 6, 7, 0.5); } /* #020607 with 50% opacity */
-  75% { border-color: rgba(1, 3, 4, 0.5); } /* #010304 with 50% opacity */
-  100% { border-color: rgba(141, 182, 205, 0.5); }
+  0% {
+    border-color: rgba(189, 179, 105, 0.5); } /* #BDB369 with 50% opacity */
+  8% { border-color: rgba(16, 41, 69, 0.5); } /* #102945 with 50% opacity */
+  17% { border-color: rgba(0, 0, 0, 0.5); } /* #000000 with 50% opacity */
+  25% { border-color: rgba(238, 188, 29, 0.5); } /* #EEBC1D with 50% opacity */
+  33% { border-color: rgba(255, 127, 80, 0.5); } /* #FF7F50 with 50% opacity */
+  42% { border-color: rgba(255, 0, 128, 0.5); } /* #FF0080 with 50% opacity */
+  50% { border-color: rgba(150, 75, 0, 0.5); } /* #964B00 with 50% opacity */
+  58% { border-color: rgba(0, 0, 255, 0.5); } /* #0000FF with 50% opacity */
+  67% { border-color: rgba(255, 190, 152, 0.5); } /* #FFBE98 with 50% opacity */
+  75% { border-color: rgba(255, 0, 0, 0.5); } /* #FF0000 with 50% opacity */
+  100% { border-color: rgba(189, 179, 105, 0.5); } /* #BDB369 with 50% opacity */
 }
 .border-animated {
   animation: border-animation 6s infinite;

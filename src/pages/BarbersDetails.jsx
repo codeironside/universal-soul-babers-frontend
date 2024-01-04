@@ -45,8 +45,8 @@ import { scrollToTop } from '../ScollToTop.js';
     
     <>
       <section className='px-5 mx-auto container'>
-        <div className='grid md:grid-cols-3 gap-[50px] '>
-          <div className='md:col-span-2'>
+        <div className='grid md:grid-cols-5 gap-[50px] '>
+          <div className='md:col-span-3'>
             <div className='flex flex-col md:flex-row lg:flex-row items-center  gap-5'>
               <figure className='max-w-[200px] max-h-[200px] rounded-lg '>
                {/*<img src={} alt=''  /> */}
@@ -117,18 +117,7 @@ import { scrollToTop } from '../ScollToTop.js';
                 }  py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
                 About
               </button>
-{/*               <button
-                onClick={() => {
-                  setTab("reviews");
-                  console.log(tab);
-                }}
-                className={`
-              ${
-                tab === "reviews" && "border-b border-solid border-primaryColor"
-              }
-              py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
-                Reviews
-              </button> */}
+
             </div>
             <div className='mt-[50px] '>
               {tab === "about" && <BarbersAbout />}
@@ -136,15 +125,15 @@ import { scrollToTop } from '../ScollToTop.js';
             </div>
           </div>
            {/* needs to be worked on by the devs devs */}
-{/*           <div className='md:col-span-1'>
+          <div className='md:col-span-2'>
             <SidePanel setModalShow={setModalShow} data={data} />
-          </div> */}
+          </div>
         </div>
       </section>
-       {/*{showModal && (
-      //   <BookingModal open={showModal}  onClose={()=> setModalShow(false)} />
-      // )}
-      // <ToastContainer position='top-center' /> */}
+       {showModal && (
+        <BookingModal open={showModal} data={data} onClose={()=> setModalShow(false)} />
+      )}
+      <ToastContainer position='top-center' />
     </>
   );
 };

@@ -35,12 +35,12 @@ const CartProvider = ({ children }) => {
 
     //  item check
     const cartItem = cart.find((item) => {
-      return item.id === product.id;
+      return item._id === product._id;
     });
 
     // conditionals
     if (cartItem) {
-      const newCart = cart.map((item) => item.id === product.id ? { ...item, amount: amt ? amt : cartItem.amount + 1 } : item);
+      const newCart = cart.map((item) => item._id === product._id ? { ...item, amount: amt ? amt : cartItem.amount + 1 } : item);
 
       setCart(newCart);
     } else {
@@ -50,7 +50,7 @@ const CartProvider = ({ children }) => {
 
   const removeFromCart = (id) => {
     const newCart = cart.filter((item) => {
-      return item.id !== id;
+      return item._id !== id;
     });
     setCart(newCart);
   };
@@ -60,17 +60,18 @@ const CartProvider = ({ children }) => {
   };
 
   const increaseAmount = (id) => {
-    const cartItem = cart.find((item) => item.id === id);
+    const cartItem = cart.find((item) => item._id === id);
+    console.log(cartItem, id);
     addToCart(cartItem, cartItem.amount + 1);
   };
 
   const decreaseAmount = (id) => {
     // console.log("decrease");
-    const cartItem = cart.find((item) => item.id === id);
+    const cartItem = cart.find((item) => item._id === id);
 
     if (cartItem) {
       const newCart = cart.map((item) => {
-        if (item.id === id) {
+        if (item._id === id) {
           return { ...item, amount: cartItem.amount - 1 };
         } else {
           return item;

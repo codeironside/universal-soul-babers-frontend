@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
+
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -27,11 +32,19 @@ const mockData = [
   },
 ];
 
-const BookingModal = ({ open, onClose }) => {
+const BookingModal = ({ open, onClose, data }) => {
   const [selectedTime, setSelectedTime] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTab, setSelectedTab] = useState("Morning");
   const [timeSlots, setTimeSlots] = useState([]);
+
+  const currentDate = new Date();
+
+  const formattedDate = currentDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
 
   useEffect(() => {
     // Set the initial selected day when the modal opens
@@ -142,33 +155,58 @@ const BookingModal = ({ open, onClose }) => {
             leaveFrom='opacity-100 translate-y-0 sm:scale-100'
             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
             <div className='inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
-              <div className='bg-white p-8'>
+              <div className='bg-white p-4'>
                 <div className='flex items-center justify-between'>
                   <Dialog.Title
                     as='h3'
-                    className='text-lg font-medium leading-6 text-gray-900'>
-                    Drax Barbershop
+                    className='text-lg my-3 font-medium leading-6 text-capitalize text-gray-900'>
+                    {data.shop_name}
                   </Dialog.Title>
                 </div>
                 <div className='mt-6'>
                   {/* Days of the Week */}
                   <div className='flex mt-4 mb-12 space-x-2'>
-                    {daysOfWeek.map((day) => (
-                      <button
-                        key={day}
-                        className={`flex-1 p-2 border border-gray-300 rounded ${
-                          selectedDay === day ? "bg-primaryDark text-white" : ""
-                        }`}
-                        onClick={() => handleDayClick(day)}>
-                        {day}
-                      </button>
-                    ))}
+                    <Swiper
+                      modules={{ Pagination }}
+                      spaceBetween={1}
+                      slidesPerView={4}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: 6,
+                          spaceBetween: 1,
+                        },
+                        760: {
+                          slidesPerView: 6,
+                          spaceBetween: 1,
+                        },
+                        1024: {
+                          slidesPerView: 6,
+                          spaceBetween: 1,
+                        },
+                      }}>
+                      {daysOfWeek.map((day) => (
+                        <SwiperSlide key={day}>
+                          <button
+                            className={`flex-1 p-2 h-14 w-14 border border-gray-300 rounded-full  items-center justify-center  ${
+                              selectedDay === day
+                                ? "bg-primaryDark text-white"
+                                : ""
+                            }`}
+                            onClick={() => handleDayClick(day)}>
+                            {day}
+                          </button>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </div>
 
                   {/* Time Tabs */}
                   <div className='flex  mb-4 w-full  items-center bg-gray-200 justify-center rounded-lg p-2'>
-                    {["Morning", "Afternoon", "Evening"].map((tab) => (
-                      <div className=' flex w-full '>
+                    {["Morning", "Afternoon", "Evening"].map((tab, i) => (
+                      <div className=' flex w-full ' key={i}>
                         <button
                           key={tab}
                           className={`flex-1 p-2  rounded w-full ${
@@ -184,12 +222,12 @@ const BookingModal = ({ open, onClose }) => {
                   </div>
 
                   {/* Time Slots */}
-                  <div className='flex flex-wrap space-x-2'>
+                  <div className='grid grid-cols-3 gap-2 w-full mt-6'>
                     {timeSlots.length > 0 ? (
                       timeSlots.map((time) => (
                         <button
                           key={time}
-                          className={`p-2 border border-gray-300 rounded ${
+                          className={`p-1 border border-gray-300 rounded col-span-1 ${
                             selectedTime === time
                               ? "bg-primaryDark text-white"
                               : ""
@@ -199,8 +237,18 @@ const BookingModal = ({ open, onClose }) => {
                         </button>
                       ))
                     ) : (
-                      <p className='text-gray-500'>Not available</p>
+                      <p className='text-gray-500 col-span-3'>Not available</p>
                     )}
+                  </div>
+
+                  {/* Service */}
+                  <div className='flex  my-4 w-full  items-center justify-start rounded-lg p-2'>
+                    <div className='w-full'>
+                      <p className='text-lg mb-3'>Service:</p>
+                      <p className='rounded-lg  p-2 bg-gray-200  '>
+                        Barber Service
+                      </p>
+                    </div>
                   </div>
 
                   {/* Booking Details */}
@@ -214,20 +262,27 @@ const BookingModal = ({ open, onClose }) => {
                         <span className='font-semibold text-sm mb-2'>
                           Time: {selectedTime}
                         </span>
-                        <span className='ml-2  text-sm'>Price : $400</span>
+                        <span className='ml-2  text-sm'>
+                          Price : ${data.price}
+                        </span>
                       </div>
                     </div>
                     <div className='flex items-center gap-2 mt-2 border-t border-gray-300'>
-                     <div className="mt-4 flex items-center gap-2">
-                       <div className="w-8 h-8 rounded-full bg-gray-500"></div>
-                      <h3 className="text-md font-medium">
-                        Drax BarberShop
-                      </h3>
-                     </div>
-
-
+                      <div className='mt-4 flex items-center gap-2'>
+                        <img
+                          className='w-8 h-8 rounded-full'
+                          src='https://i.imgur.com/Qq1VF6Q.jpg'
+                          alt=''
+                        />
+                        <h3 className='text-md font-medium'>Drax BarberShop</h3>
+                      </div>
                     </div>
                   </div>
+
+                  <p className='text-sm text-right mb-3'>
+                    Date :{" "}
+                    <span className='ml-2 font-bold'>{formattedDate}</span>
+                  </p>
 
                   {/* Book Appointment Button */}
                   <div className='mt-6'>
