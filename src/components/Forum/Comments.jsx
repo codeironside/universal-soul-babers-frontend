@@ -102,19 +102,8 @@ const glister = keyframes`
   border-radius: 15px 15px 0 0; /* Top two border radius are rounded */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Box shadow */
   margin-top: 20px; /* Space between the picture and the nested card */
-}
-.connecting-line {
-  content: "";
-  position: absolute;
-  width: 2px;
-  top: 0;
-  bottom: -20px; /* Extend the line to the next comment */
-  left: 10px;
-  background: linear-gradient(to bottom, #FFFDD0, #E6E4BB, #CCCAA6, #B3B192, #99987D, #807F68, #666553, #4D4C3E, #87CEFA, #C6FCFF, #B0E2FF, #BFEFFF, #CAE1FF); /* Gradient line */
-  background-size: 200% 200%;
-  animation: bg-animation 15s infinite;
-}
-`;
+}`;
+
 const CommentWrapper = styled.div`
   position: relative;
   padding: 10px;
@@ -123,20 +112,6 @@ const CommentWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation: ${glister} 3s infinite linear; /* Apply glister animation */
   margin-bottom: 20px; /* Add space between comments */
-
-  &:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    background-color: #b38e00; /* Dark gold color for connecting line */
-    top: 0;
-    bottom: 0;
-    left: 10px;
-  }
-
-  &:not(:last-child)::after {
-    ${connecting-line}
-  }
 `;
 
 const Comment = ({ image, userName, createdAt, content, isUser }) => {
