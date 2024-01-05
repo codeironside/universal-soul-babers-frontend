@@ -1,5 +1,25 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
+
+const movingBorder = keyframes`
+  0% {
+    border-color: teal;
+    transform: rotate(0deg);
+  }
+  100% {
+    border-color: teal;
+    transform: rotate(360deg);
+  }
+`;
+
+const cardStyle = css`
+  border: 2px solid teal;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  animation: ${movingBorder} 5s linear infinite;
+`;
+
 const WorkingHours = ({ hours }) => {
   const styles = {
     workingHours: {
@@ -85,8 +105,8 @@ const SidePanel = ({ setModalShow, data }) => {
 // const YourComponent = ({ data }) => {
   const { hours = {} } = data?.whours || {};
 
-  return (
-    <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
+ return (
+    <div css={cardStyle}>
       <div className='flex items-center justify-between'>
         <p className='text-para mt-0 font-semibold'>Booking Price</p>
         <span className='text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold'>
