@@ -4,8 +4,9 @@ const WorkingHours = ({ hours }) => {
   return (
     <ul className='mt-3'>
       {Object.entries(hours).map(([day, times]) => {
+      console.log('day',day, times)
         if (Array.isArray(times) && times.length > 0) {
-          console.log('day',day, time)
+          
           return (
             <li key={day} className='flex flex-col w-full mb-2'>
               <p className='text-[15px] leading-6 text-textColor font-semibold'>
