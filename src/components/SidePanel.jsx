@@ -39,8 +39,8 @@ const SidePanel = ({ setModalShow, data }) => {
     return defaultHours;
   };
 
- const workingHours = data?.whours || {};
-console.log(workingHours)
+const workingHours = data?.whours || {};
+
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
       <div className='flex items-center justify-between'>
@@ -56,25 +56,30 @@ console.log(workingHours)
           Working Hours:
         </p>
         <ul className='mt-3'>
-          {Object.entries(workingHours).map(([day, times]) => (
-            (Array.isArray(times) && times.length > 1) && (
-              <li key={day} className='flex flex-col w-full mb-2'>
-                <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                  {day}
-                </p>
-                <div className='flex flex-wrap'>
-                  {times.map((timeSlot, index) => (
-                    <span
-                      key={index}
-                      className='text-[13px] lg:text-[15px] leading-6 text-textColor bg-gray-200 rounded-md px-2 py-1 mr-2 mb-2'
-                    >
-                      {timeSlot}
-                    </span>
-                  ))}
-                </div>
-              </li>
-            )
-          ))}
+          {Object.entries(workingHours).map(([day, times]) => {
+            if (times.length > 0) {
+              console.log(`${day}: ${times}`);
+              return (
+                <li key={day} className='flex flex-col w-full mb-2'>
+                  <p className='text-[15px] leading-6 text-textColor font-semibold'>
+                    {day}
+                  </p>
+                  <div className='flex flex-wrap'>
+                    {times.map((timeSlot, index) => (
+                      <span
+                        key={index}
+                        className='text-[13px] lg:text-[15px] leading-6 text-textColor bg-gray-200 rounded-md px-2 py-1 mr-2 mb-2'
+                      >
+                        {timeSlot}
+                      </span>
+                    ))}
+                  </div>
+                </li>
+              );
+            } else {
+              return null; // Skip days without time slots
+            }
+          })}
         </ul>
       </div>
       <button
@@ -86,7 +91,6 @@ console.log(workingHours)
     </div>
   );
 };
-
 //   return (
 //     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
 //       <div className='flex items-center justify-between'>
