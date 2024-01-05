@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
-
+import styled, { keyframes } from 'styled-components';
 const movingBorder = keyframes`
   0% {
     border-color: teal;
