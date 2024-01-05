@@ -5,20 +5,14 @@ const WorkingHours = ({ hours }) => {
     <ul className='mt-3'>
       {Object.entries(hours).map(([day, times]) => {
         if (Array.isArray(times) && times.length > 0) {
+          console.log('day',day, time)
           return (
             <li key={day} className='flex flex-col w-full mb-2'>
               <p className='text-[15px] leading-6 text-textColor font-semibold'>
                 {day}
               </p>
               <div className='flex flex-wrap'>
-                {times.map((timeSlot, index) => (
-                  <span
-                    key={index}
-                    className='text-[13px] lg:text-[15px] leading-6 text-textColor bg-gray-200 rounded-md px-2 py-1 mr-2 mb-2'
-                  >
-                    {timeSlot}
-                  </span>
-                ))}
+                {times.join(' ')}
               </div>
             </li>
           );
@@ -70,6 +64,8 @@ const SidePanel = ({ setModalShow, data }) => {
 // const YourComponent = ({ data }) => {
   const { hours = {} } = data || {};
 
+  const { hours = {} } = data || {};
+
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
       <div className='flex items-center justify-between'>
@@ -95,7 +91,6 @@ const SidePanel = ({ setModalShow, data }) => {
     </div>
   );
 };
-
 //   return (
 //     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
 //       <div className='flex items-center justify-between'>
