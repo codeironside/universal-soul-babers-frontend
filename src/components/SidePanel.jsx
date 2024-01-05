@@ -26,8 +26,7 @@ const SidePanel = ({ setModalShow, data }) => {
      },
    ];
 
-   const { workinghours } = mockData[0];
-   const getDefaultHours = () => {
+  const getDefaultHours = () => {
     const defaultHours = {
       Monday: ['Closed'],
       Tuesday: ['Closed'],
@@ -39,8 +38,10 @@ const SidePanel = ({ setModalShow, data }) => {
     };
     return defaultHours;
   };
-console.log(data)
-   return (
+
+  const workingHours = data?.whours || {}; // Accessing the working hours data from the API response
+console.log(data?.whours)
+  return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
       <div className='flex items-center justify-between'>
         <p className='text-para mt-0 font-semibold'>Booking Price</p>
@@ -89,7 +90,6 @@ console.log(data)
     </div>
   );
 };
-
 
 //   return (
 //     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
