@@ -9,7 +9,7 @@ const styles = {
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
     animation: 'breatheBorder 4s ease-in-out infinite',
   },
-  movingBorder: `
+  breatheBorderr: `
     @keyframes breatheBorder {
       0% {
         transform: scale(1);
