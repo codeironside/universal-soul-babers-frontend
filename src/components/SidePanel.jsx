@@ -39,8 +39,8 @@ const SidePanel = ({ setModalShow, data }) => {
     return defaultHours;
   };
 
-  const workingHours = data?.whours || {}; // Accessing the working hours data from the API response
-console.log(data?.whours)
+  const workingHours = data?.whours || {};
+
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
       <div className='flex items-center justify-between'>
@@ -56,14 +56,14 @@ console.log(data?.whours)
           Working Hours:
         </p>
         <ul className='mt-3'>
-          {Object.entries(workingHours || getDefaultHours()).map(([day, hours]) => (
+          {Object.keys(workingHours).map((day) => (
             <li key={day} className='flex flex-col w-full mb-2'>
               <p className='text-[15px] leading-6 text-textColor font-semibold'>
                 {day}
               </p>
               <div className='flex flex-wrap'>
-                {hours.length > 0 ? (
-                  hours.map((timeSlot, index) => (
+                {workingHours[day].length > 0 ? (
+                  workingHours[day].map((timeSlot, index) => (
                     <span
                       key={index}
                       className='text-[13px] lg:text-[15px] leading-6 text-textColor bg-gray-200 rounded-md px-2 py-1 mr-2 mb-2'
