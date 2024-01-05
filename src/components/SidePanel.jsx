@@ -64,7 +64,6 @@ const SidePanel = ({ setModalShow, data }) => {
 // const YourComponent = ({ data }) => {
   const { hours = {} } = data || {};
 
-  const { hours = {} } = data || {};
 
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
