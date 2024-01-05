@@ -1,55 +1,33 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 import { css, keyframes } from '@emotion/react';
-    const styles = {
-    card: {
-      border: '2px solid teal',
-      borderRadius: '5px',
-      padding: '1em',
-      boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
-      animation: 'movingBorder 5s linear infinite',
-    },
-    movingBorder: `
-      @keyframes movingBorder {
-        0% {
-          border-color: teal;
-          transform: rotate(0deg);
-        }
-        100% {
-          border-color: teal;
-          transform: rotate(360deg);
-        }
+const styles = {
+  card: {
+    border: '2px solid #008080', // Teal color
+    borderRadius: '5px',
+    padding: '1em',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+    animation: 'breatheBorder 4s ease-in-out infinite',
+  },
+  movingBorder: `
+    @keyframes breatheBorder {
+      0% {
+        transform: scale(1);
+        border-color: #FFD700; /* Golden color */
       }
-    `,
-  };
+      50% {
+        transform: scale(1.1);
+        border-color: #008080; /* Teal color */
+      }
+      100% {
+        transform: scale(1);
+        border-color: #FFD700; /* Golden color */
+      }
+    }
+  `,
+};
 
 const WorkingHours = ({ hours }) => {
-
-
-  // const styles = {
-  //   workingHours: {
-  //     listStyleType: 'none',
-  //     padding: 0,
-  //     margin: '1em 0',
-  //   },
-  //   day: {
-  //     display: 'flex',
-  //     flexDirection: 'column',
-  //     marginBottom: '1em',
-  //   },
-  //   dayName: {
-  //     fontSize: '1.2em',
-  //     fontWeight: 'bold',
-  //     color: '#333',
-  //   },
-  //   times: {
-  //     display: 'flex',
-  //     flexWrap: 'wrap',
-  //     marginTop: '0.5em',
-  //     color: '#666',
-  //   },
-  // };
-
   return (
     <ul style={styles.workingHours}>
       {Object.entries(hours).map(([day, times]) => {
