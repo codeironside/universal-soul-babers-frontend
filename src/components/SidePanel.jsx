@@ -1,5 +1,51 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
+import { css, keyframes } from '@emotion/react';
+const styles = {
+  card: {
+    border: '2px solid #008080', // Teal color
+    borderRadius: '5px',
+    padding: '1em',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+    animation: 'breatheBorder 4s ease-in-out infinite',
+  },
+  breatheBorderr: `
+    @keyframes breatheBorder {
+      0% {
+        transform: scale(1);
+        border-color: #FFD700; /* Golden color */
+      }
+      50% {
+        transform: scale(1.1);
+        border-color: #008080; /* Teal color */
+      }
+      100% {
+        transform: scale(1);
+        border-color: #FFD700; /* Golden color */
+      }
+    }
+  `,
+};
+
+const WorkingHours = ({ hours }) => {
+  return (
+    <ul style={styles.workingHours}>
+      {Object.entries(hours).map(([day, times]) => {
+        if (Array.isArray(times) && times.length > 0) {
+          return (
+            <li key={day} style={styles.day}>
+              <p style={styles.dayName}>{day}</p>
+              <div style={styles.times}>
+                {times.join(' ')}
+              </div>
+            </li>
+          );
+        }
+        return null;
+      })}
+    </ul>
+  );
+};
 
 const SidePanel = ({ setModalShow, data }) => {
    const mockData = [
@@ -26,46 +72,44 @@ const SidePanel = ({ setModalShow, data }) => {
      },
    ];
 
-   const { workinghours } = mockData[0];
+  const getDefaultHours = () => {
+    const defaultHours = {
+      Monday: ['Closed'],
+      Tuesday: ['Closed'],
+      Wednesday: ['Closed'],
+      Thursday: ['Closed'],
+      Friday: ['Closed'],
+      Saturday: ['Closed'],
+      Sunday: ['Closed'],
+    };
+    return defaultHours;
+  };
 
-  return (
-    <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
+  const { hours = {} } = data?.whours || {};
+
+ return (
+    <div style={styles.card}>
       <div className='flex items-center justify-between'>
         <p className='text-para mt-0 font-semibold'>Booking Price</p>
-        <span className='text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  '>
+        <span className='text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold'>
           $ {data ? `${data.price}` : "not available"}
         </span>
       </div>
       
-      {/* working hours  */}
+      {/* Working hours */}
       <div className='mt-[30px] p-4'>
-        <p className='text-para mt-0 font-semibold text-headingColor '>
+        <p className='text-para mt-0 font-semibold text-headingColor'>
           Working Hours:
         </p>
-        <ul className='mt-3 '>
-          {Object.entries(workinghours).map(([day, hours]) => (
-            <li
-              key={day}
-              className='flex items-center  w-full justify-between mb-2'>
-              <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                {day}
-              </p>
-              <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                {hours.length > 0
-                  ? `${hours[0]} - ${hours[hours.length - 1]}`
-                  : "not available"}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <WorkingHours hours={hours} />
       </div>
       <button
         onClick={() => setModalShow(true)}
-        className='btn px-2 w-full rounded-md'>
+        className='btn px-2 w-full rounded-md'
+      >
         Hire Me
       </button>
     </div>
   );
-}
-
+};
 export default SidePanel

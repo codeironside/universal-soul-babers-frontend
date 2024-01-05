@@ -24,6 +24,8 @@ const ProductDetails = () => {
   }
   // console.log(productItem.find(item => console.log(item.id)));
 
+  // console.log(productItem.find(item => console.log(item.id)));
+
   // destructure products 
   const { description, shop_name,  price,  images } = product
  
