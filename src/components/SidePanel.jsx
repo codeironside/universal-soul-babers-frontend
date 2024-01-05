@@ -64,7 +64,7 @@ const SidePanel = ({ setModalShow, data }) => {
   };
 
 // const YourComponent = ({ data }) => {
-  const { hours = {} } = data || {};
+  const { hours = {} } = data?.whours || {};
 console.log(hours)
 
   return (
