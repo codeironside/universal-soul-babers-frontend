@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 const WorkingHours = ({ hours }) => {
-  console.log('day', hours, typeof hours)
   return (
     <ul className='mt-3'>
       {Object.entries(hours).map(([day, times]) => {
-      console.log('day',day, times)
         if (Array.isArray(times) && times.length > 0) {
           
           return (
@@ -65,7 +63,6 @@ const SidePanel = ({ setModalShow, data }) => {
 
 // const YourComponent = ({ data }) => {
   const { hours = {} } = data?.whours || {};
-console.log(hours)
 
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
@@ -92,44 +89,5 @@ console.log(hours)
     </div>
   );
 };
-//   return (
-//     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
-//       <div className='flex items-center justify-between'>
-//         <p className='text-para mt-0 font-semibold'>Booking Price</p>
-//         <span className='text-[16px] lg:text-[20px] lg:leading-6 text-headingColor font-bold  '>
-//           $ {data ? `${data.price}` : "not available"}
-//         </span>
-//       </div>
-      
-//       {/* working hours  */}
-//       <div className='mt-[30px] p-4'>
-//         <p className='text-para mt-0 font-semibold text-headingColor '>
-//           Working Hours:
-//         </p>
-//         <ul className='mt-3 '>
-//           {Object.entries(workinghours).map(([day, hours]) => (
-//             <li
-//               key={day}
-//               className='flex items-center  w-full justify-between mb-2'>
-//               <p className='text-[15px] leading-6 text-textColor font-semibold'>
-//                 {day}
-//               </p>
-//               <p className='text-[15px] leading-6 text-textColor font-semibold'>
-//                 {hours.length > 0
-//                   ? `${hours[0]} - ${hours[hours.length - 1]}`
-//                   : "not available"}
-//               </p>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//       <button
-//         onClick={() => setModalShow(true)}
-//         className='btn px-2 w-full rounded-md'>
-//         Hire Me
-//       </button>
-//     </div>
-//   );
-// }
 
 export default SidePanel
