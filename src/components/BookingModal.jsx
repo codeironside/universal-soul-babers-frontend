@@ -33,7 +33,7 @@ const mockData = [
 ];
 
 const BookingModal = ({ open, onClose, data }) => {
-  console.log(data)
+  console.log(data?.whours)
   const [selectedTime, setSelectedTime] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTab, setSelectedTab] = useState("Morning");
