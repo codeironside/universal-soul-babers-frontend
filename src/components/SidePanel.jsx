@@ -39,7 +39,7 @@ const SidePanel = ({ setModalShow, data }) => {
     return defaultHours;
   };
 
-  const workingHours = data?.whours || {};
+ const workingHours = data?.whours || {};
 
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
@@ -56,28 +56,24 @@ const SidePanel = ({ setModalShow, data }) => {
           Working Hours:
         </p>
         <ul className='mt-3'>
-          {Object.keys(workingHours).map((day) => (
-            <li key={day} className='flex flex-col w-full mb-2'>
-              <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                {day}
-              </p>
-              <div className='flex flex-wrap'>
-                {workingHours[day].length > 0 ? (
-                  workingHours[day].map((timeSlot, index) => (
+          {Object.entries(workingHours).map(([day, times]) => (
+            (Array.isArray(times) && times.length > 1) && (
+              <li key={day} className='flex flex-col w-full mb-2'>
+                <p className='text-[15px] leading-6 text-textColor font-semibold'>
+                  {day}
+                </p>
+                <div className='flex flex-wrap'>
+                  {times.map((timeSlot, index) => (
                     <span
                       key={index}
                       className='text-[13px] lg:text-[15px] leading-6 text-textColor bg-gray-200 rounded-md px-2 py-1 mr-2 mb-2'
                     >
                       {timeSlot}
                     </span>
-                  ))
-                ) : (
-                  <span className='text-[13px] lg:text-[15px] leading-6 text-textColor'>
-                    Not available
-                  </span>
-                )}
-              </div>
-            </li>
+                  ))}
+                </div>
+              </li>
+            )
           ))}
         </ul>
       </div>
