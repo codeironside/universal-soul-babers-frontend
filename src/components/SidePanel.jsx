@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 const WorkingHours = ({ hours }) => {
-  console.log('day', hours, typeOf hours)
+  console.log('day', hours, typeof hours)
   return (
     <ul className='mt-3'>
       {Object.entries(hours).map(([day, times]) => {
