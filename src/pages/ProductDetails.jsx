@@ -3,6 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
 import img from '../assets/img/product-2.jpg'
+
+const ProductDetails = () => {
+  const { id: itemId } = useParams();
+  const { productItem } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
   const [product, setProduct] = useState(null);
 
