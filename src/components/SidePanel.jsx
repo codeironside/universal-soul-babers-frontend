@@ -38,8 +38,8 @@ const SidePanel = ({ setModalShow, data }) => {
     };
     return defaultHours;
   };
-
 const workingHours = data?.whours || {};
+console.log(workingHours)
 
   return (
     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
