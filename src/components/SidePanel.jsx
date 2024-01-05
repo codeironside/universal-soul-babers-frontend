@@ -17,7 +17,7 @@ const WorkingHours = ({ hours }) => {
             </li>
           );
         }
-        return null;
+   //     return null;
       })}
     </ul>
   );
