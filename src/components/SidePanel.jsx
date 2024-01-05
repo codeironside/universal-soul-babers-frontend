@@ -1,26 +1,6 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 import { css, keyframes } from '@emotion/react';
-// const movingBorder = keyframes`
-//   0% {
-//     border-color: teal;
-//     transform: rotate(0deg);
-//   }
-//   100% {
-//     border-color: teal;
-//     transform: rotate(360deg);
-//   }
-// `;
-
-// const cardStyle = css`
-//   border: 2px solid teal;
-//   border-radius: 5px;
-//   padding: 1em;
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-//   animation: ${movingBorder} 5s linear infinite;
-// `;
-
-const WorkingHours = ({ hours }) => {
     const styles = {
     card: {
       border: '2px solid teal',
@@ -42,6 +22,9 @@ const WorkingHours = ({ hours }) => {
       }
     `,
   };
+
+const WorkingHours = ({ hours }) => {
+
 
   // const styles = {
   //   workingHours: {
