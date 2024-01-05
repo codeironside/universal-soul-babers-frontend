@@ -86,6 +86,7 @@ return (
     </button>
   </div>
 );
+};
 //   return (
 //     <div className='shadow-panelShadow p-4 lg:p-5 rounded-md'>
 //       <div className='flex items-center justify-between'>
