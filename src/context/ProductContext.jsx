@@ -16,6 +16,7 @@ const ProductProvider = ({ children }) => {
         if (Array.isArray(response.data.shops)) {
           const filteredShops = response.data.shops.filter(shop => shop.category !== 'barbers');
           setProductItem(filteredShops);
+          console.log(filteredShops);
         } else {
           console.error('Data structure is not as expected');
         }

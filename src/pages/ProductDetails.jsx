@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
@@ -25,7 +25,7 @@ const ProductDetails = () => {
 
   // console.log(productItem.find(item => console.log(item.id)));
 
-  // destructure products 
+  // destructure jproducts 
   const { description, shop_name,  price,  images } = product
  
 
@@ -55,7 +55,7 @@ const ProductDetails = () => {
               <button
                
                 className='btn'>
-                Checkout
+              Add To Cart
               </button>
             </Link>
           </div>
