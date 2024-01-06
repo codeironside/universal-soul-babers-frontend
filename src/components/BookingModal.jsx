@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
+import { Link } from "react-router-dom";
 
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -16,8 +17,9 @@ const BookingModal = ({ open, onClose, data }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTab, setSelectedTab] = useState("Morning");
   const [timeSlots, setTimeSlots] = useState([]);
-  const [service, setService] =useState('service')
 
+  const page = "booking";
+  const [service, setService] =useState('service')
   const currentDate = new Date();
 
   const formattedDate = currentDate.toLocaleDateString('en-US', {
@@ -267,11 +269,13 @@ const BookingModal = ({ open, onClose, data }) => {
 
                   {/* Book Appointment Button */}
                   <div className='mt-6'>
+                  <Link to={`/payment/${page}/${'item-id'}/${data.price}`}>
                     <button
                       onClick={() => handleBookAppointment()}
                       className='w-full p-2 bg-primaryDark text-white rounded'>
                       Book Appointment
                     </button>
+                    </Link>
                   </div>
                 </div>
               </div>

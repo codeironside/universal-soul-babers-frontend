@@ -5,6 +5,7 @@ import { contributeToCrowdfunding } from '../api';
 import { createSubscription } from '../api/subscription'
 import { useNavigate } from 'react-router-dom';
 import { makeBooking } from '../api/booking';
+import { confirmDelivery } from '../api/cart'
 
 export const PaymentButton = ({amount, page, itemId}) => {
    const [message, setMessage] = useState("");
@@ -41,7 +42,10 @@ export const PaymentButton = ({amount, page, itemId}) => {
       createSubscription(amount, itemId, (()=> {
         navigate('/subscription-thank-you');
       }))
-    }else{
+    } else if(page === "cart"){
+       confirmDelivery(itemId);
+    }
+    else{
       const values = localStorage.getItem("booking");
        makeBooking(values, (()=> {
         navigate('/booking-thank-you');

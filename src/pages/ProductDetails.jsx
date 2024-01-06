@@ -26,7 +26,7 @@ const ProductDetails = () => {
 
   // console.log(productItem.find(item => console.log(item.id)));
 
-  // destructure products 
+  // destructure jproducts 
   const { description, shop_name,  price,  images } = product
  
 
@@ -52,13 +52,11 @@ const ProductDetails = () => {
               $ {price}
             </div>
             <p className='mb-6'>{description}</p>
-            <Link to={'/cart'}>
               <button
                
                 className='btn'>
-                Checkout
+              Add To Cart
               </button>
-            </Link>
           </div>
         </div>
       </div>
