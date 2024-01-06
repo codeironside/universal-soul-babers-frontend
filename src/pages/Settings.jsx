@@ -25,6 +25,7 @@ export default function Settings() {
   const [tab, setTab] = useState(tabs[0].name);
 
   const user = JSON.parse(getCookie('user'));
+  console.log(user);
 
   return (
     <UserContext.Provider value={user}>
