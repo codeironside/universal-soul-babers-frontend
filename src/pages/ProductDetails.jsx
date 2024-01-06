@@ -51,13 +51,11 @@ const ProductDetails = () => {
               $ {price}
             </div>
             <p className='mb-6'>{description}</p>
-            <Link to={'/cart'}>
               <button
                
                 className='btn'>
               Add To Cart
               </button>
-            </Link>
           </div>
         </div>
       </div>
