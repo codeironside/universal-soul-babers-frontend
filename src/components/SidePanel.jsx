@@ -55,7 +55,7 @@ const WorkingHours = ({ hours }) => {
       backgroundColor: '#F5F5F5', // Very light grey background
       borderRadius: '5px', // Rounded edges
       padding: '10px', // Some padding to prevent text from sticking to the edges
-      border: '2px solid #000', // Solid border
+      border: '2px #808080',
     },
   };
 
