@@ -1,42 +1,62 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 import { css, keyframes } from '@emotion/react';
-const styles = {
-  card: {
-    borderRadius: '5px',
-    padding: '1em',
-    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
-    animation: 'breatheBorder 4s ease-in-out infinite',
-  }
-};
+// const styles = {
+//   card: {
+//     borderRadius: '5px',
+//     padding: '1em',
+//     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+//     animation: 'breatheBorder 4s ease-in-out infinite',
+//   }
+// };
 
 const WorkingHours = ({ hours }) => {
-  return (
-    <>
-    {/* working hours  */}
-       
-          <ul className='mt-3 '>
-            {Object.entries(hours).map(([day, times]) => (
-              <li
-                key={day}
-                className='flex items-center  w-full justify-between mb-2'>
-                <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                  {day}
-                </p>
-                <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                  {times.length > 0
-                    ? `${times[0]} - ${times[times.length - 1]}`
-                    : "not available"}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </>
+ <ul style={styles.workingHours}>
+      {Object.entries(hours).map(([day, times]) => {
+        if (Array.isArray(times) && times.length > 0) {
+          return (
+            <li key={day} style={styles.day}>
+              <p style={styles.dayName}>{day}</p>
+              <div style={styles.times}>
+                {times.join(' ')}
+              </div>
+            </li>
+          );
+        }
+        return null;
+      })}
+    </ul>
   );
 };
 
 const SidePanel = ({ setModalShow, data }) => {
   console.log(data);
+  const styles = {
+  card: {
+    border: '2px solid #008080', // Teal color
+    borderRadius: '5px',
+    padding: '1em',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+    animation: 'breatheBorder 4s ease-in-out infinite',
+  },
+  movingBorder: `
+    @keyframes breatheBorder {
+      0% {
+        transform: scale(1);
+        border-color: #FFD700; /* Golden color */
+      }
+      50% {
+        transform: scale(1.1);
+        border-color: #008080; /* Teal color */
+      }
+      100% {
+        transform: scale(1);
+        border-color: #FFD700; /* Golden color */
+      }
+    }
+  `,
+};
+
    const mockData = [
      {
        _id: "658e0ce752d50b25110bf0095",
@@ -76,7 +96,7 @@ const SidePanel = ({ setModalShow, data }) => {
 
   const { hours = {} } = data?.whours || {};
 
- return (
+  return (
     <div style={styles.card}>
       <div className='flex items-center justify-between'>
         <p className='text-para mt-0 font-semibold'>Booking Price</p>
