@@ -22,6 +22,7 @@ const ProductDetails = () => {
       </section>
     );
   }
+  // console.log(productItem.find(item => console.log(item.id)));
 
   // console.log(productItem.find(item => console.log(item.id)));
 
@@ -35,7 +36,7 @@ const ProductDetails = () => {
         {/* images wrapper  */}
         <div className='flex flex-col lg:flex-row items-center'>
           {/* images  */}
-          <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0  '>
+          <div className='flex flex-1 justify-center items-center  mb-8 lg:mb-0  '>
             <img
               className='max-w-[200px] lg:max-w-sm rounded-xl '
               src={images || img}

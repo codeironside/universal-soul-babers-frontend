@@ -26,6 +26,7 @@ import { scrollToTop } from '../ScollToTop.js';
       try {
         const response = await fetchDataOne(shopId); // Fetch the data
         setData(response.data); // Store the fetched data in state
+        
         // console.log("this is data", response.data); // Log the fetched data
         setIsLoading(false); // Set loading to false when data is fetched
       } catch (error) {

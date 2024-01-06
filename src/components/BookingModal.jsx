@@ -9,36 +9,17 @@ import { Link } from "react-router-dom";
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-const mockData = [
-  {
-    _id: "658e0ce752d50b25110bf0095",
-    shop_name: "ima and caleb stores",
-    description: "Teusday stores",
-    workinghours: {
-      Monday: ["10:00 AM", "12:30 PM", "03:00 PM"],
-      Tuesday: ["08:30 AM", "11:00 AM"],
-      Wednesday: ["02:00 PM", "04:30 PM", "07:00 PM"],
-      Thursday: ["06:30 PM", "08:00 PM"],
-      Friday: ["12:00 PM", "02:30 PM"],
-      Saturday: ["08:30 PM", "10:00 PM"],
-      Sunday: ["09:00 AM", "11:30 AM"],
-    },
-    category: "barbers",
-    owner: "65659eea6c68adee2fc9220a",
-    contact_number: "0908795123",
-    contact_email: "fury25423@gmail.cm",
-    price: 900,
-    availabilty: false,
-    subscriptionType: "basic",
-  },
-];
 
 const BookingModal = ({ open, onClose, data }) => {
+  console.log(data?.whours.hours)
+  console.log();
   const [selectedTime, setSelectedTime] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTab, setSelectedTab] = useState("Morning");
   const [timeSlots, setTimeSlots] = useState([]);
+
   const page = "booking";
+  const [service, setService] =useState('service')
   const currentDate = new Date();
 
   const formattedDate = currentDate.toLocaleDateString('en-US', {
@@ -60,16 +41,16 @@ const BookingModal = ({ open, onClose, data }) => {
     }
 
     if (selectedDay) {
-      // Treat mockData as a single object
-      const singleObject = mockData[0];
+    
 
       // Find the correct day key based on the abbreviated day
-      const matchingDayKey = Object.keys(singleObject.workinghours).find(
-        (key) => key.toLowerCase().startsWith(selectedDay.toLowerCase())
+      const matchingDayKey = Object.keys(data?.whours.hours).find((key) =>
+        key.toLowerCase().startsWith(selectedDay.toLowerCase())
       );
+      console.log(matchingDayKey);
 
       // Get the working hours for the selected day
-      const workingHours = singleObject.workinghours[matchingDayKey];
+      const workingHours = data?.whours.hours[matchingDayKey];
 
       if (workingHours) {
         // Categorize time slots into Morning, Afternoon, and Evening
@@ -123,6 +104,7 @@ const BookingModal = ({ open, onClose, data }) => {
       selectedDay,
       selectedTab,
       selectedTime,
+      service
     });
 
     // Close the modal after handling booking logic
@@ -245,7 +227,7 @@ const BookingModal = ({ open, onClose, data }) => {
                   {/* Service */}
                   <div className='flex  my-4 w-full  items-center justify-start rounded-lg p-2'>
                     <div className='w-full'>
-                      <p className='text-lg mb-3'>Service:</p>
+                      <p className='text-lg mb-3'>{service}:</p>
                       <p className='rounded-lg  p-2 bg-gray-200  '>
                         Barber Service
                       </p>
@@ -272,10 +254,10 @@ const BookingModal = ({ open, onClose, data }) => {
                       <div className='mt-4 flex items-center gap-2'>
                         <img
                           className='w-8 h-8 rounded-full'
-                          src='https://i.imgur.com/Qq1VF6Q.jpg'
+                          src={data?.owner.pictureUrl}
                           alt=''
                         />
-                        <h3 className='text-md font-medium'>Drax BarberShop</h3>
+                        <h3 className='text-md font-medium'>{data.shop_name}</h3>
                       </div>
                     </div>
                   </div>
@@ -289,7 +271,7 @@ const BookingModal = ({ open, onClose, data }) => {
                   <div className='mt-6'>
                   <Link to={`/payment/${page}/${'item-id'}/${data.price}`}>
                     <button
-                      onClick={handleBookAppointment}
+                      onClick={() => handleBookAppointment()}
                       className='w-full p-2 bg-primaryDark text-white rounded'>
                       Book Appointment
                     </button>
