@@ -11,7 +11,8 @@ import { css, keyframes } from '@emotion/react';
 // };
 
 const WorkingHours = ({ hours }) => {
- <ul style={styles.workingHours}>
+  return (
+    <ul style={styles.workingHours}>
       {Object.entries(hours).map(([day, times]) => {
         if (Array.isArray(times) && times.length > 0) {
           return (
@@ -28,7 +29,6 @@ const WorkingHours = ({ hours }) => {
     </ul>
   );
 };
-
 const SidePanel = ({ setModalShow, data }) => {
   console.log(data);
   const styles = {
