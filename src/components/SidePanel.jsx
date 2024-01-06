@@ -1,37 +1,7 @@
 import React, {useEffect} from 'react'
 import { makeBooking } from '../api/booking'
 import { css, keyframes } from '@emotion/react';
-// const styles = {
-//   card: {
-//     borderRadius: '5px',
-//     padding: '1em',
-//     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
-//     animation: 'breatheBorder 4s ease-in-out infinite',
-//   }
-// };
-
-const WorkingHours = ({ hours }) => {
-  return (
-    <ul style={styles.workingHours}>
-      {Object.entries(hours).map(([day, times]) => {
-        if (Array.isArray(times) && times.length > 0) {
-          return (
-            <li key={day} style={styles.day}>
-              <p style={styles.dayName}>{day}</p>
-              <div style={styles.times}>
-                {times.join(' ')}
-              </div>
-            </li>
-          );
-        }
-        return null;
-      })}
-    </ul>
-  );
-};
-const SidePanel = ({ setModalShow, data }) => {
-  console.log(data);
-  const styles = {
+const styles = {
   card: {
     border: '2px solid #008080', // Teal color
     borderRadius: '5px',
@@ -56,6 +26,29 @@ const SidePanel = ({ setModalShow, data }) => {
     }
   `,
 };
+;
+
+const WorkingHours = ({ hours }) => {
+  return (
+    <ul style={styles.workingHours}>
+      {Object.entries(hours).map(([day, times]) => {
+        if (Array.isArray(times) && times.length > 0) {
+          return (
+            <li key={day} style={styles.day}>
+              <p style={styles.dayName}>{day}</p>
+              <div style={styles.times}>
+                {times.join(' ')}
+              </div>
+            </li>
+          );
+        }
+        return null;
+      })}
+    </ul>
+  );
+};
+const SidePanel = ({ setModalShow, data }) => {
+  console.log(data);
 
    const mockData = [
      {
