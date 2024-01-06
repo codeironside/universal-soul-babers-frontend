@@ -27,8 +27,34 @@ const styles = {
   `,
 };
 ;
-
 const WorkingHours = ({ hours }) => {
+  const styles = {
+    workingHours: {
+      listStyleType: 'none',
+      padding: 0,
+      margin: '1em 0',
+    },
+    day: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginBottom: '1em',
+      backgroundColor: '#D3D3D3', // Light grey background
+      borderRadius: '5px', // Rounded edges
+      padding: '10px', // Some padding to prevent text from sticking to the edges
+    },
+    dayName: {
+      fontSize: '1.2em',
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    times: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      marginTop: '0.5em',
+      color: '#666',
+    },
+  };
+
   return (
     <ul style={styles.workingHours}>
       {Object.entries(hours).map(([day, times]) => {
@@ -47,6 +73,7 @@ const WorkingHours = ({ hours }) => {
     </ul>
   );
 };
+
 const SidePanel = ({ setModalShow, data }) => {
   console.log(data);
 
