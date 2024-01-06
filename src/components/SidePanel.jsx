@@ -38,9 +38,6 @@ const WorkingHours = ({ hours }) => {
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '1em',
-      backgroundColor: '#D3D3D3', // Light grey background
-      borderRadius: '5px', // Rounded edges
-      padding: '10px', // Some padding to prevent text from sticking to the edges
     },
     dayName: {
       fontSize: '1.2em',
@@ -52,6 +49,9 @@ const WorkingHours = ({ hours }) => {
       flexWrap: 'wrap',
       marginTop: '0.5em',
       color: '#666',
+      backgroundColor: '#F5F5F5', // Very light grey background
+      borderRadius: '5px', // Rounded edges
+      padding: '10px', // Some padding to prevent text from sticking to the edges
     },
   };
 
