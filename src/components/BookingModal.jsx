@@ -48,6 +48,7 @@ const BookingModal = ({ open, onClose, data }) => {
   })
 
   useEffect(() => {
+    console.log(data);
     // Set the initial selected day when the modal opens
     if (open && !selectedDay) {
       const today = new Date().toLocaleDateString("en-US", {
@@ -117,16 +118,18 @@ const BookingModal = ({ open, onClose, data }) => {
     setSelectedTime(time);
   };
 
-  const handleBookAppointment = () => {
-    // Handle booking appointment logic
-    console.log("Booking details:", {
-      selectedDay,
-      selectedTab,
-      selectedTime,
-    });
+  const handleBookAppointment = (amount, date) => {
+    localStorage.setItem("booking", JSON.stringify({
+      shop: data._id,
+      service: "barb",
+      time: selectedTime,
+      date: date,
+      no_persons: "1",
+      amount: amount,
+    }));    
 
     // Close the modal after handling booking logic
-    onClose();
+    // onClose();
   };
 
   return (
@@ -287,9 +290,9 @@ const BookingModal = ({ open, onClose, data }) => {
 
                   {/* Book Appointment Button */}
                   <div className='mt-6'>
-                  <Link to={`/payment/${page}/${'item-id'}/${data.price}`}>
+                  <Link to={`/payment/${page}/${data._id}/${data.price}`}>
                     <button
-                      onClick={handleBookAppointment}
+                      onClick={()=> handleBookAppointment(data.price, formattedDate)}
                       className='w-full p-2 bg-primaryDark text-white rounded'>
                       Book Appointment
                     </button>
