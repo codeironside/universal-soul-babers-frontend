@@ -8,7 +8,9 @@ import product1 from './assets/img/product-1.JPG'
 import product2 from './assets/img/product-2.jpg'
 import product3 from './assets/img/product-3.jpg'
 import customerImg from './assets/img/patient-avatar.png'
+import { isLoggedIn } from "./utils";
 
+console.log(isLoggedIn());
 
 
 
@@ -44,11 +46,12 @@ export const quickLinks = [
 export const quickLinks02 = [
  
   {
-    path: "/forum",
+    path: isLoggedIn() ? "/forum" : "/login",
     display: "Forum",
   }
 
 ];
+
 export const testimonials = [
   {
     id: 1,
@@ -119,6 +122,7 @@ export const navLinks = [
   { path: "/marketplace", label: "Marketplace" },
   { path: "/blog", label: "Blog" },
   { path: "/barbers", label: "Find a Barber" },
+  { path: isLoggedIn() ? '/funding' : '/login', label: "Crowdfunding" },
 ];
 
 export const statistics = [
