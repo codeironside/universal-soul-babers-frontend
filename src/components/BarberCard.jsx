@@ -1,6 +1,7 @@
 import StarIcon from '../assets/img/Star.png'
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import { isLoggedIn } from "../utils";
 const BarberCard = ({ barber }) => {
   const { _id, images, shop_name, customers, badge, shop_address, description, reviews, price} = barber;
   return (
@@ -9,15 +10,13 @@ const BarberCard = ({ barber }) => {
         className='md:min-w-[300px]'
         data-aos='zoom-in'
         data-aos-duration='750'
-        data-aos-delay='500'
-      >
+        data-aos-delay='500'>
         <div className='h-48 w-full flex items-center justify-center lg:justify-center md:justify-center'>
           <img
-  src={images || "https://i.imgur.com/h9YQFtC.jpg"}
-  alt={shop_name}
-  className='h-full rounded-lg'
-/>
-
+            src={images || "https://i.imgur.com/h9YQFtC.jpg"}
+            alt={shop_name}
+            className='h-full rounded-lg'
+          />
         </div>
         <h2 className='text-[18px] leading-[30px]  lg:text-[26px] lg:leading-8 text-headingColor font-[700] mt-2 '>
           {shop_name}
@@ -34,7 +33,6 @@ const BarberCard = ({ barber }) => {
               <img src={StarIcon} alt='' className='w-[20px] h-[20px] mt-1' />
               {price}
             </span>
-           
           </div>
         </div>
 
@@ -47,14 +45,26 @@ const BarberCard = ({ barber }) => {
               At {shop_address}
             </p>
             <p className='text-[14px] text-textColor leading-6 font-[400] '>
-             {description}
+              {description}
             </p>
           </div>
-          <Link
-            to={`/barber/${_id}`}
-            className='w-[45px] h-[45px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none  '>
-            <BsArrowRight className='group-hover:text-white w-6 h-5' />
-          </Link>
+          {isLoggedIn() ? (
+            <>
+              <Link
+                to={`/barber/${_id}`}
+                className='w-[45px] h-[45px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none  '>
+                <BsArrowRight className='group-hover:text-white w-6 h-5' />
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to={`/login`}
+                className='w-[45px] h-[45px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none  '>
+                <BsArrowRight className='group-hover:text-white w-6 h-5' />
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
