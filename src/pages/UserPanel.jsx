@@ -36,29 +36,6 @@ import { getCookie, isLoggedIn, deleteAllCookies, isOwner } from '../utils';
  const user = JSON.parse(getCookie('user'));
 
 
-let navigation = [
-  {
-    name: "Dashboard",
-    href: user?.role === "superadmin" ? "/owner" : "/dashboard",
-    icon: HomeIcon,
-  },
-  // {
-  //   name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
-  //   href: "/appointments",
-  //   icon: CalendarDaysIcon,
-  // },
-  // { name: 'Services', href: '/services', icon: BriefcaseIcon },
-  // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
-  // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
-  { name: "Inventory & Shop", href: "/my-store", icon: BuildingStorefrontIcon },
-  { name: "Crowd Funding", href: "/funding", icon: CurrencyDollarIcon },
-  { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon },
-  // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
-  // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
-];
-if (user?.role === 'superadmin') {
-  navigation = navigation.filter(nav => nav.href !== '/appointments')  
-}
 
 const ownerNav = [
   { name: 'Dashboard', href: '/owner', icon: HomeIcon },
@@ -105,7 +82,36 @@ export default function UserPanel({ fragment, owner = false }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
+  //update
+
   const user = JSON.parse(getCookie('user'));
+  let navigation = [
+    {
+      name: "Dashboard",
+      href: user.role === "superadmin" ? "/owner" : "/dashboard",
+      icon: HomeIcon,
+    },
+    // {
+    //   name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
+    //   href: "/appointments",
+    //   icon: CalendarDaysIcon,
+    // },
+    // { name: 'Services', href: '/services', icon: BriefcaseIcon },
+    // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
+    // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
+    {
+      name: "Inventory & Shop",
+      href: "/my-store",
+      icon: BuildingStorefrontIcon,
+    },
+    { name: "Crowd Funding", href: "/funding", icon: CurrencyDollarIcon },
+    { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon },
+    // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
+    // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
+  ];
+  if (user.role === "superadmin") {
+    navigation = navigation.filter((nav) => nav.href !== "/appointments");
+  }
 
   function logout() {
     deleteAllCookies();
