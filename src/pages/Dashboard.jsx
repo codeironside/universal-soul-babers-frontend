@@ -8,36 +8,27 @@ import {
   DocumentTextIcon,
   UserGroupIcon,
 } from '@heroicons/react/20/solid'
+import { getCookie } from "../utils";
 
-const cards = [
+
+ const user = JSON.parse(getCookie("user"));
+
+let cards = [
   { name: 'Appointments', href: '#', icon: CalendarDaysIcon, amount: '0' },
   { name: 'Customers', href: '#', icon: UserGroupIcon, amount: '0' },
-  { name: 'Blog contents', href: '#', icon: DocumentTextIcon, amount: '0' },
+  { name: 'Blog contents', href: '/owner/blog', icon: DocumentTextIcon, amount: '0' },
   // More items...
 ]
-
-import { classNames } from '../utils'
-import { UserContext } from './UserPanel'
-
-const transactions = [
-  {
-    id: 1,
-    name: 'Payment to Molly Sanders',
-    href: '#',
-    amount: '$20,000',
-    currency: 'USD',
-    status: 'success',
-    date: 'July 11, 2020',
-    datetime: '2020-07-11',
-  },
-  // More transactions...
-]
-
-const statusStyles = {
-  success: 'bg-green-100 text-green-800',
-  processing: 'bg-yellow-100 text-yellow-800',
-  failed: 'bg-gray-100 text-gray-800',
+if (user.role === 'USER' || 'SHOP_OWNER' ) {
+  cards = cards.filter(card => card.name !== 'Blog contents')
+  
 }
+
+
+
+
+
+
 
 export default function () {
 

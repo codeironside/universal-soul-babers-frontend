@@ -81,29 +81,7 @@ const WorkingHours = ({ hours }) => {
 const SidePanel = ({ setModalShow, data }) => {
   console.log(data);
 
-   const mockData = [
-     {
-       _id: "658e0ce752d50b25110bf0095",
-       shop_name: "ima and caleb stores",
-       description: "Teusday stores",
-       workinghours: {
-         Monday: ["10:00 AM", "12:30 PM", "03:00 PM"],
-         Tuesday: ["08:30 AM", "11:00 AM"],
-         Wednesday: ["02:00 PM", "04:30 PM", "07:00 PM"],
-         Thursday: ["06:30 PM", "08:00 PM"],
-         Friday: ["12:00 PM", "02:30 PM"],
-         Saturday: ["08:30 PM", "10:00 PM"],
-         Sunday: ["09:00 AM", "11:30 AM"],
-       },
-       category: "barbers",
-       owner: "65659eea6c68adee2fc9220a",
-       contact_number: "0908795123",
-       contact_email: "fury25423@gmail.cm",
-       price: 900,
-       availabilty: false,
-       subscriptionType: "basic",
-     },
-   ];
+  
 
   const getDefaultHours = () => {
     const defaultHours = {
