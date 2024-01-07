@@ -25,7 +25,7 @@ import { useContext } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 const Header = () => {
   const navigate = useNavigate();
-  console.log(navLinks);
+  
 
   function logout() {
     deleteAllCookies();
