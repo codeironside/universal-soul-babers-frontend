@@ -11,18 +11,7 @@ import {
 import { getCookie } from "../utils";
 
 
- const user = JSON.parse(getCookie("user"));
 
-let cards = [
-  { name: 'Appointments', href: '#', icon: CalendarDaysIcon, amount: '0' },
-  { name: 'Customers', href: '#', icon: UserGroupIcon, amount: '0' },
-  { name: 'Blog contents', href: '/owner/blog', icon: DocumentTextIcon, amount: '0' },
-  // More items...
-]
-if (user.role === 'USER' || 'SHOP_OWNER' ) {
-  cards = cards.filter(card => card.name !== 'Blog contents')
-  
-}
 
 
 
@@ -31,6 +20,22 @@ if (user.role === 'USER' || 'SHOP_OWNER' ) {
 
 
 export default function () {
+   const user = JSON.parse(getCookie("user"));
+
+   let cards = [
+     { name: "Appointments", href: "#", icon: CalendarDaysIcon, amount: "0" },
+     { name: "Customers", href: "#", icon: UserGroupIcon, amount: "0" },
+     {
+       name: "Blog contents",
+       href: "/owner/blog",
+       icon: DocumentTextIcon,
+       amount: "0",
+     },
+     // More items...
+   ];
+   if (user.role === "USER" || "SHOP_OWNER") {
+     cards = cards.filter((card) => card.name !== "Blog contents");
+   }
 
   useEffect(()=> {
      getUserDetails();
