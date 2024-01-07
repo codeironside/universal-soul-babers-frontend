@@ -77,8 +77,8 @@ export function isLoggedIn() {
 export function isOwner() {
     let isOwner = false;
     try {
-        // let user = JSON.parse(getCookie('user'))
-        // if (user?.role === 'superadmin') isOwner = true;
+        let user = JSON.parse(getCookie('user'))
+        if (user?.role === 'superadmin') isOwner = true;
         console.log(isOwner)
     } catch {
     } finally {

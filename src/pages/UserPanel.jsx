@@ -39,7 +39,7 @@ import { getCookie, isLoggedIn, deleteAllCookies, isOwner } from '../utils';
 let navigation = [
   {
     name: "Dashboard",
-    href: user.role === "superadmin" ? "/owner" : "/dashboard",
+    href: user?.role === "superadmin" ? "/owner" : "/dashboard",
     icon: HomeIcon,
   },
   // {
