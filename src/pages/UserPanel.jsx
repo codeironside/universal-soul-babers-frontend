@@ -412,6 +412,7 @@ export default function UserPanel({ fragment, owner = false }) {
 function _CommonSidebarNav({ extra }) {
   const user = useContext(UserContext);
    const userm = JSON.parse(getCookie("user"));
+   //fixed
    let navigation = [
      {
        name: "Dashboard",
