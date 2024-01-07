@@ -82,6 +82,8 @@ export default function UserPanel({ fragment, owner = false }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
+  //update
+
   const user = JSON.parse(getCookie('user'));
   let navigation = [
     {
