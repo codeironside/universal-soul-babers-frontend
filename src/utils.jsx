@@ -78,7 +78,7 @@ export function isOwner() {
     let isOwner = false;
     try {
         let user = JSON.parse(getCookie('user'))
-        if (user.role === 'superadmin') isOwner = true;
+        if (user?.role === 'superadmin') isOwner = true;
         // console.log("owner",isOwner)
     } catch {
     } finally {

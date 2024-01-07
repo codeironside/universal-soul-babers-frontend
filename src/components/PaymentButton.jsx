@@ -47,7 +47,8 @@ export const PaymentButton = ({amount, page, itemId}) => {
     }
     else{
       const values = localStorage.getItem("booking");
-       makeBooking(values, (()=> {
+      console.log(itemId);
+       makeBooking(values, itemId, (()=> {
         navigate('/booking-thank-you');
   }));
     }
