@@ -4,6 +4,7 @@ import SectionHeader from './SectionHeader'
 import { AiOutlineCheck } from 'react-icons/ai';
 import { useNavigate, Link } from 'react-router-dom';
 import { createSubscription } from '../api/subscription'
+import { isLoggedIn } from "../utils";
 
 const Pricing = () => {
   const [amount, setAmount] = useState("");
@@ -79,10 +80,14 @@ const Pricing = () => {
 
               {/* CTA  */}
 
-{
+   {
   title === "Basic"?
-  null:
-  <Link
+  null :
+ (
+  <>
+   { isLoggedIn() ? (
+    <>
+    <Link
               
   to={`/payment/${page}/${title}/${price}`}
   className={`${recommended
@@ -91,6 +96,20 @@ const Pricing = () => {
     } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
   {cta}
 </Link>
+    </>
+  ) : (
+    <Link
+              
+  to={`/login`}
+  className={`${recommended
+      ? "text-white bg-primaryDark hover:bg-primaryColor"
+      : "text-headingColor bg-warm-gray-100 hover:bg-warm-gray-200"
+    } block px-6 py-4 font-semibold leading-4 text-center rounded-lg shadow-md mt-12 `}>
+  {cta}
+</Link>
+  )}
+  </>
+ )
 }
             </div>
           );

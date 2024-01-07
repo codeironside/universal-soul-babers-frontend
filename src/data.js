@@ -42,10 +42,7 @@ export const quickLinks = [
 ]
 
 export const quickLinks02 = [
-  {
-    path: "/contact",
-    display: "Contact Us",
-  },
+ 
   {
     path: "/forum",
     display: "Forum",
