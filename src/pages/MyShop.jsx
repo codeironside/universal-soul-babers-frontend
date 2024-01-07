@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { buildApiEndpoint, getCookie } from "../utils";
+import { buildApiEndpoint, getCookie, isOwner } from "../utils";
 import { fetchShops } from "../api/product";
 import Select from "react-select"
 import { ImSpinner8 } from "react-icons/im";
@@ -32,13 +32,13 @@ export default function MyShop() {
 
 
   const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
   ];
 
   const timeOptions = [];
@@ -46,7 +46,7 @@ export default function MyShop() {
     for (let minute = 0; minute < 60; minute += 30) {
       const formattedTime = `${hour % 12 || 12}:${minute
         .toString()
-        .padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
+        .padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`.toLowerCase().replace(" ", "");
       timeOptions.push({ value: formattedTime, label: formattedTime });
     }
   }
@@ -54,6 +54,11 @@ export default function MyShop() {
   
 
   const barbersData = shopData.filter((item) => item.category === "barbers");
+  // console.log(shopData);
+  const userProductData = shopData.filter(
+    (item) => item.category !== "barbers"
+  );
+
 
   const user = JSON.parse(getCookie("user"));
   const owner = user._id;
@@ -71,12 +76,25 @@ export default function MyShop() {
     description: "",
   });
 
+  useEffect(() => {
+    // Your isOwner function logic
+    const ownerStatus = isOwner(); // Replace isOwner() with your actual function
+
+    // Update category based on the result of isOwner
+    setProductData((prevData) => ({
+      ...prevData,
+      category: ownerStatus ? "" : "barbers",
+    }));
+    
+  }, []); 
+
   const token = getCookie("token");
 
   const handleFileInputChange = (e) => {
     const selectedFile = e.target.files[0];
     previewFile(selectedFile);
   };
+
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -131,7 +149,7 @@ export default function MyShop() {
      formData.append("owner", owner);
      formData.append("contact_number", contact_number);
      formData.append("contact_email", contact_email);
-     formData.append("workinghours", JSON.stringify(availability));
+     formData.append("workinghours", JSON.stringify(availability)),
      formData.append("description", productData.description);
 
      formData.append("file", file);
@@ -143,7 +161,6 @@ export default function MyShop() {
          formData
        );
 
-       
        const imageRes = response.data.secure_url;
        formData.append("images", imageRes);
 
@@ -154,13 +171,38 @@ export default function MyShop() {
          }
        }
 
-       await axios.post(buildApiEndpoint("/shops/register"), formDataObject, {
+       const { workinghours, ...rest } = formDataObject;
+       const parsedWorkinghours = JSON.parse(workinghours);
+       const formattedData = {
+         ...rest,
+         monday: parsedWorkinghours.monday || [],
+         tuesday: parsedWorkinghours.tuesday || [],
+         wednesday: parsedWorkinghours.wednesday || [],
+         thursday: parsedWorkinghours.thursday || [],
+         friday: parsedWorkinghours.friday || [],
+         saturday: parsedWorkinghours.saturday || [],
+         sunday: parsedWorkinghours.sunday || [],
+       };
+
+       const originalData = Object.fromEntries(
+         Object.entries(formattedData).map(([key, value]) => {
+           if (Array.isArray(value)) {
+             return [key, value.join(",")];
+           }
+           return [key, value];
+         })
+       );
+       console.log(originalData);
+       const URLEncodedData = new URLSearchParams(originalData).toString();
+
+       await axios.post(buildApiEndpoint("/shops/register"), URLEncodedData, {
          headers: {
            Authorization: `Bearer ${token}`,
-           "Content-Type": "application/json",
+           "Content-Type": "application/x-www-form-urlencoded",
          },
+         transformRequest: axios.defaults.transformRequest,
        });
-        
+
        if (response.status >= 200 && response.status < 300) {
          // Show success notification
          toast.success("Shop Created successfully!");
@@ -174,13 +216,18 @@ export default function MyShop() {
          });
          setFile(null);
          setPreview("");
+       } else if (response.status === 403) {
+         toast.success("You have reached the maximun allowed shops (3)");
+       } else if (response.status === 400) {
+         toast.error("Error Creating Shop");
        } else {
          // Show error notification
          toast.error("Failed to submit data. Please try again.");
        }
-       setLoading(false)
+       setLoading(false);
      } catch (error) {
-        toast.error(error.message);
+        toast.error(error);
+        console.log(error);
      }
    };
 
@@ -190,6 +237,7 @@ export default function MyShop() {
   }, []);
   return (
     <>
+      <ToastContainer />
       <div className='px-8 py-6'>
         <h1 className='text-4xl font-semibold text-gray-900'>Shop</h1>
 
@@ -211,7 +259,7 @@ export default function MyShop() {
             className='inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm w-fit bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2'
             onClick={() => setOpenAddProduct(true)}>
             <PlusIcon className='w-5 h-5 mr-2 -ml-1' aria-hidden='true' />
-            Add Shop
+            {isOwner() ? "Add Product" : "Add Shop"}
           </button>
 
           <Transition.Root show={openAddProduct} as={Fragment}>
@@ -244,13 +292,15 @@ export default function MyShop() {
                       <div className='mt-5 md:col-span-2 md:mt-0'>
                         <form onSubmit={handleSubmit}>
                           <div className='overflow-hidden'>
-                            <h1 className='mb-4 text-xl'>Create Shop</h1>
+                            <h1 className='mb-4 text-xl'>
+                              {isOwner() ? "Create Product" : "Create Shop"}
+                            </h1>
                             <div className='grid grid-cols-6 gap-6'>
                               <div className='col-span-6'>
                                 <label
                                   htmlFor='shop_name'
                                   className='block text-sm font-medium text-gray-700'>
-                                  Shop name
+                                  {isOwner() ? "Product name" : " Shop name"}
                                 </label>
                                 <input
                                   type='text'
@@ -269,15 +319,30 @@ export default function MyShop() {
                                   className='block text-sm font-medium text-gray-700'>
                                   Category
                                 </label>
-                                <input
-                                  type='text'
-                                  name='category'
-                                  id='category'
-                                  disabled
-                                  className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm cursor-not-allowed bg-gray-100 text-gray-500'
-                                  value={productData.category}
-                                  onChange={handleInputChange}
-                                />
+                                {isOwner() ? (
+                                  <>
+                                    <input
+                                      type='text'
+                                      name='category'
+                                      id='category'
+                                      className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  text-gray-500'
+                                      value={productData.category}
+                                      onChange={handleInputChange}
+                                    />
+                                  </>
+                                ) : (
+                                  <>
+                                    <input
+                                      type='text'
+                                      name='category'
+                                      id='category'
+                                      disabled
+                                      className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm cursor-not-allowed bg-gray-100 text-gray-500'
+                                      value={productData.category}
+                                      onChange={handleInputChange}
+                                    />
+                                  </>
+                                )}
                               </div>
 
                               {/* Price */}
@@ -306,7 +371,9 @@ export default function MyShop() {
                                 <label
                                   htmlFor='description'
                                   className='block text-sm font-medium text-gray-700'>
-                                  Shop Description
+                                  {isOwner()
+                                    ? "Product Description"
+                                    : "Shop Description"}
                                 </label>
                                 <div className='mt-1'>
                                   <textarea
@@ -319,13 +386,14 @@ export default function MyShop() {
                                   />
                                 </div>
                                 <p className='mt-2 text-sm text-gray-500'>
-                                  Brief description of your shop
+                                  Brief description of your{" "}
+                                  {isOwner() ? " Product" : " Shop"}
                                 </p>
                               </div>
 
                               <div className='relative col-span-6'>
                                 <label className='block text-sm font-medium text-gray-700'>
-                                  Shop Image
+                                  {isOwner() ? "Product Image" : "Shop Image"}
                                 </label>
                                 <div
                                   className='flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md'
@@ -378,36 +446,42 @@ export default function MyShop() {
                               </div>
                             </div>
                           </div>
-
-                          {/* Working Hours  */}
-                          <div className='relative col-span-10 mt-6 gap-4'>
-                            {daysOfWeek.map((day) => (
-                              <div
-                                key={day}
-                                className='flex flex-col justify-center  w-full items-start'>
-                                <label className='block text-[18px] text-left font-medium mt-6 text-gray-700'>
-                                  {day}
-                                </label>
-                                <Select
-                                  styles={customStyles}
-                                  options={timeOptions}
-                                  isMulti
-                                  onChange={(selectedTimes) =>
-                                    handleTimeChange(day, selectedTimes)
-                                  }
-                                  menuPortalTarget={document.body}
-                                  components={{
-                                    DropdownIndicator: customDropdownIndicator,
-                                  }}
-                                  className='w-full mt-4' // Use Tailwind CSS classes for width
-                                />
+                          {isOwner() ? (
+                            <></>
+                          ) : (
+                            <>
+                              {/* Working Hours  */}
+                              <div className='relative col-span-10 mt-6 gap-4'>
+                                {daysOfWeek.map((day) => (
+                                  <div
+                                    key={day}
+                                    className='flex flex-col justify-center  w-full items-start'>
+                                    <label className='block text-[18px] text-left font-medium mt-6 text-gray-700'>
+                                      {day}
+                                    </label>
+                                    <Select
+                                      styles={customStyles}
+                                      options={timeOptions}
+                                      isMulti
+                                      onChange={(selectedTimes) =>
+                                        handleTimeChange(day, selectedTimes)
+                                      }
+                                      menuPortalTarget={document.body}
+                                      components={{
+                                        DropdownIndicator:
+                                          customDropdownIndicator,
+                                      }}
+                                      className='w-full mt-4' // Use Tailwind CSS classes for width
+                                    />
+                                  </div>
+                                ))}
+                                <p className='mt-2 text-sm text-gray-500'>
+                                  You can decide to make changes if you want.
+                                  Your availability can be updated at a go!
+                                </p>
                               </div>
-                            ))}
-                            <p className='mt-2 text-sm text-gray-500'>
-                              You can decide to make changes if you want. Your
-                              availability can be updated at a go!
-                            </p>
-                          </div>
+                            </>
+                          )}
 
                           <div className='relative inline-block text-left my-4 w-full'>
                             <div className='px-4 py-3 flex items-center justify-center mt-4 text-right bg-transparent sm:px-6'>
@@ -417,7 +491,11 @@ export default function MyShop() {
                                 {loading ? (
                                   <ImSpinner8 className='mx-auto animate-spin' />
                                 ) : (
-                                  <span>Create Shop </span>
+                                  <span>
+                                    {isOwner()
+                                      ? "Create Product"
+                                      : "Create Shop"}
+                                  </span>
                                 )}
                               </button>
                             </div>
@@ -434,15 +512,32 @@ export default function MyShop() {
 
         <h1 className='my-8'>Your Shops</h1>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[20px] lg:mt-[55px]'>
-          {barbersData.map((item) => {
-            return (
-              <BarberCard
-                data={item}
-                key={item._id}
-                displayModal={openAddProduct}
-              />
-            );
-          })}
+          {isOwner() ? (
+            <>
+              {userProductData.map((item) => {
+                return (
+                  <ProductCard
+                    data={item}
+                    key={item._id}
+                    displayModal={openAddProduct}
+                  />
+                );
+              })}
+            </>
+          ) : (
+            <>
+              {barbersData.map((item) => {
+                return (
+                  <BarberCard
+                    data={item}
+                    key={item._id}
+                    displayModal={openAddProduct}
+                    token={token}
+                  />
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
     </>
@@ -497,12 +592,14 @@ const customDropdownIndicator = (props) => {
      }),
    };
 
-const BarberCard = ({ data, displayModal }) => {
+const BarberCard = ({ data, displayModal, token }) => {
    
    const [open
     , setOpen
      ] = useState(displayModal)
+     const [loading, setLoading] = useState(false);
   const {
+    _id,
     shop_name,
     description,
     price,
@@ -510,39 +607,57 @@ const BarberCard = ({ data, displayModal }) => {
     contact_number,
     shop_address,
     createdAt,
-    images
+    images,
+    whours
   } = data;
 
-  const mockData = [
-    {
-      _id: "658e0ce752d50b25110bf0095",
-      shop_name: "ima and caleb stores",
-      description: "Teusday stores",
-      workinghours: {
-        Monday: ["10:00 AM", "12:30 PM", "03:00 PM"],
-        Tuesday: ["08:30 AM", "11:00 AM"],
-        Wednesday: ["02:00 PM", "04:30 PM", "07:00 PM"],
-        Thursday: ["06:30 PM", "08:00 PM"],
-        Friday: ["12:00 PM", "02:30 PM"],
-        Saturday: ["08:30 PM", "10:00 PM"],
-        Sunday: ["09:00 AM", "11:30 AM"],
-      },
-      category: "barbers",
-      owner: "65659eea6c68adee2fc9220a",
-      contact_number: "0908795123",
-      contact_email: "fury25423@gmail.cm",
-      price: 900,
-      availabilty: false,
-      subscriptionType: "basic",
-    }]
+ 
   
 
 
- const {workinghours} = mockData[0]
-
  
-const handleDeleteShop = (id) => {
-  // logic to delete the shop when button is clicked 
+const handleDeleteShop = async (id) => {
+ 
+   setLoading(true);
+      try {
+      const response = await axios.delete(
+        buildApiEndpoint(`/shops/delete/${id}`),
+       
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      
+     if (response.status >= 200 && response.status < 300) {
+       // Show success notification
+       toast.success("Shop Deleted successfully!");
+      
+
+       
+     } else if (response.status === 403) {
+       toast.success("You have reached the maximun allowed shops (3)");
+     } else if (response.status === 404) {
+       toast.error("Couldn't get shop id");
+     } 
+     
+     else if (response.status === 400) {
+       toast.error("Error Creating Shop");
+     } else {
+       // Show error notification
+       toast.error("Failed to submit data. Please try again.");
+     }
+     setLoading(false);
+
+      
+    } catch (error) {
+     toast.error(error);
+     console.log(error);
+   }
+  
 }
 
 
@@ -590,7 +705,7 @@ const handleDeleteShop = (id) => {
             Working Hours:
           </p>
           <ul className='mt-3 '>
-            {Object.entries(workinghours).map(([day, hours]) => (
+            {Object.entries(whours.hours).map(([day, times]) => (
               <li
                 key={day}
                 className='flex items-center  w-full justify-between mb-2'>
@@ -598,8 +713,8 @@ const handleDeleteShop = (id) => {
                   {day}
                 </p>
                 <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                  {hours.length > 0
-                    ? `${hours[0]} - ${hours[hours.length - 1]}`
+                  {times.length > 0
+                    ? `${times[0]} - ${times[times.length - 1]}`
                     : "not available"}
                 </p>
               </li>
@@ -609,12 +724,136 @@ const handleDeleteShop = (id) => {
 
         {/* Buttons  */}
         <div className='flex items-center justify-between mt-4 -mb-4 w-full'>
-         
-          <button className='w-full rounded-lg py-2 bg-red-500 text-white' onClick={handleDeleteShop}>
-            Delete
+          <button
+            className='w-full rounded-lg py-2 bg-red-500 text-white'
+            onClick={() => handleDeleteShop(_id)}>
+            {loading ? (
+              <ImSpinner8 className='mx-auto animate-spin' />
+            ) : (
+              <span>{isOwner() ? "Delete Product" : "Delete Shop"}</span>
+            )}
           </button>
         </div>
       </div>
     </div>
   );
-};
+}
+const ProductCard = ({ data, displayModal, token }) => {
+   
+   const [open
+    , setOpen
+     ] = useState(displayModal)
+     const [loading, setLoading] = useState(false);
+  const {
+    _id,
+    category,
+    shop_name,
+    description,
+    price,
+    contact_email,
+    createdAt,
+    images,
+    
+  } = data;
+
+ 
+
+ 
+const handleDeleteShop = async (id) => {
+ 
+   setLoading(true);
+      try {
+      const response = await axios.delete(
+        buildApiEndpoint(`/shops/delete/${id}`),
+       
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      
+     if (response.status >= 200 && response.status < 300) {
+       // Show success notification
+       toast.success("Shop Deleted successfully!");
+      
+
+       
+     }  else if (response.status === 404) {
+       toast.error("Couldn't get shop id");
+     } 
+     
+     else if (response.status === 400) {
+       toast.error("Error Creating Shop");
+     } else {
+       // Show error notification
+       toast.error("Failed to submit data. Please try again.");
+     }
+     setLoading(false);
+
+      
+    } catch (error) {
+     toast.error(error);
+     console.log(error);
+   }
+  
+}
+
+
+
+  return (
+    <div
+      className='p-8  flex flex-col items-center justify-center rounded-lg shadow-card'
+      data-aos='zoom-in'
+      data-aos-duration='750'
+      data-aos-delay='500'>
+      <div className='h-auto  w-full flex items-center justify-center my-4'>
+        <img
+          src={images || "https://i.imgur.com/h9YQFtC.jpg"}
+          alt={shop_name}
+          className='h-[70%] rounded-lg object-cover'
+        />
+      </div>
+      <div className='flex flex-col justify-start items-start w-full'>
+        <h2 className='text-xl font-semibold my-3 text-gray-800'>
+          Product name: {shop_name}
+        </h2>
+        <p className='text-gray-600 text-sm mb-2'>
+          <strong>Description:</strong> {description}
+        </p>
+        <p className='text-gray-600 text-sm mb-2'>
+          <strong>Category:</strong> {category}
+        </p>
+        <p className='text-gray-600 text-sm mb-2'>
+          <strong>Price:</strong>${price}
+        </p>
+        <p className='text-gray-600 text-sm mb-2'>
+          <strong>Email:</strong> {contact_email}
+        </p>
+      
+      
+        <p className='text-gray-600 text-sm'>
+          <strong>Created At:</strong>
+          {new Date(createdAt).toLocaleDateString()}
+        </p>
+
+      
+
+        {/* Buttons  */}
+        <div className='flex items-center justify-between mt-4 -mb-4 w-full'>
+          <button
+            className='w-full rounded-lg py-2 bg-red-500 text-white'
+            onClick={() => handleDeleteShop(_id)}>
+            {loading ? (
+              <ImSpinner8 className='mx-auto animate-spin' />
+            ) : (
+              <span> Delete Product </span>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

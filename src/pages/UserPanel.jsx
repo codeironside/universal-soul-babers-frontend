@@ -33,18 +33,32 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { getCookie, isLoggedIn, deleteAllCookies, isOwner } from '../utils';
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
-  // { name: 'Appointments', href: '/appointments', icon: CalendarDaysIcon },
+ const user = JSON.parse(getCookie("user"));
+
+
+let navigation = [
+  {
+    name: "Dashboard",
+    href: user.role === "superadmin" ? "/owner" : "/dashboard",
+    icon: HomeIcon,
+  },
+  // {
+  //   name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
+  //   href: "/appointments",
+  //   icon: CalendarDaysIcon,
+  // },
   // { name: 'Services', href: '/services', icon: BriefcaseIcon },
   // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
   // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
-  { name: 'Inventory & Shop', href: '/my-store', icon: BuildingStorefrontIcon },
-  { name: 'Crowd Funding', href: '/funding', icon: CurrencyDollarIcon },
-  { name: 'Forum', href: '/forum', icon: ChatBubbleBottomCenterTextIcon },
+  { name: "Inventory & Shop", href: "/my-store", icon: BuildingStorefrontIcon },
+  { name: "Crowd Funding", href: "/funding", icon: CurrencyDollarIcon },
+  { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon },
   // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
   // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
 ];
+if (user.role === 'superadmin') {
+  navigation = navigation.filter(nav => nav.href !== '/appointments')  
+}
 
 const ownerNav = [
   { name: 'Dashboard', href: '/owner', icon: HomeIcon },
@@ -97,14 +111,14 @@ export default function UserPanel({ fragment, owner = false }) {
     deleteAllCookies();
     navigate('/login');
   }
-useEffect(() => {
-  // console.log('Owner:', owner);
-  // console.log('User Role:', user.role);
-  if (!owner || user.role !== 'superadmin') {
-    // console.log('Navigating to /dashboard');
-    navigate('/dashboard');
-  }
-}, [owner, user.role]);
+// useEffect(() => {
+//   // console.log('Owner:', owner);
+//   // console.log('User Role:', user.role);
+//   if (!owner || user.role !== 'superadmin') {
+//     // console.log('Navigating to /dashboard');
+//     navigate('/dashboard');
+//   }
+// }, [owner, user.role]);
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
 

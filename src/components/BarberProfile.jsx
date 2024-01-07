@@ -23,7 +23,7 @@ const BarberProfile = () => {
   const user = JSON.parse(getCookie('user'));
   const token = getCookie('token');
   
-console.log(token);
+
 
   useEffect(() => {
     

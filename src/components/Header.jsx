@@ -9,9 +9,15 @@ import {
 } from "@heroicons/react/24/outline/index.js";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { navLinks } from "../data";
-import { isLoggedIn, deleteAllCookies } from "../utils";
+import {
+  isLoggedIn,
+  deleteAllCookies,
+  getCookie,
+  isOwner,
+  classNames,
+} from "../utils";
 import { UserContext } from "../pages/UserPanel";
-import { getCookie, isOwner, classNames } from "../utils";
+
 import ProfileImage from "./ProfileImage";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
@@ -19,6 +25,7 @@ import { useContext } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 const Header = () => {
   const navigate = useNavigate();
+  
 
   function logout() {
     deleteAllCookies();
@@ -39,6 +46,7 @@ const Header = () => {
               <div className='flex w-full items-center justify-between lg:w-auto'>
                 <AppLogo />
                 <div className='-mr-2 flex items-center lg:hidden'>
+                  
                   {/* Cart icon for mobile view beside the harmburger  */}
                   <Link to='/cart' className='inline-flex mr-3'>
                     <ShoppingCartIcon className='w-6 h-6 cursor-pointer mr-1' />
