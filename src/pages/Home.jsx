@@ -155,19 +155,19 @@ export default function Home() {
                 />
               </div>
               <div className='md:mt-[110px] mt-[3rem]'>
-                <img
-                  data-aos='fade-left'
-                  data-aos-duration='500'
-                  data-aos-delay='600'
-                  src={heroOne}
-                  alt=''
-                  className=' w-[100px] md:w-[150px] md:h-[220px] mb-2 md:mb-[20px] rounded-lg'
-                />
+              <img
+  data-aos='fade-left'
+  data-aos-duration='500'
+  data-aos-delay='600'
+  src="https://i.imgur.com/Slda2Xm.jpg"
+  alt=''
+  className='w-24 h-32 md:w-36 md:h-52 mb-2 md:mb-4 rounded-lg'
+/>
                 <img
                   data-aos='fade-left'
                   data-aos-duration='000'
                   data-aos-delay='700'
-                  src={heroTwo}
+                  src="https://i.imgur.com/phn6SKX.jpg"
                   alt=''
                   className='w-[100px] md:w-[150px] md:h-[220px] rounded-lg '
                 />

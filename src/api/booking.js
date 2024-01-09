@@ -19,7 +19,7 @@ export const makeBooking = async (values, shopId, callback) => {
       );
 
       callback();
-      console.log('Response:', response.data);
+      console.log('Response:', response);
       toast.success("New Booking Created");
     } catch (error) {
       // Handle errors

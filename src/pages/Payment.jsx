@@ -22,6 +22,7 @@ const Payment = () => {
    const itemId = params.itemId;
 
     const amountValue = parseInt(amount, 10);
+    const dollarAmount = amountValue * 100;
 
    const options = {
     // passing the client secret obtained from the server
@@ -40,7 +41,7 @@ const Payment = () => {
         const { data } = await axios.post(
           buildApiEndpoint(`/stripe/payment-intent`),
           {
-            amount: amountValue, // Replace with the desired amount
+            amount: dollarAmount, // Replace with the desired amount
             currency: 'usd', // Replace with the desired currency
             // Add other required fields if necessary
           },
@@ -71,7 +72,7 @@ const Payment = () => {
   {
     stripePromise && clientSecret && (
       <Elements stripe={stripePromise} options={options}>
-      <PaymentButton amount={amountValue} page={page} itemId={itemId} />
+      <PaymentButton amount={dollarAmount} page={page} itemId={itemId} />
       </Elements>
     )
   }

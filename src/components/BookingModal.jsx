@@ -11,8 +11,6 @@ const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 
 const BookingModal = ({ open, onClose, data }) => {
-  console.log(data?.whours.hours)
-  console.log();
   const [selectedTime, setSelectedTime] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTab, setSelectedTab] = useState("Morning");

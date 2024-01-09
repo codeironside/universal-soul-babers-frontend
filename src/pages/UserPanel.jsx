@@ -599,7 +599,7 @@ function _CommonSidebarNav({ extra }) {
         </div>
         <div className="pt-6 mt-6">
           <div className="px-2 space-y-1">
-            {user?.role === 'USER' || 'SHOP_OWNER' &&
+            {
               secondaryNavigation.map((item) => (
                 <Link
                   key={item.name}
