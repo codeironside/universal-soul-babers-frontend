@@ -183,7 +183,7 @@ export const pricing = [
   },
   {
     title: "Premium",
-    price: 250,
+    price: 25,
     currency: "USD",
     frequency: "/month",
     description: "The essential package for your best work for client",
@@ -198,7 +198,7 @@ export const pricing = [
   },
   {
     title: "Diamond",
-    price: 400,
+    price: 40,
     currency: "USD",
     frequency: "/month",
     description: "The essential package for your best work for client",
