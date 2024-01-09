@@ -12,6 +12,7 @@ const userId = JSON.parse(getCookie('user'))
 export default function Cart() {
   const { addToCart, removeFromCart, total, increaseAmount, decreaseAmount } = useContext(CartContext)
   const [cart, setCart ] = useState([]);
+  const totalAmount = cart?.reduce((accumulator, cart) => accumulator + cart.totalAmount, 0);
   const page = "cart";
   const cartTotal = cart[4]?.totalAmount;
   const itemId = cart[4]?._id;
@@ -150,7 +151,7 @@ export default function Cart() {
               <div className='flex items-center justify-between'>
                 <dt className='text-sm text-gray-600'>Subtotal</dt>
                 <dd className='text-sm font-medium text-gray-900'>
-                  ${cart[4]?.totalAmount}
+                  ${totalAmount}
                 </dd>
               </div>
               <div className='flex items-center justify-between pt-4 border-t border-gray-200'>
@@ -192,7 +193,7 @@ export default function Cart() {
                   Order total
                 </dt>
                 <dd className='text-base font-medium text-gray-900'>
-                  ${cart[4]?.totalAmount}
+                  ${totalAmount}
                 </dd>
               </div>
             </dl>
@@ -200,7 +201,7 @@ export default function Cart() {
             <div className='mt-6'>
               {isLoggedIn() ? (
                 <>
-                  <Link to={`/payment/${page}/${itemId}/${cartTotal}`}>
+                  <Link to={`/payment/${page}/${itemId}/${totalAmount}`}>
                     <button
                       type='button'
                       className='w-full px-4 py-3 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primaryDark hover:bg-primaryColor focus:outline-none focus:ring-2 focus:ring-primaryDark focus:ring-offset-2 focus:ring-offset-gray-50'>
