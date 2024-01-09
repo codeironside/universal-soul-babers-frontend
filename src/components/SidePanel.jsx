@@ -61,20 +61,23 @@ const WorkingHours = ({ hours }) => {
 
   return (
     <ul style={styles.workingHours}>
-      {Object.entries(hours).map(([day, times]) => {
-        if (Array.isArray(times) && times.length > 0) {
-          return (
-            <li key={day} style={styles.day}>
-              <p style={styles.dayName}>{day}</p>
-              <div style={styles.times}>
-                {times.join(' ')}
-              </div>
-            </li>
-          );
-        }
-        return null;
-      })}
-    </ul>
+    {Object.entries(hours).map(([day, times]) => (
+      <li key={day} style={styles.day}>
+        <p style={styles.dayName}>{day}</p>
+        <div style={styles.times}>
+          {times.length > 0 ? (
+            <ul>
+              {times.map((time, index) => (
+                <li key={index}>{time}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No working hours specified</p>
+          )}
+        </div>
+      </li>
+    ))}
+  </ul>
   );
 };
 
