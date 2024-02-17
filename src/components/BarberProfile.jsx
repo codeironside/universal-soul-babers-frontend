@@ -10,6 +10,7 @@ import axios from 'axios';
 const BarberProfile = () => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [website, setWebsite] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhonenumber] = useState('');
   const [bio, setBio] = useState('');
@@ -33,6 +34,7 @@ const BarberProfile = () => {
     setEmail(user.email);
     setBio(user.bio);
     setPhonenumber(user.phoneNumber);
+    setWebsite(user.website);
     setInstagram(user.instagram)
     setLinkedIn(user.linkedIn)
     setYouTube(user.instagram)
@@ -50,6 +52,7 @@ const BarberProfile = () => {
         email: email,
         userName: userName,
         phoneNumber: phoneNumber,
+        website: website,
         bio: bio,
         linkedIn: linkedIn,
         youtube: youTube,
@@ -135,6 +138,15 @@ const BarberProfile = () => {
           id='phoneNumber'
           type='phone'
           value={phoneNumber}
+        />
+      </div>
+      <div className='flex w-[90%]'>
+        <Input
+          label='Website Url'
+          onChange={(e) => setWebsite(e.target.value)}
+          id='website'
+          type='text'
+          value={website}
         />
       </div>
       <div className='flex w-[90%]'>
