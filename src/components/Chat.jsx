@@ -65,7 +65,7 @@ const Chat = ({ recipient }) => {
               </button>
             </div>
             {/* Chat messages */}
-            <div className='overflow-y-auto max-h-[500px] md:max-h-[300px] lg:max-h-[300px]'>
+            <div className='overflow-y-auto max-h-[400px] md:max-h-[300px] lg:max-h-[300px]'>
               {mockMessages.map((msg, index) => (
                 <div
                   key={index}
