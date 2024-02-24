@@ -239,7 +239,7 @@ export default function MyShop() {
     <>
       <ToastContainer />
       <div className='px-8 py-6'>
-        <h1 className='text-4xl font-semibold text-gray-900'>Shop</h1>
+        <h1 className='text-4xl font-semibold text-gray-900'>Build your e-commerce store</h1>
 
         <p className='mt-12 text-xl text-gray-700'>
           Activate your shop in  
@@ -251,7 +251,7 @@ export default function MyShop() {
 
         <div className='pt-6 mt-12 border-t border-gray-200'>
           <h1 className='mb-6 text-4xl font-semibold text-gray-900'>
-            Inventory
+            Business Profile
           </h1>
 
           <button

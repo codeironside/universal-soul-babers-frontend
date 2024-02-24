@@ -74,7 +74,7 @@ export default function Home() {
               {/* Hero Text  */}
               <div className='lg:w-[570px]  '>
                 <h1
-                  className='text-4xl sm:text-5xl md:text-6xl mt-10 text-center text-headingColor font-[800] md:text-center lg:text-left '
+                  className='text-4xl sm:text-5xl md:text-6xl mt-4 text-center text-headingColor font-[800] md:text-center lg:text-left '
                   data-aos='fade-down'
                 >
                   UniverSoul Babers
@@ -149,20 +149,20 @@ export default function Home() {
                   data-aos='fade-right'
                   data-aos-duration='500'
                   data-aos-delay='500'
-                  className='md:w-[320px] w-[230px] mt-[3rem] md:mt-[100px] rounded-lg'
+                  className='md:w-[320px] w-[230px] mt-[3rem] md:mt-[30px] rounded-lg'
                   src={heroThree}
                   alt=''
                 />
               </div>
-              <div className='md:mt-[110px] mt-[3rem]'>
-              <img
-  data-aos='fade-left'
-  data-aos-duration='500'
-  data-aos-delay='600'
-  src="https://i.imgur.com/Slda2Xm.jpg"
-  alt=''
-  className='w-24 h-32 md:w-36 md:h-52 mb-2 md:mb-4 rounded-lg'
-/>
+              <div className='md:mt-[30px] mt-[3rem]'>
+                <img
+                  data-aos='fade-left'
+                  data-aos-duration='500'
+                  data-aos-delay='600'
+                  src={heroOne}
+                  alt=''
+                  className=' w-[100px] md:w-[150px] md:h-[220px] mb-2 md:mb-[20px] rounded-lg'
+                />
                 <img
                   data-aos='fade-left'
                   data-aos-duration='000'

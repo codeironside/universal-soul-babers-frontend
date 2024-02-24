@@ -1,5 +1,5 @@
 import Input from "../components/Input";
-import { CheckBox } from "../components";
+import { CheckBox, CheckOptions } from "../components";
 import { useState, useCallback, useEffect } from "react";
 import formImg from "../assets/img/Placeholder.gif";
 import formImg2 from "../assets/img/Sign up.gif";
@@ -8,11 +8,14 @@ import { ImSpinner8 } from "react-icons/im";
 import { buildApiEndpoint, setCookie } from "../utils"
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
-
+ 
 export default function Auth({ signup = false }) {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [state, setState] = useState('')
+  const [city, setCity] = useState('')
+  const [county, setCounty] = useState('')
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -66,7 +69,7 @@ export default function Auth({ signup = false }) {
               const token = auth.split(' ')[1];
               setCookie("token", token);
 
-              navigate("/dashboard");
+              navigate("/profile");
             } else {
               const responseData = response.data;
               setErrorMessage({ ...errorMessage, desc: responseData });
@@ -207,6 +210,33 @@ export default function Auth({ signup = false }) {
                   value={userName}
                 />
               </div>
+              <div className='flex w-full'>
+                <Input
+                  label='State'
+                  onChange={(e) => setState(e.target.value)}
+                  id='state'
+                  type='text'
+                  value={state}
+                />
+              </div>
+              <div className='flex w-full'>
+                <Input
+                  label='City'
+                  onChange={(e) => setCity(e.target.value)}
+                  id='city'
+                  type='text'
+                  value={city}
+                />
+              </div>
+              <div className='flex w-full'>
+                <Input
+                  label='County'
+                  onChange={(e) => setCounty(e.target.value)}
+                  id='county'
+                  type='text'
+                  value={county}
+                />
+              </div>
             </div>
           )}
 
@@ -237,12 +267,15 @@ export default function Auth({ signup = false }) {
             />
           </div>
           {variant === "Register" && (
-            <div
-              className='flex w-full'
-              data-aos='fade-up'
-              data-aos-duration='1200'>
-              <CheckBox />
-            </div>
+            <>
+              <CheckOptions question='Role ' options={['Individual', 'Entity (Two or more)']} />
+              <div
+                className='flex w-full'
+                data-aos='fade-up'
+                data-aos-duration='1200'>
+                <CheckBox />
+              </div>
+            </>
           )}
 
           <button

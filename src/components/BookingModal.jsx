@@ -5,12 +5,14 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { Link } from "react-router-dom";
+import CheckOptions from './CheckOptions'
 
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 
 const BookingModal = ({ open, onClose, data }) => {
+  
   const [selectedTime, setSelectedTime] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTab, setSelectedTab] = useState("Morning");
@@ -27,7 +29,7 @@ const BookingModal = ({ open, onClose, data }) => {
   })
 
   useEffect(() => {
-    console.log(data);
+   
     // Set the initial selected day when the modal opens
     if (open && !selectedDay) {
       const today = new Date().toLocaleDateString("en-US", {
@@ -46,7 +48,6 @@ const BookingModal = ({ open, onClose, data }) => {
       const matchingDayKey = Object.keys(data?.whours.hours).find((key) =>
         key.toLowerCase().startsWith(selectedDay.toLowerCase())
       );
-      console.log(matchingDayKey);
 
       // Get the working hours for the selected day
       const workingHours = data?.whours.hours[matchingDayKey];
@@ -232,6 +233,9 @@ const BookingModal = ({ open, onClose, data }) => {
                       </p>
                     </div>
                   </div>
+
+                  {/* Transportation Option  */}
+                  <CheckOptions question='Do you want UVS to provide you with transport?' options={['Yes', 'No']} />
 
                   {/* Booking Details */}
                   <div className='my-12 w-full bg-gray-200 p-4 rounded-lg '>

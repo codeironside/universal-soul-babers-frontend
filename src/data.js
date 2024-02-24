@@ -10,7 +10,6 @@ import product3 from './assets/img/product-3.jpg'
 import customerImg from './assets/img/patient-avatar.png'
 import { isLoggedIn } from "./utils";
 
-console.log(isLoggedIn());
 
 
 
@@ -48,6 +47,10 @@ export const quickLinks02 = [
   {
     path: isLoggedIn() ? "/forum" : "/login",
     display: "Forum",
+  },
+  {
+    path:  "https://uvsbarbercharity.com" ,
+    display: "Our Charity Page",
   }
 
 ];

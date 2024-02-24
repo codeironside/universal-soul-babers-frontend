@@ -6,7 +6,7 @@ import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
 import { AiOutlineInstagram } from "react-icons/ai";
 import { RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
-import {SidePanel, BookingModal} from '../components'
+import {SidePanel, BookingModal, Chat} from '../components'
 import { useParams } from 'react-router-dom';
 import { fetchDataOne } from "../api/booking";
 import { ToastContainer } from "react-toastify";
@@ -111,7 +111,6 @@ import { scrollToTop } from '../ScollToTop.js';
               <button
                 onClick={() => {
                   setTab("about");
-                  console.log(tab);
                 }}
                 className={` ${
                   tab === "about" && "border-b border-solid border-primaryColor"
@@ -130,6 +129,7 @@ import { scrollToTop } from '../ScollToTop.js';
             <SidePanel setModalShow={setModalShow} data={data} />
           </div>
         </div>
+        <Chat recipient={data.shop_name} />
       </section>
        {showModal && (
         <BookingModal open={showModal} data={data} onClose={()=> setModalShow(false)} />

@@ -140,15 +140,7 @@ const BarberProfile = () => {
           value={phoneNumber}
         />
       </div>
-      <div className='flex w-[90%]'>
-        <Input
-          label='Website Url'
-          onChange={(e) => setWebsite(e.target.value)}
-          id='website'
-          type='text'
-          value={website}
-        />
-      </div>
+
       <div className='flex w-[90%]'>
         <textarea
           className='w-full px-4 py-3 border border-solid rounded-md border-slate-300 focus:outline outline-primaryColor '
@@ -157,6 +149,15 @@ const BarberProfile = () => {
           id='bio'
           onChange={(e) => setBio(e.target.value)}
           value={bio}></textarea>
+      </div>
+      <div className='flex w-[90%]'>
+        <Input
+          label='Website Url'
+          onChange={(e) => setWebsite(e.target.value)}
+          id='website'
+          type='text'
+          value={website}
+        />
       </div>
       <div className='flex w-[90%]'>
         <Input
