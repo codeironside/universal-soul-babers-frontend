@@ -79,7 +79,6 @@ const WorkingHours = ({ hours }) => {
 };
 
 const SidePanel = ({ setModalShow, data }) => {
-  console.log(data);
 
   
 

@@ -5,12 +5,14 @@ import Header from './Header'
 import SectionHeader from './SectionHeader'
 import Nav from './Nav'
 import BarberCard from './BarberCard'
+import CheckOptions from './CheckOptions'
 import Pricing from './Pricing'
 import BarberList from './BarberList'
 import Testimonials from './Testimonials'
 import FeedBackForm from './FeedBackForm'
 import SidePanel from './SidePanel'
 import CartItem from './CartItem'
+import Chat from './Chat'
 import Product from './Product'
 import Input from './Input'
 import BarberProfile from './BarberProfile'
@@ -38,7 +40,9 @@ export {
     UpdateImage,
     UpdateModal,
     Card,
+    Chat,
     CheckBox,
+    CheckOptions,
     Footer,
     Header,
     SectionHeader,
