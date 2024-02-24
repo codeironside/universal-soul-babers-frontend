@@ -167,7 +167,7 @@ export default function Home() {
                   data-aos='fade-left'
                   data-aos-duration='000'
                   data-aos-delay='700'
-                  src={heroTwo}
+                  src="https://i.imgur.com/phn6SKX.jpg"
                   alt=''
                   className='w-[100px] md:w-[150px] md:h-[220px] rounded-lg '
                 />

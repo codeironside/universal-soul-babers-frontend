@@ -242,9 +242,9 @@ export default function MyShop() {
         <h1 className='text-4xl font-semibold text-gray-900'>Build your e-commerce store</h1>
 
         <p className='mt-12 text-xl text-gray-700'>
-          Activate your shop in
-          <Link className='text-indigo-500' to='/settings'>
-            settings
+          Activate your shop in  
+          <Link className='text-indigo-500 mx-2' to='/settings'>
+                settings
           </Link>
           to start selling
         </p>

@@ -37,33 +37,15 @@ const CartProvider = ({ children }) => {
     }
   }, [cart]);
 
-  const addToCart = async (product, amt) => {
+  const addToCart = async (product) => {
     try {
-      const newItem = { ...product, amount: 1 };
-  
-      // Item check
-      const cartItem = cart.find((item) => item._id === product._id);
-  
-      // Conditionals
-      if (cartItem) {
-        // If the item exists in the cart, update the quantity
-        const newCart = cart.map((item) =>
-          item._id === product._id
-            ? { ...item, amount: amt ? amt : cartItem.amount + 1 }
-            : item
-        );
-  
-        setCart(newCart);
-  
-        // Use updateCart endpoint to update the quantity in the backend
         const response = await axios.post(
-          buildApiEndpoint(`/updateCart/${userCartId}`), // Replace userCartId with the actual cart ID
+          buildApiEndpoint('/cart/create'),
           {
             items: [
               {
+                quantity: 1,
                 shop_id: product._id,
-                quantity: amt ? amt : cartItem.amount + 1,
-                // Add other item properties as needed
               },
             ],
           },
@@ -74,36 +56,11 @@ const CartProvider = ({ children }) => {
             },
           }
         );
-  
-        // Handle the response if needed
-        console.log(response.data);
-      } else {
-        // If the item does not exist in the cart, add it to the cart
-        setCart([...cart, newItem]);
-  
-        // Use updateCart endpoint to add the new item to the backend cart
-        const response = await axios.post(
-          buildApiEndpoint(`/updateCart/${userCartId}`), // Replace userCartId with the actual cart ID
-          {
-            items: [
-              {
-                shop_id: product._id,
-                quantity: amt ? amt : 1,
-                // Add other item properties as needed
-              },
-            ],
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-  
-        // Handle the response if needed
-        console.log(response.data);
-      }
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+
     } catch (error) {
       // Handle errors
       console.error('Error adding to cart:', error);

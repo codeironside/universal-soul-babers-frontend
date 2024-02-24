@@ -11,14 +11,6 @@ import {
 import { getCookie } from "../utils";
 
 
-
-
-
-
-
-
-
-
 export default function () {
    const user = JSON.parse(getCookie("user"));
 

@@ -1,4 +1,6 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import axios from 'axios';
+import { buildApiEndpoint, getCookie, isLoggedIn } from "../utils"
 import logo from "../assets/img/Logo.png";
 import textLogo from "../assets/img/Universoul.png";
 import { Popover, Transition, Menu } from "@headlessui/react";
@@ -10,9 +12,7 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { navLinks } from "../data";
 import {
-  isLoggedIn,
   deleteAllCookies,
-  getCookie,
   isOwner,
   classNames,
 } from "../utils";
@@ -20,12 +20,14 @@ import { UserContext } from "../pages/UserPanel";
 
 import ProfileImage from "./ProfileImage";
 import { CartContext } from "../context/CartContext";
-import { useContext } from "react";
-
+import { useContext, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
+const token = getCookie('token');
+
 const Header = () => {
   const navigate = useNavigate();
-  
+  const [cart, setCart ] = useState([]);
 
   function logout() {
     deleteAllCookies();
@@ -34,6 +36,26 @@ const Header = () => {
   const { itemCount } = useContext(CartContext);
   const userCookie = getCookie("user");
   const user = userCookie ? JSON.parse(userCookie) : null;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(buildApiEndpoint('/cart/user'), {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        console.log(response);
+        setCart(response.data.carts);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+  
+    fetchData();
+  }, [])
 
   return (
     <UserContext.Provider value={user}>
@@ -172,7 +194,7 @@ const Header = () => {
             <div className='hidden lg:flex lg:items-center lg:space-x-6'>
               <Link to='/cart' className='inline-flex'>
                 <ShoppingCartIcon className='w-6 h-6 cursor-pointer mr-1' />
-                {itemCount}
+                {cart?.length}
               </Link>
               {isLoggedIn() ? (
                 // <Link to='/dashboard' className='group block flex-shrink-0'>

@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
         </div>
         <p className='text-[16px] text-center leading-7 font-[400] text-textColor mt-20 '>
-              Copyright {year} Developed by SMAC TEAM
+              Copyright {year}
             </p>
       </div>
     </footer>
