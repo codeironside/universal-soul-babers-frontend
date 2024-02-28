@@ -9,7 +9,7 @@ const BookingThankYou = () => {
   return (
     <section
       aria-labelledby='summary-heading'
-      className=' rounded-lg my-[30px] w-1/2 h-full mx-auto bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-12 lg:p-8'>
+      className=' rounded-lg my-[30px] lg:w-1/2 md:w-1/2  w-[80%] h-full mx-auto bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-12 lg:p-8'>
       {/* <Confetti width="100%" height="100%" /> */}
       <h2
         id='summary-heading'
@@ -18,7 +18,7 @@ const BookingThankYou = () => {
       </h2>
 
       <p className='font-medium text-green-600 text-center my-12'>
-      Your Booking has been successfully processed.
+        Your Booking has been successfully processed.
       </p>
 
       <div className='mt-6'>

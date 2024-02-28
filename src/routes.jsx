@@ -19,7 +19,11 @@ import {
   ThankYou,
   CrowdfundingThankYou,
   SubscriptionThankYou,
+  AccountActivated,
   BookingThankYou,
+  Messages,
+  MessageDetails,
+  EntityPage,
   ThreadPage
 } from './pages';
 import BlogContent from './pages/BlogContent';
@@ -105,6 +109,11 @@ export default [
     standalone: true,
   },
   {
+    path: '/entity',
+    component: <UserPanel fragment={<EntityPage />} />,
+    standalone: true,
+  },
+  {
     path: '/cart',
     component: <Cart />,
   },
@@ -137,6 +146,11 @@ export default [
   {
     path: '/appointments',
     component: <UserPanel fragment={<AppointMents />} />,
+    standalone: true,
+  },
+  {
+    path: '/message/:id',
+    component: <UserPanel fragment={<MessageDetails />} />,
     standalone: true,
   },
   {
@@ -175,6 +189,16 @@ export default [
     path: '/subscription-thank-you',
     component: <SubscriptionThankYou />,
   },
+  {
+    path: '/activate',
+    component: <AccountActivated />,
+  },
+  {
+    path: '/messages',
+    component: <UserPanel fragment={<Messages />} />,
+    standalone: true,
+  },
+
   {
     path: '/booking-thank-you',
     component: <BookingThankYou />,

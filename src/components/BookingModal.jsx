@@ -6,12 +6,14 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { Link } from "react-router-dom";
 import CheckOptions from './CheckOptions'
+import { FaCar, FaTimesCircle } from "react-icons/fa";
 
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 
 const BookingModal = ({ open, onClose, data }) => {
+    const [transport, setTransport] = useState(null);
   
   const [selectedTime, setSelectedTime] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -83,6 +85,18 @@ const BookingModal = ({ open, onClose, data }) => {
       }
     }
   }, [open, selectedDay, selectedTab]);
+
+  // Handle click for the options
+   const handleOptionChange = (value) => {
+     setTransport((prevState) => {
+       if (prevState === value) {
+         return null; // Deselect option if clicked again
+       } else {
+         return value;
+       }
+     });
+   };
+
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
@@ -235,7 +249,30 @@ const BookingModal = ({ open, onClose, data }) => {
                   </div>
 
                   {/* Transportation Option  */}
-                  <CheckOptions question='Do you want UVS to provide you with transport?' options={['Yes', 'No']} />
+                  {/* <CheckOptions question='Do you want UVS to provide you with transport?' options={['Yes', 'No']} /> */}
+                  <div className='flex my-8  flex-col items-center justify-center'>
+                    <p className='mb-4'>
+                      Do you want UVS barbers transportation?
+                    </p>
+                    <div className='flex  w-full  items-center justify-center'>
+                      <div
+                        className={`option w-[40%] mr-4 bg-slate-50 rounded-lg shadow-lg p-4 cursor-pointer ${
+                          transport === true && "border border-black"
+                        }`}
+                        onClick={() => handleOptionChange(true)}>
+                        <FaCar className='w-8 h-8 mb-4 text-black' />
+                        <p className='text-grey text-sm'>Yes,I do</p>
+                      </div>
+                      <div
+                        className={`option w-[40%] mr-4 bg-slate-50 rounded-lg shadow-lg p-4 cursor-pointer ${
+                          transport === false && "border border-black"
+                        }`}
+                        onClick={() => handleOptionChange(false)}>
+                        <FaTimesCircle className='w-8 h-8 mb-4 text-red-500' />
+                        <p className='text-grey text-sm'>No, I don't</p>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* Booking Details */}
                   <div className='my-12 w-full bg-gray-200 p-4 rounded-lg '>
@@ -260,7 +297,9 @@ const BookingModal = ({ open, onClose, data }) => {
                           src={data?.owner.pictureUrl}
                           alt=''
                         />
-                        <h3 className='text-md font-medium'>{data.shop_name}</h3>
+                        <h3 className='text-md font-medium'>
+                          {data.shop_name}
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -272,12 +311,14 @@ const BookingModal = ({ open, onClose, data }) => {
 
                   {/* Book Appointment Button */}
                   <div className='mt-6'>
-                  <Link to={`/payment/${page}/${data._id}/${data.price}`}>
-                    <button
-                      onClick={()=> handleBookAppointment(data.price, formattedDate)}
-                      className='w-full p-2 bg-primaryDark text-white rounded'>
-                      Book Appointment
-                    </button>
+                    <Link to={`/payment/${page}/${data._id}/${data.price}`}>
+                      <button
+                        onClick={() =>
+                          handleBookAppointment(data.price, formattedDate)
+                        }
+                        className='w-full p-2 bg-primaryDark text-white rounded'>
+                        Book Appointment
+                      </button>
                     </Link>
                   </div>
                 </div>

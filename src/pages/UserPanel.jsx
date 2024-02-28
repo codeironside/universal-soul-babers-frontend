@@ -7,6 +7,7 @@ import {
 } from 'react';
 import textLogo from '../assets/img/Universoul.png';
 import { Dialog, Menu, Transition } from '@headlessui/react';
+import { FaUser } from "react-icons/fa";
 
 import {
   Bars3CenterLeftIcon,
@@ -23,6 +24,7 @@ import {
   CurrencyDollarIcon,
   ChatBubbleBottomCenterTextIcon
 } from '@heroicons/react/24/outline';
+import { CiChat1 } from "react-icons/ci";
 
 import {
   ChevronDownIcon,
@@ -45,6 +47,7 @@ const ownerNav = [
 ];
 
 const secondaryNavigation = [
+  { name: 'My Profile', href: '/profile', icon: FaUser },
   { name: 'Settings', href: '/settings', icon: CogIcon }
 ];
 
@@ -91,11 +94,11 @@ export default function UserPanel({ fragment, owner = false }) {
       href: user.role === "superadmin" ? "/owner" : "/dashboard",
       icon: HomeIcon,
     },
-    // {
-    //   name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
-    //   href: "/appointments",
-    //   icon: CalendarDaysIcon,
-    // },
+    {
+      name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
+      href: "/appointments",
+      icon: CalendarDaysIcon,
+    },
     // { name: 'Services', href: '/services', icon: BriefcaseIcon },
     // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
     // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
@@ -105,7 +108,9 @@ export default function UserPanel({ fragment, owner = false }) {
       icon: BuildingStorefrontIcon,
     },
     { name: "Crowd Funding", href: "/funding", icon: CurrencyDollarIcon },
-    { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon },
+    { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon }, 
+    { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon }, 
+    { name: "Messages", href: "/messages", icon: CiChat1 }
     // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
     // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
   ];
@@ -117,14 +122,7 @@ export default function UserPanel({ fragment, owner = false }) {
     deleteAllCookies();
     navigate('/login');
   }
-// useEffect(() => {
-//   // console.log('Owner:', owner);
-//   // console.log('User Role:', user.role);
-//   if (!owner || user.role !== 'superadmin') {
-//     // console.log('Navigating to /dashboard');
-//     navigate('/dashboard');
-//   }
-// }, [owner, user.role]);
+
 
   if (!isLoggedIn()) return <Navigate to="/login" />;
 
@@ -338,7 +336,7 @@ export default function UserPanel({ fragment, owner = false }) {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {!isLoggedIn() && (
+                      {isLoggedIn() && (
                         <>
                           <Menu.Item>
                             {({ active }) => (
@@ -432,21 +430,23 @@ function _CommonSidebarNav({ extra }) {
        href: userm.role === "superadmin" ? "/owner" : "/dashboard",
        icon: HomeIcon,
      },
-     // {
-     //   name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
-     //   href: "/appointments",
-     //   icon: CalendarDaysIcon,
-     // },
+     {
+       name: user.role === "SHOP_OWNER" ? "Appointments" : "My Bookings",
+       href: "/appointments",
+       icon: CalendarDaysIcon,
+     },
      // { name: 'Services', href: '/services', icon: BriefcaseIcon },
      // { name: 'Barbers', href: '/my-barbers', icon: HomeIcon },
-     // { name: 'Customers', href: '/customers', icon: UserGroupIcon },
+     { name: 'Customers', href: '/customers', icon: UserGroupIcon },
+     
      {
        name: "Inventory & Shop",
        href: "/my-store",
        icon: BuildingStorefrontIcon,
-     },
-     { name: "Crowd Funding", href: "/funding", icon: CurrencyDollarIcon },
-     { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon },
+      },
+      { name: "Crowd Funding", href: "/funding", icon: CurrencyDollarIcon },
+      { name: "Forum", href: "/forum", icon: ChatBubbleBottomCenterTextIcon },
+      { name: "Messages", href: "/messages", icon: CiChat1 },
      // { name: 'Financial Management', href: '#', icon: BanknotesIcon },
      // { name: 'Reporting and Analytics', href: '#', icon: DocumentChartBarIcon },
    ];
