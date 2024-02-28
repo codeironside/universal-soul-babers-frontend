@@ -45,6 +45,7 @@ const Profile = () => {
       fetchUserDetails();
     }
   }, []);
+ 
 
   function logout() {
     deleteAllCookies();

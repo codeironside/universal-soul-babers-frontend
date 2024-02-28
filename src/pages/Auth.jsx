@@ -8,14 +8,21 @@ import { ImSpinner8 } from "react-icons/im";
 import { buildApiEndpoint, setCookie } from "../utils"
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
+import {
+ 
+  UserGroupIcon,
+
+  UserIcon,
+  
+} from "@heroicons/react/24/outline";
  
 export default function Auth({ signup = false }) {
-
+  const [type, setType] = useState("true");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [state, setState] = useState('')
-  const [city, setCity] = useState('')
-  const [county, setCounty] = useState('')
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [county, setCounty] = useState("");
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -25,7 +32,11 @@ export default function Auth({ signup = false }) {
 
   const [loading, setLoading] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState({ type: "danger", title: "Error!", desc: "" }); // {type: "success", title: "Success!", desc: "You have successfully logged in. Redirecting..."} 
+  const [errorMessage, setErrorMessage] = useState({
+    type: "danger",
+    title: "Error!",
+    desc: "",
+  }); // {type: "success", title: "Success!", desc: "You have successfully logged in. Redirecting..."}
 
   const mockErrorMsg = { ...errorMessage, desc: "" };
 
@@ -39,6 +50,17 @@ export default function Auth({ signup = false }) {
     }
   }, [errorMessage.desc]);
 
+  // Handle click for the options
+  const handleOptionChange = (value) => {
+    setType((prevState) => {
+      if (prevState === value) {
+        return null; // Deselect option if clicked again
+      } else {
+        return value;
+      }
+    });
+  };
+
   const handleSubmitForm = async (e) => {
     e.preventDefault();
 
@@ -47,13 +69,24 @@ export default function Auth({ signup = false }) {
       if (!email || !password) {
         setErrorMessage({ ...errorMessage, desc: "Please fill in all fields" });
       } else if (password.length < 6) {
-        setErrorMessage({ ...errorMessage, desc: "Password should not be less than 6 characters" });
+        setErrorMessage({
+          ...errorMessage,
+          desc: "Password should not be less than 6 characters",
+        });
       } else {
         setErrorMessage(mockErrorMsg);
         setLoading(true);
 
-        axios.post(buildApiEndpoint("/users/login"), { email, password }, { withCredentials: true, headers: { 'Content-Type': 'application/json' } })
-          .then(response => {
+        axios
+          .post(
+            buildApiEndpoint("/users/login"),
+            { email, password },
+            {
+              withCredentials: true,
+              headers: { "Content-Type": "application/json" },
+            }
+          )
+          .then((response) => {
             // check if response status is 2xx
             if (response.status >= 200 && response.status < 300) {
               // successful login
@@ -66,7 +99,7 @@ export default function Auth({ signup = false }) {
 
               //console.log("this is auth",auth)
               // Extract the token from the header
-              const token = auth.split(' ')[1];
+              const token = auth.split(" ")[1];
               setCookie("token", token);
 
               navigate("/profile");
@@ -74,21 +107,34 @@ export default function Auth({ signup = false }) {
               const responseData = response.data;
               setErrorMessage({ ...errorMessage, desc: responseData });
             }
-
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Login error:", error);
-            setErrorMessage({ ...errorMessage, desc: "Unable to login. Try again later" });
-          }).finally(() => {
+            setErrorMessage({
+              ...errorMessage,
+              desc: "Unable to login. Try again later",
+            });
+          })
+          .finally(() => {
             setLoading(false);
           });
       }
     } else {
       // handle register
-      if (!email || !password || !firstName || !lastName || !userName || !phoneNumber) {
+      if (
+        !email ||
+        !password ||
+        !firstName ||
+        !lastName ||
+        !userName ||
+        !phoneNumber
+      ) {
         setErrorMessage({ ...errorMessage, desc: "Please fill in all fields" });
       } else if (password.length < 6) {
-        setErrorMessage({ ...errorMessage, desc: "Password should not be less than 6 characters" });
+        setErrorMessage({
+          ...errorMessage,
+          desc: "Password should not be less than 6 characters",
+        });
       } else {
         setErrorMessage(mockErrorMsg);
         setLoading(true);
@@ -100,7 +146,14 @@ export default function Auth({ signup = false }) {
               "Content-Type": "application/json",
             },
 
-            body: JSON.stringify({ email, password, firstName, lastName, userName, phoneNumber }),
+            body: JSON.stringify({
+              email,
+              password,
+              firstName,
+              lastName,
+              userName,
+              phoneNumber,
+            }),
             credentials: "include",
           });
 
@@ -112,27 +165,29 @@ export default function Auth({ signup = false }) {
             // console.log(responseData)
             setCookie("user", responseData);
             navigate("/dashboard");
-
           } else {
             const responseData = await response.text();
             setErrorMessage({ ...errorMessage, desc: responseData });
           }
         } catch (error) {
           setLoading(false);
-          setErrorMessage({ ...errorMessage, desc: "Unable to create account. Try again later" });
+          setErrorMessage({
+            ...errorMessage,
+            desc: "Unable to create account. Try again later",
+          });
           console.error("Login error:", error);
         }
       }
     }
-  }
+  };
 
   const btnText = () => {
     if (loading) {
-      return <ImSpinner8 className="mx-auto animate-spin" />;
+      return <ImSpinner8 className='mx-auto animate-spin' />;
     }
 
     return variant === "Login" ? "Login" : "Register";
-  }
+  };
 
   return (
     <section className='container grid items-center justify-center h-full grid-cols-1 mx-auto md:grid-cols-2 lg:grid-cols-2 '>
@@ -268,7 +323,33 @@ export default function Auth({ signup = false }) {
           </div>
           {variant === "Register" && (
             <>
-              <CheckOptions question='Role ' options={['Individual', 'Entity (Two or more)']} />
+              <div className='flex my-4 w-full  flex-col items-center justify-center'>
+                <p className='mb-4 text-bold text-lg leading-8'>
+                  What do you identify as?
+                </p>
+                <div className='flex  w-full  items-center justify-center'>
+                  <div
+                    className={`option w-[50%] mr-4 bg-slate-50 rounded-lg shadow-lg p-4 cursor-pointer ${
+                      type === true && "border border-black"
+                    }`}
+                    onClick={() => handleOptionChange(true)}
+                    data-aos='fade-right'
+                    data-aos-duration='1200'>
+                    <UserIcon className='w-8 h-8 mb-4 text-black' />
+                    <p className='text-grey text-sm'>Individual</p>
+                  </div>
+                  <div
+                    className={`option w-[50%] mr-4 bg-slate-50 rounded-lg shadow-lg p-4 cursor-pointer ${
+                      type === false && "border border-black"
+                    }`}
+                    onClick={() => handleOptionChange(false)}
+                    data-aos='fade-left'
+                    data-aos-duration='1500'>
+                    <UserGroupIcon className='w-8 h-8 mb-4 text-black' />
+                    <p className='text-grey text-sm'>Entity (2+) </p>
+                  </div>
+                </div>
+              </div>
               <div
                 className='flex w-full'
                 data-aos='fade-up'

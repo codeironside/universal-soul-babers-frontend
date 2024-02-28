@@ -6,6 +6,7 @@ import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
 import { AiOutlineInstagram } from "react-icons/ai";
 import { RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
+import { IoLocationOutline } from "react-icons/io5";
 import {SidePanel, BookingModal, Chat} from '../components'
 import { useParams } from 'react-router-dom';
 import { fetchDataOne } from "../api/booking";
@@ -43,31 +44,23 @@ import { scrollToTop } from '../ScollToTop.js';
   }
      
   return (
-    
     <>
       <section className='px-5 mx-auto container'>
         <div className='grid md:grid-cols-5 gap-[50px] '>
           <div className='md:col-span-3'>
             <div className='flex flex-col md:flex-row lg:flex-row items-center  gap-5'>
               <figure className='max-w-[200px] max-h-[200px] rounded-lg '>
-               {/*<img src={} alt=''  /> */}
-                     <img
-  src={data.images || baberImg}
-  alt={data.shop_name}
-  className='w-full rounded-lg'
-/>
+                {/*<img src={} alt=''  /> */}
+                <img
+                  src={data.images || baberImg}
+                  alt={data.shop_name}
+                  className='w-full rounded-lg'
+                />
               </figure>
               <div>
-                <span
-                  className='bg-[#CCF0F3] text-textColor py-1 px-6 lg:py-2 lg:px-6 text-[12px] leading-4 lg:text-[16px]
-        lg:leading-7 font-semibold rounded
-        '>
-                  Professional
-                </span>
-                
                 <h3 className='text-headingColor text-[22px] leading-9 mt-3 font-bold '>
-  {data && data.owner ? data.shop_name: 'Loading...'}
-</h3>
+                  {data && data.owner ? data.shop_name : "Loading..."}
+                </h3>
 
                 <div className='flex items-center gap-2 '>
                   <span className='flex items-center text-[14px] leading-5 gap-[6px] lg:text-[16px] lg:leading-7 font-semibold text-headingColor '>
@@ -80,12 +73,14 @@ import { scrollToTop } from '../ScollToTop.js';
                     (272)
                   </span>
                 </div>
-                <p className='text-para text-[14px] leading-6 md:text-[15px] lg:max-w-[300px] '>
-{data  ? `${data.description}` : 'Loading...'}
-                </p>
+               {/* Location */}
+                <div className='flex gap-2 items-center my-2 '>
+                  <IoLocationOutline className='w-4 h-4' />
+                  <p className='text-para text-[14px] leading-6 md:text-[15px] lg:max-w-[300px] '> Chicago, Illinois</p>
+                </div>
 
                 {/* social links  */}
-{/*                 <div className='flex items-center gap-3 mt-4'>
+                <div className='flex items-center gap-3 mt-4'>
                   <a
                     href='https://www.youtube.com/@universoulbarbers'
                     target='_blank'
@@ -104,7 +99,7 @@ import { scrollToTop } from '../ScollToTop.js';
                     className='w-9 h-9 border border-solid rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none '>
                     <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />
                   </a>
-                </div> */}
+                </div>
               </div>
             </div>
             <div className='mt-[50px] border-b border-solid border-[#0066ff34]  '>
@@ -117,22 +112,24 @@ import { scrollToTop } from '../ScollToTop.js';
                 }  py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>
                 About
               </button>
-
             </div>
             <div className='mt-[50px] '>
               {tab === "about" && <BarbersAbout />}
-             
             </div>
           </div>
-           {/* needs to be worked on by the devs devs */}
+          {/* needs to be worked on by the devs devs */}
           <div className='md:col-span-2'>
             <SidePanel setModalShow={setModalShow} data={data} />
           </div>
         </div>
         <Chat recipient={data.shop_name} />
       </section>
-       {showModal && (
-        <BookingModal open={showModal} data={data} onClose={()=> setModalShow(false)} />
+      {showModal && (
+        <BookingModal
+          open={showModal}
+          data={data}
+          onClose={() => setModalShow(false)}
+        />
       )}
       <ToastContainer position='top-center' />
     </>

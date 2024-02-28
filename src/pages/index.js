@@ -9,6 +9,9 @@ import BarbersDetails from './BarbersDetails'
 import BarbersAbout from './BarbersAbout'
 import Feedback from './Feedback'
 import MarketPlace from './MarketPlace'
+import Messages from './Messages'
+import MessageDetails from './MessageDetails'
+import EntityPage from './EntityPage'
 import ProductDetails from './ProductDetails'
 import Profile from './Profile'
 import Login from './Login.jsx'
@@ -20,6 +23,7 @@ import ThankYou from './ThankYou.jsx'
 import Payment from './Payment.jsx'
 import CrowdfundingThankYou from './ThankYou/CrowdfundingThankYou.jsx'
 import SubscriptionThankYou from './ThankYou/SubscriptionThankYou.jsx'
+import AccountActivated from './ThankYou/AccountActivated.jsx'
 import BookingThankYou from './ThankYou/BookingThankYou.jsx'
 import ThreadPage from './ThreadPage.jsx'
 
@@ -31,6 +35,7 @@ export {
   Profile,
   Auth,
   Contact,
+  EntityPage,
   Barbers,
   NotFound,
   BarbersDetails,
@@ -42,11 +47,14 @@ export {
   UserPanel,
   Funding,
   UserCampaign,
+  Messages,
+  MessageDetails,
   CampaignList,
   ThankYou,
   Payment,
   CrowdfundingThankYou,
   BookingThankYou,
+  AccountActivated,
   SubscriptionThankYou,
   ThreadPage
 }
